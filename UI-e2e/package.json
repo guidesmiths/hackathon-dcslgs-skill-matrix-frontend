@@ -1,0 +1,33 @@
+{
+  "name": "frontend-skill-matrix",
+  "version": "1.0.0",
+  "description": "frontend-skill-matrix e2e tests",
+  "main": "index.js",
+  "scripts": {
+    "dev:e2e": "cross-env CYPRESS_REMOTE_DEBUGGING_PORT=9222 ./node_modules/.bin/cypress open",
+    "headless:e2e": "cross-env CLI=true CYPRESS_baseUrl=http://localhost:4000 ./node_modules/.bin/cypress run",
+    "headless:e2e:ci": "cross-env CI=true CLI=true CYPRESS_baseUrl=http://localhost:3000 ./node_modules/.bin/cypress run",
+    "lint": "cross-env ./node_modules/.bin/eslint --config .eslintrc_cypress.json ."
+  },
+  "keywords": [
+    "cypress",
+    "e2e"
+  ],
+  "author": "guidesmiths",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.4",
+    "axe-core": "^4.1.4",
+    "cypress": "^6.8.0",
+    "cypress-axe": "^0.12.2",
+    "cypress-dark": "^1.7.14",
+    "eslint": "^7.23.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-no-only-tests": "^2.4.0"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0"
+  }
+}
