@@ -1,0 +1,24 @@
+{
+  "root": true,
+  "plugins": [
+    "cypress",
+    "chai-friendly",
+    "no-only-tests"
+  ],
+  "env": {
+    "cypress/globals": true,
+    "jest": false
+  },
+  "extends": [
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "jest/valid-expect": 0,
+    "max-len": ["warn", { "code": 220 }],
+    "no-only-tests/no-only-tests": "error",
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+    "cypress/no-unnecessary-waiting": 0,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "name": "gs-skill-matrix-frontend",
+  "version": "0.0.1",
+  "description": "Front-end app for skill matrix",
+  "author": {
+    "name": "author",
+    "email": "author@domain.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "local": "cross-env SERVICE_ENV=local node index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "start:local": "cross-env NODE_ENV=local node index.js",
+    "test:report": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --reporters=default",
+    "front:lint": "cd frontend && npm run lint",
+    "e2e:lint": "cd UI-e2e && npm run lint",
+    "lint": "eslint . && npm run front:lint && npm run e2e:lint",
+    "lint:fix": "cd frontend && npm run eslint:fix",
+    "manifest": "node_modules/make-manifest/bin/make-manifest",
+    "front:dev": "cd frontend && npm start",
+    "front:tests": "cd frontend && npm test",
+    "CI:front:tests": "cd frontend && npm run CI:front:tests",
+    "dev": "cross-env node_modules/.bin/run-p front:dev start:local",
+    "build": "cd frontend && npm run build",
+    "server:bundle": "cross-env NODE_ENV=production node lib/createServerBundle.js",
+    "build:ci": "cross-env node_modules/.bin/run-p build:prod manifest",
+    "build:prod": "npm run build && npm run server:bundle",
+    "test:dev:cypress": "cd UI-e2e && npm run dev:e2e",
+    "test:run:cypress": "cd UI-e2e && npm run headless:e2e",
+    "test:run:cypress:ci": "cd UI-e2e && npm run headless:e2e:ci",
+    "start:coverage": "cd frontend && npm run start:coverage",
+    "install:cypress": "cd UI-e2e && npm install",
+    "test:push": "npm run build && npm run server:bundle && cross-env node_modules/.bin/run-p -r start:local test:run:cypress",
+    "test:push:coverage": "cross-env start-server-and-test start:coverage http://localhost:3000 test:run:cypress:ci",
+    "postinstall": "cd frontend && npm i"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "chai": "^4.2.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-flowtype": "^5.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-mocha": "^6.2.2",
+    "expect.js": "^0.3.1",
+    "husky": "^3.1.0",
+    "jest": "^26.6.3",
+    "jest-config": "^26.6.3",
+    "jest-junit": "^12.0.0",
+    "npm-run-all": "^4.1.5",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "bunyan": "^1.8.12",
+    "chalk": "^4.0.0",
+    "confabulous": "^1.7.0",
+    "cross-env": "^7.0.3",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "hogan.js": "^3.0.2",
+    "make-manifest": "^1.0.4",
+    "on-headers": "^1.0.2",
+    "optimist": "^0.6.1",
+    "optional": "^0.1.4",
+    "prepper": "^1.2.0",
+    "ramda": "^0.27.0",
+    "systemic": "^3.3.7",
+    "systemic-domain-runner": "^1.1.0",
+    "systemic-express": "^1.1.1"
+  }
+}

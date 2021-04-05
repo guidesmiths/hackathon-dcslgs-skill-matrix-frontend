@@ -1,0 +1,5 @@
+.idea
+public/*
+build/*
+coverage/*
+node_modules/*
