@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { SearchBar } from './components/SearchBar/SearchBar';
+import Input from '../../app/commons/Input';
+import Select from '../../app/commons/Select';
 import HomePageStyled from './HomePage.styled';
 
 export const HomePage = () => (
@@ -8,5 +10,9 @@ export const HomePage = () => (
     data-cy="hola"
   >
     <SearchBar />
+    <div>
+      <Input/>
+      <Select/>
+    </div>
   </HomePageStyled>
 );
