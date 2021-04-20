@@ -9,8 +9,9 @@ module.exports = new System({ name: 'routes' })
   .add('routes.admin', adminRoutes())
   .dependsOn(...commonDependencies, 'manifest')
   .add('routes.ui', uiRoutes())
-  .dependsOn(...commonDependencies, 'controller')
+  .dependsOn(...commonDependencies)
   .add('routes.skills', skillRoutes())
+  .dependsOn(...commonDependencies, 'controller')
   .add('routes')
   // CAUTION!
   // - 'routes.admin' must be the first dependency, since it makes some configuration
