@@ -8,4 +8,14 @@ describe('Home page', () => {
     cy.visit('/no-exist');
     cy.url().should('match', new RegExp('/'));
   });
+
+  it('should fetch the initial State', () => {
+    cy.server();
+    cy.route({
+      url: '/ui/skills/catalog',
+      method: 'get',
+      response: 'fixture:skills.json',
+    }).as('getAllSkills');
+    cy.wait('@getAllSkills');
+  });
 });

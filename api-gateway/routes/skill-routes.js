@@ -1,6 +1,6 @@
 module.exports = () => {
   const start = ({ app, controller }, cb) => {
-    app.get('/ui/skills', (req, res) => controller.skills
+    app.get('/ui/skills/catalog', (req, res) => controller.skills
       .fetchSkills()
       .then(({ data }) => res.json(data)));
 

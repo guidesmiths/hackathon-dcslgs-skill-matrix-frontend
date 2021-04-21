@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../../../config/api-routes';
-
-const axios = require('axios');
+import axios from 'axios';
 
 const initialState = {
   value: [],
@@ -16,7 +14,7 @@ const initialState = {
 export const fetchSkillsAsync = createAsyncThunk(
   'skills/fetchSkills',
   async () => {
-    const response = await axios.get(api.skills.fetchSkills.url);
+    const response = await axios.get('/ui/skills/catalog');
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   },
@@ -27,8 +25,8 @@ export const skillsSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    skillAdded(state, action) {
-      state.push(action.payload);
+    skillAdded: (state, action) => {
+      state.value = [...state.value, ...action.payload];
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -40,7 +38,7 @@ export const skillsSlice = createSlice({
       })
       .addCase(fetchSkillsAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.value = action.payload;
       });
   },
 });

@@ -4,6 +4,7 @@ import { SearchBarInput } from './SearchBar.styled';
 
 export const SearchBar = () => {
   const [input, setInput] = useState('');
+  // const [skillFilters, setSkillFilters] = useState([])
 
   // const options = [{
   //   value: 'hola',
