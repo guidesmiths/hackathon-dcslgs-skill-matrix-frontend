@@ -45,10 +45,16 @@ export const skillsSlice = createSlice({
 
 export const { skillAdded, incrementByAmount } = skillsSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.skills.value)`
+// Selectors
 export const selectSkill = state => state.skills.value;
+
+export const selectAllSkills = state => state.skills;
+
+export const selectSkillById = (state, skillId) =>
+  state.skills.find(skill => skill.id === skillId);
+
+export const selectSkillByName = (state, skillName) =>
+  state.skills.find(skill => skill.Name === skillName);
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
