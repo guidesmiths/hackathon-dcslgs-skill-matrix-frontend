@@ -14,7 +14,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchSkillsAsync());
-    console.log(skills);
   }, [dispatch]);
 
   return (
@@ -23,13 +22,13 @@ export const HomePage = () => {
     >
       <SearchBar />
       <div>
-        <Input/>
+        <Input skills={skills}/>
         <Select/>
       </div>
       {
-        skillsStatus === 'succeded' ? (skills.value.map(skill =>
-          (<p key={skill.id}>{skill.name}</p>),
-        )) : (<p>Skill Store empty</p>)
+        skillsStatus === 'succeded' ? (skills.map(skill =>
+          (<p key={skill.id}>{skill.name}</p>
+          ))) : (<p>Skill Store empty</p>)
       }
     </HomePageStyled>
   );

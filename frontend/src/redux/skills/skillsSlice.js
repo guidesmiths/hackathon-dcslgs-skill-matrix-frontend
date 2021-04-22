@@ -46,7 +46,7 @@ export const skillsSlice = createSlice({
 export const { skillAdded, incrementByAmount } = skillsSlice.actions;
 
 // Selectors
-export const selectAllSkills = state => state.skills;
+export const selectAllSkills = state => state.skills.value;
 
 export const selectSkillById = (state, skillId) =>
   state.skills.find(skill => skill.id === skillId);
