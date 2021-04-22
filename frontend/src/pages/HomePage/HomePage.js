@@ -27,7 +27,7 @@ export const HomePage = () => {
         <Select/>
       </div>
       {
-        skillsStatus === 'succeded' && skills.value.length > 0 ? (skills.value.map(skill =>
+        skillsStatus === 'succeded' ? (skills.value.map(skill =>
           (<p key={skill.id}>{skill.name}</p>),
         )) : (<p>Skill Store empty</p>)
       }
