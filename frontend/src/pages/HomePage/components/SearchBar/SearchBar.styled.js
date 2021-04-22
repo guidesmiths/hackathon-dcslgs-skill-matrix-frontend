@@ -17,6 +17,25 @@ const SearchBarInput = styled.input`
   }}
 `;
 
+const SearchBarUsers = styled.input`
+  display:block;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+
+  ${props => {
+    if (props.value === '') {
+      return css`
+        background-color: ${props.theme.black};
+      `;
+    }
+
+    return css``;
+  }}
+`;
+
 const SearchBarSelect = styled.select`
   border: 1px solid black;
   border-radius: 5px;
@@ -36,4 +55,4 @@ const SearchBarOption = styled.option`
   }}
 `;
 
-export { SearchBarInput, SearchBarSelect, SearchBarOption };
+export { SearchBarInput, SearchBarUsers, SearchBarSelect, SearchBarOption };
