@@ -10,7 +10,7 @@ describe('Home page', () => {
   });
 
   it('should fetch the initial State', () => {
-    cy.visit('/')
+    cy.visit('/');
     cy.server();
     cy.route({
       url: '/ui/skills/catalog',

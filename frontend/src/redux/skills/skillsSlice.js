@@ -16,7 +16,7 @@ export const fetchSkillsAsync = createAsyncThunk(
   async () => {
     const response = await axios.get('/ui/skills/catalog');
     // The value we return becomes the `fulfilled` action payload
-    return response.data;
+    return response.data.skills;
   },
 );
 
@@ -37,8 +37,8 @@ export const skillsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchSkillsAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.value = action.payload;
+        state.status = 'succeded';
+        state.value = [...state.value, ...action.payload];
       });
   },
 });
@@ -53,14 +53,5 @@ export const selectSkillById = (state, skillId) =>
 
 export const selectSkillByName = (state, skillName) =>
   state.skills.find(skill => skill.Name === skillName);
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-// export const incrementIfOdd = amount => (dispatch, getState) => {
-//   const currentValue = selectCount(getState());
-//   if (currentValue % 2 === 1) {
-//     dispatch(incrementByAmount(amount));
-//   }
-// };
 
 export default skillsSlice.reducer;
