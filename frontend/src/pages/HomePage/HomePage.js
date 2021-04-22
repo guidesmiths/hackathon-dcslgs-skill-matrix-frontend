@@ -6,18 +6,20 @@ import Input from '../../app/commons/Input/Input';
 import Select from '../../app/commons/Select/Select';
 import HomePageStyled from './HomePage.styled';
 import { fetchSkillsAsync } from '../../redux/skills/skillsSlice';
+import NavBar from '../../app/commons/NavBar/NavBar';
 
 export const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchSkillsAsync());
-  }, [dispatch]);
+  }, []);
 
   return (
     <HomePageStyled
       data-cy="hola"
     >
+      <NavBar/>
       <SearchBar />
       <div>
         <Input/>

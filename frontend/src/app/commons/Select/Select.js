@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { SearchBarOption, SearchBarSelect } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
 
 function Select() {
   const optionsSelect = [
@@ -10,11 +11,11 @@ function Select() {
 
   return (
     <Fragment>
-      <select id="skill" name="skill">
+      <SearchBarSelect id="skill" name="skill">
         {optionsSelect.map((option, index) =>
-          (<option key={index}>{option.level}</option>),
+          (<SearchBarOption key={index} value={option.level}>{option.level}</SearchBarOption>),
         )}
-      </select>
+      </SearchBarSelect>
     </Fragment>
   );
 }

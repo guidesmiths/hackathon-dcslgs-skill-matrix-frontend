@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector } from 'react-redux';
+import { SearchBarInput } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
 import { selectAllSkills } from '../../../redux/skills/skillsSlice';
 
 function Input() {
@@ -19,7 +20,7 @@ function Input() {
 
   return (
     <Fragment>
-      <input
+      <SearchBarInput
         list="skills"
         type="text"
         value={input}
