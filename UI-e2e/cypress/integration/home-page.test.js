@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 describe('Home page', () => {
-  it('should render home page with "hola mundo"', () => {
+  it('should render home page"', () => {
     cy.visit('/');
   });
 
@@ -10,6 +10,7 @@ describe('Home page', () => {
   });
 
   it('should fetch the initial State', () => {
+    cy.visit('/')
     cy.server();
     cy.route({
       url: '/ui/skills/catalog',

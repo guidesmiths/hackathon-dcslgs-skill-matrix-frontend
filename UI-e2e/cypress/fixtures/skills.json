@@ -1,34 +1,35 @@
-[
-    {
-      "id": 4,
-      "name": "Redux-Sagas",
-      "description": "",
-      "ecosystem": "React",
-      "role": "Frontend",
-      "type": "Hard"
-    },
-    {
-      "id": 3,
-      "name": "Redux",
-      "description": "",
-      "ecosystem": "React",
-      "role": "Frontend",
-      "type": "Hard"
-    },
-    {
-      "id": 2,
-      "name": "Next.js",
-      "description": "",
-      "ecosystem": "React",
-      "role": "Frontend",
-      "type": "Hard"
-    },
-    {
-      "id": 1,
-      "name": "React",
-      "description": "",
-      "ecosystem": "React",
-      "role": "Frontend",
-      "type": "Hard"
-    }
-]
+{ "skills": [
+      {
+        "id": 4,
+        "name": "Redux-Sagas",
+        "description": "",
+        "ecosystem": "React",
+        "role": "Frontend",
+        "type": "Hard"
+      },
+      {
+        "id": 3,
+        "name": "Redux",
+        "description": "",
+        "ecosystem": "React",
+        "role": "Frontend",
+        "type": "Hard"
+      },
+      {
+        "id": 2,
+        "name": "Next.js",
+        "description": "",
+        "ecosystem": "React",
+        "role": "Frontend",
+        "type": "Hard"
+      },
+      {
+        "id": 1,
+        "name": "React",
+        "description": "",
+        "ecosystem": "React",
+        "role": "Frontend",
+        "type": "Hard"
+      }
+  ]
+}
