@@ -6,6 +6,7 @@ const SearchBarInput = styled.input`
   height: 50px;
   width: 500px;
   padding: 0 15px;
+  margin-right: 20px;
 
   ${props => {
     if (props.value === '') {
@@ -18,11 +19,10 @@ const SearchBarInput = styled.input`
   }}
 `;
 
-const SearchBarUsers = styled.input`
+const SearchBarUsers = styled(SearchBarInput)`
   display:block;
   border: 1px solid black;
   border-radius: 5px;
-  height: 50px;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 15px;
@@ -41,7 +41,7 @@ const SearchBarUsers = styled.input`
 
 const SearchBarSkills = styled.div`
   display:flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const SearchBarSelect = styled.select`
@@ -49,6 +49,8 @@ const SearchBarSelect = styled.select`
   border-radius: 5px;
   height: 50px;
   width: 100px;
+  padding: 0 15px;
+  margin-right: 20px;
 `;
 
 const SearchBarOption = styled.option`
@@ -66,6 +68,7 @@ const SearchBarOption = styled.option`
 const SearchBarButton = styled.button`
   height: 50px;
   width: 50px;
+  margin-right: 20px;
 `;
 
 export { SearchBarInput, SearchBarUsers, SearchBarSelect, SearchBarOption, SearchBarSkills, SearchBarButton };
