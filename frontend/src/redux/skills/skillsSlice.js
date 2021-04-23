@@ -43,7 +43,7 @@ export const skillsSlice = createSlice({
   },
 });
 
-export const { skillAdded, incrementByAmount } = skillsSlice.actions;
+export const { skillAdded } = skillsSlice.actions;
 
 // Selectors
 export const selectAllSkills = state => state.skills.value;
