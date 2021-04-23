@@ -2,8 +2,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { SearchBar } from './components/SearchBar/SearchBar';
-import Input from '../../app/commons/Input/Input';
-import Select from '../../app/commons/Select/Select';
 import HomePageStyled from './HomePage.styled';
 import { fetchSkillsAsync } from '../../redux/skills/skillsSlice';
 import NavBar from '../../app/commons/NavBar/NavBar';
@@ -20,11 +18,7 @@ export const HomePage = () => {
       data-cy="hola"
     >
       <NavBar/>
-      <SearchBar />
-      <div>
-        <Input/>
-        <Select/>
-      </div>
+      <SearchBar/>
     </HomePageStyled>
   );
 };
