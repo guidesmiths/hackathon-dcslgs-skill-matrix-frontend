@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import HomePageStyled from './HomePage.styled';
 import { fetchSkillsAsync } from '../../redux/skills/skillsSlice';
-import NavBar from '../../app/commons/NavBar/NavBar';
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export const HomePage = () => {
     <HomePageStyled
       data-cy="hola"
     >
-      <NavBar/>
       <SearchBar/>
     </HomePageStyled>
   );

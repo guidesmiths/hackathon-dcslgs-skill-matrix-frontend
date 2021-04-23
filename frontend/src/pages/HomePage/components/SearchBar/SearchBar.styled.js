@@ -5,6 +5,7 @@ const SearchBarInput = styled.input`
   border-radius: 5px;
   height: 50px;
   width: 500px;
+  padding: 0 15px;
 
   ${props => {
     if (props.value === '') {
@@ -24,6 +25,8 @@ const SearchBarUsers = styled.input`
   height: 50px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 15px;
+  padding: 0 15px;
 
   ${props => {
     if (props.value === '') {

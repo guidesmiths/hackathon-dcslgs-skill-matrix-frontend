@@ -1,8 +1,9 @@
 import React from 'react';
+import { NavBarTop } from './NavBar.styled';
 
 function NavBar() {
   return (
-    <h3>SkillMatrix</h3>
+    <NavBarTop>Skill Matrix Navbar</NavBarTop>
   );
 }
 
