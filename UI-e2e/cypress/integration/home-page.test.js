@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
 describe('Home page', () => {
+  beforeEach(() => {
+    cy.fetchSkills();
+  });
+
   it('should render home page"', () => {
     cy.visit('/');
   });
@@ -9,14 +13,9 @@ describe('Home page', () => {
     cy.url().should('match', new RegExp('/'));
   });
 
-  it('should fetch the initial State', () => {
-    cy.visit('/');
-    cy.server();
-    cy.route({
-      url: '/ui/skills/catalog',
-      method: 'get',
-      response: 'fixture:skills.json',
-    }).as('getAllSkills');
-    cy.wait('@getAllSkills');
+  it('should find React option when filling in skill input', () => {
+    cy.get('input').last().type('re');
+    cy.get('option').contains('React');
+    cy.get('select').select('3');
   });
 });
