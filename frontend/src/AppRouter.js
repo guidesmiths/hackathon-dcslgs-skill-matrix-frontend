@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './app/commons/NavBar/NavBar';
 import { HOME_ROUTE } from './constants/routes';
-import { HomePage } from './pages/HomePage/HomePage';
+import HomePage from './pages/HomePage/HomePage';
 
 const AppRouter = () => (
   <>
