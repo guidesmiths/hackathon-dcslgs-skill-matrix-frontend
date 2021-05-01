@@ -48,10 +48,8 @@ export const { skillAdded } = skillsSlice.actions;
 // Selectors
 export const selectAllSkills = state => state.skills.value;
 
-export const selectSkillById = (state, skillId) =>
-  state.skills.find(skill => skill.id === skillId);
+export const selectSkillById = (state, skillId) => state.skills.find(skill => skill.id === skillId);
 
-export const selectSkillByName = (state, skillName) =>
-  state.skills.find(skill => skill.Name === skillName);
+export const selectSkillByName = (state, skillName) => state.skills.find(skill => skill.Name === skillName);
 
 export default skillsSlice.reducer;
