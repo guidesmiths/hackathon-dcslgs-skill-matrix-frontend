@@ -7,16 +7,6 @@ const SearchBarInput = styled.input`
   width: 500px;
   padding: 0 15px;
   margin-right: 20px;
-
-  ${props => {
-    if (props.value === '') {
-      return css`
-        background-color: ${props.theme.black};
-      `;
-    }
-
-    return css``;
-  }}
 `;
 
 const SearchBarUsers = styled(SearchBarInput)`
@@ -27,16 +17,6 @@ const SearchBarUsers = styled(SearchBarInput)`
   box-sizing: border-box;
   margin-bottom: 15px;
   padding: 0 15px;
-
-  ${props => {
-    if (props.value === '') {
-      return css`
-        background-color: ${props.theme.black};
-      `;
-    }
-
-    return css``;
-  }}
 `;
 
 const SearchBarSkills = styled.div`
