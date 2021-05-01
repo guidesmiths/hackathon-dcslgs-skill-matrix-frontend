@@ -5,4 +5,5 @@ export default styled.div`
   box-sizing: border-box;
   height: 100vh;
   margin: 20px 50px;
+  font-family: Arial, Helvetica, sans-serif;
 `;
