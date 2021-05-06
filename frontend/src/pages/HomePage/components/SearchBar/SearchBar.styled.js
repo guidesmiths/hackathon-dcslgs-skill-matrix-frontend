@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const SearchBarInput = styled.input`
   border: 1px solid black;
@@ -34,15 +34,7 @@ const SearchBarSelect = styled.select`
 `;
 
 const SearchBarOption = styled.option`
- ${props => {
-    if (props.isSelected) {
-      return css`
-        color: red;
-      `;
-    }
-
-    return css``;
-  }}
+  display: ${props => (props.isCollapsed && 'none')}
 `;
 
 const SearchBarButton = styled.button`

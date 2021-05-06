@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { SearchBarInput } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
 import { selectAllSkills } from '../../../redux/skills/skillsSlice';
 
-function Input() {
+const Input = () => {
   const [input, setInput] = useState('');
   const [filteredSkills, setFilteredSkills] = useState([]);
   const skills = useSelector(selectAllSkills);
@@ -35,6 +35,6 @@ function Input() {
       </datalist>
     </Fragment>
   );
-}
+};
 
 export default Input;

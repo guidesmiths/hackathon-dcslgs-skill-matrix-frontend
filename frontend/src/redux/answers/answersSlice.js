@@ -39,6 +39,4 @@ export const { answerAdded } = answersSlice.actions;
 // Selectors
 export const selectAllAnswers = state => state.answers.value;
 
-// export const selectAnswerById = (state, answerId) => state.answers.find(answers => answers.id === answerId);
-
 export default answersSlice.reducer;

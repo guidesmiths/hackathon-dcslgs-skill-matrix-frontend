@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavBarTop } from './NavBar.styled';
 
-function NavBar() {
-  return (
-    <NavBarTop>Skill Matrix Navbar</NavBarTop>
-  );
-}
+const NavBar = () => (
+  (
+    <Fragment>
+      <NavBarTop>Skill Matrix Navbar</NavBarTop>
+    </Fragment>
+  )
+);
 
 export default NavBar;

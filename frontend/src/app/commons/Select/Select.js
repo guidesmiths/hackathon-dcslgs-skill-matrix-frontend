@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { SearchBarOption, SearchBarSelect } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
 
-function Select() {
+const Select = () => {
   const optionsSelect = [
     { level: 1 },
     { level: 2 },
@@ -18,6 +18,6 @@ function Select() {
       </SearchBarSelect>
     </Fragment>
   );
-}
+};
 
 export default Select;

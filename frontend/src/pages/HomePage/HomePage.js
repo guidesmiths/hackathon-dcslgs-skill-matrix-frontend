@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { SearchBar } from './components/SearchBar/SearchBar';
@@ -13,7 +12,6 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchSkillsAsync());
     dispatch(fetchAnswersAsync());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

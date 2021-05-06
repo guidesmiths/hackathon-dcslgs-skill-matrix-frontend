@@ -1,17 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const SkillListStyled = styled.div`
     padding: 0px;
-
-    ${props => {
-    if (props.isCollapsed) {
-      return css`
-            display: none;
-          `;
-    }
-
-    return css`
-    `;
+    display: ${props => (props.isCollapsed && 'none')}
   }}
 `;
 
