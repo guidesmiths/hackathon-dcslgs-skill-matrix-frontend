@@ -6,6 +6,7 @@ import { selectAllSkills } from '../../../../redux/skills/skillsSlice';
 import { SearchBarUsers, SearchBarSkills, SearchBarButton } from './SearchBar.styled';
 import Input from '../../../../app/commons/Input/Input';
 import Select from '../../../../app/commons/Select/Select';
+import Icon from '../../../../app/commons/icon/icon';
 
 export const SearchBar = () => {
   const [inputUser, setInputUser] = useState('');
@@ -31,17 +32,13 @@ export const SearchBar = () => {
         onChange={e => setInputUser(e.target.value)}
       />
       <SearchBarSkills>
-        <Input inputSkill={inputSKill} filteredSkills={filteredSkills} onChangeInput={handleInput}/>
+        <Input input={inputSKill} optionsList={filteredSkills} onChangeInput={handleInput}/>
         <Select/>
         <SearchBarButton>
-          <span className="material-icons">
-            add_circle
-          </span>
+          <Icon icon="add_circle"/>
         </SearchBarButton>
         <SearchBarButton>
-          <span className="material-icons">
-            remove_circle
-          </span>
+          <Icon icon="remove_circle"/>
         </SearchBarButton>
       </SearchBarSkills>
     </Fragment>
