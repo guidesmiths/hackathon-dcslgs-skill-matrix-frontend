@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Jane Doe",
+    "user_id": "asldka12312sdkasnd",
+    "email": "janedoe@guidesmiths.com",
+    "skills": [
+      {
+        "id": 1,
+        "skillName": "React",
+        "level": 3
+      }
+    ]
+  },
+  {
+    "name": "John Doe",
+    "user_id": "asldkan21ansdkasnd",
+    "email": "johndoe@guidesmiths.com",
+    "skills": [
+      {
+        "id": 1,
+        "skillName": "React",
+        "level": 4
+      },
+      {
+        "id": 4,
+        "skillName": "Redux-Sagas",
+        "level": 3
+      },
+      {
+        "id": 2,
+        "skillName": "Next.js",
+        "level": 2
+      }
+    ]
+  }
+]

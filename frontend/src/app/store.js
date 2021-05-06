@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import skillsReducer from '../redux/skills/skillsSlice';
+import answersReducer from '../redux/answers/answersSlice';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    skills: skillsReducer,
+    answers: answersReducer,
   },
 });
