@@ -1,7 +1,12 @@
+const apiRoutes = require('./api-routes');
+
 module.exports = {
   server: {
     host: '0.0.0.0',
     port: 4000,
+  },
+  controller: {
+    ...apiRoutes,
   },
   routes: {
     ui: {
