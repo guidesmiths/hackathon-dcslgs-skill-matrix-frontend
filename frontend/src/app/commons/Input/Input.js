@@ -12,11 +12,7 @@ const Input = ({ input, optionsList, onChangeInput }) => (
         onChange={e => onChangeInput(e)}
       />
       <datalist id="skills">
-        {optionsList.length > 0
-          ? optionsList.map(skill =>
-            (<option key={skill.id}>{skill.name}</option>
-            ))
-          : null}
+        {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
       </datalist>
     </Fragment>
   )
