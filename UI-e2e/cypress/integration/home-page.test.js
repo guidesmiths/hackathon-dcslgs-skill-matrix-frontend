@@ -4,10 +4,6 @@ describe('Home page', () => {
     cy.init();
   });
 
-  // it.only('should render home page"', () => {
-  //   cy.visit('/');
-  // });
-
   it('should redirect to home page if route doesn\'t exist', () => {
     cy.visit('/no-exist');
     cy.url().should('match', new RegExp('/'));
@@ -20,13 +16,13 @@ describe('Home page', () => {
     cy.get('select').select('3');
   });
 
-  describe('For the anwser list', () => {
+  describe('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
       cy.visit('/');
       cy.get('[data-cy^="answer-list-element-"]').should('have.length', 2);
     });
 
-    it('should rende the correct number of skill for a given list element', () => {
+    it('should render the correct number of skill for a given list element', () => {
       cy.visit('/');
       cy.get('[data-cy="answer-list-element-1"]').within(() => {
         cy.get('[data-cy="skill-list"] > div').should('have.length', 3);

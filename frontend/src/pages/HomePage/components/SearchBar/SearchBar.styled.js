@@ -1,26 +1,19 @@
 import styled from 'styled-components';
 
-const SearchBarInput = styled.input`
+const SearchBarUsers = styled.input`
+  display: block;
   border: 1px solid black;
   border-radius: 5px;
   height: 50px;
   width: 500px;
-  padding: 0 15px;
-  margin-right: 20px;
-`;
-
-const SearchBarUsers = styled(SearchBarInput)`
-  display:block;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 100%;
   box-sizing: border-box;
+  margin-right: 20px;
   margin-bottom: 15px;
   padding: 0 15px;
 `;
 
 const SearchBarSkills = styled.div`
-  display:flex;
+  display: flex;
   justify-content: flex-start;
 `;
 
@@ -34,7 +27,7 @@ const SearchBarSelect = styled.select`
 `;
 
 const SearchBarOption = styled.option`
-  display: ${props => (props.isCollapsed && 'none')}
+  color: ${props => props.isSelected && 'red'};
 `;
 
 const SearchBarButton = styled.button`
@@ -43,4 +36,10 @@ const SearchBarButton = styled.button`
   margin-right: 20px;
 `;
 
-export { SearchBarInput, SearchBarUsers, SearchBarSelect, SearchBarOption, SearchBarSkills, SearchBarButton };
+export {
+  SearchBarUsers,
+  SearchBarSelect,
+  SearchBarOption,
+  SearchBarSkills,
+  SearchBarButton,
+};

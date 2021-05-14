@@ -1,40 +1,31 @@
-import React, { useState, Fragment } from 'react';
-import { useSelector } from 'react-redux';
-import { SearchBarInput } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
-import { selectAllSkills } from '../../../redux/skills/skillsSlice';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { InputStyled } from './Input.styled';
 
-const Input = () => {
-  const [input, setInput] = useState('');
-  const [filteredSkills, setFilteredSkills] = useState([]);
-  const skills = useSelector(selectAllSkills);
-
-  const handleInput = event => {
-    const filteredSkillsList = skills.filter(skill => (
-      skill.name
-        .toLowerCase()
-        .includes(event.target.value.toLowerCase())
-    ));
-    setInput(event.target.value);
-    setFilteredSkills(filteredSkillsList);
-  };
-
-  return (
+const Input = ({ input, optionsList, onChangeInput }) => (
+  (
     <Fragment>
-      <SearchBarInput
+      <InputStyled
         list="skills"
         type="text"
         value={input}
-        onChange={e => handleInput(e)}
+        onChange={e => onChangeInput(e)}
       />
       <datalist id="skills">
-        {filteredSkills.length > 0
-          ? filteredSkills.map(skill =>
-            (<option key={skill.id}>{skill.name}</option>
-            ))
-          : null}
+        {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
       </datalist>
     </Fragment>
-  );
+  )
+);
+
+Input.defaultProps = {
+  input: '',
+};
+
+Input.propTypes = {
+  optionsList: PropTypes.array.isRequired,
+  onChangeInput: PropTypes.func.isRequired,
+  input: PropTypes.string,
 };
 
 export default Input;
