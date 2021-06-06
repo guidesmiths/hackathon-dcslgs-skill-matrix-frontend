@@ -5,6 +5,9 @@ const getApiRoutes = servicesAPI => ({
   answers: {
     fetchAnswers: servicesAPI.answers.fetchAnswers,
   },
+  user: {
+    fetchUser: servicesAPI.answers.fetchUser,
+  },
 });
 
 module.exports = getApiRoutes;
