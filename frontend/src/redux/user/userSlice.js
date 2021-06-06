@@ -30,12 +30,12 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...state.value, action.payload];
+        state.value = [...state.value, ...action.payload];
       });
   },
 });
 
 // Selectors
-export const selectUser = state => state.skills.value;
+export const selectUser = state => state.user.value;
 
 export default userSlice.reducer;
