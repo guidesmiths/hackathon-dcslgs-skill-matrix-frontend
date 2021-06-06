@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-Cypress.Commands.add('init', () => {
+Cypress.Commands.add('initHome', () => {
   cy.server();
   cy.visit('/');
   cy.route({
@@ -13,4 +13,15 @@ Cypress.Commands.add('init', () => {
     response: 'fixture:answers.json',
   }).as('getAllAnswers');
   cy.wait(['@getAllSkills', '@getAllAnswers']);
+});
+
+Cypress.Commands.add('initUser', () => {
+  cy.server();
+  cy.visit('/profile');
+  cy.route({
+    url: '/ui/users/:id/answers',
+    method: 'get',
+    response: 'fixture:user.json',
+  }).as('getUser');
+  cy.wait('@getUser');
 });

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 describe('Home page', () => {
   beforeEach(() => {
-    cy.init();
+    cy.initHome();
   });
 
   it('should redirect to home page if route doesn\'t exist', () => {

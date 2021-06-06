@@ -7,10 +7,10 @@ const initialState = {
 };
 
 export const fetchUserAsync = createAsyncThunk(
-  'skills/fetchUser',
+  'user/fetchUser',
   async () => {
     const response = await axios.get('/ui/users/:id/answers');
-    return response.data.skills;
+    return response.data.user;
   },
 );
 
@@ -35,9 +35,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userAdded } = userSlice.actions;
-
 // Selectors
-export const SelectUser = state => state.skills.value;
+export const selectUser = state => state.skills.value;
 
 export default userSlice.reducer;

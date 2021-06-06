@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import UserPageStyled from './UserPage.styled';
-import { fetchUserAsync } from '../../redux/user/userSlice';
+import { fetchUserAsync, selectUser } from '../../redux/user/userSlice';
 
 const HomePage = () => {
+  const user = useSelector(selectUser);
+  console.log('user', user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUserAsync());
   }, []);
 
-  return <UserPageStyled data-cy="user"></UserPageStyled>;
+  return <UserPageStyled data-cy="user">
+    <h1>Hi {user.name}</h1>
+  </UserPageStyled>;
 };
 
 export default HomePage;

@@ -1,41 +1,43 @@
 {
-    "id": "asldkan21ansdkasnd",
-    "email": "johndoe@guidesmiths.com",
-    "name": "John Doe",
-    "ecosystems": [
-        {
-            "id": 1,
-            "name": "React",
-            "average": 3,
-            "skills": [
-                {
-                    "id": 1,
-                    "name": "React",
-                    "level": 4
-                },
-                {
-                    "id": 2,
-                    "name": "Next.js",
-                    "level": 2
-                },
-                {
-                    "id": 4,
-                    "name": "Redux-Sagas",
-                    "level": 3
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "name": "NodeJS",
-            "average": 1,
-            "skills": [
-                {
-                    "id": 6,
-                    "name": "Express",
-                    "level": 1
-                }
-            ]
-        }
-    ]
+    "user": {
+        "id": "asldkan21ansdkasnd",
+        "email": "johndoe@guidesmiths.com",
+        "name": "John Doe",
+        "ecosystems": [
+            {
+                "id": 1,
+                "name": "React",
+                "average": 3,
+                "skills": [
+                    {
+                        "id": 1,
+                        "name": "React",
+                        "level": 4
+                    },
+                    {
+                        "id": 2,
+                        "name": "Next.js",
+                        "level": 2
+                    },
+                    {
+                        "id": 4,
+                        "name": "Redux-Sagas",
+                        "level": 3
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "NodeJS",
+                "average": 1,
+                "skills": [
+                    {
+                        "id": 6,
+                        "name": "Express",
+                        "level": 1
+                    }
+                ]
+            }
+        ]
+    }
 }

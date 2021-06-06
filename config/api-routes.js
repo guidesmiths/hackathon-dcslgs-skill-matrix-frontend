@@ -13,7 +13,7 @@ module.exports = {
       },
     },
     user: {
-      fetchAnswers: {
+      fetchUser: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/users/:id/answers`,
         method: 'get',
       },
