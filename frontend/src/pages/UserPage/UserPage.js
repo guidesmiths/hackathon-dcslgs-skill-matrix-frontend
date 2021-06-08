@@ -10,11 +10,10 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchUserAsync());
-    console.log('user', user);
   }, []);
 
   return <UserPageStyled data-cy="user">
-    <h1>Hi {user[0]?.name}</h1>
+    <h1>Hi {user.name}</h1>
   </UserPageStyled>;
 };
 

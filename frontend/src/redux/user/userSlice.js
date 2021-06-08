@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  value: [],
+  value: {},
   status: 'idle',
 };
 
@@ -19,7 +19,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     userAdded: (state, action) => {
-      state.value = [...state.value, ...action.payload];
+      state.value = action.payload;
     },
   },
 
@@ -30,7 +30,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
+        state.value = action.payload;
       });
   },
 });
