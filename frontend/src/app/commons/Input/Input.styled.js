@@ -9,4 +9,4 @@ const InputStyled = styled.input`
   margin-right: 20px;
 `;
 
-export { InputStyled };
+export default InputStyled;
