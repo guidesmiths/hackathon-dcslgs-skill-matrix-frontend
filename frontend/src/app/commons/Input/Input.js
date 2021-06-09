@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { InputStyled } from './Input.styled';
+import InputStyled from './Input.styled';
 
 const Input = ({ input, optionsList, onChangeInput }) => (
   (
     <Fragment>
       <InputStyled
-        list="skills"
+        list={input}
         type="text"
         value={input}
         onChange={e => onChangeInput(e)}
       />
-      <datalist id="skills">
+      <datalist id={input}>
         {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
       </datalist>
     </Fragment>

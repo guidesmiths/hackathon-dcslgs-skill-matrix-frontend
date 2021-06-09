@@ -1,3 +1,4 @@
+require('dotenv').config();
 const System = require('systemic');
 const { join } = require('path');
 

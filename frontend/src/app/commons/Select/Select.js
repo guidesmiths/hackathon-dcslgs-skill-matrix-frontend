@@ -1,23 +1,32 @@
-import React, { Fragment } from 'react';
-import { SearchBarOption, SearchBarSelect } from '../../../pages/HomePage/components/SearchBar/SearchBar.styled';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { SelectStyled, OptionStyled } from './Select.styled';
 
-const Select = () => {
-  const optionsSelect = [
-    { level: 1 },
-    { level: 2 },
-    { level: 3 },
-    { level: 4 },
-  ];
+const Select = ({ options, onChange }) => {
+  const getDefaultValue = () => {
+    const selectedOption = options.find(({ selected }) => selected);
+    return selectedOption ? selectedOption.value : options[0].value;
+  };
 
-  return (
-    <Fragment>
-      <SearchBarSelect id="skill" name="skill">
-        {optionsSelect.map((option, index) =>
-          (<SearchBarOption key={index} value={option.level}>{option.level}</SearchBarOption>),
-        )}
-      </SearchBarSelect>
-    </Fragment>
+  return (<SelectStyled id="skill" name="skill" value={getDefaultValue()} onChange={onChange}>
+    {options.map((option, index) => (
+      <OptionStyled
+        key={index}
+        value={option.value}
+      >{option.value}
+      </OptionStyled>
+    ))}
+  </SelectStyled>
   );
+};
+
+Select.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array,
+};
+
+Select.defaultProps = {
+  options: [],
 };
 
 export default Select;
