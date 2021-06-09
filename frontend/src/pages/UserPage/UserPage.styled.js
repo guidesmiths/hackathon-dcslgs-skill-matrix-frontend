@@ -14,12 +14,55 @@ const UserPageDisplay = styled.div`
   grid-gap: 50px;
 `;
 
-const UserData = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+const UserData = styled.table`
   grid-column-start: 2;
   grid-column-end: 5;
+  -webkit-border-vertical-spacing: 20px;
+  -webkit-border-horizontal-spacing: 0px;
 `;
 
-export { UserPageStyled, UserPageDisplay, UserData };
+const TableTitleLeft = styled.th`
+  text-align: left;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  padding: 15px;
+`;
+
+const TableTitleCenter = styled.th`
+  text-align: center;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 15px;
+`;
+
+const TableRowLeft = styled.td`
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-left: 1px solid grey;
+  padding: 15px;
+`;
+
+const TableRowCenter = styled.td`
+  text-align: center;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 15px;
+`;
+
+const RowSkills = styled.tr`
+  &:first-child {
+    border-left: 1px solid grey;
+  }
+`;
+
+export {
+  UserPageStyled,
+  UserPageDisplay,
+  UserData,
+  TableTitleLeft,
+  TableTitleCenter,
+  TableRowLeft,
+  TableRowCenter,
+  RowSkills,
+};

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { UserPageStyled, UserPageDisplay, UserData } from './UserPage.styled';
-import { fetchUserAsync, selectUser } from '../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { UserPageStyled, UserPageDisplay } from './UserPage.styled';
+import { fetchUserAsync } from '../../redux/user/userSlice';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
+import UserSkills from './components/UserSkills';
 
 const HomePage = () => {
-  const user = useSelector(selectUser);
-
   const dispatch = useDispatch();
 
   const handleEcosystem = system => {
@@ -19,23 +18,12 @@ const HomePage = () => {
 
   return (
     <UserPageStyled data-cy="user">
-      <h1>Hi {user.name}</h1>
       <UserPageDisplay>
         <Ecosystems
           ecosystem={['React', 'Big Data', 'NodeJS']}
           handleEcosystem={handleEcosystem}
         />
-        <UserData>
-          <span>Skill Name</span>
-          <span>Rating</span>
-          <span>I&apos;d Like to learn</span>
-          {user?.ecosystems?.map(system => system?.skills?.map(skill =>
-            <div key={skill.id}>
-              <span>{skill.name}</span>
-              <span>{skill.level}</span>
-              <span>yes/no</span>
-            </div>))}
-        </UserData>
+        <UserSkills/>
       </UserPageDisplay>
     </UserPageStyled>
   );
