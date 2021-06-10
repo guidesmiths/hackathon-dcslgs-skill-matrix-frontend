@@ -2,13 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SelectStyled, OptionStyled } from './Select.styled';
 
-const Select = ({ options, onChange }) => {
-  const getDefaultValue = () => {
-    const selectedOption = options.find(({ selected }) => selected);
-    return selectedOption ? selectedOption.value : options[0].value;
-  };
-
-  return (<SelectStyled id="skill" name="skill" value={getDefaultValue()} onChange={onChange}>
+const Select = ({ options, onChange, selected }) => (
+  <SelectStyled id="skill" name="skill" value={selected} onChange={e => onChange(e)}>
     {options.map((option, index) => (
       <OptionStyled
         key={index}
@@ -17,10 +12,10 @@ const Select = ({ options, onChange }) => {
       </OptionStyled>
     ))}
   </SelectStyled>
-  );
-};
+);
 
 Select.propTypes = {
+  selected: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array,
 };
