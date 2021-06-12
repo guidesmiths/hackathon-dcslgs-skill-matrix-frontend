@@ -14,55 +14,33 @@ const UserPageDisplay = styled.div`
   grid-gap: 50px;
 `;
 
-const UserData = styled.table`
+const UserData = styled.div`
   grid-column-start: 2;
   grid-column-end: 5;
-  -webkit-border-vertical-spacing: 20px;
-  -webkit-border-horizontal-spacing: 0px;
-`;
-
-const TableTitleLeft = styled.h5`
-  text-align: left;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  border-left: 1px solid grey;
-  padding: 15px;
-`;
-
-const TableTitleCenter = styled.h5`
-  text-align: center;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  padding: 15px;
-`;
-
-const TableRowLeft = styled.td`
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  border-left: 1px solid grey;
-  padding: 15px;
-`;
-
-const TableRowCenter = styled.td`
-  text-align: center;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  padding: 15px;
 `;
 
 const RowSkills = styled.div`
-  &:first-child {
-    border-left: 1px solid grey;
-  }
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+  padding: 15px;
+  margin-bottom: 20px;
+`;
+
+const UserInput = styled.input`
+  border: none;
+  margin: 0px;
+`;
+
+const DataTitle = styled.h5`
+  margin: 0px;
 `;
 
 export {
   UserPageStyled,
   UserPageDisplay,
   UserData,
-  TableTitleLeft,
-  TableTitleCenter,
-  TableRowLeft,
-  TableRowCenter,
   RowSkills,
+  UserInput,
+  DataTitle,
 };

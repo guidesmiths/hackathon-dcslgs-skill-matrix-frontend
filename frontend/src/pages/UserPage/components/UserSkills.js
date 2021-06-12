@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { UserData, TableTitleLeft, TableTitleCenter, TableRowLeft, TableRowCenter, RowSkills } from '../UserPage.styled';
+import { UserData, RowSkills, UserInput, DataTitle } from '../UserPage.styled';
 import { selectUser } from '../../../redux/user/userSlice';
 import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 
@@ -12,22 +12,20 @@ const UserSkills = ({ setCollapsed, isCollapsed, handleEditSkill }) => {
   return (
     <UserData>
       <RowSkills>
-        <TableTitleLeft>Skill Name</TableTitleLeft>
-        <TableTitleCenter>Rating</TableTitleCenter>
-        <TableTitleCenter>I&apos;d Like to learn</TableTitleCenter>
+        <DataTitle>Skill Name</DataTitle>
+        <DataTitle>Rating</DataTitle>
+        <DataTitle>I&apos;d Like to learn</DataTitle>
       </RowSkills>
       {user?.ecosystems?.map(system => system?.skills?.map(skill =>
         <form key={skill.id} onSubmit={handleEditSkill}>
           <RowSkills >
-            <TableRowLeft>{skill.name}</TableRowLeft>
-            <TableRowCenter>{skill.level}</TableRowCenter>
-            <TableRowCenter>
-              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-              <ArrowButton onClick={setCollapsed}>
-                <span className="material-icons">{arrowButtonIcon}</span>
-              </ArrowButton>
-            </TableRowCenter>
-            <input type="submit" value="Submit"/>
+            <UserInput type="text" id="skillName" name="skillName" value={skill.name}/>
+            <UserInput type="text" id="skillLevel" name="skillLevel" value={skill.level}/>
+            <UserInput type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+            <ArrowButton onClick={setCollapsed}>
+              <span className="material-icons">{arrowButtonIcon}</span>
+            </ArrowButton>
+            <UserInput type="submit" value="Submit"/>
           </RowSkills>
         </form>))}
     </UserData>
