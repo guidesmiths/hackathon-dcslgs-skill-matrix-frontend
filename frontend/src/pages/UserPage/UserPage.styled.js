@@ -21,7 +21,7 @@ const UserData = styled.table`
   -webkit-border-horizontal-spacing: 0px;
 `;
 
-const TableTitleLeft = styled.th`
+const TableTitleLeft = styled.h5`
   text-align: left;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
@@ -29,7 +29,7 @@ const TableTitleLeft = styled.th`
   padding: 15px;
 `;
 
-const TableTitleCenter = styled.th`
+const TableTitleCenter = styled.h5`
   text-align: center;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
@@ -50,7 +50,7 @@ const TableRowCenter = styled.td`
   padding: 15px;
 `;
 
-const RowSkills = styled.tr`
+const RowSkills = styled.div`
   &:first-child {
     border-left: 1px solid grey;
   }

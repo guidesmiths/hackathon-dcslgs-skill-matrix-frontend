@@ -5,7 +5,7 @@ import { UserData, TableTitleLeft, TableTitleCenter, TableRowLeft, TableRowCente
 import { selectUser } from '../../../redux/user/userSlice';
 import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 
-const UserSkills = ({ setCollapsed, isCollapsed }) => {
+const UserSkills = ({ setCollapsed, isCollapsed, handleEditSkill }) => {
   const user = useSelector(selectUser);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
@@ -17,20 +17,25 @@ const UserSkills = ({ setCollapsed, isCollapsed }) => {
         <TableTitleCenter>I&apos;d Like to learn</TableTitleCenter>
       </RowSkills>
       {user?.ecosystems?.map(system => system?.skills?.map(skill =>
-        <RowSkills key={skill.id}>
-          <TableRowLeft>{skill.name}</TableRowLeft>
-          <TableRowCenter>{skill.level}</TableRowCenter>
-          <TableRowCenter>yes/no
-            <ArrowButton onClick={setCollapsed}>
-              <span className="material-icons">{arrowButtonIcon}</span>
-            </ArrowButton>
-          </TableRowCenter>
-        </RowSkills>))}
+        <form key={skill.id} onSubmit={handleEditSkill}>
+          <RowSkills >
+            <TableRowLeft>{skill.name}</TableRowLeft>
+            <TableRowCenter>{skill.level}</TableRowCenter>
+            <TableRowCenter>
+              <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+              <ArrowButton onClick={setCollapsed}>
+                <span className="material-icons">{arrowButtonIcon}</span>
+              </ArrowButton>
+            </TableRowCenter>
+            <input type="submit" value="Submit"/>
+          </RowSkills>
+        </form>))}
     </UserData>
   );
 };
 
 UserSkills.propTypes = {
+  handleEditSkill: PropTypes.func.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
   setCollapsed: PropTypes.func.isRequired,
 };
