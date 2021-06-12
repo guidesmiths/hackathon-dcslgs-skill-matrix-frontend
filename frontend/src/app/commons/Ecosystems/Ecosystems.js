@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { EcosystemColumn } from './Ecosystems.styled';
+import { ButtonStyled, EcosystemColumn, TitleColumn } from './Ecosystems.styled';
 
 const Ecosystem = ({ ecosystem, handleEcosystem }) => (
   <Fragment>
     <EcosystemColumn>
-      <h5>Ecosystem</h5>
+      <TitleColumn>Ecosystem</TitleColumn>
       {ecosystem?.map((e, index) => (
-        <button key={index} onClick={() => handleEcosystem(e)}>
+        <ButtonStyled key={index} onClick={() => handleEcosystem(e)}>
           {e}
-        </button>
+        </ButtonStyled>
       ))}
     </EcosystemColumn>
   </Fragment>

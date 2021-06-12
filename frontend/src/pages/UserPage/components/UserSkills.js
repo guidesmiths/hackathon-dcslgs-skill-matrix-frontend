@@ -22,11 +22,13 @@ const UserSkills = ({ setCollapsed, isCollapsed, handleEditSkill }) => {
           <RowSkills >
             <UserInput id="skillName" name="skillName" type="text" value={skill.name}/>
             <LevelBar level={skill.level}/>
-            <UserInput id="vehicle1" name="vehicle1" type="checkbox" value="Bike"/>
-            <ArrowButton onClick={setCollapsed}>
-              <span className="material-icons">{arrowButtonIcon}</span>
-            </ArrowButton>
-            <UserInput type="submit" value="Submit"/>
+            <div>
+              <UserInput id="vehicle1" name="vehicle1" type="checkbox" value="Bike"/>
+              <UserInput type="submit" value="Save"/>
+              <ArrowButton onClick={setCollapsed}>
+                <span className="material-icons">{arrowButtonIcon}</span>
+              </ArrowButton>
+            </div>
           </RowSkills>
         </form>))}
     </UserData>
