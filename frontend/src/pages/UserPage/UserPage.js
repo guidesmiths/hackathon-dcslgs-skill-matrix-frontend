@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserPageStyled, UserPageDisplay } from './UserPage.styled';
 import { fetchUserAsync } from '../../redux/user/userSlice';
@@ -7,6 +7,7 @@ import UserSkills from './components/UserSkills';
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const [isCollapsed, setCollapsed] = useState(true);
 
   const handleEcosystem = system => {
     console.log(system);
@@ -23,7 +24,10 @@ const HomePage = () => {
           ecosystem={['React', 'Big Data', 'NodeJS']}
           handleEcosystem={handleEcosystem}
         />
-        <UserSkills/>
+        <UserSkills
+          isCollapsed={isCollapsed}
+          setCollapsed={() => setCollapsed(!isCollapsed)}
+        />
       </UserPageDisplay>
     </UserPageStyled>
   );

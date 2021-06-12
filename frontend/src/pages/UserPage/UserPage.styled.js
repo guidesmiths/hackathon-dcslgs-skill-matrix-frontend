@@ -19,12 +19,31 @@ const UserData = styled.div`
   grid-column-end: 5;
 `;
 
-const RowSkills = styled.div`
+const RowSkills = styled.form`
   display: flex;
   justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 6;
+`;
+
+const RowTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 6;
+`;
+
+const RowWrapper = styled.div`
+  display: grid;
   border: 1px solid grey;
   padding: 15px;
   margin-bottom: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  display: ${props => (props.isCollapsed && 'none')};
+  grid-gap: 50px;
+`;
+
+const RowSkillsCollapsed = styled.div`
 `;
 
 const UserInput = styled.input`
@@ -43,4 +62,7 @@ export {
   RowSkills,
   UserInput,
   DataTitle,
+  RowSkillsCollapsed,
+  RowWrapper,
+  RowTitle,
 };
