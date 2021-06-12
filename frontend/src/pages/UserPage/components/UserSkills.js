@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { UserData, RowSkills, UserInput, DataTitle } from '../UserPage.styled';
 import { selectUser } from '../../../redux/user/userSlice';
 import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
+import LevelBar from './LevelBar';
 
 const UserSkills = ({ setCollapsed, isCollapsed, handleEditSkill }) => {
   const user = useSelector(selectUser);
@@ -19,9 +20,9 @@ const UserSkills = ({ setCollapsed, isCollapsed, handleEditSkill }) => {
       {user?.ecosystems?.map(system => system?.skills?.map(skill =>
         <form key={skill.id} onSubmit={handleEditSkill}>
           <RowSkills >
-            <UserInput type="text" id="skillName" name="skillName" value={skill.name}/>
-            <UserInput type="text" id="skillLevel" name="skillLevel" value={skill.level}/>
-            <UserInput type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+            <UserInput id="skillName" name="skillName" type="text" value={skill.name}/>
+            <LevelBar level={skill.level}/>
+            <UserInput id="vehicle1" name="vehicle1" type="checkbox" value="Bike"/>
             <ArrowButton onClick={setCollapsed}>
               <span className="material-icons">{arrowButtonIcon}</span>
             </ArrowButton>
