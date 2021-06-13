@@ -49,7 +49,7 @@ const RowSkillsCollapsed = styled.div`
 
 const UserInput = styled.input`
   border: none;
-  margin: 0px;
+  margin-right: 20px;
 `;
 
 const DataTitle = styled.h5`

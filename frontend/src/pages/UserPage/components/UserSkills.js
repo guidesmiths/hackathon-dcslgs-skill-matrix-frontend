@@ -6,7 +6,7 @@ import { selectUser } from '../../../redux/user/userSlice';
 import { selectAllSkills } from '../../../redux/skills/skillsSlice';
 import UserRow from './UserRow';
 
-const UserSkills = ({ handleEditSkill, isCollapsed, setCollapsed }) => {
+const UserSkills = ({ handleEditSkill }) => {
   const user = useSelector(selectUser);
   const availableSkills = useSelector(selectAllSkills);
   const [optionsList, setOptionsList] = useState([]);
@@ -33,9 +33,7 @@ const UserSkills = ({ handleEditSkill, isCollapsed, setCollapsed }) => {
           l
           handleEditInput={handleEditInput}
           handleEditSkill={handleEditSkill}
-          isCollapsed={isCollapsed}
           optionsList={optionsList}
-          setCollapsed={setCollapsed}
           skill={skill}
         />
       )))}
@@ -45,8 +43,6 @@ const UserSkills = ({ handleEditSkill, isCollapsed, setCollapsed }) => {
 
 UserSkills.propTypes = {
   handleEditSkill: PropTypes.func.isRequired,
-  isCollapsed: PropTypes.bool.isRequired,
-  setCollapsed: PropTypes.func.isRequired,
 };
 
 export default UserSkills;

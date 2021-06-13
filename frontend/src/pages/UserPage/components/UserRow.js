@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   RowSkills,
@@ -10,14 +10,8 @@ import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListEl
 import LevelBar from './LevelBar';
 import Input from '../../../app/commons/Input/Input';
 
-const UserRow = ({
-  skill,
-  optionsList,
-  handleEditInput,
-  handleEditSkill,
-  isCollapsed,
-  setCollapsed,
-}) => {
+const UserRow = ({ skill, optionsList, handleEditInput, handleEditSkill }) => {
+  const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
   return (
@@ -34,20 +28,18 @@ const UserRow = ({
           <LevelBar level={skill.level} />
           <div>
             <UserInput
-              id="vehicle1"
-              name="vehicle1"
+              name="checkToLearn"
               type="checkbox"
-              value="Bike"
             />
             <UserInput type="submit" value="Save" />
           </div>
         </RowSkills>
-        <ArrowButton onClick={setCollapsed}>
+        <ArrowButton onClick={() => setCollapsed(!isCollapsed)}>
           <span className="material-icons">{arrowButtonIcon}</span>
         </ArrowButton>
       </RowWrapper>
       <RowWrapper isCollapsed={isCollapsed}>
-        <RowSkillsCollapsed>hello</RowSkillsCollapsed>
+        <RowSkillsCollapsed>Temporary content</RowSkillsCollapsed>
       </RowWrapper>
     </Fragment>
   );
@@ -56,9 +48,7 @@ const UserRow = ({
 UserRow.propTypes = {
   handleEditInput: PropTypes.func.isRequired,
   handleEditSkill: PropTypes.func.isRequired,
-  isCollapsed: PropTypes.bool.isRequired,
   optionsList: PropTypes.array.isRequired,
-  setCollapsed: PropTypes.func.isRequired,
   skill: PropTypes.object.isRequired,
 };
 
