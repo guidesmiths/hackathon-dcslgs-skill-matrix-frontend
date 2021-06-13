@@ -2,7 +2,9 @@
 import styled from 'styled-components';
 
 const BarChartContainer = styled.div`
-  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export { BarChartContainer };

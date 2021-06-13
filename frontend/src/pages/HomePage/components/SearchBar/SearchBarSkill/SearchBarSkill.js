@@ -16,12 +16,7 @@ import Icon from '../../../../../app/commons/icon/icon';
 
 const SearchBarSkill = ({ isLastFilter, filter, index }) => {
   const dispatch = useDispatch();
-  const options = [
-    { value: 1 },
-    { value: 2 },
-    { value: 3 },
-    { value: 4 },
-  ];
+  const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
 
@@ -29,23 +24,43 @@ const SearchBarSkill = ({ isLastFilter, filter, index }) => {
     const inputValue = event.target.value;
     const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
     setOptionsList(filteredSkillsList);
-    dispatch(updateSkillFilter({
-      index,
-      filter: { skill: inputValue, level: filter.level },
-    }));
+    dispatch(
+      updateSkillFilter({
+        index,
+        filter: { skill: inputValue, level: filter.level },
+      }),
+    );
   };
 
-  const handleSelectChange = event => dispatch(updateSkillFilter({
-    index,
-    filter: { skill: filter.skill, level: Number(event.target.value) },
-  }));
+  const handleSelectChange = event => dispatch(
+    updateSkillFilter({
+      index,
+      filter: { skill: filter.skill, level: Number(event.target.value) },
+    }),
+  );
 
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
-      <Input input={filter.skill} optionsList={optionsList} onChangeInput={handleInput}/>
-      <Select options={options} selected={filter.level} onChange={e => handleSelectChange(e)}/>
-      <Icon icon={'delete_outline'} marginRight={10} onClick={() => dispatch(removeSkillFilter(index))}/>
-      <Icon icon={'add'} show={isLastFilter} onClick={() => dispatch(addSkillFilter())}/>
+      <Input
+        input={filter.skill}
+        optionsList={optionsList}
+        onChangeInput={handleInput}
+      />
+      <Select
+        options={options}
+        selected={filter.level}
+        onChange={e => handleSelectChange(e)}
+      />
+      <Icon
+        icon={'delete_outline'}
+        marginRight={10}
+        onClick={() => dispatch(removeSkillFilter(index))}
+      />
+      <Icon
+        icon={'add'}
+        show={isLastFilter}
+        onClick={() => dispatch(addSkillFilter())}
+      />
     </SearchBarSkillStyled>
   );
 };

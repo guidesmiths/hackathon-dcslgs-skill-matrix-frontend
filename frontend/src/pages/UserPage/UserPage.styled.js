@@ -54,6 +54,7 @@ const UserInput = styled.input`
 
 const DataTitle = styled.h5`
   margin: 0px;
+  text-align: center;
 `;
 
 export {

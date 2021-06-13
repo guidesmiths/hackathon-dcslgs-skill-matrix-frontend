@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import {
-  UserData,
-  RowSkills,
-  UserInput,
-  DataTitle,
-  RowSkillsCollapsed,
-  RowWrapper,
-  RowTitle,
-} from '../UserPage.styled';
+import { UserData, DataTitle, RowWrapper, RowTitle } from '../UserPage.styled';
 import { selectUser } from '../../../redux/user/userSlice';
-import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
-import LevelBar from './LevelBar';
+import { selectAllSkills } from '../../../redux/skills/skillsSlice';
+import UserRow from './UserRow';
 
 const UserSkills = ({ handleEditSkill, isCollapsed, setCollapsed }) => {
   const user = useSelector(selectUser);
+  const availableSkills = useSelector(selectAllSkills);
+  const [optionsList, setOptionsList] = useState([]);
 
-  const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
+  const handleEditInput = event => {
+    const inputValue = event.target.value;
+    const filteredSkillsList = availableSkills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
+    setOptionsList(filteredSkillsList);
+    // Question: Should we edit the value of this input through Redux or React?
+  };
 
   return (
     <UserData>
@@ -28,40 +27,18 @@ const UserSkills = ({ handleEditSkill, isCollapsed, setCollapsed }) => {
           <DataTitle>I&apos;d Like to learn</DataTitle>
         </RowTitle>
       </RowWrapper>
-      {user?.ecosystems?.map(system =>
-        system?.skills?.map(skill => (
-          <div key={skill.id}>
-            <RowWrapper>
-              <RowSkills onSubmit={handleEditSkill}>
-                <UserInput
-                  id="skillName"
-                  name="skillName"
-                  type="text"
-                  value={skill.name}
-                />
-                <LevelBar level={skill.level} />
-                <div>
-                  <UserInput
-                    id="vehicle1"
-                    name="vehicle1"
-                    type="checkbox"
-                    value="Bike"
-                  />
-                  <UserInput type="submit" value="Save" />
-                </div>
-              </RowSkills>
-              <ArrowButton onClick={setCollapsed}>
-                <span className="material-icons">{arrowButtonIcon}</span>
-              </ArrowButton>
-            </RowWrapper>
-            <RowWrapper isCollapsed={isCollapsed}>
-              <RowSkillsCollapsed>
-                hello
-              </RowSkillsCollapsed>
-            </RowWrapper>
-          </div>
-        )),
-      )}
+      {user?.ecosystems?.map(system => system?.skills?.map(skill => (
+        <UserRow
+          key={skill.id}
+          l
+          handleEditInput={handleEditInput}
+          handleEditSkill={handleEditSkill}
+          isCollapsed={isCollapsed}
+          optionsList={optionsList}
+          setCollapsed={setCollapsed}
+          skill={skill}
+        />
+      )))}
     </UserData>
   );
 };
