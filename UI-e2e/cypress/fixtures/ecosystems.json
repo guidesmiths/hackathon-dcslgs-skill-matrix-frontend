@@ -1,0 +1,13 @@
+{
+    "ecosystems": [
+        {
+            "name": "React"
+        },
+        {
+            "name": "Big Data"
+        },
+        {
+            "name": "NodeJs"
+        }
+    ]
+}

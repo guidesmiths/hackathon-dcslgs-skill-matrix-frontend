@@ -4,6 +4,7 @@ const uiRoutes = require('./ui-routes');
 const skillRoutes = require('./skill-routes');
 const answerRoutes = require('./answer-routes');
 const userRoutes = require('./user-routes');
+const ecosystemsRoutes = require('./ecosystems-routes');
 
 const commonDependencies = ['config', 'logger', 'app'];
 
@@ -17,6 +18,8 @@ module.exports = new System({ name: 'routes' })
   .add('routes.answers', answerRoutes())
   .dependsOn(...commonDependencies, 'controller')
   .add('routes.user', userRoutes())
+  .dependsOn(...commonDependencies, 'controller')
+  .add('routes.ecosystems', ecosystemsRoutes())
   .dependsOn(...commonDependencies, 'controller')
   .add('routes')
   // CAUTION!

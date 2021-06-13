@@ -18,5 +18,11 @@ module.exports = {
         method: 'get',
       },
     },
+    ecosystems: {
+      fetchEcosystems: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystems/answers`,
+        method: 'get',
+      },
+    },
   },
 };

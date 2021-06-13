@@ -22,6 +22,7 @@ const UserData = styled.div`
 const RowSkills = styled.form`
   display: flex;
   justify-content: space-between;
+  align-items:center;
   grid-column-start: 1;
   grid-column-end: 6;
 `;

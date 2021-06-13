@@ -1,26 +1,28 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { ButtonStyled, EcosystemColumn, TitleColumn } from './Ecosystems.styled';
+import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 
-const Ecosystem = ({ ecosystem, handleEcosystem }) => (
-  <Fragment>
-    <EcosystemColumn>
-      <TitleColumn>Ecosystem</TitleColumn>
-      {ecosystem?.map((e, index) => (
-        <ButtonStyled key={index} onClick={() => handleEcosystem(e)}>
-          {e}
-        </ButtonStyled>
-      ))}
-    </EcosystemColumn>
-  </Fragment>
-);
+const Ecosystem = ({ handleEcosystem }) => {
+  const ecosystems = useSelector(selectAllEcosystems);
+  console.log('🚀 ~ file: Ecosystems.js ~ line 9 ~ Ecosystem ~ ecosystems', ecosystems);
 
-Ecosystem.defaultProps = {
-  ecosystem: [],
+  return (
+    <Fragment>
+      <EcosystemColumn>
+        <TitleColumn>Ecosystem</TitleColumn>
+        {ecosystems?.map((e, index) => (
+          <ButtonStyled key={index} onClick={() => handleEcosystem(e)}>
+            {e.name}
+          </ButtonStyled>
+        ))}
+      </EcosystemColumn>
+    </Fragment>
+  );
 };
 
 Ecosystem.propTypes = {
-  ecosystem: PropTypes.array.isRequired,
   handleEcosystem: PropTypes.func.isRequired,
 };
 
