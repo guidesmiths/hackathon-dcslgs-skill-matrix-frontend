@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  value: {},
+  infoData: {},
+  ecosystems: [],
   status: 'idle',
 };
 
@@ -19,7 +20,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     userAdded: (state, action) => {
-      state.value = action.payload;
+      const { id, email, name } = action.payload;
+      state.infoData = { id, email, name };
+      state.ecosystems = [...state.ecosystems, ...action.payload.ecosystems];
+    },
+    updateEcosystem: (state, action) => {
+      const { index, ecosystem } = action.payload;
+      state.ecosystem[index] = ecosystem;
+    },
+    updateSkill: (state, action) => {
+      const { index, skill, skillIndex } = action.payload;
+      state.ecosystem[index].skills[skillIndex] = skill;
     },
   },
 
@@ -30,12 +41,17 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = action.payload;
+        const { id, email, name } = action.payload;
+        state.infoData = { id, email, name };
+        state.ecosystems = [...state.ecosystems, ...action.payload.ecosystems];
       });
   },
 });
 
+export const { userAdded, updateEcosystem, updateSkill } = userSlice.actions;
+
 // Selectors
-export const selectUser = state => state.user.value;
+export const selectUser = state => state.user.infoData;
+export const selectEcosystems = state => state.user.ecosystems;
 
 export default userSlice.reducer;

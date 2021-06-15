@@ -6,7 +6,6 @@ import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 
 const Ecosystem = ({ handleEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
-  console.log('🚀 ~ file: Ecosystems.js ~ line 9 ~ Ecosystem ~ ecosystems', ecosystems);
 
   return (
     <Fragment>

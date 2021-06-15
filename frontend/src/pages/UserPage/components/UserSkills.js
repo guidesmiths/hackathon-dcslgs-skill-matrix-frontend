@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { UserData, DataTitle, RowWrapper, RowTitle } from '../UserPage.styled';
-import { selectUser } from '../../../redux/user/userSlice';
+import { selectEcosystems, selectUser } from '../../../redux/user/userSlice';
 import { selectAllSkills } from '../../../redux/skills/skillsSlice';
 import UserRow from './UserRow';
 
 const UserSkills = ({ handleEditSkill }) => {
   const user = useSelector(selectUser);
+  console.log('🚀 ~ file: UserSkills.js ~ line 11 ~ UserSkills ~ user', user);
+  const ecosystems = useSelector(selectEcosystems);
+  console.log('🚀 ~ file: UserSkills.js ~ line 13 ~ UserSkills ~ ecosystems', ecosystems);
   const availableSkills = useSelector(selectAllSkills);
   const [optionsList, setOptionsList] = useState([]);
 
@@ -27,7 +30,7 @@ const UserSkills = ({ handleEditSkill }) => {
           <DataTitle>I&apos;d Like to learn</DataTitle>
         </RowTitle>
       </RowWrapper>
-      {user?.ecosystems?.map(system => system?.skills?.map(skill => (
+      {ecosystems?.map(system => system?.skills?.map(skill => (
         <UserRow
           key={skill.id}
           l
