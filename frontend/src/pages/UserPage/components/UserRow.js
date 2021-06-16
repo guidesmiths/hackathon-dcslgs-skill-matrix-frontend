@@ -8,9 +8,8 @@ import {
 } from '../UserPage.styled';
 import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 import LevelBar from './LevelBar';
-import Input from '../../../app/commons/Input/Input';
 
-const UserRow = ({ skill, optionsList, handleEditInput, handleEditSkill }) => {
+const UserRow = ({ skill, handleEditSkill }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
@@ -18,19 +17,10 @@ const UserRow = ({ skill, optionsList, handleEditInput, handleEditSkill }) => {
     <Fragment>
       <RowWrapper>
         <RowSkills onSubmit={handleEditSkill}>
-          <Input
-            input={skill.name}
-            name="skillName"
-            optionsList={optionsList}
-            width="40px"
-            onChangeInput={handleEditInput}
-          />
+          <p>{skill.name}</p>
           <LevelBar level={skill.level} />
           <div>
-            <UserInput
-              name="checkToLearn"
-              type="checkbox"
-            />
+            <UserInput name="checkToLearn" type="checkbox" />
             <UserInput type="submit" value="Save" />
           </div>
         </RowSkills>
@@ -46,9 +36,7 @@ const UserRow = ({ skill, optionsList, handleEditInput, handleEditSkill }) => {
 };
 
 UserRow.propTypes = {
-  handleEditInput: PropTypes.func.isRequired,
   handleEditSkill: PropTypes.func.isRequired,
-  optionsList: PropTypes.array.isRequired,
   skill: PropTypes.object.isRequired,
 };
 
