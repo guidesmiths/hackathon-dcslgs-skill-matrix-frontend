@@ -52,6 +52,11 @@ const UserInput = styled.input`
   margin-right: 20px;
 `;
 
+const UserSkillName = styled.p`
+  min-width: 100px;
+  margin-right: 20px;
+`;
+
 const DataTitle = styled.h5`
   margin: 0px;
   text-align: center;
@@ -61,6 +66,7 @@ export {
   UserPageStyled,
   UserPageDisplay,
   UserData,
+  UserSkillName,
   RowSkills,
   UserInput,
   DataTitle,

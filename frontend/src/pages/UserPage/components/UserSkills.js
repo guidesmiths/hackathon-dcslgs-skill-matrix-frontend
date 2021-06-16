@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { UserData, DataTitle, RowWrapper, RowTitle } from '../UserPage.styled';
-import { selectEcosystems } from '../../../redux/user/userSlice';
 import UserRow from './UserRow';
+import { selectSelectedSkills } from '../../../redux/ecosystems/ecosystemsSlice';
 
 const UserSkills = ({ handleEditSkill }) => {
-  const ecosystems = useSelector(selectEcosystems);
+  const selectedSkills = useSelector(selectSelectedSkills);
 
   return (
     <UserData>
@@ -17,11 +17,11 @@ const UserSkills = ({ handleEditSkill }) => {
           <DataTitle>I&apos;d Like to learn</DataTitle>
         </RowTitle>
       </RowWrapper>
-      {ecosystems?.map(system => system?.skills?.map(skill => (
+      {selectedSkills?.map((skill => (
         <UserRow
           key={skill.id}
           handleEditSkill={handleEditSkill}
-          skill={skill}
+          skill={skill.name}
         />
       )))}
     </UserData>

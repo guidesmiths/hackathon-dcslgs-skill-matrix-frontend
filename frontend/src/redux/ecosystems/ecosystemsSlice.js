@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   value: [],
+  skillsSelected: [],
   status: 'idle',
 };
 
@@ -21,6 +22,10 @@ export const ecosystemsSlice = createSlice({
     ecosystemAdded: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
+    updateEcosystemSelected: (state, action) => {
+      const { id, allEcosystems } = action.payload;
+      state.skillsSelected = allEcosystems[id].skills;
+    },
   },
 
   extraReducers: builder => {
@@ -30,12 +35,18 @@ export const ecosystemsSlice = createSlice({
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
+        state.value = [...action.payload];
       });
   },
 });
 
+export const {
+  ecosystemAdded,
+  updateEcosystemSelected,
+} = ecosystemsSlice.actions;
+
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
+export const selectSelectedSkills = state => state.ecosystems.skillsSelected;
 
 export default ecosystemsSlice.reducer;

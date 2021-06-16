@@ -2,9 +2,10 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   RowSkills,
-  UserInput,
   RowSkillsCollapsed,
   RowWrapper,
+  UserSkillName,
+  UserInput,
 } from '../UserPage.styled';
 import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 import LevelBar from './LevelBar';
@@ -17,7 +18,7 @@ const UserRow = ({ skill, handleEditSkill }) => {
     <Fragment>
       <RowWrapper>
         <RowSkills onSubmit={handleEditSkill}>
-          <p>{skill.name}</p>
+          <UserSkillName>{skill.name}</UserSkillName>
           <LevelBar level={skill.level} />
           <div>
             <UserInput name="checkToLearn" type="checkbox" />
