@@ -1,3 +1,5 @@
+import answers from '../fixtures/answers.json';
+
 /* eslint-disable no-undef */
 describe('Home page', () => {
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('Home page', () => {
   describe('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
       cy.visit('/');
-      cy.get('[data-cy^="answer-list-element-"]').should('have.length', 2);
+      cy.get('[data-cy^="answer-list-element-"]').should('have.length', answers.length);
     });
 
     it('should render the correct number of skill for a given list element', () => {
@@ -108,6 +110,16 @@ describe('Home page', () => {
       cy.get('[data-cy="search-bar-skill-1"]').within(() => {
         cy.get('input').should('have.value', 'Redux');
         cy.get('select').should('have.value', '4');
+      });
+    });
+  });
+
+  describe('For the pagination', () => {
+    const pageSize = 10;
+    it('should render the correct number of pages according to the size of the payload and the page size', () => {
+      cy.get('[data-cy="pagination"]').within(() => {
+        const expectedElements = Math.ceil(answers.length / pageSize);
+        cy.get('[aria-label^="page"]').should('have.length', expectedElements);
       });
     });
   });

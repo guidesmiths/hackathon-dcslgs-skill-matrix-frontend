@@ -39,4 +39,8 @@ export const { answerAdded } = answersSlice.actions;
 // Selectors
 export const selectAllAnswers = state => state.answers.value;
 
+export const selectAnswerPage = (start, end) => state => state.answers.value.slice(start, end);
+
+export const selectNumberOfAnswers = state => state.answers.value.length;
+
 export default answersSlice.reducer;

@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 Cypress.Commands.add('init', () => {
   cy.server();
-  cy.visit('/');
   cy.route({
     url: '/ui/skills/catalog',
     method: 'get',
@@ -12,5 +11,6 @@ Cypress.Commands.add('init', () => {
     method: 'get',
     response: 'fixture:answers',
   }).as('getAllAnswers');
+  cy.visit('/');
   cy.wait(['@getAllSkills', '@getAllAnswers']);
 });
