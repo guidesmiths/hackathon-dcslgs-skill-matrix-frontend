@@ -5,7 +5,6 @@ describe('User page', () => {
   });
 
   it('should redirect to home page if profile route is wrong', () => {
-    cy.visit('/profiles');
     cy.url().should('match', new RegExp('/'));
   });
 

@@ -23,8 +23,8 @@ export const ecosystemsSlice = createSlice({
       state.value = [...state.value, ...action.payload];
     },
     updateEcosystemSelected: (state, action) => {
-      const { id, allEcosystems } = action.payload;
-      state.skillsSelected = allEcosystems[id].skills;
+      const { id } = action.payload;
+      state.skillsSelected = state.value[id].skills;
     },
   },
 
@@ -35,7 +35,7 @@ export const ecosystemsSlice = createSlice({
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...action.payload];
+        state.value = [...state.value, ...action.payload];
       });
   },
 });
@@ -47,6 +47,6 @@ export const {
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
-export const selectSelectedSkills = state => state.ecosystems.skillsSelected;
+export const selectSkillsPerSystem = id => state => state.ecosystems?.value?.[id]?.skills || [];
 
 export default ecosystemsSlice.reducer;

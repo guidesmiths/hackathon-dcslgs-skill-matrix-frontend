@@ -17,7 +17,6 @@ Cypress.Commands.add('initHome', () => {
 
 Cypress.Commands.add('initUser', () => {
   cy.server();
-  cy.visit('/profile');
   cy.route({
     url: '/ui/users/:id/answers',
     method: 'get',
@@ -28,5 +27,6 @@ Cypress.Commands.add('initUser', () => {
     method: 'get',
     response: 'fixture:ecosystems.json',
   }).as('getEcosystems');
+  cy.visit('/profile');
   cy.wait(['@getUser', '@getEcosystems']);
 });
