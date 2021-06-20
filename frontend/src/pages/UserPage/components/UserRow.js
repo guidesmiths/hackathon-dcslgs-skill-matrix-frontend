@@ -16,22 +16,27 @@ const UserRow = ({ skill, handleEditSkill }) => {
 
   return (
     <Fragment>
-      <RowWrapper>
-        <RowSkills onSubmit={handleEditSkill}>
-          <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} />
-          <div>
-            <UserInput name="checkToLearn" type="checkbox" />
-            <UserInput type="submit" value="Save" />
-          </div>
-        </RowSkills>
-        <ArrowButton onClick={() => setCollapsed(!isCollapsed)}>
-          <span className="material-icons">{arrowButtonIcon}</span>
-        </ArrowButton>
-      </RowWrapper>
-      <RowWrapper isCollapsed={isCollapsed}>
-        <RowSkillsCollapsed>Temporary content</RowSkillsCollapsed>
-      </RowWrapper>
+      <form
+        onSubmit={() => {
+          console.log('submitted');
+        }}
+      >
+        <RowWrapper>
+          <RowSkills onSubmit={handleEditSkill}>
+            <UserSkillName>{skill.name}</UserSkillName>
+            <LevelBar level={skill.level} />
+            <div>
+              <UserInput name="checkToLearn" type="checkbox" />
+            </div>
+          </RowSkills>
+          <ArrowButton onClick={() => setCollapsed(!isCollapsed)}>
+            <span className="material-icons">{arrowButtonIcon}</span>
+          </ArrowButton>
+        </RowWrapper>
+        <RowWrapper isCollapsed={isCollapsed}>
+          <RowSkillsCollapsed>Temporary content</RowSkillsCollapsed>
+        </RowWrapper>
+      </form>
     </Fragment>
   );
 };

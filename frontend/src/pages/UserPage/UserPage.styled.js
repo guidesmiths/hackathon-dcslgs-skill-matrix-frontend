@@ -19,7 +19,7 @@ const UserData = styled.div`
   grid-column-end: 5;
 `;
 
-const RowSkills = styled.form`
+const RowSkills = styled.div`
   display: flex;
   justify-content: space-between;
   align-items:center;

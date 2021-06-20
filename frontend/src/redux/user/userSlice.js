@@ -45,5 +45,6 @@ export const { userAdded, updateEcosystem, updateSkill } = userSlice.actions;
 // Selectors
 export const selectUserData = state => state.user.value;
 export const selectSkillsWithLevel = id => state => state.user?.value?.ecosystems?.[id]?.skills || [];
+export const selectEcosystemPerId = id => state => state.user?.value?.ecosystems?.[id];
 
 export default userSlice.reducer;

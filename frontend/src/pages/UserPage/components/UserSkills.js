@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import { UserData, DataTitle, RowWrapper, RowTitle } from '../UserPage.styled';
+import { UserData, DataTitle, RowWrapper, RowTitle, UserInput } from '../UserPage.styled';
 import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice';
-import { selectSkillsWithLevel } from '../../../redux/user/userSlice';
+import { selectSkillsWithLevel, selectEcosystemPerId } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
+import LevelBar from './LevelBar';
 
 const UserSkills = ({ systemSelected }) => {
   const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
   const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
+  const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(userSkill => userSkill.id === skill.id);
@@ -23,6 +25,13 @@ const UserSkills = ({ systemSelected }) => {
 
   return (
     <UserData>
+      <RowWrapper>
+        <RowTitle>
+          <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
+          <LevelBar level={selectedEcosystem?.average} />
+          <UserInput type="submit" value="Save" />
+        </RowTitle>
+      </RowWrapper>
       <RowWrapper>
         <RowTitle>
           <DataTitle>Skill Name</DataTitle>
