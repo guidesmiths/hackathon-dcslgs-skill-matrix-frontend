@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import { UserData, DataTitle, RowWrapper, RowTitle, UserInput } from '../UserPage.styled';
+import { UserData, DataTitle, RowWrapper, RowTitle, UserInput, FormHeader } from '../UserPage.styled';
 import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice';
 import { selectSkillsWithLevel, selectEcosystemPerId } from '../../../redux/user/userSlice';
 
@@ -23,29 +23,38 @@ const UserSkills = ({ systemSelected }) => {
     };
   });
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log('submitted');
+  };
+
   return (
     <UserData>
-      <RowWrapper>
-        <RowTitle>
-          <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
-          <LevelBar level={selectedEcosystem?.average} />
-          <UserInput type="submit" value="Save" />
-        </RowTitle>
-      </RowWrapper>
-      <RowWrapper>
-        <RowTitle>
-          <DataTitle>Skill Name</DataTitle>
-          <DataTitle>Rating</DataTitle>
-          <DataTitle>I&apos;d Like to learn</DataTitle>
-        </RowTitle>
-      </RowWrapper>
-      {skillswithLevel?.map(skill => (
-        <UserRow
-          key={skill.id}
-          // handleEditSkill={handleEditSkill}
-          skill={skill}
-        />
-      ))}
+      <form
+        onSubmit={handleSubmit}
+      >
+        <FormHeader>
+          <RowTitle>
+            <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
+            <LevelBar level={selectedEcosystem?.average} />
+            <UserInput type="submit" value="Save" />
+          </RowTitle>
+        </FormHeader>
+        <RowWrapper>
+          <RowTitle>
+            <DataTitle>Skill Name</DataTitle>
+            <DataTitle>Rating</DataTitle>
+            <DataTitle>I&apos;d Like to learn</DataTitle>
+          </RowTitle>
+        </RowWrapper>
+        {skillswithLevel?.map(skill => (
+          <UserRow
+            key={skill.id}
+            // handleEditSkill={handleEditSkill}
+            skill={skill}
+          />
+        ))}
+      </form>
     </UserData>
   );
 };
