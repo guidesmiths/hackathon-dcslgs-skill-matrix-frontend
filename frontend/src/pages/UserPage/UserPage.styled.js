@@ -44,14 +44,24 @@ const RowWrapper = styled.div`
   grid-gap: 50px;
 `;
 
+const RowCollapsed = styled.div`
+  display: grid;
+  border: 1px solid grey;
+  padding: 15px;
+  margin-bottom: 20px;
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 300px;
+  display: ${props => props.isCollapsed && 'none'};
+`;
+
 const FormHeader = styled(RowWrapper)`
 margin-bottom: 8px;`;
 
 const RowSkillsTop = styled(RowWrapper)`
   margin-bottom: 8px;
 `;
-
-const RowSkillsCollapsed = styled.div``;
 
 const UserInput = styled.input`
   border: none;
@@ -74,9 +84,9 @@ export {
   UserData,
   UserSkillName,
   RowSkills,
+  RowCollapsed,
   UserInput,
   DataTitle,
-  RowSkillsCollapsed,
   RowWrapper,
   RowTitle,
   FormHeader,

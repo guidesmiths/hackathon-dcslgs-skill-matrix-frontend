@@ -22,9 +22,9 @@ export const userSlice = createSlice({
     userAdded: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
-    updateEcosystemSelected: (state, action) => {
-      const { id } = action.payload;
-      state.skillsSelected = state.value[id].skills;
+    updateUserSkill: (state, action) => {
+      const { index, skillId, skill } = action.payload;
+      state.value.ecosystems[index].skills[skillId] = skill;
     },
   },
 
@@ -40,7 +40,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userAdded, updateEcosystem, updateSkill } = userSlice.actions;
+export const { userAdded, updateEcosystem, updateSkill, updateUserSkill } = userSlice.actions;
 
 // Selectors
 export const selectUserData = state => state.user.value;

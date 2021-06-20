@@ -11,7 +11,8 @@
                 {
                     "id": 1,
                     "name": "React",
-                    "level": 4
+                    "level": 4,
+                    "toLearn": true
                 },
                 {
                     "id": 2,

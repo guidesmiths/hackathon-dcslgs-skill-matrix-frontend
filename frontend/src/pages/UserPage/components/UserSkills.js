@@ -16,10 +16,11 @@ const UserSkills = ({ systemSelected }) => {
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(userSkill => userSkill.id === skill.id);
-    const { level } = index !== -1 ? userSkills[index] : {};
+    const { level, toLearn } = index !== -1 ? userSkills[index] : {};
     return {
       ...skill,
       level,
+      toLearn,
     };
   });
 
@@ -47,11 +48,13 @@ const UserSkills = ({ systemSelected }) => {
             <DataTitle>I&apos;d Like to learn</DataTitle>
           </RowTitle>
         </RowWrapper>
-        {skillswithLevel?.map(skill => (
+        {skillswithLevel?.map((skill, index) => (
           <UserRow
             key={skill.id}
-            // handleEditSkill={handleEditSkill}
+            idEcosystem={systemSelected}
             skill={skill}
+            // handleEditSkill={handleEditSkill}
+            skillIndex={index}
           />
         ))}
       </form>
