@@ -17,6 +17,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/users/:id/answers`,
         method: 'get',
       },
+      fetchUpdatedUser: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/users/:id/answers`,
+        method: 'post',
+      },
     },
     ecosystems: {
       fetchEcosystems: {

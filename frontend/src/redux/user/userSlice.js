@@ -15,6 +15,16 @@ export const fetchUserAsync = createAsyncThunk(
   },
 );
 
+export const fetchUpdatedUserAsync = createAsyncThunk(
+  'answers/fetchUpdatedUser',
+  async user => {
+    const response = await axios.post('/ui/users/:id/answers', {
+      user,
+    });
+    return response.data;
+  },
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
