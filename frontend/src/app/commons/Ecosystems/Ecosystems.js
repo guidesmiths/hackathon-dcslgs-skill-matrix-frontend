@@ -6,12 +6,10 @@ import {
   EcosystemColumn,
   TitleColumn,
 } from './Ecosystems.styled';
-import { selectAllEcosystems, selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice';
+import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 
-const Ecosystem = ({ selectEcosystem, systemSelected }) => {
+const Ecosystem = ({ selectEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
-  const mySkills = useSelector(selectSkillsPerSystem(systemSelected));
-  console.log(mySkills);
   return (
     <Fragment>
       <EcosystemColumn>
@@ -28,7 +26,6 @@ const Ecosystem = ({ selectEcosystem, systemSelected }) => {
 
 Ecosystem.propTypes = {
   selectEcosystem: PropTypes.func.isRequired,
-  systemSelected: PropTypes.array.isRequired,
 };
 
 export default Ecosystem;

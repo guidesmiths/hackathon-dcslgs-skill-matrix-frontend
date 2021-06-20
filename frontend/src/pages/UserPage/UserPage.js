@@ -10,7 +10,7 @@ import {
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const [systemSelected, setSystem] = useState(1);
+  const [systemSelected, setSystem] = useState(null);
   const selectEcosystem = id => {
     setSystem(id);
   };
@@ -23,8 +23,10 @@ const UserPage = () => {
   return (
     <UserPageStyled data-cy="user">
       <UserPageDisplay>
-        <Ecosystems systemSelected={systemSelected} selectEcosystem={selectEcosystem} />
-        <UserSkills />
+        <Ecosystems
+          selectEcosystem={selectEcosystem}
+        />
+        <UserSkills systemSelected={systemSelected} />
       </UserPageDisplay>
     </UserPageStyled>
   );
