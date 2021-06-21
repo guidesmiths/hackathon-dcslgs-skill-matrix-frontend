@@ -8,51 +8,30 @@ describe('User page', () => {
     cy.url().should('match', new RegExp('/'));
   });
 
-  it('should display user name in the page', () => {
-    cy.contains('John Doe');
+  it('should find Express skill when selecting NodeJs Ecosystem', () => {
+    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="userRow"]').contains('Express');
+    cy.get('[data-cy^="userRow"]').contains('React').should('not.exist');
   });
 
-  // it('should find React option when filling in skill input', () => {
-  //   cy.visit('/');
-  //   cy.get('input').last().type('re');
-  //   cy.get('option').contains('React');
-  //   cy.get('select').select('3');
-  // });
+  it('should find user level corresponding to React', () => {
+    cy.get('[data-cy^="ecosystems"] > button').first().click();
+    cy.get('[data-cy^="userRow"]').contains('React');
+    cy.get('[data-cy^="userSkill-React"]').should('exist');
+    cy.get('[data-cy^="userSkill-React"] > button').last().click();
+    cy.contains('level 4').should('exist');
+  });
 
-  // describe('For the answer list', () => {
-  //   it('should render the correct number of list element when visiting the page', () => {
-  //     cy.visit('/');
-  //     cy.get('[data-cy^="answer-list-element-"]').should('have.length', 2);
-  //   });
-
-  //   it('should render the correct number of skill for a given list element', () => {
-  //     cy.visit('/');
-  //     cy.get('[data-cy="answer-list-element-1"]').within(() => {
-  //       cy.get('[data-cy="skill-list"] > div').should('have.length', 3);
-  //     });
-  //   });
-
-  //   it('should not display the skill list of an element when first rendering the AnswerListElement\'s', () => {
-  //     cy.visit('/');
-  //     cy.get('[data-cy="answer-list-element-1"]').within(() => {
-  //       cy.get('[data-cy="skill-list"]').should('have.css', 'display', 'none');
-  //     });
-  //   });
-
-  //   it('should display the skill list of an element when clicking the button', () => {
-  //     cy.visit('/');
-  //     cy.get('[data-cy="answer-list-element-1"]').within(() => {
-  //       cy.get('[data-cy="list-element-header"] > button').click();
-  //       cy.get('[data-cy="skill-list"]').should('have.css', 'display', 'block');
-  //     });
-  //   });
-
-  //   it('should hide the skill list of an element after clicking the button when it was displayed previously', () => {
-  //     cy.visit('/');
-  //     cy.get('[data-cy="answer-list-element-1"]').within(() => {
-  //       cy.get('[data-cy="list-element-header"] > button').click().click();
-  //       cy.get('[data-cy="skill-list"]').should('have.css', 'display', 'none');
-  //     });
-  //   });
-  // });
+  it('should update toLearn property when checked', () => {
+    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="userRow"]').contains('Express');
+    cy.get('[data-cy^="userSkill-Express"]').should('exist');
+    cy.get('[data-cy^="userSkill-Express"] > button').last().click();
+    cy.get('select').select('4');
+    cy.get('[data-cy^="ecosystems"] > button').first().click();
+    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="userSkill-Express"]').should('exist');
+    cy.get('[data-cy^="userSkill-Express"] > button').last().click();
+    cy.contains('level 4').should('exist');
+  });
 });

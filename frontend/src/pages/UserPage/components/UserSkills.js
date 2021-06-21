@@ -48,7 +48,7 @@ const UserSkills = ({ systemSelected }) => {
   };
 
   return (
-    <UserData>
+    <UserData data-cy={'userRow'}>
       <form onSubmit={handleSubmit}>
         <FormHeader>
           <RowTitle>

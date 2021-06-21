@@ -12,7 +12,7 @@ const Ecosystem = ({ selectEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
   return (
     <Fragment>
-      <EcosystemColumn>
+      <EcosystemColumn data-cy={'ecosystems'}>
         <TitleColumn>Ecosystem</TitleColumn>
         {ecosystems?.map(e => (
           <ButtonStyled key={e.id} onClick={() => selectEcosystem(e.id - 1)}>

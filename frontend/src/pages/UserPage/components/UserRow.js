@@ -18,9 +18,9 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.toLearn || false);
 
-  const handleCheckBox = async () => {
-    await setCheck(!isChecked);
-    await dispatch(
+  const handleCheckBox = () => {
+    setCheck(!isChecked);
+    dispatch(
       updateUserSkill({
         index: idEcosystem,
         skillId: skillIndex,
@@ -41,8 +41,8 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
   };
 
   return (
-    <Fragment>
-      <RowSkillsTop>
+    <div>
+      <RowSkillsTop data-cy={`userSkill-${skill.name}`}>
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
           <LevelBar level={skill.level} />
@@ -61,19 +61,17 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
         <p>{skill.levels[skill.level - 1].description}</p>
-        <select onChange={handleLevel}>
-          {skill.levels.map(level => (
+        <select value={skill.level} onChange={handleLevel}>
+          {skill.levels.map((e, index) => (
             <>
-              {level.number === skill.level ? (
-                <option selected>{level.number}</option>
-              ) : (
-                <option>{level.number}</option>
-              )}
+              <option key={index} value={e.number}>
+                {e.number}
+              </option>
             </>
           ))}
         </select>
       </RowCollapsed>
-    </Fragment>
+    </div>
   );
 };
 

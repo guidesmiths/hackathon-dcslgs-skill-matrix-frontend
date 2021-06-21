@@ -20,6 +20,7 @@ const UserRolStyled = styled.p`
 
 const ArrowButton = styled.button`
     cursor: pointer;
+    width: 50%;
 `;
 
 const ListElementStyled = styled.div`

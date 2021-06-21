@@ -57,7 +57,9 @@ const RowCollapsed = styled.div`
 `;
 
 const FormHeader = styled(RowWrapper)`
-margin-bottom: 8px;`;
+  margin-bottom: 35px;
+  padding: 5px 15px;
+  `;
 
 const RowSkillsTop = styled(RowWrapper)`
   margin-bottom: 8px;
