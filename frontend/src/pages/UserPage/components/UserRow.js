@@ -18,13 +18,13 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.toLearn || false);
 
-  const handleCheckBox = () => {
-    setCheck(!isChecked);
-    dispatch(
+  const handleCheckBox = async () => {
+    await setCheck(!isChecked);
+    await dispatch(
       updateUserSkill({
         index: idEcosystem,
         skillId: skillIndex,
-        skill: { ...skill, toLearn: isChecked },
+        skill: { ...skill, toLearn: !isChecked },
       }),
     );
   };
