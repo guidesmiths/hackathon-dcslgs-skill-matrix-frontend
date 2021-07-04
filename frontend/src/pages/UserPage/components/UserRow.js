@@ -8,7 +8,7 @@ import {
   RowSkillsTop,
   RowCollapsed,
 } from '../UserPage.styled';
-import { ArrowButton } from '../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
+import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 
