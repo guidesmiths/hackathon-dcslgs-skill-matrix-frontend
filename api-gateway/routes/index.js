@@ -11,8 +11,6 @@ const commonDependencies = ['config', 'logger', 'app'];
 module.exports = new System({ name: 'routes' })
   .add('routes.admin', adminRoutes())
   .dependsOn(...commonDependencies, 'manifest')
-  .add('routes.ui', uiRoutes())
-  .dependsOn(...commonDependencies)
   .add('routes.skills', skillRoutes())
   .dependsOn(...commonDependencies, 'controller')
   .add('routes.answers', answerRoutes())
@@ -21,6 +19,8 @@ module.exports = new System({ name: 'routes' })
   .dependsOn(...commonDependencies, 'controller')
   .add('routes.ecosystems', ecosystemsRoutes())
   .dependsOn(...commonDependencies, 'controller')
+  .add('routes.ui', uiRoutes())
+  .dependsOn(...commonDependencies)
   .add('routes')
   // CAUTION!
   // - 'routes.admin' must be the first dependency, since it makes some configuration
