@@ -16,7 +16,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
-  const [isChecked, setCheck] = useState(skill?.toLearn || false);
+  const [isChecked, setCheck] = useState(skill?.interested || false);
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
@@ -24,7 +24,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
       updateUserSkill({
         index: idEcosystem,
         skillId: skillIndex,
-        skill: { ...skill, toLearn: !isChecked },
+        skill: { ...skill, interested: !isChecked },
       }),
     );
   };
@@ -49,7 +49,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
           <div>
             <UserInput
               checked={isChecked}
-              name="checkToLearn"
+              name="checkInterested"
               type="checkbox"
               onChange={handleCheckBox}
             />
