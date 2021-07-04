@@ -1,3 +1,5 @@
+import answers from '../fixtures/answers.json';
+
 /* eslint-disable no-undef */
 describe('Home page', () => {
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('Home page', () => {
   describe('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
       cy.visit('/');
-      cy.get('[data-cy^="answer-list-element-"]').should('have.length', 2);
+      cy.get('[data-cy^="answer-list-element-"]').should('have.length', answers.length);
     });
 
     it('should render the correct number of skill for a given list element', () => {
@@ -50,6 +52,14 @@ describe('Home page', () => {
         cy.get('[data-cy="list-element-header"] > button').click().click();
         cy.get('[data-cy="skill-list"]').should('have.css', 'display', 'none');
       });
+    });
+  });
+
+  describe('For the user input filter on the search bar', () => {
+    it('should update the input with every keystroke', () => {
+      const userFilter = 'John';
+      cy.get('[data-cy="user-input"]').type(userFilter);
+      cy.get('[data-cy="user-input"]').should('have.value', userFilter);
     });
   });
 
@@ -108,6 +118,36 @@ describe('Home page', () => {
       cy.get('[data-cy="search-bar-skill-1"]').within(() => {
         cy.get('input').should('have.value', 'Redux');
         cy.get('select').should('have.value', '4');
+      });
+    });
+  });
+
+  describe('For the pagination', () => {
+    const pageSize = 10;
+    it('should render the correct number of pages according to the size of the payload and the page size', () => {
+      cy.get('[data-cy="pagination"]').within(() => {
+        const expectedElements = Math.ceil(answers.length / pageSize);
+        cy.get('[aria-label^="page"]').should('have.length', expectedElements);
+      });
+    });
+  });
+
+  describe('For the filter request', () => {
+    it('should send the request to get the answers with the correct filters', () => {
+      cy.intercept('/ui/answers', []).as('getFilteredAnswers');
+      const userFilter = 'John';
+      const skillFilter = { skill: 'React', level: 3 };
+      cy.get('[data-cy="search-bar-skill-0"]').within(() => {
+        cy.get('input').type(skillFilter.skill);
+        cy.get('select').select(`${skillFilter.level}`);
+      });
+      cy.get('[data-cy="user-input"]').type(userFilter);
+      cy.wait('@getFilteredAnswers');
+      cy.get('@getFilteredAnswers').should(({ request, response }) => {
+        expect(request.method).to.equal('POST');
+        expect(request.url).to.match(/\/ui\/answers/g);
+        expect(request.body).to.eql({ name: userFilter, skills: [{ skill: 'React', level: 3 }] });
+        expect(response.statusCode).to.equal(200);
       });
     });
   });

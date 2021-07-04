@@ -4,6 +4,7 @@ const getApiRoutes = servicesAPI => ({
   },
   answers: {
     fetchAnswers: servicesAPI.answers.fetchAnswers,
+    fetchFilteredAnswers: servicesAPI.answers.fetchFilteredAnswers,
   },
   user: {
     fetchUser: servicesAPI.user.fetchUser,

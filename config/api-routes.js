@@ -11,6 +11,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/answers`,
         method: 'get',
       },
+      fetchFilteredAnswers: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/answers`,
+        method: 'post',
+      },
     },
     user: {
       fetchUser: {

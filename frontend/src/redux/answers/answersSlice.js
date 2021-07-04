@@ -14,6 +14,17 @@ export const fetchAnswersAsync = createAsyncThunk(
   },
 );
 
+export const fetchFilteredAnswersAsync = createAsyncThunk(
+  'answers/fetchFilteredAnswers',
+  async filter => {
+    const response = await axios.post('/ui/answers', {
+      name: filter.userFilter,
+      skills: filter.skillFilters,
+    });
+    return response.data;
+  },
+);
+
 export const answersSlice = createSlice({
   name: 'answers',
   initialState,
@@ -30,6 +41,13 @@ export const answersSlice = createSlice({
       .addCase(fetchAnswersAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
+      })
+      .addCase(fetchFilteredAnswersAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchFilteredAnswersAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = [...state.value, ...action.payload];
       });
   },
 });
@@ -38,5 +56,9 @@ export const { answerAdded } = answersSlice.actions;
 
 // Selectors
 export const selectAllAnswers = state => state.answers.value;
+
+export const selectAnswerPage = (start, end) => state => state.answers.value.slice(start, end);
+
+export const selectNumberOfAnswers = state => state.answers.value.length;
 
 export default answersSlice.reducer;
