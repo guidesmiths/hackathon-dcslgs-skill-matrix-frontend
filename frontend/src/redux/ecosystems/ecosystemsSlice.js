@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   value: [],
-  skillsSelected: [],
   status: 'idle',
 };
 
@@ -11,7 +10,7 @@ export const fetchEcosystemsAsync = createAsyncThunk(
   'user/fetchEcosystems',
   async () => {
     const response = await axios.get('/ui/ecosystems/answers');
-    return response.data.ecosystems;
+    return response.data;
   },
 );
 
@@ -21,10 +20,6 @@ export const ecosystemsSlice = createSlice({
   reducers: {
     ecosystemAdded: (state, action) => {
       state.value = [...state.value, ...action.payload];
-    },
-    updateEcosystemSelected: (state, action) => {
-      const { id } = action.payload;
-      state.skillsSelected = state.value[id].skills;
     },
   },
 

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import {
@@ -63,11 +63,9 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
         <p>{skill.levels[skill.level - 1].description}</p>
         <select value={skill.level} onChange={handleLevel}>
           {skill.levels.map((e, index) => (
-            <>
-              <option key={index} value={e.number}>
-                {e.number}
-              </option>
-            </>
+            <option key={index} value={e.number}>
+              {e.number}
+            </option>
           ))}
         </select>
       </RowCollapsed>
