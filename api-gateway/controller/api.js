@@ -6,6 +6,9 @@ const getApiRoutes = servicesAPI => ({
     fetchAnswers: servicesAPI.answers.fetchAnswers,
     fetchFilteredAnswers: servicesAPI.answers.fetchFilteredAnswers,
   },
+  suggestions: {
+    fetchSuggestions: servicesAPI.suggestions.fetchSuggestions,
+  },
 });
 
 module.exports = getApiRoutes;

@@ -14,3 +14,14 @@ Cypress.Commands.add('init', () => {
   cy.visit('/');
   cy.wait(['@getAllSkills', '@getAllAnswers']);
 });
+
+Cypress.Commands.add('initAdmin', () => {
+  cy.server();
+  cy.route({
+    url: '/ui/suggestions',
+    method: 'get',
+    response: 'fixture:suggestions',
+  }).as('getAllSuggestions');
+  cy.visit('/admin');
+  cy.wait(['@getAllSuggestions']);
+});

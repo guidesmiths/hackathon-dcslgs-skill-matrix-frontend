@@ -1,8 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './app/commons/NavBar/NavBar';
-import { HOME_ROUTE } from './constants/routes';
+import { HOME_ROUTE, ADMIN_ROUTE } from './constants/routes';
 import HomePage from './pages/HomePage/HomePage';
+import AdminPage from './pages/AdminPage/AdminPage';
 
 const AppRouter = () => (
   <>
@@ -12,6 +13,11 @@ const AppRouter = () => (
         exact
         component={HomePage}
         path={HOME_ROUTE}
+      />
+      <Route
+        exact
+        component={AdminPage}
+        path={ADMIN_ROUTE}
       />
       {/* Default path for non existing pages */}
       <Route

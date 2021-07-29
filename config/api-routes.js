@@ -16,5 +16,11 @@ module.exports = {
         method: 'post',
       },
     },
+    suggestions: {
+      fetchSuggestions: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/suggestions`,
+        method: 'get',
+      },
+    },
   },
 };
