@@ -7,6 +7,7 @@ const Icon = ({ icon, border, height, width, marginRight, onClick, show }) => (
   (
     <IconStyled
       border={border}
+      data-cy={`icon-${icon}`}
       height={height}
       marginRight={marginRight}
       show={show}
