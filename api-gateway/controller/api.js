@@ -12,6 +12,9 @@ const getApiRoutes = servicesAPI => ({
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
   },
+  suggestions: {
+    fetchSuggestions: servicesAPI.suggestions.fetchSuggestions,
+  },
 });
 
 module.exports = getApiRoutes;

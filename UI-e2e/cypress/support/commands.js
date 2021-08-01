@@ -30,3 +30,14 @@ Cypress.Commands.add('initUser', () => {
   cy.visit('/profile');
   cy.wait(['@getUser', '@getEcosystems']);
 });
+
+Cypress.Commands.add('initAdmin', () => {
+  cy.server();
+  cy.route({
+    url: '/ui/suggestions',
+    method: 'get',
+    response: 'fixture:suggestions',
+  }).as('getAllSuggestions');
+  cy.visit('/admin');
+  cy.wait(['@getAllSuggestions']);
+});

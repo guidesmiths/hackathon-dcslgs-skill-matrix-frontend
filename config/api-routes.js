@@ -29,6 +29,11 @@ module.exports = {
     ecosystems: {
       fetchEcosystems: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystems/answers`,
+      },
+    },
+    suggestions: {
+      fetchSuggestions: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/suggestions`,
         method: 'get',
       },
     },
