@@ -12,17 +12,22 @@
                     "id": 1,
                     "name": "React",
                     "level": 4,
-                    "interested": true
+                    "interested": true,
+                    "comments": ""
                 },
                 {
                     "id": 2,
                     "name": "Next.js",
-                    "level": 2
+                    "level": 2,
+                    "interested": false,
+                    "comments": ""
                 },
                 {
                     "id": 4,
                     "name": "Redux-Sagas",
-                    "level": 3
+                    "level": 3,
+                    "interested": true,
+                    "comments": ""
                 }
             ]
         },
@@ -34,7 +39,9 @@
                 {
                     "id": 6,
                     "name": "Express",
-                    "level": 1
+                    "level": 1,
+                    "interested": true,
+                    "comments": ""
                 }
             ]
         }

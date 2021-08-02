@@ -5,8 +5,7 @@ import {
   selectNumberOfSuggestions,
 } from '../../../../redux/suggestions/suggestionsSlice';
 
-// eslint-disable-next-line import/no-unresolved
-import Icon from '../../../../App/commons/icon/icon';
+import Icon from '../../../../app/commons/icon/icon';
 import SuggestionCard from './SuggestionCard/SuggestionCard';
 import SuggestionInboxStyled from './SuggestionsInbox.styled';
 

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-unresolved
-import Icon from '../../../../../app/commons/Icon/Icon';
+import Icon from '../../../../../app/commons/icon/icon';
 import SuggestionModal from './SuggestionModal/SuggestionModal';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
 import {
