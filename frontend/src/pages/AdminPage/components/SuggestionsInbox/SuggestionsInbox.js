@@ -5,7 +5,7 @@ import {
   selectNumberOfSuggestions,
 } from '../../../../redux/suggestions/suggestionsSlice';
 
-import Icon from '../../../../app/commons/Icon/Icon';
+import Icon from '../../../../app/commons/Icon/icon';
 import SuggestionCard from './SuggestionCard/SuggestionCard';
 import SuggestionInboxStyled from './SuggestionsInbox.styled';
 
@@ -29,6 +29,7 @@ const SuggestionsInbox = () => {
         <SuggestionCard
           key={id}
           description={description}
+          id={id}
           index={index}
           subject={subject}
           userName={userName}

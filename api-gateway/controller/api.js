@@ -8,6 +8,7 @@ const getApiRoutes = servicesAPI => ({
   },
   suggestions: {
     fetchSuggestions: servicesAPI.suggestions.fetchSuggestions,
+    deleteSuggestion: servicesAPI.suggestions.deleteSuggestion,
   },
 });
 

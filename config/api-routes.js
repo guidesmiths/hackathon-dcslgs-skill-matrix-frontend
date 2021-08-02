@@ -21,6 +21,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/suggestions`,
         method: 'get',
       },
+      deleteSuggestion: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/suggestions`,
+        method: 'delete',
+      },
     },
   },
 };
