@@ -9,7 +9,7 @@ const initialState = {
 export const fetchEcosystemsAsync = createAsyncThunk(
   'user/fetchEcosystems',
   async () => {
-    const response = await axios.get('/ui/ecosystems/answers');
+    const response = await axios.get('/ui/ecosystems');
     return response.data;
   },
 );
@@ -35,10 +35,7 @@ export const ecosystemsSlice = createSlice({
   },
 });
 
-export const {
-  ecosystemAdded,
-  updateEcosystemSelected,
-} = ecosystemsSlice.actions;
+export const { ecosystemAdded, updateEcosystemSelected } = ecosystemsSlice.actions;
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;

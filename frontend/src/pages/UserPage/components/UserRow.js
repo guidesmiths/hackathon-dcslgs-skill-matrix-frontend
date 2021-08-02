@@ -60,11 +60,11 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
         </ArrowButton>
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
-        <p>{skill.levels[skill.level - 1].description}</p>
+        <p>{skill.levels[skill.level ? skill.level - 1 : 0].description}</p>
         <select value={skill.level} onChange={handleLevel}>
           {skill.levels.map((e, index) => (
-            <option key={index} value={e.number}>
-              {e.number}
+            <option key={index} value={e.level}>
+              {e.level}
             </option>
           ))}
         </select>

@@ -23,7 +23,7 @@ Cypress.Commands.add('initUser', () => {
     response: 'fixture:user.json',
   }).as('getUser');
   cy.route({
-    url: '/ui/ecosystems/answers',
+    url: '/ui/ecosystems',
     method: 'get',
     response: 'fixture:ecosystems.json',
   }).as('getEcosystems');

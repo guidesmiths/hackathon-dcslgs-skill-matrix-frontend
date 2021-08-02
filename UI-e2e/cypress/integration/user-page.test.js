@@ -14,12 +14,18 @@ describe('User page', () => {
     cy.get('[data-cy^="userRow"]').contains('React').should('not.exist');
   });
 
+  it('should find React skill when selecting React Ecosystem', () => {
+    cy.get('[data-cy^="ecosystems"] > button').first().click();
+    cy.get('[data-cy^="userRow"]').contains('React');
+    cy.get('[data-cy^="userRow"]').contains('Express').should('not.exist');
+  });
+
   it('should find user level corresponding to React', () => {
     cy.get('[data-cy^="ecosystems"] > button').first().click();
     cy.get('[data-cy^="userRow"]').contains('React');
     cy.get('[data-cy^="userSkill-React"]').should('exist');
     cy.get('[data-cy^="userSkill-React"] > button').last().click();
-    cy.contains('level 4').should('exist');
+    cy.contains('I can define complex architectures and I can provide optimised solutions').should('exist');
   });
 
   it('should update interested property when checked', () => {
@@ -32,6 +38,6 @@ describe('User page', () => {
     cy.get('[data-cy^="ecosystems"] > button').last().click();
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkill-Express"] > button').last().click();
-    cy.contains('level 4').should('exist');
+    cy.contains('I can define complex architectures and I can provide optimised solutions').should('exist');
   });
 });
