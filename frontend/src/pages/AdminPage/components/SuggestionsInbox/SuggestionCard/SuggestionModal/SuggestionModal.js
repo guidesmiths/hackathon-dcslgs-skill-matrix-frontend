@@ -11,14 +11,14 @@ import {
   SuggestionModalStyled,
 } from './SuggestionModal.styled';
 
-const SuggestionModal = ({ userName, subject, description, show, onCloseClick }) => (
+const SuggestionModal = ({ userName, subject, description, show, onCloseClick, onDeleteClick }) => (
   <SuggestionModalStyled show={show} onCloseClick={onCloseClick}>
     <ModalContent>
       <UserNameStyled>{userName} has a proposal</UserNameStyled>
       <SuggestionStyled>{subject}</SuggestionStyled>
       <DescriptionStyled>{description}</DescriptionStyled>
       <ButtonsGroups>
-        <ButtonStyled>Delete</ButtonStyled>
+        <ButtonStyled dataCy="modal-button-delete" onClick={onDeleteClick}>Delete</ButtonStyled>
         <ButtonStyled dataCy="modal-button-close" onClick={onCloseClick}>Close</ButtonStyled>
       </ButtonsGroups>
     </ModalContent>
@@ -31,6 +31,7 @@ SuggestionModal.propTypes = {
   subject: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   onCloseClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default SuggestionModal;

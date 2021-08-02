@@ -33,6 +33,14 @@ describe('Admin page', () => {
       cy.get('[data-cy^="suggestion-card-2"] > p:first').should('have.text', suggestions[5].userName);
     });
 
+    it('should delete the suggestion card when clicking on the delete icon', () => {
+      cy.get('[data-cy="suggestion-card-0"]').within(() => {
+        cy.get('[data-cy="icon-delete_outline"]').click();
+        cy.wait('@deleteSuggestion');
+        cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
+      });
+    });
+
     describe('For the suggestion modal', () => {
       it('should not display the modal by default', () => {
         cy.get('[data-cy="modal"]').should('not.be.visible');
@@ -61,6 +69,16 @@ describe('Admin page', () => {
           cy.get('[data-cy="modal-overlay"]').click({ force: true });
           cy.get('[data-cy="modal"]').should('not.be.visible');
         });
+      });
+
+      it('should delete the suggestion card and close the modal when clicking on the modal\'s delete button', () => {
+        cy.get('[data-cy="suggestion-card-0"]').within(() => {
+          cy.get('[data-cy="icon-visibility"]').click();
+          cy.get('[data-cy="modal-button-delete"]').click();
+          cy.wait('@deleteSuggestion');
+          cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
+        });
+        cy.get('[data-cy="modal"]').should('not.be.visible');
       });
     });
   });

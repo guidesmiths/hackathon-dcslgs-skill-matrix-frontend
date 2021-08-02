@@ -38,6 +38,12 @@ Cypress.Commands.add('initAdmin', () => {
     method: 'get',
     response: 'fixture:suggestions',
   }).as('getAllSuggestions');
+  cy.route({
+    url: '/ui/suggestions?id=*',
+    method: 'delete',
+    status: 204,
+    response: '',
+  }).as('deleteSuggestion');
   cy.visit('/admin');
   cy.wait(['@getAllSuggestions']);
 });

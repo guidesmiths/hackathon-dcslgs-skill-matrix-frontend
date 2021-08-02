@@ -14,6 +14,18 @@ export const fetchSuggestionsAsync = createAsyncThunk(
   },
 );
 
+export const deleteSuggestionAsync = createAsyncThunk(
+  'suggestions/deleteSuggestion',
+  async id => {
+    await axios.delete('/ui/suggestions', {
+      params: {
+        id,
+      },
+    });
+    return id;
+  },
+);
+
 export const suggestionsSlice = createSlice({
   name: 'suggestions',
   initialState,
@@ -30,6 +42,14 @@ export const suggestionsSlice = createSlice({
       .addCase(fetchSuggestionsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
+      })
+      .addCase(deleteSuggestionAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(deleteSuggestionAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        const updatedSuggestions = state.value.filter(({ id }) => id !== action.payload);
+        state.value = [...updatedSuggestions];
       });
   },
 });

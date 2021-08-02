@@ -40,6 +40,7 @@ const SuggestionsInbox = () => {
         <SuggestionCard
           key={id}
           description={description}
+          id={id}
           index={index}
           subject={subject}
           userName={userName}
