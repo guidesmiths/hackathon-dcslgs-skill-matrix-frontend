@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -31,18 +32,12 @@ export const userSlice = createSlice({
       state.value = [...state.value, ...action.payload];
     },
     updateUserSkill: (state, action) => {
-      const { idEcosystem, skillId, skill } = action.payload;
-      console.log('🚀 ~ file: userSlice.js ~ line 35 ~ skill', skill);
-      console.log('🚀 ~ file: userSlice.js ~ line 35 ~ skillId', skillId);
-      console.log('🚀 ~ file: userSlice.js ~ line 39 ~ skill.id', skill.name, skill.id);
+      const { idEcosystem, skill } = action.payload;
       const index = state.value.ecosystems[idEcosystem].skills.findIndex(
-        s => {
-          console.log('🚀 ~ file: userSlice.js ~ line 40 ~ s.id', s.name, s.id);
-          return s.id === skill.id;
-        },
+        s => s.id === skill.id,
       );
-      console.log(index);
-      state.value.ecosystems[idEcosystem].skills[skillId] = index !== -1 && skill;
+      state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
+      index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
   },
 

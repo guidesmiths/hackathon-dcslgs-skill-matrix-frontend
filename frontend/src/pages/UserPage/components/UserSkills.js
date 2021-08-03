@@ -64,13 +64,12 @@ const UserSkills = ({ systemSelected }) => {
             <DataTitle>I&apos;d Like to learn</DataTitle>
           </RowTitle>
         </RowWrapper>
-        {skillswithLevel?.map((skill, index) => (
+        {skillswithLevel?.map(skill => (
           <UserRow
             key={skill.id}
             idEcosystem={systemSelected}
             skill={skill}
             // handleEditSkill={handleEditSkill}
-            skillIndex={index}
           />
         ))}
       </form>

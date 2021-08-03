@@ -12,7 +12,7 @@ import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 
-const UserRow = ({ skill, idEcosystem, skillIndex }) => {
+const UserRow = ({ skill, idEcosystem }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
@@ -23,7 +23,6 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skillId: skillIndex,
         skill: { ...skill, interested: !isChecked },
       }),
     );
@@ -34,7 +33,6 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skillId: skillIndex,
         skill: { ...skill, level: selectValue },
       }),
     );
@@ -76,7 +74,6 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
 UserRow.propTypes = {
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
-  skillIndex: PropTypes.number.isRequired,
 };
 
 export default UserRow;
