@@ -31,7 +31,7 @@ const LevelBar = ({ level }) => {
           background={{ fill: '#eee' }}
           dataKey="skillLevel"
           fill="#82ca9d"
-          minPointSize={25}
+          // minPointSize={25}
         />
       </BarChart>
     </BarChartContainer>

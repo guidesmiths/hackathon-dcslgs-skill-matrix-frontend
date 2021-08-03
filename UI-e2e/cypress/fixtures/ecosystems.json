@@ -17,6 +17,10 @@
                 "description": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials",
                 "levels": [
                     {
+                        "level": 0,
+                        "description": "Level 0"
+                    },
+                    {
                         "level": 1,
                         "description": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials"
                     },
@@ -47,6 +51,10 @@
                 },
                 "description": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials",
                 "levels": [
+                    {
+                        "level": 0,
+                        "description": "Level 0"
+                    },
                     {
                         "level": 1,
                         "description": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials"
@@ -79,6 +87,10 @@
                 "description": "I have a basic knowledge of the library. I understand when use redux state and when use the component state.",
                 "levels": [
                     {
+                        "level": 0,
+                        "description": "Level 0"
+                    },
+                    {
                         "level": 1,
                         "description": "I have a basic knowledge of the library. I understand when use redux state and when use the component state."
                     },
@@ -109,6 +121,10 @@
                 },
                 "description": "I can add new sagas into a working project",
                 "levels": [
+                    {
+                        "level": 0,
+                        "description": "Level 0"
+                    },
                     {
                         "level": 1,
                         "description": "I can add new sagas into a working project"
@@ -147,19 +163,23 @@
                 "description": null,
                 "levels": [
                     {
-                        "number": 1,
+                        "level": 0,
+                        "description": "Level 0"
+                    },
+                    {
+                        "level": 1,
                         "description": "I'm a level 1"
                     },
                     {
-                        "number": 2,
+                        "level": 2,
                         "description": "I'm a level 2"
                     },
                     {
-                        "number": 3,
+                        "level": 3,
                         "description": "I'm a level 3"
                     },
                     {
-                        "number": 4,
+                        "level": 4,
                         "description": "I'm a level 4"
                     }
                 ]
