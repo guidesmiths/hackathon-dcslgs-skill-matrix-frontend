@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-Cypress.Commands.add('init', () => {
+Cypress.Commands.add('initHome', () => {
   cy.server();
   cy.route({
     url: '/ui/skills/catalog',
@@ -13,6 +13,22 @@ Cypress.Commands.add('init', () => {
   }).as('getAllAnswers');
   cy.visit('/');
   cy.wait(['@getAllSkills', '@getAllAnswers']);
+});
+
+Cypress.Commands.add('initUser', () => {
+  cy.server();
+  cy.route({
+    url: '/ui/users/:id/answers',
+    method: 'get',
+    response: 'fixture:user.json',
+  }).as('getUser');
+  cy.route({
+    url: '/ui/ecosystems',
+    method: 'get',
+    response: 'fixture:ecosystems.json',
+  }).as('getEcosystems');
+  cy.visit('/profile');
+  cy.wait(['@getUser', '@getEcosystems']);
 });
 
 Cypress.Commands.add('initAdmin', () => {

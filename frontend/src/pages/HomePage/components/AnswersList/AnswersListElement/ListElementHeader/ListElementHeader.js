@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, ArrowButton,
+  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled,
 } from './ListElementHeader.styled';
+import { ArrowButton } from '../../../../../../app/commons/ArrowButton/arrowButton.styled';
 
 const ListElementHeader = ({ email, name, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;

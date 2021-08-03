@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
-import { NavBarTop } from './NavBar.styled';
+import { NavBarTop, NavBarLink } from './NavBar.styled';
 
 const NavBar = () => (
-  (
-    <Fragment>
-      <NavBarTop>Skill Matrix Navbar</NavBarTop>
-    </Fragment>
-  )
+  <Fragment>
+    <NavBarTop>
+      <NavBarLink to="/">Directory</NavBarLink>
+      <NavBarLink to="/profile">Personal Skill Matrix</NavBarLink>
+    </NavBarTop>
+  </Fragment>
 );
 
 export default NavBar;

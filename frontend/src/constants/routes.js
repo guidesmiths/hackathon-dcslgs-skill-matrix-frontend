@@ -1,3 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
-export const HOME_ROUTE = '/';
-export const ADMIN_ROUTE = '/admin';
+const HOME_ROUTE = '/';
+const USER_ROUTE = '/profile';
+const ADMIN_ROUTE = '/admin';
+
+export { HOME_ROUTE, USER_ROUTE, ADMIN_ROUTE };

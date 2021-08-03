@@ -18,10 +18,6 @@ const UserRolStyled = styled.p`
     border-radius: 10%;
 `;
 
-const ArrowButton = styled.button`
-    cursor: pointer;
-`;
-
 const ListElementStyled = styled.div`
     padding: 20px 50px;
     display: flex;
@@ -31,4 +27,4 @@ const ListElementStyled = styled.div`
     background: #f4f4f4;
 `;
 
-export { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, ArrowButton };
+export { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled };
