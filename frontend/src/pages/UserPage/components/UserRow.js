@@ -22,7 +22,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     setCheck(!isChecked);
     dispatch(
       updateUserSkill({
-        index: idEcosystem,
+        idEcosystem,
         skillId: skillIndex,
         skill: { ...skill, interested: !isChecked },
       }),
@@ -33,7 +33,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     const selectValue = event.target.value;
     dispatch(
       updateUserSkill({
-        index: idEcosystem,
+        idEcosystem,
         skillId: skillIndex,
         skill: { ...skill, level: selectValue },
       }),

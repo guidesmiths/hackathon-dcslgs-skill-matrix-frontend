@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -7,13 +8,10 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchUserAsync = createAsyncThunk(
-  'user/fetchUser',
-  async () => {
-    const response = await axios.get('/ui/users/:id/answers');
-    return response.data;
-  },
-);
+export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
+  const response = await axios.get('/ui/users/:id/answers');
+  return response.data;
+});
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
   'answers/fetchUpdatedUser',
@@ -33,8 +31,18 @@ export const userSlice = createSlice({
       state.value = [...state.value, ...action.payload];
     },
     updateUserSkill: (state, action) => {
-      const { index, skillId, skill } = action.payload;
-      state.value.ecosystems[index].skills[skillId] = skill;
+      const { idEcosystem, skillId, skill } = action.payload;
+      console.log('🚀 ~ file: userSlice.js ~ line 35 ~ skill', skill);
+      console.log('🚀 ~ file: userSlice.js ~ line 35 ~ skillId', skillId);
+      console.log('🚀 ~ file: userSlice.js ~ line 39 ~ skill.id', skill.name, skill.id);
+      const index = state.value.ecosystems[idEcosystem].skills.findIndex(
+        s => {
+          console.log('🚀 ~ file: userSlice.js ~ line 40 ~ s.id', s.name, s.id);
+          return s.id === skill.id;
+        },
+      );
+      console.log(index);
+      state.value.ecosystems[idEcosystem].skills[skillId] = index !== -1 && skill;
     },
   },
 
