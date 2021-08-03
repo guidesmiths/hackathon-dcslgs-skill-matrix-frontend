@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Icon from '../../../../../app/commons/icon/icon';
+import Icon from '../../../../../app/commons/Icon/icon';
 import SuggestionModal from './SuggestionModal/SuggestionModal';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
 import {

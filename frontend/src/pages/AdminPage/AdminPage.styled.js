@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  display: block;
+  display: grid;
   box-sizing: border-box;
+  grid-template-columns: 3fr 9fr;
+  grid-template-rows: 2fr 5fr;
+  grid-template-areas:
+    "suggestions suggestions"
+    "ecosystems-sidebar ecosystems-main";
   height: 100vh;
-  margin: 20px 50px;
+  margin: 50px 70px;
   font-family: Arial, Helvetica, sans-serif;
 `;

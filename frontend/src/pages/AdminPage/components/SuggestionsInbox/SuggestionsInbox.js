@@ -5,7 +5,7 @@ import {
   selectNumberOfSuggestions,
 } from '../../../../redux/suggestions/suggestionsSlice';
 
-import Icon from '../../../../app/commons/icon/icon';
+import Icon from '../../../../app/commons/Icon/icon';
 import SuggestionCard from './SuggestionCard/SuggestionCard';
 import SuggestionInboxStyled from './SuggestionsInbox.styled';
 

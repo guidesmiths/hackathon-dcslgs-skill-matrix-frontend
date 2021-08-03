@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import suggestions from '../fixtures/suggestions.json';
+import ecosystems from '../fixtures/ecosystems.json';
 
 describe('Admin page', () => {
   beforeEach(() => {
@@ -79,6 +80,14 @@ describe('Admin page', () => {
           cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
         });
         cy.get('[data-cy="modal"]').should('not.be.visible');
+      });
+    });
+  });
+
+  describe('For the ecosystems sidebar', () => {
+    it('should display all the ecosystems when entering the page', () => {
+      cy.get('[data-cy="ecosystems-sidebar"]').within(() => {
+        cy.get('[data-cy^="ecosystems-element-"]').should('have.length', ecosystems.length);
       });
     });
   });

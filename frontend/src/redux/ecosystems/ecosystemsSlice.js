@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const fetchEcosystemsAsync = createAsyncThunk(
-  'user/fetchEcosystems',
+  'ecosystems/fetchEcosystems',
   async () => {
     const response = await axios.get('/ui/ecosystems');
     return response.data;
