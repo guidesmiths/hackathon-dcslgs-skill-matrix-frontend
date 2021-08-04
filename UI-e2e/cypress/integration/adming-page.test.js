@@ -14,24 +14,30 @@ describe('Admin page', () => {
 
     it('should display the same elements when clicking on the back button if the displayed elements are the first in the suggestions list', () => {
       cy.get('[data-cy="suggestions-inbox"] > div:first').click();
-      cy.get('[data-cy^="suggestion-card-0"] > p:first').should('have.text', suggestions[0].userName);
-      cy.get('[data-cy^="suggestion-card-1"] > p:first').should('have.text', suggestions[1].userName);
-      cy.get('[data-cy^="suggestion-card-2"] > p:first').should('have.text', suggestions[2].userName);
+      cy.get('[data-cy^="suggestion-card-0"] > p:first').contains(suggestions[0].userName);
+      cy.get('[data-cy^="suggestion-card-1"] > p:first').contains(suggestions[1].userName);
+      cy.get('[data-cy^="suggestion-card-2"] > p:first').contains(suggestions[2].userName);
     });
 
     it('should display the next element is the suggestions list when clicking on the next button', () => {
-      cy.get('[data-cy="suggestions-inbox"] > div:last').click();
-      cy.get('[data-cy^="suggestion-card-0"] > p:first').should('have.text', suggestions[3].userName);
-      cy.get('[data-cy^="suggestion-card-1"] > p:first').should('have.text', suggestions[4].userName);
-      cy.get('[data-cy^="suggestion-card-2"] > p:first').should('have.text', suggestions[5].userName);
+      cy.get('[data-cy="icon-arrow_forward_ios"]').click();
+      cy.get('[data-cy^="suggestion-card-0"] > p:first').contains(suggestions[3].userName);
+      cy.get('[data-cy^="suggestion-card-1"] > p:first').contains(suggestions[4].userName);
+      cy.get('[data-cy^="suggestion-card-2"] > p:first').contains(suggestions[5].userName);
     });
 
-    it('should display the same elements when clicking on the next button if the displayed elements are the last in the suggestions list', () => {
-      cy.get('[data-cy="suggestions-inbox"] > div:last').click();
-      cy.get('[data-cy="suggestions-inbox"] > div:last').click();
-      cy.get('[data-cy^="suggestion-card-0"] > p:first').should('have.text', suggestions[3].userName);
-      cy.get('[data-cy^="suggestion-card-1"] > p:first').should('have.text', suggestions[4].userName);
-      cy.get('[data-cy^="suggestion-card-2"] > p:first').should('have.text', suggestions[5].userName);
+    it('should not display the back button when the elements belong to the first page', () => {
+      cy.get('[data-cy="icon-arrow_back_ios"]').should('not.exist');
+    });
+
+    it('should display the back button when moving away from the first page', () => {
+      cy.get('[data-cy="icon-arrow_forward_ios"]').click();
+      cy.get('[data-cy="icon-arrow_back_ios"]').should('exist');
+    });
+
+    it('should not display the forward button when the elements belong to the last page', () => {
+      cy.get('[data-cy="icon-arrow_forward_ios"]').click();
+      cy.get('[data-cy="icon-arrow_forward_ios"]').should('not.exist');
     });
 
     it('should delete the suggestion card when clicking on the delete icon', () => {
