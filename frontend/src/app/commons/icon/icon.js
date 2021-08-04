@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import MaterialIcon from '@material-ui/core/Icon';
 import IconStyled from './Icon.styled';
 
-const Icon = ({ icon, border, height, width, marginRight, onClick, show }) => (
+const Icon = ({ icon, className, border, height, width, marginRight, onClick, show }) => (
   (
     <IconStyled
       border={border}
+      className={className}
       data-cy={`icon-${icon}`}
       height={height}
       marginRight={marginRight}
@@ -21,6 +22,7 @@ const Icon = ({ icon, border, height, width, marginRight, onClick, show }) => (
 
 Icon.defaultProps = {
   border: '',
+  className: '',
   height: 50,
   icon: '',
   marginRight: 0,
@@ -31,6 +33,7 @@ Icon.defaultProps = {
 
 Icon.propTypes = {
   border: PropTypes.string,
+  className: PropTypes.string,
   height: PropTypes.number,
   icon: PropTypes.string,
   marginRight: PropTypes.number,

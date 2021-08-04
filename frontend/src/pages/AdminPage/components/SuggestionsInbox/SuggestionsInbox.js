@@ -5,9 +5,10 @@ import {
   selectNumberOfSuggestions,
 } from '../../../../redux/suggestions/suggestionsSlice';
 
-import Icon from '../../../../app/commons/icon/icon';
 import SuggestionCard from './SuggestionCard/SuggestionCard';
-import SuggestionInboxStyled from './SuggestionsInbox.styled';
+import {
+  SuggestionInboxStyled, BackIconStyled, ForwardIconStyled, SuggestionCardsStyled, EcosystemsNumberStyled, EmployeesNumberStyled,
+} from './SuggestionsInbox.styled';
 
 const SuggestionsInbox = () => {
   const pageSize = 3;
@@ -31,24 +32,30 @@ const SuggestionsInbox = () => {
 
   return (
     <SuggestionInboxStyled data-cy="suggestions-inbox">
-      <Icon
-        icon="arrow_back_ios"
-        onClick={() => setCurrentPage(getNextPage(-1))}
-      />
-      {suggestions.map(({ userName, description, subject, id }, index) => (
-        <SuggestionCard
-          key={id}
-          description={description}
-          id={id}
-          index={index}
-          subject={subject}
-          userName={userName}
-        />
-      ))}
-      <Icon
-        icon="arrow_forward_ios"
-        onClick={() => setCurrentPage(getNextPage(1))}
-      />
+      <EcosystemsNumberStyled>28 ECOSYSTEMS</EcosystemsNumberStyled>
+      {currentPage !== 1 && (
+        <BackIconStyled
+          icon="arrow_back_ios"
+          onClick={() => setCurrentPage(getNextPage(-1))}
+        />)}
+      <SuggestionCardsStyled>
+        {suggestions.map(({ userName, description, subject, id }, index) => (
+          <SuggestionCard
+            key={id}
+            description={description}
+            id={id}
+            index={index}
+            subject={subject}
+            userName={userName}
+          />
+        ))}
+      </SuggestionCardsStyled>
+      {currentPage !== numberOfPages && (
+        <ForwardIconStyled
+          icon="arrow_forward_ios"
+          onClick={() => setCurrentPage(getNextPage(1))}
+        />)}
+      <EmployeesNumberStyled>85 EMPLOYEES</EmployeesNumberStyled>
     </SuggestionInboxStyled>
   );
 };

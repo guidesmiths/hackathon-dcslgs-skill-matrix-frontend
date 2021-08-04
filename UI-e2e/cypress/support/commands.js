@@ -39,11 +39,16 @@ Cypress.Commands.add('initAdmin', () => {
     response: 'fixture:suggestions',
   }).as('getAllSuggestions');
   cy.route({
+    url: '/ui/ecosystems',
+    method: 'get',
+    response: 'fixture:ecosystems',
+  }).as('getAllEcosystems');
+  cy.route({
     url: '/ui/suggestions?id=*',
     method: 'delete',
     status: 204,
     response: '',
   }).as('deleteSuggestion');
   cy.visit('/admin');
-  cy.wait(['@getAllSuggestions']);
+  cy.wait(['@getAllSuggestions', '@getAllEcosystems']);
 });
