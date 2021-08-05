@@ -48,11 +48,11 @@ const RowCollapsed = styled.div`
   display: grid;
   border: 1px solid grey;
   padding: 15px;
-  margin-bottom: 20px;
   grid-column-start: 3;
   grid-column-end: 6;
   grid-template-columns: 1fr 1fr;
   grid-gap: 300px;
+  margin-bottom: 8px;
   display: ${props => props.isCollapsed && 'none'};
 `;
 
@@ -61,8 +61,13 @@ const FormHeader = styled(RowWrapper)`
   padding: 5px 15px;
   `;
 
-const RowSkillsTop = styled(RowWrapper)`
-  margin-bottom: 8px;
+const RowSkillsTop = styled.div`
+  margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
+  display: grid;
+  border: 1px solid grey;
+  padding: 15px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
 `;
 
 const UserInput = styled.input`

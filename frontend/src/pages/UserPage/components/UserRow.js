@@ -5,8 +5,8 @@ import {
   RowSkills,
   UserSkillName,
   UserInput,
-  RowSkillsTop,
   RowCollapsed,
+  RowSkillsTop,
 } from '../UserPage.styled';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import LevelBar from './LevelBar';
@@ -40,7 +40,7 @@ const UserRow = ({ skill, idEcosystem }) => {
 
   return (
     <div>
-      <RowSkillsTop data-cy={`userSkill-${skill.name}`}>
+      <RowSkillsTop data-cy={`userSkill-${skill.name}`} isRowDown={!isCollapsed}>
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
           <LevelBar level={skill.level} />

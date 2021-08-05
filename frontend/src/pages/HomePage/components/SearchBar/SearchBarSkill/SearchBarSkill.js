@@ -12,7 +12,7 @@ import {
 import SearchBarSkillStyled from './SearchBarSkill.styled';
 import Input from '../../../../../app/commons/Input/Input';
 import Select from '../../../../../app/commons/Select/Select';
-import Icon from '../../../../../app/commons/Icon/icon';
+import Icon from '../../../../../app/commons/icon/icon';
 
 const SearchBarSkill = ({ isLastFilter, filter, index }) => {
   const dispatch = useDispatch();
