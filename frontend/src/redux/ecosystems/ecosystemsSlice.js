@@ -35,7 +35,7 @@ export const ecosystemsSlice = createSlice({
   },
 });
 
-export const { ecosystemAdded, updateEcosystemSelected } = ecosystemsSlice.actions;
+export const { ecosystemAdded } = ecosystemsSlice.actions;
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
