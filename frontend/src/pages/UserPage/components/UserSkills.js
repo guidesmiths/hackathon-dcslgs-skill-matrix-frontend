@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +16,7 @@ import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
   fetchUpdatedUserAsync,
+  selectUserData,
 } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
@@ -22,14 +24,10 @@ import LevelBar from './LevelBar';
 
 const UserSkills = ({ systemSelected }) => {
   const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
+  const selectedUser = useSelector(selectUserData);
   const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUpdatedUserAsync({ userSkills }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSkills]);
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(
@@ -46,6 +44,7 @@ const UserSkills = ({ systemSelected }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(fetchUpdatedUserAsync({ userSkills, selectedUser, selectedEcosystem }));
   };
 
   return (

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const initialState = {
   value: [],
+  originalValue: [],
   skillsSelected: [],
   status: 'idle',
 };
@@ -16,10 +17,13 @@ export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
   'answers/fetchUpdatedUser',
-  async user => {
+  async answer => {
     const response = await axios.post('/ui/users/:id/answers', {
-      user,
+      id: answer.selectedUser.id,
+      ecosystemID: answer.selectedEcosystem.id,
+      skills: answer.userSkills,
     });
+    console.log(response.data);
     return response.data;
   },
 );
@@ -49,6 +53,15 @@ export const userSlice = createSlice({
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
+        state.originalValue = action.payload;
+      })
+      .addCase(fetchUpdatedUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = action.payload;
+        state.originalValue = action.payload;
       });
   },
 });
