@@ -5,7 +5,6 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
 const LevelBar = ({ level }) => {
-  console.log(level, typeof level);
   const data = [
     {
       name: 'level',

@@ -23,7 +23,6 @@ export const fetchUpdatedUserAsync = createAsyncThunk(
       ecosystemID: answer.selectedEcosystem.id,
       skills: answer.userSkills,
     });
-    console.log(response.data);
     return response.data;
   },
 );

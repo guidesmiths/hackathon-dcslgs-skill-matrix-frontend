@@ -25,11 +25,11 @@ const AnswersList = () => {
           />);
       })}
       <Pagination
-        numberOfPages={numberOfPages}
         currentPage={currentPage}
-        onChange={(_, page) => setCurrentPage(page)}
+        numberOfPages={numberOfPages}
         shape="rounded"
         size="large"
+        onChange={(_, page) => setCurrentPage(page)}
       />
     </AnswersListStyled>
   );
