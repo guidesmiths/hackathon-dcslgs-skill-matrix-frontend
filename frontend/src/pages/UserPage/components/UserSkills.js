@@ -33,7 +33,9 @@ const UserSkills = ({ systemSelected }) => {
     const index = userSkills.findIndex(
       userSkill => userSkill.id === skill.id,
     );
-    const { level, interested, comments } = index !== -1 ? userSkills[index] : { level: 0, interested: false, comments: '' };
+    const { level, interested, comments } = index !== -1
+      ? userSkills[index]
+      : { level: 0, interested: false, comments: '' };
     return {
       ...skill,
       level,
@@ -44,7 +46,9 @@ const UserSkills = ({ systemSelected }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(fetchUpdatedUserAsync({ userSkills, selectedUser, selectedEcosystem }));
+    dispatch(
+      fetchUpdatedUserAsync({ userSkills, selectedUser, selectedEcosystem }),
+    );
   };
 
   return (
@@ -54,7 +58,11 @@ const UserSkills = ({ systemSelected }) => {
           <RowTitle>
             <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
             <LevelBar level={selectedEcosystem?.average} />
-            <UserInput type="submit" value="Save" />
+            <UserInput
+              data-cy={'saveInfo'}
+              type="submit"
+              value="Save"
+            />
           </RowTitle>
         </FormHeader>
         <RowWrapper>
@@ -65,11 +73,7 @@ const UserSkills = ({ systemSelected }) => {
           </RowTitle>
         </RowWrapper>
         {skillswithLevel?.map(skill => (
-          <UserRow
-            key={skill.id}
-            idEcosystem={systemSelected}
-            skill={skill}
-          />
+          <UserRow key={skill.id} idEcosystem={systemSelected} skill={skill} />
         ))}
       </form>
     </UserData>

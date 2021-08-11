@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const initialState = {
   value: [],
-  originalValue: [],
   skillsSelected: [],
   status: 'idle',
 };
@@ -52,7 +51,6 @@ export const userSlice = createSlice({
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
-        state.originalValue = action.payload;
       })
       .addCase(fetchUpdatedUserAsync.pending, state => {
         state.status = 'loading';
@@ -60,7 +58,6 @@ export const userSlice = createSlice({
       .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
-        state.originalValue = action.payload;
       });
   },
 });

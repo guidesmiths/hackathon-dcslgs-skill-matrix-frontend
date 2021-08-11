@@ -22,30 +22,38 @@ const UserRow = ({ skill, idEcosystem }) => {
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
+    const { id, name, level, comments } = skill;
     dispatch(
-      updateUserSkill({
-        idEcosystem,
-        skill: { ...skill, interested: !isChecked },
-      }),
+      updateUserSkill({ id, name, level, comments, interested: !isChecked }),
     );
   };
 
   const handleLevel = event => {
     const selectValue = event.target.value;
+    const { id, name, interested, comments } = skill;
+
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, level: Number(selectValue) },
+        skill: {
+          id,
+          name,
+          comments,
+          interested,
+          level: Number(selectValue),
+        },
       }),
     );
   };
 
   const handleComments = event => {
     const commentsValue = event.target.value;
+    const { id, name, interested, level } = skill;
+
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, comments: commentsValue },
+        skill: { id, name, level, interested, comments: commentsValue },
       }),
     );
   };
