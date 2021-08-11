@@ -16,7 +16,7 @@ export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
 });
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
-  'answers/fetchUpdatedUser',
+  'user/fetchUpdatedUser',
   async answer => {
     const response = await axios.post('/ui/users/:id/answers', {
       id: answer.selectedUser.id,

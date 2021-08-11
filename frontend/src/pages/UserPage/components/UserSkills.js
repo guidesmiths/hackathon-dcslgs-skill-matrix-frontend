@@ -69,7 +69,6 @@ const UserSkills = ({ systemSelected }) => {
             key={skill.id}
             idEcosystem={systemSelected}
             skill={skill}
-            // handleEditSkill={handleEditSkill}
           />
         ))}
       </form>
@@ -78,13 +77,11 @@ const UserSkills = ({ systemSelected }) => {
 };
 
 UserSkills.defaultProps = {
-  mySkills: [],
+  systemSelected: null,
 };
 
 UserSkills.propTypes = {
-  // handleEditSkill: PropTypes.func.isRequired,
-  systemSelected: PropTypes.array.isRequired,
-  // mySkills: PropTypes.array,
+  systemSelected: PropTypes.number,
 };
 
 export default UserSkills;

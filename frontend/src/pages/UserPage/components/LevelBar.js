@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
 const LevelBar = ({ level }) => {
+  console.log(level, typeof level);
   const data = [
     {
       name: 'level',
@@ -38,8 +39,12 @@ const LevelBar = ({ level }) => {
   );
 };
 
+LevelBar.defaultProps = {
+  level: 0,
+};
+
 LevelBar.propTypes = {
-  level: PropTypes.number.isRequired,
+  level: PropTypes.number,
 };
 
 export default LevelBar;

@@ -35,7 +35,7 @@ const UserRow = ({ skill, idEcosystem }) => {
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, level: selectValue },
+        skill: { ...skill, level: Number(selectValue) },
       }),
     );
   };
