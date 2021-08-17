@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -38,8 +36,11 @@ export const userSlice = createSlice({
       const index = state.value.ecosystems[idEcosystem].skills.findIndex(
         s => s.id === skill.id,
       );
-      state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
-      index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
+      if (index === -1) {
+        state.value.ecosystems[idEcosystem].skills.push(skill);
+      } else {
+        state.value.ecosystems[idEcosystem].skills[index] = skill;
+      }
     },
   },
 

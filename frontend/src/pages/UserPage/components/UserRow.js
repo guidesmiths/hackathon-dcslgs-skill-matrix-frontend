@@ -19,10 +19,10 @@ const UserRow = ({ skill, idEcosystem }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
+  const { id, name, level, levels, comments, interested } = skill;
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
-    const { id, name, level, comments } = skill;
     dispatch(
       updateUserSkill({ id, name, level, comments, interested: !isChecked }),
     );
@@ -30,7 +30,6 @@ const UserRow = ({ skill, idEcosystem }) => {
 
   const handleLevel = event => {
     const selectValue = event.target.value;
-    const { id, name, interested, comments } = skill;
 
     dispatch(
       updateUserSkill({
@@ -48,7 +47,6 @@ const UserRow = ({ skill, idEcosystem }) => {
 
   const handleComments = event => {
     const commentsValue = event.target.value;
-    const { id, name, interested, level } = skill;
 
     dispatch(
       updateUserSkill({
@@ -61,12 +59,12 @@ const UserRow = ({ skill, idEcosystem }) => {
   return (
     <div>
       <RowSkillsTop
-        data-cy={`userSkill-${skill.name}`}
+        data-cy={`userSkill-${name}`}
         isRowDown={!isCollapsed}
       >
         <RowSkills>
-          <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} />
+          <UserSkillName>{name}</UserSkillName>
+          <LevelBar level={level} />
           <div>
             <UserInput
               checked={isChecked}
@@ -82,9 +80,9 @@ const UserRow = ({ skill, idEcosystem }) => {
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
         <RowSkillsBottom>
-          <p>{skill.levels[skill.level].description}</p>
-          <select value={skill.level} onChange={handleLevel}>
-            {skill.levels.map((e, index) => (
+          <p>{levels[level].description}</p>
+          <select value={level} onChange={handleLevel}>
+            {levels.map((e, index) => (
               <option key={index} value={e.level}>
                 {e.level}
               </option>
@@ -94,7 +92,7 @@ const UserRow = ({ skill, idEcosystem }) => {
 
         <RowSkillsBottom>
           <Input
-            input={skill.comments}
+            input={comments}
             placeholder="Write some comments"
             onChangeInput={handleComments}
           />
