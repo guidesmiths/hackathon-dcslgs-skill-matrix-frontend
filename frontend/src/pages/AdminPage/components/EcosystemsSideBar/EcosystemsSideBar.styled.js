@@ -9,7 +9,7 @@ const EcosystemsSideBarStyled = styled.div`
   height: 100%;
   border: 1px solid #aaa;
   box-sizing: border-box;
-  margin: 0px;
+  margin-top: 20px;
   padding: 0px;
 `;
 
@@ -19,6 +19,7 @@ const EcosystemHeaderStyled = styled.div`
   align-items: center;
   padding: 20px 25px;
   border-bottom: 2px solid #aaa;
+  font-weight: bold;
 `;
 
 const EcosystemElementStyled = styled.div`
@@ -26,6 +27,7 @@ const EcosystemElementStyled = styled.div`
 
   &:hover {
     background: #f4f4f4;
+    cursor: pointer;
   }
 `;
 
@@ -37,6 +39,7 @@ const PlusIconStyled = styled(Icon)`
   
   &:hover {
    color: black;
+   cursor: pointer;
   }
 `;
 

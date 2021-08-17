@@ -4,7 +4,7 @@ export default styled.div`
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 3fr 9fr;
-  grid-template-rows: 2fr 5fr;
+  grid-template-rows: 200px auto;
   grid-template-areas:
     "suggestions suggestions"
     "ecosystems-sidebar ecosystems-main";
