@@ -5,14 +5,16 @@ import {
   RowSkills,
   UserSkillName,
   UserInput,
-  RowSkillsTop,
   RowCollapsed,
+  RowSkillsTop,
+  RowSkillsBottom,
 } from '../UserPage.styled';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
+import Input from '../../../app/commons/InputGeneral/Input';
 
-const UserRow = ({ skill, idEcosystem, skillIndex }) => {
+const UserRow = ({ skill, idEcosystem }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
@@ -22,8 +24,7 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     setCheck(!isChecked);
     dispatch(
       updateUserSkill({
-        index: idEcosystem,
-        skillId: skillIndex,
+        idEcosystem,
         skill: { ...skill, interested: !isChecked },
       }),
     );
@@ -33,16 +34,28 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
     const selectValue = event.target.value;
     dispatch(
       updateUserSkill({
-        index: idEcosystem,
-        skillId: skillIndex,
+        idEcosystem,
         skill: { ...skill, level: selectValue },
+      }),
+    );
+  };
+
+  const handleComments = event => {
+    const commentsValue = event.target.value;
+    dispatch(
+      updateUserSkill({
+        idEcosystem,
+        skill: { ...skill, comments: commentsValue },
       }),
     );
   };
 
   return (
     <div>
-      <RowSkillsTop data-cy={`userSkill-${skill.name}`}>
+      <RowSkillsTop
+        data-cy={`userSkill-${skill.name}`}
+        isRowDown={!isCollapsed}
+      >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
           <LevelBar level={skill.level} />
@@ -60,14 +73,24 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
         </ArrowButton>
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
-        <p>{skill.levels[skill.level].description}</p>
-        <select value={skill.level} onChange={handleLevel}>
-          {skill.levels.map((e, index) => (
-            <option key={index} value={e.level}>
-              {e.level}
-            </option>
-          ))}
-        </select>
+        <RowSkillsBottom>
+          <p>{skill.levels[skill.level].description}</p>
+          <select value={skill.level} onChange={handleLevel}>
+            {skill.levels.map((e, index) => (
+              <option key={index} value={e.level}>
+                {e.level}
+              </option>
+            ))}
+          </select>
+        </RowSkillsBottom>
+
+        <RowSkillsBottom>
+          <Input
+            input={skill.comments}
+            placeholder="Write some comments"
+            onChangeInput={handleComments}
+          />
+        </RowSkillsBottom>
       </RowCollapsed>
     </div>
   );
@@ -76,7 +99,6 @@ const UserRow = ({ skill, idEcosystem, skillIndex }) => {
 UserRow.propTypes = {
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
-  skillIndex: PropTypes.number.isRequired,
 };
 
 export default UserRow;

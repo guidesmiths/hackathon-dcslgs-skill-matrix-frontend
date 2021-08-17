@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from '../../../../app/commons/Icon/icon';
+import Icon from '../../../../app/commons/icon/icon';
 
 const EcosystemContainerStyled = styled.div`
   grid-area: ecosystems-main;

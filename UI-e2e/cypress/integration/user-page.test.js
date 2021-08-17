@@ -28,7 +28,7 @@ describe('User page', () => {
     cy.contains('I can define complex architectures and I can provide optimised solutions').should('exist');
   });
 
-  it('should update interested property when checked', () => {
+  it('should update level property when selected', () => {
     cy.get('[data-cy^="ecosystems"] > button').last().click();
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
@@ -38,6 +38,6 @@ describe('User page', () => {
     cy.get('[data-cy^="ecosystems"] > button').last().click();
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkill-Express"] > button').last().click();
-    cy.contains('I can define complex architectures and I can provide optimised solutions').should('exist');
+    cy.contains('I\'m a level 4').should('exist');
   });
 });

@@ -13,19 +13,12 @@
                     "name": "React",
                     "level": 4,
                     "interested": true,
-                    "comments": ""
+                    "comments": "test comment"
                 },
                 {
                     "id": 2,
                     "name": "Next.js",
                     "level": 2,
-                    "interested": false,
-                    "comments": ""
-                },
-                {
-                    "id": 3,
-                    "name": "Redux",
-                    "level": 0,
                     "interested": false,
                     "comments": ""
                 },

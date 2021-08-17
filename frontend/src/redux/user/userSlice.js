@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -7,13 +9,10 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchUserAsync = createAsyncThunk(
-  'user/fetchUser',
-  async () => {
-    const response = await axios.get('/ui/users/:id/answers');
-    return response.data;
-  },
-);
+export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
+  const response = await axios.get('/ui/users/:id/answers');
+  return response.data;
+});
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
   'answers/fetchUpdatedUser',
@@ -33,8 +32,12 @@ export const userSlice = createSlice({
       state.value = [...state.value, ...action.payload];
     },
     updateUserSkill: (state, action) => {
-      const { index, skillId, skill } = action.payload;
-      state.value.ecosystems[index].skills[skillId] = skill;
+      const { idEcosystem, skill } = action.payload;
+      const index = state.value.ecosystems[idEcosystem].skills.findIndex(
+        s => s.id === skill.id,
+      );
+      state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
+      index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
   },
 
