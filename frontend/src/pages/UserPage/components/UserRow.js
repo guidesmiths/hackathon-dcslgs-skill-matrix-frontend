@@ -24,7 +24,7 @@ const UserRow = ({ skill, idEcosystem }) => {
   const handleCheckBox = () => {
     setCheck(!isChecked);
     dispatch(
-      updateUserSkill({ id, name, level, comments, interested: !isChecked }),
+      updateUserSkill({ idEcosystem, skill: { id, name, level, comments, interested: !isChecked } }),
     );
   };
 
