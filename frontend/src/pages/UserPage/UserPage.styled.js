@@ -74,6 +74,10 @@ const RowSkillsTop = styled.div`
 const UserInput = styled.input`
   border: none;
   margin-right: 20px;
+  &:hover {
+    font-weight: 600;
+  }
+  cursor: pointer;
 `;
 
 const UserSkillName = styled.p`

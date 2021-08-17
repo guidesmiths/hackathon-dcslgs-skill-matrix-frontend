@@ -24,7 +24,10 @@ const UserRow = ({ skill, idEcosystem }) => {
   const handleCheckBox = () => {
     setCheck(!isChecked);
     dispatch(
-      updateUserSkill({ idEcosystem, skill: { id, name, level, comments, interested: !isChecked } }),
+      updateUserSkill({
+        idEcosystem,
+        skill: { id, name, level, comments, interested: !isChecked },
+      }),
     );
   };
 
@@ -58,10 +61,7 @@ const UserRow = ({ skill, idEcosystem }) => {
 
   return (
     <div>
-      <RowSkillsTop
-        data-cy={`userSkill-${name}`}
-        isRowDown={!isCollapsed}
-      >
+      <RowSkillsTop data-cy={`userSkill-${name}`} isRowDown={!isCollapsed}>
         <RowSkills>
           <UserSkillName>{name}</UserSkillName>
           <LevelBar level={level} />
@@ -80,8 +80,13 @@ const UserRow = ({ skill, idEcosystem }) => {
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
         <RowSkillsBottom>
-          <p>{levels[level].description}</p>
+          <p>
+            {level
+              ? levels[level - 1]?.description
+              : 'Please select corresponding level'}
+          </p>
           <select value={level} onChange={handleLevel}>
+            <option value=""> </option>
             {levels.map((e, index) => (
               <option key={index} value={e.level}>
                 {e.level}

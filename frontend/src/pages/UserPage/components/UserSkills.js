@@ -35,7 +35,7 @@ const UserSkills = ({ systemSelected }) => {
     );
     const { level, interested, comments } = index !== -1
       ? userSkills[index]
-      : { level: 0, interested: false, comments: '' };
+      : { interested: false, comments: '' };
     return {
       ...skill,
       level,
@@ -58,11 +58,7 @@ const UserSkills = ({ systemSelected }) => {
           <RowTitle>
             <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
             <LevelBar level={selectedEcosystem?.average} />
-            <UserInput
-              data-cy={'saveInfo'}
-              type="submit"
-              value="Save"
-            />
+            <UserInput data-cy={'saveInfo'} type="submit" value="Save" />
           </RowTitle>
         </FormHeader>
         <RowWrapper>
