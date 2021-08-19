@@ -56,7 +56,10 @@ const RowSkillsBottom = styled.div`
   justify-content: space-between;
   padding-right: 65px;
 `;
-
+const RowLevel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const FormHeader = styled(RowWrapper)`
   margin-bottom: 35px;
   padding: 5px 15px;
@@ -104,4 +107,5 @@ export {
   FormHeader,
   RowSkillsTop,
   RowSkillsBottom,
+  RowLevel,
 };

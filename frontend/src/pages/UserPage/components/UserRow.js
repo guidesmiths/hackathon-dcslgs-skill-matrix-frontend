@@ -8,6 +8,7 @@ import {
   RowCollapsed,
   RowSkillsTop,
   RowSkillsBottom,
+  RowLevel,
 } from '../UserPage.styled';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import LevelBar from './LevelBar';
@@ -20,7 +21,7 @@ const UserRow = ({ skill, idEcosystem }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
-  const { id, name, level, levels, comments, interested } = skill;
+  const { id, name, level, levels, comments, interested, sublevel } = skill;
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
@@ -44,6 +45,7 @@ const UserRow = ({ skill, idEcosystem }) => {
           comments,
           interested,
           level: Number(selectValue),
+          sublevel,
         },
       }),
     );
@@ -55,7 +57,30 @@ const UserRow = ({ skill, idEcosystem }) => {
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { id, name, level, interested, comments: commentsValue },
+        skill: {
+          id,
+          name,
+          level,
+          interested,
+          comments: commentsValue,
+          sublevel,
+        },
+      }),
+    );
+  };
+
+  const handleSublevel = sublevelValue => {
+    dispatch(
+      updateUserSkill({
+        idEcosystem,
+        skill: {
+          id,
+          name,
+          level,
+          interested,
+          comments,
+          sublevel: sublevelValue,
+        },
       }),
     );
   };
@@ -86,22 +111,19 @@ const UserRow = ({ skill, idEcosystem }) => {
               ? levels[level - 1]?.description
               : 'Please select corresponding level'}
           </p>
-          <select value={level} onChange={handleLevel}>
-            <option value=""> </option>
-            {levels.map((e, index) => (
-              <option key={index} value={e.level}>
-                {e.level}
-              </option>
-            ))}
-          </select>
-          <Icon
-            icon={'add'}
-            // onClick={() => dispatch(addSkillFilter())}
-          />
-          <Icon
-            icon={'remove'}
-            // onClick={() => dispatch(addSkillFilter())}
-          />
+          <RowLevel>
+            <select value={level} onChange={handleLevel}>
+              <option value=""> </option>
+              {levels.map((e, index) => (
+                <option key={index} value={e.level}>
+                  {e.level}
+                </option>
+              ))}
+            </select>
+            <Icon icon={'add'} onClick={() => handleSublevel('plus')} />
+            <Icon icon={'remove'} onClick={() => handleSublevel('minus')} />
+            <p>{sublevel && sublevel}</p>
+          </RowLevel>
         </RowSkillsBottom>
 
         <RowSkillsBottom>
