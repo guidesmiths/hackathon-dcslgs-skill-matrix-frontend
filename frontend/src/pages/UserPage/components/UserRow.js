@@ -13,6 +13,7 @@ import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 import Input from '../../../app/commons/InputGeneral/Input';
+import Icon from '../../../app/commons/Icon/icon';
 
 const UserRow = ({ skill, idEcosystem }) => {
   const dispatch = useDispatch();
@@ -93,6 +94,14 @@ const UserRow = ({ skill, idEcosystem }) => {
               </option>
             ))}
           </select>
+          <Icon
+            icon={'add'}
+            // onClick={() => dispatch(addSkillFilter())}
+          />
+          <Icon
+            icon={'remove'}
+            // onClick={() => dispatch(addSkillFilter())}
+          />
         </RowSkillsBottom>
 
         <RowSkillsBottom>

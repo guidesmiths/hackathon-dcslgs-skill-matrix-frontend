@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from '../../../../app/commons/icon/icon';
+import Icon from '../../../../app/commons/Icon/icon';
 
 const EcosystemsSideBarStyled = styled.div`
   grid-area: ecosystems-sidebar;
@@ -36,10 +36,10 @@ const PlusIconStyled = styled(Icon)`
   width: 10px;
   height: 10px;
   color: #4f4f4f;
-  
+
   &:hover {
-   color: black;
-   cursor: pointer;
+    color: black;
+    cursor: pointer;
   }
 `;
 

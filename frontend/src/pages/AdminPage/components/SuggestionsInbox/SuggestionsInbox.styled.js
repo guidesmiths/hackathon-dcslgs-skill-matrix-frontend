@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from '../../../../app/commons/icon/icon';
+import Icon from '../../../../app/commons/Icon/icon';
 
 const SuggestionInboxStyled = styled.div`
   grid-area: suggestions;
@@ -35,10 +35,10 @@ const IconStyled = styled(Icon)`
   width: 10px;
   height: 10px;
   color: #4f4f4f;
-  
+
   &:hover {
-   cursor: pointer;
-   color: black;
+    cursor: pointer;
+    color: black;
   }
 `;
 
@@ -52,4 +52,11 @@ const ForwardIconStyled = styled(IconStyled)`
   place-self: center left;
 `;
 
-export { SuggestionInboxStyled, BackIconStyled, ForwardIconStyled, SuggestionCardsStyled, EcosystemsNumberStyled, EmployeesNumberStyled };
+export {
+  SuggestionInboxStyled,
+  BackIconStyled,
+  ForwardIconStyled,
+  SuggestionCardsStyled,
+  EcosystemsNumberStyled,
+  EmployeesNumberStyled,
+};

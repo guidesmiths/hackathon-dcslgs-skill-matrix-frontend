@@ -33,14 +33,15 @@ const UserSkills = ({ systemSelected }) => {
     const index = userSkills.findIndex(
       userSkill => userSkill.id === skill.id,
     );
-    const { level, interested, comments } = index !== -1
+    const { level, interested, comments, subvalue } = index !== -1
       ? userSkills[index]
-      : { interested: false, comments: '' };
+      : { interested: false, comments: '', subvalue: null };
     return {
       ...skill,
       level,
       interested,
       comments,
+      subvalue,
     };
   });
 
