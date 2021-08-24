@@ -6,6 +6,7 @@ const UserPageStyled = styled.div`
   height: 100vh;
   margin: 20px 50px;
   font-family: Arial, Helvetica, sans-serif;
+  position: relative;
 `;
 
 const UserPageDisplay = styled.div`

@@ -75,7 +75,7 @@ const UserRow = ({ skill, idEcosystem }) => {
       <RowCollapsed isCollapsed={isCollapsed}>
         <RowSkillsBottom>
           <p>{skill.levels[skill.level].description}</p>
-          <select value={skill.level} onChange={handleLevel}>
+          <select value={skill.level} data-cy="select-level" onChange={handleLevel}>
             {skill.levels.map((e, index) => (
               <option key={index} value={e.level}>
                 {e.level}
