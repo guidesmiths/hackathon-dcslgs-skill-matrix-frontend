@@ -2,10 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import AppRouter from './AppRouter';
-
-const theme = {
-  black: '#000000',
-};
+import theme from './app/commons/Theme/index';
 
 function App() {
   return (
