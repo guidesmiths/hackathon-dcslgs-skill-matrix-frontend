@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { UserPageStyled, UserPageDisplay } from './UserPage.styled';
+import { UserPageStyled, UserPageDisplay, StyledIcon } from './UserPage.styled';
 import { fetchUserAsync } from '../../redux/user/userSlice';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import UserSkills from './components/UserSkills';
-import IconStyled from '../../app/commons/icon/icon';
 import Modal from '../../app/commons/Modal/Modal';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync } from '../../redux/ecosystems/ecosystemsSlice';
@@ -35,7 +34,7 @@ const UserPage = () => {
       <Modal show={show} onCloseClick={showModal}>
         <SuggestionForm showModal={showModal}/>
       </Modal>
-      <IconStyled icon={'add'} position={'fixed'} bottom={2} right={2} onClick={showModal}/>
+      <StyledIcon icon={'add'} onClick={showModal}/>
     </UserPageStyled>
   );
 };
