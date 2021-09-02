@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +16,7 @@ import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
   fetchUpdatedUserAsync,
+  selectUserData,
 } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
@@ -22,20 +24,18 @@ import LevelBar from './LevelBar';
 
 const UserSkills = ({ systemSelected }) => {
   const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
+  const selectedUser = useSelector(selectUserData);
   const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUpdatedUserAsync({ userSkills }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSkills]);
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(
       userSkill => userSkill.id === skill.id,
     );
-    const { level, interested, comments } = index !== -1 ? userSkills[index] : { level: 0, interested: false, comments: '' };
+    const { level, interested, comments } = index !== -1
+      ? userSkills[index]
+      : { interested: false, comments: '' };
     return {
       ...skill,
       level,
@@ -46,6 +46,9 @@ const UserSkills = ({ systemSelected }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(
+      fetchUpdatedUserAsync({ userSkills, selectedUser, selectedEcosystem }),
+    );
   };
 
   return (
@@ -55,7 +58,7 @@ const UserSkills = ({ systemSelected }) => {
           <RowTitle>
             <DataTitle>{selectedEcosystem?.name} Ecosystem</DataTitle>
             <LevelBar level={selectedEcosystem?.average} />
-            <UserInput type="submit" value="Save" />
+            <UserInput data-cy={'saveInfo'} type="submit" value="Save" />
           </RowTitle>
         </FormHeader>
         <RowWrapper>
@@ -66,12 +69,7 @@ const UserSkills = ({ systemSelected }) => {
           </RowTitle>
         </RowWrapper>
         {skillswithLevel?.map(skill => (
-          <UserRow
-            key={skill.id}
-            idEcosystem={systemSelected}
-            skill={skill}
-            // handleEditSkill={handleEditSkill}
-          />
+          <UserRow key={skill.id} idEcosystem={systemSelected} skill={skill} />
         ))}
       </form>
     </UserData>
@@ -79,13 +77,11 @@ const UserSkills = ({ systemSelected }) => {
 };
 
 UserSkills.defaultProps = {
-  mySkills: [],
+  systemSelected: null,
 };
 
 UserSkills.propTypes = {
-  // handleEditSkill: PropTypes.func.isRequired,
-  systemSelected: PropTypes.array.isRequired,
-  // mySkills: PropTypes.array,
+  systemSelected: PropTypes.number,
 };
 
 export default UserSkills;

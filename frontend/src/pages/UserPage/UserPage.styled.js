@@ -63,7 +63,7 @@ const FormHeader = styled(RowWrapper)`
 `;
 
 const RowSkillsTop = styled.div`
-  margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
+  margin-bottom: ${props => (props.isRowDown ? '0px' : '8px')};
   display: grid;
   border: 1px solid grey;
   padding: 15px;
@@ -74,6 +74,10 @@ const RowSkillsTop = styled.div`
 const UserInput = styled.input`
   border: none;
   margin-right: 20px;
+  &:hover {
+    font-weight: 600;
+  }
+  cursor: pointer;
 `;
 
 const UserSkillName = styled.p`

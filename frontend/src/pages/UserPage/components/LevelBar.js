@@ -38,8 +38,12 @@ const LevelBar = ({ level }) => {
   );
 };
 
+LevelBar.defaultProps = {
+  level: 0,
+};
+
 LevelBar.propTypes = {
-  level: PropTypes.number.isRequired,
+  level: PropTypes.number,
 };
 
 export default LevelBar;
