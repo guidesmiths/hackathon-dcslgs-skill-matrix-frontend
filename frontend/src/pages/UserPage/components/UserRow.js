@@ -19,46 +19,52 @@ const UserRow = ({ skill, idEcosystem }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
+  const { id, name, level, levels, comments, interested } = skill;
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, interested: !isChecked },
+        skill: { id, name, level, comments, interested: !isChecked },
       }),
     );
   };
 
   const handleLevel = event => {
     const selectValue = event.target.value;
+
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, level: selectValue },
+        skill: {
+          id,
+          name,
+          comments,
+          interested,
+          level: Number(selectValue),
+        },
       }),
     );
   };
 
   const handleComments = event => {
     const commentsValue = event.target.value;
+
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, comments: commentsValue },
+        skill: { id, name, level, interested, comments: commentsValue },
       }),
     );
   };
 
   return (
     <div>
-      <RowSkillsTop
-        data-cy={`userSkill-${skill.name}`}
-        isRowDown={!isCollapsed}
-      >
+      <RowSkillsTop data-cy={`userSkill-${name}`} isRowDown={!isCollapsed}>
         <RowSkills>
-          <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} />
+          <UserSkillName>{name}</UserSkillName>
+          <LevelBar level={level} />
           <div>
             <UserInput
               checked={isChecked}
@@ -74,19 +80,23 @@ const UserRow = ({ skill, idEcosystem }) => {
       </RowSkillsTop>
       <RowCollapsed isCollapsed={isCollapsed}>
         <RowSkillsBottom>
-          <p>{skill.levels[skill.level].description}</p>
-          <select value={skill.level} data-cy="select-level" onChange={handleLevel}>
-            {skill.levels.map((e, index) => (
+          <p>
+            {level
+              ? levels[level - 1]?.description
+              : 'Please select corresponding level'}
+          </p>
+          <select value={level} onChange={handleLevel}>
+            <option value=""> </option>
+            {levels.map((e, index) => (
               <option key={index} value={e.level}>
                 {e.level}
               </option>
             ))}
           </select>
         </RowSkillsBottom>
-
         <RowSkillsBottom>
           <Input
-            input={skill.comments}
+            input={comments}
             placeholder="Write some comments"
             onChangeInput={handleComments}
           />

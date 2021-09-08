@@ -9,7 +9,7 @@ const Input = ({ placeholder, input, onChangeInput }) => (
       placeholder={placeholder}
       type="text"
       value={input}
-      onChange={e => onChangeInput(e)}
+      onChange={onChangeInput}
     />
   </Fragment>
 );
