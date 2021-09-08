@@ -85,7 +85,7 @@ const UserRow = ({ skill, idEcosystem }) => {
               ? levels[level - 1]?.description
               : 'Please select corresponding level'}
           </p>
-          <select value={level} onChange={handleLevel}>
+          <select value={level} data-cy="userSkill-select" onChange={handleLevel}>
             <option value=""> </option>
             {levels.map((e, index) => (
               <option key={index} value={e.level}>

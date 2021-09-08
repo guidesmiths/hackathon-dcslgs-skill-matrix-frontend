@@ -10,7 +10,7 @@ describe('User page', () => {
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkill-Express"] > button').last().click();
-    cy.get('select').select('4');
+    cy.get('[data-cy^="userSkill-select"]').select('4');
     cy.contains('I\'m a level 4').should('exist');
     cy.get('[data-cy^="saveInfo"]').click();
     cy.wait('@getUpdatedUser');
@@ -65,7 +65,7 @@ describe('User page', () => {
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkill-Express"] > button').last().click();
-    cy.get('[data-cy^="select-level"]').select('4');
+    cy.get('[data-cy^="userSkill-select"]').select('4');
     cy.get('[data-cy^="ecosystems"] > button').first().click();
     cy.get('[data-cy^="ecosystems"] > button').last().click();
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
