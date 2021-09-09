@@ -20,7 +20,7 @@ const ModalStyled = styled.div`
     transform: translate(-50%, -50%);
     width: 500px;
     max-width: 100%;
-    height: 300px;
+    height: 400px;
     max-height: 100%;
     border: 1px solid #bbb;
     background: #f4f4f4;
