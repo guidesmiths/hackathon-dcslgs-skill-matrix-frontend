@@ -4,7 +4,7 @@
         "name": "Redux-Sagas",
         "description": "",
         "ecosystem": "React",
-        "role": "Frontend",
+        "roles":[1],
         "type": "Hard"
       },
       {
@@ -12,7 +12,7 @@
         "name": "Redux",
         "description": "",
         "ecosystem": "React",
-        "role": "Frontend",
+        "roles":[1],
         "type": "Hard"
       },
       {
@@ -20,7 +20,7 @@
         "name": "Next.js",
         "description": "",
         "ecosystem": "React",
-        "role": "Frontend",
+        "roles":[1],
         "type": "Hard"
       },
       {
@@ -28,7 +28,7 @@
         "name": "React",
         "description": "",
         "ecosystem": "React",
-        "role": "Frontend",
+        "roles":[1],
         "type": "Hard"
       }
   ]
