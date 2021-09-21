@@ -56,3 +56,7 @@ Cypress.Commands.add('initLogin', () => {
   cy.server();
   cy.visit('/login');
 });
+Cypress.Commands.add('init404', () => {
+  cy.server();
+  cy.visit('/404');
+});
