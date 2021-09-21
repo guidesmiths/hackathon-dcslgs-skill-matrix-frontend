@@ -52,3 +52,7 @@ Cypress.Commands.add('initAdmin', () => {
   cy.visit('/admin');
   cy.wait(['@getAllSuggestions', '@getAllEcosystems']);
 });
+Cypress.Commands.add('initLogin', () => {
+  cy.server();
+  cy.visit('/login');
+});
