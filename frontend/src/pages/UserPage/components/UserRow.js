@@ -124,8 +124,15 @@ const UserRow = ({ skill, idEcosystem }) => {
             <Icon icon={'remove'} onClick={() => handleSublevel('minus')} />
             <p>{sublevel && sublevel}</p>
           </RowLevel>
+          <select data-cy="userSkill-select" value={level} onChange={handleLevel}>
+            <option value=""> </option>
+            {levels.map((e, index) => (
+              <option key={index} value={e.level}>
+                {e.level}
+              </option>
+            ))}
+          </select>
         </RowSkillsBottom>
-
         <RowSkillsBottom>
           <Input
             input={comments}

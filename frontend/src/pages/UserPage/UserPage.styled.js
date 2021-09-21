@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from '../../app/commons/Icon/icon';
 
 const UserPageStyled = styled.div`
   display: block;
@@ -6,6 +7,7 @@ const UserPageStyled = styled.div`
   height: 100vh;
   margin: 20px 50px;
   font-family: Arial, Helvetica, sans-serif;
+  position: relative;
 `;
 
 const UserPageDisplay = styled.div`
@@ -92,6 +94,11 @@ const DataTitle = styled.h5`
   margin: 0px;
   text-align: center;
 `;
+const StyledIcon = styled(Icon)`
+ position: fixed;
+ bottom: 2%;
+ right: 2%;
+`;
 
 export {
   UserPageStyled,
@@ -108,4 +115,5 @@ export {
   RowSkillsTop,
   RowSkillsBottom,
   RowLevel,
+  StyledIcon,
 };
