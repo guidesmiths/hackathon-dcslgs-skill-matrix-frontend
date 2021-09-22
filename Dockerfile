@@ -11,7 +11,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-RUN cp .npmrc frontend && cd frontend && npm ci
+RUN cd frontend && npm ci
 
 RUN npm run build
 RUN npm run manifest
