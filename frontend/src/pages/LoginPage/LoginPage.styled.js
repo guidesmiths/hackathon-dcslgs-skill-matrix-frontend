@@ -11,7 +11,7 @@ const LoginStyled = styled.div`
     justify-content: center;
     font-family: ${props => props.theme.fonts.poppins};
 `;
-const LoginTitlle = styled.h1`
+const LoginTitle = styled.h1`
     color: ${props => props.theme.colors.primaryColor};
     text-transform: uppercase;
     font-weight: bold;
@@ -46,4 +46,4 @@ const StyledText = styled.p`
     text-align:center;
 `;
 
-export { LoginStyled, LoginTitlle, LoginButton, StyledIcon, StyledText };
+export { LoginStyled, LoginTitle, LoginButton, StyledIcon, StyledText };

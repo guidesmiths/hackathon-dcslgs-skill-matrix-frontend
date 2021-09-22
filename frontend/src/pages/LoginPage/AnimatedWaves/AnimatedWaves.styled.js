@@ -19,67 +19,35 @@ background-position-x: 0;
 `;
 
 
-const Wave = styled.div`
+const WaveComponent = styled.div`
 position: fixed;
 bottom: 0;
 width: 150%;
 height:100px;
 `;
+
 const WaveWrapper = styled.div`
 position: relative;
 width: 150%;
 height:100px;
 `;
-const WaveOne = styled.div`
+
+const Wave = styled.div`
+bottom:${props => props.bottom}px;
+animation: ${props => (props.animation ? (animate) : (animate2))} ${props => props.speed}s linear infinite;
+animation-delay: ${props => props.delay}s;
+opacity:${props => props.opacity};
+z-index: ${props => props.zIndex};
 position: absolute;
-bottom: -45px;
 left:-10px;
 background-image: url(${WaveImage});
 height:100%;
 width:100%;
 background-size: 5000px 100px;
-animation: ${animate} 50s linear infinite;
-z-index: 1000;
-animation-delay: 0s;
-opacity:1;
 overflow:hidden;
 
 `;
-const WaveTwo = styled(WaveOne)`
-bottom:-25px;
-animation: ${animate2} 35s linear infinite;
-animation-delay: -5s;
-z-index: 999;
-opacity:0.6;
-`;
-const WaveThree = styled(WaveOne)`
-bottom:-25px;
-animation: ${animate} 50s linear infinite;
-animation-delay: 5s;
-z-index: 998;
-opacity:0.5;
-`;
-const WaveFour = styled(WaveOne)`
-bottom:-15px;
-animation: ${animate2} 35px linear infinite;
-animation-delay: 0s;
-z-index: 997;
-opacity:0.4;
-`;
-const WaveFive = styled(WaveOne)`
-bottom:0px;
-animation: ${animate} 50s linear infinite;
-animation-delay: -5s;
-z-index: 996;
-opacity:0.3;
-`;
-const WaveSix = styled(WaveOne)`
-bottom: 15px;
-animation: ${animate2} 35px linear infinite;
-animation-delay: 5s;
-z-index: 995;
-opacity:0.2;
-`;
 
-export { Wave, WaveWrapper, WaveOne, WaveTwo, WaveThree, WaveFour, WaveFive, WaveSix };
+
+export { WaveComponent, WaveWrapper, Wave };
 
