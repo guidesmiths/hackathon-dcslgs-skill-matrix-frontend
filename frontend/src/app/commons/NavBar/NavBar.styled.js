@@ -23,7 +23,10 @@ const LogoWrapper = styled.div`
   align-items: center;
   height: 100%;
 `;
-
+const LogoPlaceHolder = styled.div`
+  min-height: 100%;
+  min-width: 20px;
+`;
 const UserWrapperStyled = styled.div`
   display: flex;
   align-items: center;
@@ -50,4 +53,4 @@ const StyledIcon = styled(Icon)`
   border: none;
  `;
 
-export { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon };
+export { NavBarTop, NavStyled, NavBarLink, LogoWrapper, LogoPlaceHolder, UserWrapperStyled, StyledIcon };
