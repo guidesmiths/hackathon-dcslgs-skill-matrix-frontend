@@ -1,20 +1,29 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { UserPageStyled, UserPageDisplay, StyledIcon } from './UserPage.styled';
+import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import { fetchUserAsync } from '../../redux/user/userSlice';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
+import PopUp from '../../app/commons/Pop-up/Pop-up';
 import UserSkills from './components/UserSkills';
-import Modal from '../../app/commons/Modal/Modal';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync } from '../../redux/ecosystems/ecosystemsSlice';
+import Footer from '../../app/commons/Footer/Footer';
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const [systemSelected, setSystem] = useState(null);
   const [show, setShow] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
   const selectEcosystem = id => {
     setSystem(id);
+  };
+
+  const handleSubmit = () => {
+    setIsSubmited(true);
+    setEdit(false);
+    setConfirmed(true);
   };
 
   useEffect(() => {
@@ -26,16 +35,32 @@ const UserPage = () => {
     setShow(!show);
   };
 
+  const closeConfirmed = () => {
+    setConfirmed(false);
+  };
   return (
     <UserPageStyled data-cy="user">
+      <HeaderStyled/>
       <UserPageDisplay>
         <Ecosystems selectEcosystem={selectEcosystem} />
-        <UserSkills systemSelected={systemSelected} />
+        <UserSkills systemSelected={systemSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
-      <Modal show={show} onCloseClick={showModal}>
+      <StyledModal show={show} onCloseClick={showModal}>
         <SuggestionForm showModal={showModal}/>
-      </Modal>
-      <StyledIcon icon={'add'} onClick={showModal}/>
+      </StyledModal>
+      <PopUp onCloseClick={closeConfirmed} show={confirmed} isSuccess />
+      <Footer>
+        {!edit
+          ? <>
+            <StyledIcon icon={'email'} onClick={showModal} data-cy={'add'}/>
+            <EditButtonStyled onClick={() => { setEdit(true); }} data-cy="editUser">Edit</EditButtonStyled>
+          </>
+          : <>
+            <SaveButton action={'cancel'} onClick={() => { setEdit(false); }}>Cancel</SaveButton>
+            <SaveButton onClick={handleSubmit}>Save</SaveButton>
+          </>
+        }
+      </Footer>
     </UserPageStyled>
   );
 };

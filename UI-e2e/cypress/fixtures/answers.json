@@ -7,7 +7,8 @@
       {
         "id": 1,
         "skillName": "React",
-        "level": 3
+        "level": 3,
+        "description": "I can modify effectively already working solutions to include new features"
       }
     ]
   },
@@ -19,17 +20,20 @@
       {
         "id": 1,
         "skillName": "React",
-        "level": 4
+        "level": 4,
+        "description": "I can define complex architectures and I can provide optimised solutions"
       },
       {
         "id": 4,
         "skillName": "Redux-Sagas",
-        "level": 3
+        "level": 3,
+        "description": "I can modify effectively already working solutions to include new features"
       },
       {
         "id": 2,
         "skillName": "Next.js",
-        "level": 2
+        "level": 2,
+        "description": "I can modify effectively already working solutions to include new features"
       }
     ]
   }

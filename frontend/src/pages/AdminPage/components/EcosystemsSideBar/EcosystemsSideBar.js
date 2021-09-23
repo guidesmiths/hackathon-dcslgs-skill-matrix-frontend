@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled } from './EcosystemsSideBar.styled';
+import Icon from '../../../../app/commons/icon/icon';
 
-import { EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled, PlusIconStyled } from './EcosystemsSideBar.styled';
-
-const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem }) => (
+const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, show }) => (
   <EcosystemsSideBarStyled data-cy="ecosystems-sidebar">
     <EcosystemHeaderStyled>Ecosystem
-      <PlusIconStyled icon="add" onClick={onNewEcosystem}/>
+      {show && <Icon icon="add" onClick={onNewEcosystem}/>}
     </EcosystemHeaderStyled>
     {ecosystems.map(({ name, id }, index) => (
       <EcosystemElementStyled key={index} data-cy={`ecosystems-element-${index}`} onClick={() => onEcosystemSelected(id)}>
@@ -20,6 +20,7 @@ EcosystemsSideBar.propTypes = {
   ecosystems: PropTypes.array.isRequired,
   onEcosystemSelected: PropTypes.func.isRequired,
   onNewEcosystem: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
 };
 
 export default EcosystemsSideBar;

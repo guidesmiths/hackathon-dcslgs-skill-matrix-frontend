@@ -1,52 +1,69 @@
 import styled from 'styled-components';
-
-import Modal from '../../../../../../app/commons/Modal/Modal';
 import Button from '../../../../../../app/commons/Button/Button';
+import Icon from '../../../../../../app/commons/icon/icon';
 
 const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    justify-content: left;
-    padding: 40px 50px;
+    padding: 20px 30px;
     box-sizing: border-box;
     background: #f4f4f4;
-    border-radius: 10px;
+    font-family: ${props => props.theme.fonts.poppins};
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
 `;
 
-const UserNameStyled = styled.div`
-    font-weight: bold;
+const UserNameStyled = styled.h3`
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        margin-top: 10px;
+`;
+
+const SuggestionContentStyled = styled.div`
+   border: 0.2px solid #B9E0D7;
+    box-sizing: border-box;
+    border-radius: 4px;
 `;
 
 const SuggestionStyled = styled.div`
-    padding: 25px 10px;
-
+    padding: 10px 10px 0;
+    color: #006B79
 `;
 
-const DescriptionStyled = styled.div`
-    padding: 10px 10px;
+const DescriptionStyled = styled.p`
+    padding: 0 10px;
+    color: ${props => props.theme.colors.textColor};
+    min-height: 120px;
 `;
 
 const ButtonsGroups = styled.div`
     display: flex;
-    justify-content: center;
 `;
 
 const ButtonStyled = styled(Button)`
-    padding: 15px;
-    margin: 20px 10px;
-    border: 0px;
-    background: #f4f4f4;
-
-    &:hover {
-        background: #e4e4e4;
-        border-radius: 5px;
-      }
+    margin: 10px 10px 0 0;
+    padding: 10px;
+    min-width: 80px;
+    color: ${props => props.theme.colors.white};
+    background: ${props => props.theme.colors.primaryColor};
+    &:last-child{
+        color: ${props => props.theme.colors.primaryColor};
+        background: rgba(192, 48, 137, 0.1);
+    }
 `;
 
-const SuggestionModalStyled = styled(Modal)`
-    border-radius: 10px;
+const StyledIcon = styled(Icon)`
+    border: none;
+    align-self:flex-start;
+    margin-top: 2px;
+`;
+const TitileStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export {
@@ -56,5 +73,7 @@ export {
   ButtonStyled,
   SuggestionStyled,
   DescriptionStyled,
-  SuggestionModalStyled,
+  SuggestionContentStyled,
+  StyledIcon,
+  TitileStyled,
 };
