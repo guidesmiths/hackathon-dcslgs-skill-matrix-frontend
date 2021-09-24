@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
-import Icon from '../../../../app/commons/icon/icon';
-
 const EcosystemsSideBarStyled = styled.div`
   grid-area: ecosystems-sidebar;
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid #aaa;
+  width: 80%;
   box-sizing: border-box;
-  margin-top: 20px;
-  padding: 0px;
+  margin: 20px auto 0;
+  padding: 0px 0px 50px;
+  overflow-y: scroll;
+  background-color: ${props => props.theme.colors.white};
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  font-family: ${props => props.theme.fonts.poppins};
+  &::-webkit-scrollbar{
+    display: none;
+  };
 `;
 
 const EcosystemHeaderStyled = styled.div`
@@ -18,28 +23,18 @@ const EcosystemHeaderStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 25px;
-  border-bottom: 2px solid #aaa;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 24px;
 `;
 
 const EcosystemElementStyled = styled.div`
-  padding: 20px 25px;
-
+  padding: 8px 25px;
+  font-size:14px;
+  letter-spacing: 0.5px;
+  line-height: 24px;
   &:hover {
     background: #f4f4f4;
     cursor: pointer;
-  }
-`;
-
-const PlusIconStyled = styled(Icon)`
-  border: 0px;
-  width: 10px;
-  height: 10px;
-  color: #4f4f4f;
-  
-  &:hover {
-   color: black;
-   cursor: pointer;
   }
 `;
 
@@ -47,5 +42,4 @@ export {
   EcosystemsSideBarStyled,
   EcosystemHeaderStyled,
   EcosystemElementStyled,
-  PlusIconStyled,
 };

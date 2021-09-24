@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import SuggestionModal from './SuggestionModal/SuggestionModal';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
 import {
-  SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled,
+  SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QutesStyled,
 } from './SuggestionCard.styled';
 
 const SuggestionCard = ({ userName, subject, index, description, id }) => {
@@ -14,11 +13,14 @@ const SuggestionCard = ({ userName, subject, index, description, id }) => {
 
   return (
     <SuggestionCardStyled data-cy={`suggestion-card-${index}`}>
-      <UserNameStyled>From {userName}</UserNameStyled>
-      <SubjectStyled>{subject}</SubjectStyled>
+      <UserNameStyled>From <b>{userName}</b></UserNameStyled>
+      <SubjectStyled>
+        <QutesStyled >&#x2018;</QutesStyled>
+        <QutesStyled >&#x2018;</QutesStyled>
+        {subject}</SubjectStyled>
       <IconsContainerStyled>
-        <IconStyled icon="visibility" onClick={() => setModalShow(true)}/>
-        <IconStyled icon="delete_outline" onClick={() => dispatch(deleteSuggestionAsync(id))}/>
+        <IconStyled icon="delete" onClick={() => dispatch(deleteSuggestionAsync(id))}/>
+        <IconStyled icon="visibility" color="true" onClick={() => setModalShow(true)}/>
       </IconsContainerStyled>
       <SuggestionModal key={index}
         description={description}

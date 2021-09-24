@@ -8,21 +8,29 @@ import {
   ButtonStyled,
   SuggestionStyled,
   DescriptionStyled,
-  SuggestionModalStyled,
+  SuggestionContentStyled,
+  StyledIcon,
+  TitileStyled,
 } from './SuggestionModal.styled';
+import Modal from '../../../../../../app/commons/Modal/Modal';
 
 const SuggestionModal = ({ userName, subject, description, show, onCloseClick, onDeleteClick }) => (
-  <SuggestionModalStyled show={show} onCloseClick={onCloseClick}>
+  <Modal show={show} onCloseClick={onCloseClick}>
     <ModalContent>
-      <UserNameStyled>{userName} has a proposal</UserNameStyled>
-      <SuggestionStyled>{subject}</SuggestionStyled>
-      <DescriptionStyled>{description}</DescriptionStyled>
+      <TitileStyled>
+        <UserNameStyled>{userName} has a proposal</UserNameStyled>
+        <StyledIcon icon="close" onClick={onCloseClick}/>
+      </TitileStyled>
+      <SuggestionContentStyled>
+        <SuggestionStyled>#{subject}</SuggestionStyled>
+        <DescriptionStyled>{description}</DescriptionStyled>
+      </SuggestionContentStyled>
       <ButtonsGroups>
         <ButtonStyled dataCy="modal-button-delete" onClick={onDeleteClick}>Delete</ButtonStyled>
         <ButtonStyled dataCy="modal-button-close" onClick={onCloseClick}>Close</ButtonStyled>
       </ButtonsGroups>
     </ModalContent>
-  </SuggestionModalStyled>
+  </Modal>
 );
 
 SuggestionModal.propTypes = {
