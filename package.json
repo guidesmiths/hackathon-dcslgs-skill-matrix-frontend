@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "local": "cross-env SERVICE_ENV=local node index.js",
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start": "cross-env NODE_ENV=production SERVICE_ENV=production node index.js",
     "start:local": "cross-env NODE_ENV=local node index.js",
     "test:report": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --reporters=default",

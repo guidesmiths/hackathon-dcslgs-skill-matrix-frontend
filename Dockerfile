@@ -1,4 +1,4 @@
-FROM node:10.4
+FROM node:12.4
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -11,8 +11,10 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 4000
+RUN cd frontend && npm ci
 
+RUN npm run build
 RUN npm run manifest
 
+EXPOSE 8080
 CMD [ "npm", "start" ]

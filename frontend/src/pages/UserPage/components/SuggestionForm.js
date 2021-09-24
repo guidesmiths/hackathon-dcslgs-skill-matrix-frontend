@@ -1,49 +1,72 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormStyled, SelectStyled, TextAreaStyled, ButtonWrapperStyled, Buttons } from './SuggestionForm.styled';
+import {
+  FormStyled,
+  SelectStyled,
+  CustomOptions,
+  StyledOption,
+  ArrowButtonStyled,
+  StyledIcon,
+  TextAreaStyled,
+  ButtonWrapperStyled,
+  Buttons,
+  StyledTitle,
+  StyledCancelIcon,
+} from './SuggestionForm.styled';
+import Label from '../../../app/commons/Label/Label';
 
 const SuggestionForm = ({ showModal }) => {
-  const [suggestion, setSuggestion] = useState({
-    type: '',
-    content: '',
-  });
-  const suggestionTypes = [
-    { value: '', label: 'Choose option' },
-    { value: 'ecosystem', label: 'Ecosystem' },
-    { value: 'skill', label: 'Skill' },
-    { value: 'other', label: 'Other' },
-  ];
+  const [isCollapsed, setCollapsed] = useState(false);
+  const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
+  const [suggestion, setSuggestion] = useState('');
+  const [selectedSuggestion, setSelectedSuggestion] = useState('Ecosystem');
+  const suggestionOptions = ['Ecosystem', 'Skill', 'Other'];
+
+  const clickHandler = e => {
+    setSelectedSuggestion(e.target.textContent);
+    setCollapsed(false);
+  };
   const changeHandler = e => {
-    setSuggestion({
-      ...suggestion,
-      [e.target.id]: e.target.value,
-    });
+    setSuggestion(e.target.value);
   };
   const cancelForm = () => {
-    setSuggestion({ type: '', content: '' });
+    setSuggestion('');
+    setSelectedSuggestion('Ecosystem');
     showModal();
   };
   const submitHandler = e => {
     e.preventDefault();
-    if (suggestion.content && suggestion.type) {
-      setSuggestion({ type: '', content: '' });
+    if (suggestion && selectedSuggestion) {
+      setSuggestion('');
+      setSelectedSuggestion('Ecosystem');
       showModal();
     }
   };
   return (
     <FormStyled onSubmit={submitHandler} data-cy="suggestion-form">
-      <h3>Do you want to propose something to us?</h3>
-      <SelectStyled id="type" onChange={changeHandler} value={suggestion.type}>
-        {suggestionTypes.map((item, index) =>
-          (index === 0
-            ? <option selected disabled hidden value={item.value}>{item.label}</option>
-            : <option value={item.value}>{item.label}</option>
-          ))}
+      <StyledTitle>
+          Do you want to propose something to us?
+        <StyledCancelIcon icon={'close'} onClick={cancelForm}/>
+      </StyledTitle>
+      <SelectStyled onChange={changeHandler} isCollapsed={isCollapsed} >
+        {selectedSuggestion}
+        <ArrowButtonStyled id="type" type="button" isCollapsed={isCollapsed} onClick={() => setCollapsed(!isCollapsed)}>
+          <span className="material-icons">{arrowButtonIcon}</span>
+        </ArrowButtonStyled>
+        <Label top={-10} left={20} isCollapsed={isCollapsed} type={ isCollapsed && 'focus' } weight={600}>Options</Label>
+        <CustomOptions onClick={clickHandler} isCollapsed={isCollapsed}>
+          {suggestionOptions.map((x, index) =>
+            <StyledOption key={index} selected={selectedSuggestion === x}>
+              {x}
+              {selectedSuggestion === x && <StyledIcon icon={'check'}/>}
+            </StyledOption>,
+          )}
+        </CustomOptions>
       </SelectStyled>
-      <TextAreaStyled id="content" onChange={changeHandler} value={suggestion.content} />
+      <TextAreaStyled id="content" onChange={changeHandler} value={suggestion} placeholder="Placeholder..."/>
       <ButtonWrapperStyled>
-        <Buttons type="button" onClick={cancelForm}>Cancel</Buttons>
         <Buttons>Send</Buttons>
+        <Buttons type="button" onClick={cancelForm}>Cancel</Buttons>
       </ButtonWrapperStyled>
     </FormStyled>
   );
@@ -52,6 +75,5 @@ const SuggestionForm = ({ showModal }) => {
 SuggestionForm.propTypes = {
   showModal: PropTypes.func.isRequired,
 };
-
 
 export default SuggestionForm;

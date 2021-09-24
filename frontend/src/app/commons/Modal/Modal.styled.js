@@ -14,16 +14,14 @@ const OverlayStyled = styled.div`
 
 const ModalStyled = styled.div`
     display: ${props => (props.show ? 'block' : 'none')};
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    max-width: 100%;
-    height: 400px;
     max-height: 100%;
-    border: 1px solid #bbb;
-    background: #f4f4f4;
+    background: ${props => props.theme.colors.white};
     box-sizing: border-box;
     z-index: 2;
 `;

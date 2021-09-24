@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -13,12 +15,10 @@ export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
 });
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
-  'user/fetchUpdatedUser',
-  async answer => {
+  'answers/fetchUpdatedUser',
+  async user => {
     const response = await axios.post('/ui/users/:id/answers', {
-      id: answer.selectedUser.id,
-      ecosystemID: answer.selectedEcosystem.id,
-      skills: answer.userSkills,
+      user,
     });
     return response.data;
   },
@@ -36,11 +36,8 @@ export const userSlice = createSlice({
       const index = state.value.ecosystems[idEcosystem].skills.findIndex(
         s => s.id === skill.id,
       );
-      if (index === -1) {
-        state.value.ecosystems[idEcosystem].skills.push(skill);
-      } else {
-        state.value.ecosystems[idEcosystem].skills[index] = skill;
-      }
+      state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
+      index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
   },
 
@@ -50,13 +47,6 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        state.value = action.payload;
-      })
-      .addCase(fetchUpdatedUserAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
       });

@@ -19,6 +19,10 @@
         "description": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials",
         "levels": [
           {
+            "level": 0,
+            "description": "Please select corresponding level"
+          },
+          {
             "level": 1,
             "description": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials"
           },
@@ -51,6 +55,10 @@
         ],
         "description": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials",
         "levels": [
+          {
+            "level": 0,
+            "description": "Please select corresponding level"
+          },
           {
             "level": 1,
             "description": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials"
@@ -85,6 +93,10 @@
         "description": "I have a basic knowledge of the library. I understand when use redux state and when use the component state.",
         "levels": [
           {
+            "level": 0,
+            "description": "Please select corresponding level"
+          },
+          {
             "level": 1,
             "description": "I have a basic knowledge of the library. I understand when use redux state and when use the component state."
           },
@@ -117,6 +129,10 @@
         ],
         "description": "I can add new sagas into a working project",
         "levels": [
+          {
+            "level": 0,
+            "description": "Please select corresponding level"
+          },
           {
             "level": 1,
             "description": "I can add new sagas into a working project"
@@ -156,6 +172,10 @@
         ],
         "description": null,
         "levels": [
+          {
+            "level": 0,
+            "description": "Please select corresponding level"
+          },
           {
             "level": 1,
             "description": "I'm a level 1"

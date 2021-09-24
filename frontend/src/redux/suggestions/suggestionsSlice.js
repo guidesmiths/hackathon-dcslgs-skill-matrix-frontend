@@ -60,4 +60,6 @@ export const selectSuggestionsByRange = (start, end) => state => state.suggestio
 
 export const selectNumberOfSuggestions = state => state.suggestions.value.length;
 
+export const selectAllSuggestions = state => state.suggestions.value;
+
 export default suggestionsSlice.reducer;
