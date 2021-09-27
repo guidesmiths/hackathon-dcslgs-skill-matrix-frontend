@@ -4,28 +4,22 @@ import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
-const LevelBar = ({ level, field }) => {
+const LevelBar = ({ level, skill }) => {
   const [styles, setStyles] = useState({});
-
-  const switcher = () => {
-    switch (field) {
-      case 'skill':
-        setStyles({
-          width: 60,
-          height: 20,
-          background: '#B9E0D7',
-          color: '#006B79',
-        });
-        return;
-      default:
-        setStyles({
-          width: 85,
-          height: 25,
-          background: '#F9EBF4',
-          color: '#BF3088',
-        });
-    }
+  const styleSkill = {
+    width: 60,
+    height: 20,
+    background: '#B9E0D7',
+    color: '#006B79',
   };
+  const StyleEcosystem = {
+    width: 85,
+    height: 25,
+    background: '#F9EBF4',
+    color: '#BF3088',
+  };
+
+  const switcher = () => (skill ? setStyles(styleSkill) : setStyles(StyleEcosystem));
   const data = [
     {
       name: 'level',
@@ -33,8 +27,9 @@ const LevelBar = ({ level, field }) => {
     },
   ];
   useEffect(() => {
+    console.log(skill);
     switcher();
-  }, [field]);
+  }, [skill]);
   return (
     <BarChartContainer>
       {[...Array(4)].map((x, i) =>
@@ -68,8 +63,8 @@ const LevelBar = ({ level, field }) => {
 };
 
 LevelBar.propTypes = {
-  level: PropTypes.number.isRequired,
-  field: PropTypes.number.isRequired,
+  level: PropTypes.any.isRequired,
+  skill: PropTypes.bool.isRequired,
 };
 
 export default LevelBar;

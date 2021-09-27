@@ -60,7 +60,7 @@ const IconStyled = styled(Icon)`
   color: #4f4f4f;
   background-color: ${props => (props.color && props.theme.colors.lightGreen)};
 `;
-const QutesStyled = styled.span`
+const QuotesStyled = styled.span`
 font-size: 42px; 
 color: #006B79;
 box-sizing: border-box;
@@ -76,4 +76,4 @@ font-family: Arial, Helvetica, sans-serif;
     }
 `;
 
-export { SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QutesStyled };
+export { SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QuotesStyled };

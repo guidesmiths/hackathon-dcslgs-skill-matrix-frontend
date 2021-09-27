@@ -28,7 +28,6 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
   const ref = useRef(null);
   useEffect(() => {
     dispatch(fetchUpdatedUserAsync({ userSkills }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSkills]);
 
   const skillswithLevel = selectedSkills.map(skill => {
@@ -46,7 +45,6 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Submited');
     setIsSubmited(false);
   };
 
@@ -61,7 +59,7 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
         <FormHeader>
           <RowTitle>
             <DataTitle>{selectedEcosystem?.name}</DataTitle>
-            <LevelBar level={selectedEcosystem?.average} field={'ecosystem'} />
+            <LevelBar level={selectedEcosystem?.average} skill={false}/>
             <UserInput type="submit" value="Save" ref={ref} />
           </RowTitle>
         </FormHeader>
@@ -76,7 +74,6 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
             idEcosystem={systemSelected}
             skill={skill}
             edit={edit}
-            // handleEditSkill={handleEditSkill}
           />
         ))}
       </form>
@@ -89,12 +86,10 @@ UserSkills.defaultProps = {
 };
 
 UserSkills.propTypes = {
-  // handleEditSkill: PropTypes.func.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
   systemSelected: PropTypes.array.isRequired,
   edit: PropTypes.bool.isRequired,
-  // mySkills: PropTypes.array,
 };
 
 export default UserSkills;

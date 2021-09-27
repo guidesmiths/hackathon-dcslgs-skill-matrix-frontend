@@ -84,7 +84,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} field={ 'skill' } />
+          <LevelBar level={skill.level} skill/>
           <ButtonWrapper>
             <ChecboxWrapper>
               <StyledCheckbox

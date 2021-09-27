@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import StyledName from './Label.styled';
 
 const Label = ({ children, top, left, weight, type }) => (
-  <StyledName top={ top } left={ left } weight={weight} type={type}>
+  <StyledName top={top} left={left} weight={weight} type={type}>
     {children}
   </StyledName>
 );
@@ -14,9 +14,10 @@ Label.propTypes = {
   type: PropTypes.string,
   top: PropTypes.number.isRequired,
   left: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
+  weight: PropTypes.number,
 };
 
 Label.defaultProps = {
   type: '',
+  weight: 500,
 };

@@ -63,9 +63,6 @@ const ChecboxWrapper = styled.div`
 `;
 const StyledCheckbox = styled.input`
   visibility: hidden;
-    /* &:checked + ${StyledLabel}::after {
-      opacity: 1;
-    }    */
 `;
 const RowCollapsed = styled.div`
   margin: 0 auto;

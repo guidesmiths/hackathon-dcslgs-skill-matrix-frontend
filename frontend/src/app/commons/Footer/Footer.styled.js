@@ -10,6 +10,7 @@ const FooterStyled = styled.div`
   box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   position: fixed;
   bottom: 0;
+  z-index: 997;
 `;
 
 export default FooterStyled;
