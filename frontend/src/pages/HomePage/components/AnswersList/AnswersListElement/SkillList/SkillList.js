@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
-import SkillListStyled from './SkillList.styled';
+import { SkillListStyled, FooterStyled, AdminRoleText } from './SkillList.styled';
+import Switch from '../../../../../../app/commons/Switch/Switch';
 
 const SkillList = ({ isCollapsed, skills }) => (
   <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
-    {skills.map(({ skillName, level, id }) => (
-      <SkillListElement key={id} level={level} skillName={skillName}/>
+    {skills.map(({ skillName, level, id, description }) => (
+      <SkillListElement key={id} level={level} skillName={skillName} description={description}/>
     ))}
+    <FooterStyled>
+      <AdminRoleText>Admin Role</AdminRoleText>
+      <Switch/>
+    </FooterStyled>
   </SkillListStyled>
 );
 
