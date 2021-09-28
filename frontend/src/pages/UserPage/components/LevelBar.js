@@ -27,7 +27,6 @@ const LevelBar = ({ level, skill }) => {
     },
   ];
   useEffect(() => {
-    console.log(skill);
     switcher();
   }, [skill]);
   return (

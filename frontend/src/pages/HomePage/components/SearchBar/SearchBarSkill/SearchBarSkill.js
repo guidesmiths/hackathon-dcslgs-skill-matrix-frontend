@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
@@ -37,8 +37,6 @@ const SearchBarSkill = ({ isLastFilter, filter, index }) => {
       filter: { skill: filter.skill, level: Number(event.target.value) },
     }),
   );
-  useEffect(() => {
-  }, [handleInput]);
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>

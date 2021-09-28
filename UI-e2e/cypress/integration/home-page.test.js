@@ -35,7 +35,7 @@ describe('Home page', () => {
   describe('For the user input filter on the search bar', () => {
     it('should update the input with every keystroke', () => {
       const userFilter = 'John';
-      cy.get('[data-cy="user-input"]').type(userFilter);
+      cy.get('[data-cy="user-input"]').type(userFilter, { force: true });
       cy.get('[data-cy="user-input"]').should('have.value', userFilter);
     });
   });
