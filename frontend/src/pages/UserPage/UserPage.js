@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
-import { fetchUserAsync } from '../../redux/user/userSlice';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
-import { fetchEcosystemsAsync } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, resetEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
 
 const UserPage = () => {
@@ -27,9 +26,11 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserAsync());
     dispatch(fetchEcosystemsAsync());
-  }, []);
+    return () => {
+      dispatch(resetEcosystems());
+    };
+  }, [dispatch]);
 
   return (
     <UserPageStyled data-cy="user">

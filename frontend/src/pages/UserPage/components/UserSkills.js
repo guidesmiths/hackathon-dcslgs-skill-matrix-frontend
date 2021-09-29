@@ -14,7 +14,8 @@ import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice
 import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
-  fetchUpdatedUserAsync,
+  fetchUserAsync,
+  selectUserData,
 } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
@@ -24,11 +25,14 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
   const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
   const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
+  const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const ref = useRef(null);
   useEffect(() => {
-    dispatch(fetchUpdatedUserAsync({ userSkills }));
-  }, [userSkills]);
+    if (userData.length === 0) {
+      dispatch(fetchUserAsync());
+    }
+  }, [userData, dispatch]);
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(
@@ -59,8 +63,8 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
         <FormHeader>
           <RowTitle>
             <DataTitle>{selectedEcosystem?.name}</DataTitle>
-            <LevelBar level={selectedEcosystem?.average} skill={false}/>
-            <UserInput type="submit" value="Save" ref={ref} />
+            <LevelBar field={'ecosystem'} level={selectedEcosystem?.average} />
+            <UserInput ref={ref} type="submit" value="Save" />
           </RowTitle>
         </FormHeader>
         <ColumTitles>
@@ -71,9 +75,9 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
         {skillswithLevel?.map(skill => (
           <UserRow
             key={skill.id}
+            edit={edit}
             idEcosystem={systemSelected}
             skill={skill}
-            edit={edit}
           />
         ))}
       </form>

@@ -11,8 +11,8 @@ const NavBar = () => (
           <LazyImage actualSrc={logo}/>
           <NavBarLink to="/" exact activeClassName="selected">Directory</NavBarLink>
         </LogoWrapper>
-        <NavBarLink to="/profile" activeClassName="selected">Skill Matrix</NavBarLink>
-        <NavBarLink to="/skills" activeClassName="selected">Personal Skill Matrix</NavBarLink>
+        <NavBarLink to="/profile" exact activeClassName="selected">Skill Matrix</NavBarLink>
+        <NavBarLink to="/" exact activeClassName="selected">Personal Skill Matrix</NavBarLink>
       </NavStyled>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />

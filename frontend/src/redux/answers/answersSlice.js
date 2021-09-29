@@ -32,6 +32,9 @@ export const answersSlice = createSlice({
     answerAdded: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
+    resetAnswers: state => {
+      state.value = [];
+    },
   },
   extraReducers: builder => {
     builder
@@ -52,7 +55,7 @@ export const answersSlice = createSlice({
   },
 });
 
-export const { answerAdded } = answersSlice.actions;
+export const { answerAdded, resetAnswers } = answersSlice.actions;
 
 // Selectors
 export const selectAllAnswers = state => state.answers.value;
