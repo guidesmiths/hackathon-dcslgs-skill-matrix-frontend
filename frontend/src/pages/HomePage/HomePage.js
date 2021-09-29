@@ -21,8 +21,9 @@ const HomePage = () => {
     <HomePageStyled
       data-cy="hola"
     >
-      <StyledBackground/>
-      <SearchBar/>
+      <StyledBackground>
+        <SearchBar/>
+      </StyledBackground>
       <AnswersList />
     </HomePageStyled>
   );

@@ -24,21 +24,22 @@ const SuggestionCardsStyled = styled.div`
 `;
 
 const StyledSlider = styled.input`
-  position: absolute;
-  bottom: 70px;
-  z-index: 1000;
-  -webkit-appearance: none;
-  width: 40%;
-  height: 10px;
-  background: white;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border-radius: 5px;
+    position: absolute;
+    bottom: 70px;
+    z-index: 1000;
+    -webkit-appearance: none;
+    width: 40%;
+    height: 10px;
+    background: white;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5px;
+    z-index: 0;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -57,6 +58,5 @@ const StyledSlider = styled.input`
     border-radius: 8px;
   }
 `;
-
 
 export { SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider };
