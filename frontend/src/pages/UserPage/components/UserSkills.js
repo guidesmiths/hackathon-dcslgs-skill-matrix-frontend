@@ -90,12 +90,10 @@ UserSkills.defaultProps = {
 };
 
 UserSkills.propTypes = {
-  // handleEditSkill: PropTypes.func.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
   systemSelected: PropTypes.array.isRequired,
   edit: PropTypes.bool.isRequired,
-  // mySkills: PropTypes.array,
 };
 
 export default UserSkills;

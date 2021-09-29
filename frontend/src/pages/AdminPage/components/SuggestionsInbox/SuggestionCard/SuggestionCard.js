@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SuggestionModal from './SuggestionModal/SuggestionModal';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
 import {
-  SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QutesStyled,
+  SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QuotesStyled,
 } from './SuggestionCard.styled';
 
 const SuggestionCard = ({ userName, subject, index, description, id }) => {
@@ -15,8 +15,8 @@ const SuggestionCard = ({ userName, subject, index, description, id }) => {
     <SuggestionCardStyled data-cy={`suggestion-card-${index}`}>
       <UserNameStyled>From <b>{userName}</b></UserNameStyled>
       <SubjectStyled>
-        <QutesStyled >&#x2018;</QutesStyled>
-        <QutesStyled >&#x2018;</QutesStyled>
+        <QuotesStyled>&#x2018;</QuotesStyled>
+        <QuotesStyled>&#x2018;</QuotesStyled>
         {subject}</SubjectStyled>
       <IconsContainerStyled>
         <IconStyled icon="delete" onClick={() => dispatch(deleteSuggestionAsync(id))}/>

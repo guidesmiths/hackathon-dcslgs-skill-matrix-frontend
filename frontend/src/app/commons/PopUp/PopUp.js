@@ -9,7 +9,7 @@ import {
   PopUpStyledIconWarning,
   PopUpStyledCloseIcon,
   StyledListElement,
-} from './Pop-up.styled';
+} from './PopUp.styled';
 
 const PopUp = ({ show, onCloseClick, isSuccess, input }) => (
   <>

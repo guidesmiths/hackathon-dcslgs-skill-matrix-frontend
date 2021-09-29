@@ -60,7 +60,7 @@ const StyledIcon = styled(Icon)`
     align-self:flex-start;
     margin-top: 2px;
 `;
-const TitileStyled = styled.div`
+const TitleStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,5 +75,5 @@ export {
   DescriptionStyled,
   SuggestionContentStyled,
   StyledIcon,
-  TitileStyled,
+  TitleStyled,
 };

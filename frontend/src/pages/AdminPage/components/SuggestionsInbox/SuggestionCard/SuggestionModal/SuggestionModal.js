@@ -10,17 +10,17 @@ import {
   DescriptionStyled,
   SuggestionContentStyled,
   StyledIcon,
-  TitileStyled,
+  TitleStyled,
 } from './SuggestionModal.styled';
 import Modal from '../../../../../../app/commons/Modal/Modal';
 
 const SuggestionModal = ({ userName, subject, description, show, onCloseClick, onDeleteClick }) => (
   <Modal show={show} onCloseClick={onCloseClick}>
     <ModalContent>
-      <TitileStyled>
+      <TitleStyled>
         <UserNameStyled>{userName} has a proposal</UserNameStyled>
         <StyledIcon icon="close" onClick={onCloseClick}/>
-      </TitileStyled>
+      </TitleStyled>
       <SuggestionContentStyled>
         <SuggestionStyled>#{subject}</SuggestionStyled>
         <DescriptionStyled>{description}</DescriptionStyled>

@@ -3,31 +3,31 @@ import Button from '../../../../../app/commons/Button/Button';
 import Modal from '../../../../../app/commons/Modal/Modal';
 
 const ModalStyledWrapper = styled(Modal)`
-    padding: 20px;
+  padding: 20px;
 `;
 const HeaderStyled = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 32px;
-    margin: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0 10px;
 `;
 
 const StyledInfo = styled.div`
-    color: ${props => props.theme.colors.textColor};
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    padding: 24px;
+  color: ${props => props.theme.colors.textColor};
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 24px;
 `;
 const StyledInputWrapper = styled.div`
- position: relative;
- height: 48px;
- margin-left: 20px;
+  position: relative;
+  height: 48px;
+  margin-left: 20px;
 `;
 const StyledInput = styled.input`
   height: 48px;
@@ -41,9 +41,10 @@ const StyledInput = styled.input`
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
- &:last-child{
-    background: rgba(192, 48, 137, 0.1);
-    color: ${props => props.theme.colors.primaryColor};
- }
+  &:last-child{
+  background: rgba(192, 48, 137, 0.1);
+  color: ${props => props.theme.colors.primaryColor};
+  }
 `;
+
 export { ModalStyledWrapper, HeaderStyled, StyledInfo, StyledInputWrapper, StyledInput, StyledButton };
