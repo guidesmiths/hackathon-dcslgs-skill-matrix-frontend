@@ -18,9 +18,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <HomePageStyled
-      data-cy="hola"
-    >
+    <HomePageStyled>
       <StyledBackground>
         <SearchBar/>
       </StyledBackground>

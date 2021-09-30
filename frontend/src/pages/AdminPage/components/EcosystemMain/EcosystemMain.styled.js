@@ -12,9 +12,8 @@ const EcosystemContainerStyled = styled.div`
   font-family: ${props => props.theme.fonts.poppins};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   z-index: 1;
-  overflow-x: scroll ;
+  overflow-x: scroll;
   scrollbar-width: none;
-
   &::-webkit-scrollbar{
     display:none;
   }
