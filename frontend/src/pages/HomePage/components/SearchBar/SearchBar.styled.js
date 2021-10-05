@@ -3,7 +3,7 @@ import Icon from '../../../../app/commons/icon/icon';
 
 const animation2 = keyframes`
     0% {
-    opacity:0.1
+      opacity:0.1
     }
     25%{
       opacity:0.3;
@@ -20,8 +20,11 @@ const animation2 = keyframes`
 `;
 
 const SearchBarsWrapper = styled.div`
-    padding: 20px 0;
+    padding: 20px 0 60px;
     animation: ${animation2} 4s;
+    position: relative;
+    z-index: 999;
+    box-sizing:border-box;
 `;
 
 const SearchBarWrapper = styled.div`

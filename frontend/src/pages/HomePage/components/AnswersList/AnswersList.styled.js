@@ -2,27 +2,34 @@ import styled, { keyframes } from 'styled-components';
 
 const animation2 = keyframes`
     0% {
-    opacity:0.1
+      height: 80vh;
+      background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
     }
     25%{
-      opacity:0.3;
+      height: 30vh;
+      background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
     }
     50%{
-      opacity:0.5;
+      height: 100vh;
+      background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
     }
     75%{
-      opacity:0.7;
+      height: 5vh;
+      background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
     }
     100%{
-      opacity:1;
+      height: 1vh;
+      background:transparent;
     }
 `;
 
 export default styled.div`
-    display: block;
-    box-sizing: border-box;
-    margin: -20px auto 0;
-    padding: 0px;
-    width: 95%;
-    animation: ${animation2} 3.5s;
+  display: block;
+  position: relative;
+  z-index: 1;
+  padding-top: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  animation: ${animation2} 7s;
+  background: transparent;
 `;
