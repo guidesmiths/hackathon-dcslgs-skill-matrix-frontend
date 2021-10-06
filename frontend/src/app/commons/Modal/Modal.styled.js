@@ -7,7 +7,7 @@ const OverlayStyled = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 998;
     background: black;
     opacity: 0.2;
 `;
@@ -23,7 +23,7 @@ const ModalStyled = styled.div`
     max-height: 100%;
     background: ${props => props.theme.colors.white};
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 999;
 `;
 
 export {

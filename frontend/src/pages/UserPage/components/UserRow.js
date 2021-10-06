@@ -76,6 +76,12 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
     );
     setSelectedValue(updatedValue);
   };
+
+  const getDescription = selectedSkill => {
+    const selectedLevel = selectedSkill.levels.find(({ level }) => level === selectedSkill.level);
+    return selectedLevel ? selectedLevel.description : 'no level selected yet';
+  };
+
   return (
     <div>
       <RowSkillsTop
@@ -84,7 +90,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} field={ 'skill' } />
+          <LevelBar level={skill.level} skill/>
           <ButtonWrapper>
             <ChecboxWrapper>
               <StyledCheckbox
@@ -105,7 +111,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       <RowCollapsed isCollapsed={isCollapsed}>
         <RowSkillsBottom>
           <DescriptionStyled>
-            <p>{skill.levels[skill.level].description}</p>
+            <p>{getDescription(skill)}</p>
             <Label top={-10} left={25} type={'description'}>Description Level</Label>
           </DescriptionStyled>
           { edit

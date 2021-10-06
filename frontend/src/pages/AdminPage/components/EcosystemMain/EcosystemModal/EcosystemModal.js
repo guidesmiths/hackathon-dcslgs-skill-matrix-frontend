@@ -5,7 +5,7 @@ import Label from '../../../../../app/commons/Label/Label';
 import Icon from '../../../../../app/commons/icon/icon';
 
 const EcosystemModal = ({ show, onCloseClick, subject }) => (
-  <ModalStyledWrapper show={ show }>
+  <ModalStyledWrapper show={show}>
     <HeaderStyled>
         Delete
       <Icon icon="close" onClick={onCloseClick}/>

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import AnswersList from './components/AnswersList/AnswersList';
-import HomePageStyled from './HomePage.styled';
+import { HomePageStyled, StyledBackground } from './HomePage.styled';
 import { fetchSkillsAsync } from '../../redux/skills/skillsSlice';
-import { fetchAnswersAsync } from '../../redux/answers/answersSlice';
+import { fetchAnswersAsync, resetAnswers } from '../../redux/answers/answersSlice';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -12,13 +12,16 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchSkillsAsync());
     dispatch(fetchAnswersAsync());
-  }, []);
+    return () => {
+      dispatch(resetAnswers());
+    };
+  }, [dispatch]);
 
   return (
-    <HomePageStyled
-      data-cy="hola"
-    >
-      <SearchBar/>
+    <HomePageStyled>
+      <StyledBackground>
+        <SearchBar/>
+      </StyledBackground>
       <AnswersList />
     </HomePageStyled>
   );

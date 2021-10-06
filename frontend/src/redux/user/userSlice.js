@@ -39,6 +39,9 @@ export const userSlice = createSlice({
       state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
       index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
+    resetSkills: state => {
+      state.value = [];
+    },
   },
 
   extraReducers: builder => {
@@ -49,11 +52,18 @@ export const userSlice = createSlice({
       .addCase(fetchUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
+      })
+      .addCase(fetchUpdatedUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = action.payload;
       });
   },
 });
 
-export const { userAdded, updateEcosystem, updateSkill, updateUserSkill } = userSlice.actions;
+export const { userAdded, updateEcosystem, updateSkill, updateUserSkill, resetSkills } = userSlice.actions;
 
 // Selectors
 export const selectUserData = state => state.user.value;

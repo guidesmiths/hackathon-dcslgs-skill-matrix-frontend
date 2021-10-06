@@ -4,8 +4,10 @@ const SuggestionInboxStyled = styled.div`
   grid-area: suggestions;
   display: flex;
   height: 270px;
+  min-height: 250px;
   border: 1px solid #aaa;
   background: ${props => props.theme.colors.backgroundGradient};
+  position: relative;
 `;
 
 const SuggestionCardsStyled = styled.div`
@@ -14,35 +16,47 @@ const SuggestionCardsStyled = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   height:max-content;
-  padding-bottom:20px;
-  position: relative;
-
-  &::-webkit-scrollbar {
-    behavior: smooth;
-    height:7px;
-  };
-
-  &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        height:8px;
-        background-color: black;
-   };
-
-   ::-webkit-scrollbar-track-piece:end{
-    margin-right: 320px; 
-    background-color: white;
-    border-radius: 0 10px 10px 0;
-    width:50px
-   };
-
-   ::-webkit-scrollbar-track-piece:start{
-    margin-left: 320px; 
-    background-color: white;
-    border-radius: 10px 0 0 10px;
-   };
+  padding-bottom:30px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
+const StyledSlider = styled.input`
+    position: absolute;
+    bottom: 70px;
+    z-index: 1000;
+    -webkit-appearance: none;
+    width: 40%;
+    height: 10px;
+    background: white;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5px;
+    z-index: 0;
 
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60%;
+    height: 10px;
+    background: black;
+    cursor: pointer;
+    border-radius: 8px;
+}
+  &::-moz-range-thumb {
+    width: 60%;
+    height: 8px;
+    background: black;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+`;
 
-
-export { SuggestionInboxStyled, SuggestionCardsStyled };
+export { SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider };

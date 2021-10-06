@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
-import { fetchUserAsync } from '../../redux/user/userSlice';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
-import PopUp from '../../app/commons/Pop-up/Pop-up';
+import PopUp from '../../app/commons/PopUp/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
-import { fetchEcosystemsAsync } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, resetEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
 
 const UserPage = () => {
@@ -27,17 +26,12 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserAsync());
     dispatch(fetchEcosystemsAsync());
-  }, []);
+    return () => {
+      dispatch(resetEcosystems());
+    };
+  }, [dispatch]);
 
-  const showModal = () => {
-    setShow(!show);
-  };
-
-  const closeConfirmed = () => {
-    setConfirmed(false);
-  };
   return (
     <UserPageStyled data-cy="user">
       <HeaderStyled/>
@@ -45,14 +39,15 @@ const UserPage = () => {
         <Ecosystems selectEcosystem={selectEcosystem} />
         <UserSkills systemSelected={systemSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
-      <StyledModal show={show} onCloseClick={showModal}>
-        <SuggestionForm showModal={showModal}/>
+      <StyledModal show={show} onCloseClick={() => setShow(!show)}>
+        <SuggestionForm showModal={() => setShow(!show)}/>
       </StyledModal>
-      <PopUp onCloseClick={closeConfirmed} show={confirmed} isSuccess />
+      <PopUp show={confirmed} isSuccess />
+      <PopUp onCloseClick={() => setConfirmed(false)} show={confirmed} isSuccess />
       <Footer>
         {!edit
           ? <>
-            <StyledIcon icon={'email'} onClick={showModal} data-cy={'add'}/>
+            <StyledIcon icon={'email'} onClick={() => setShow(!show)} data-cy={'add'}/>
             <EditButtonStyled onClick={() => { setEdit(true); }} data-cy="editUser">Edit</EditButtonStyled>
           </>
           : <>

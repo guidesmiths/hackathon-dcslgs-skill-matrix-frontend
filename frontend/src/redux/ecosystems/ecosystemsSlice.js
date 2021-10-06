@@ -21,6 +21,9 @@ export const ecosystemsSlice = createSlice({
     ecosystemAdded: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
+    resetEcosystems: state => {
+      state.value = [];
+    },
   },
 
   extraReducers: builder => {
@@ -35,7 +38,7 @@ export const ecosystemsSlice = createSlice({
   },
 });
 
-export const { ecosystemAdded } = ecosystemsSlice.actions;
+export const { ecosystemAdded, resetEcosystems } = ecosystemsSlice.actions;
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;

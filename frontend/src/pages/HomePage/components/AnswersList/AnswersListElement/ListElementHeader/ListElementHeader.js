@@ -1,23 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { IconFlagES } from 'material-ui-flags';
 import {
-  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled,
+  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, ArrowButtonStyled, MoreInfoWrapper,
 } from './ListElementHeader.styled';
-import { ArrowButton } from '../../../../../../app/commons/ArrowButton/arrowButton.styled';
+import Icon from '../../../../../../app/commons/icon/icon';
 
 const ListElementHeader = ({ email, name, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
   return (
     <ListElementStyled data-cy="list-element-header">
-      <UserNameStyled>{name}</UserNameStyled>
+      <UserWrapperStyled>
+        <Icon icon={'face'}/>
+        <UserNameStyled>{name}</UserNameStyled>
+      </UserWrapperStyled>
       <UserEmailStyled>{email}</UserEmailStyled>
-      <UserRolStyled>Junior</UserRolStyled>
-      <ArrowButton onClick={setCollapsed}>
-        <span className="material-icons">
-          {arrowButtonIcon}
-        </span>
-      </ArrowButton>
+      <MoreInfoWrapper>
+        <IconFlagES/>
+        <UserRolStyled>Medior Developer in Development Team</UserRolStyled>
+        <ArrowButtonStyled onClick={setCollapsed}>
+          <span className="material-icons">
+            {arrowButtonIcon}
+          </span>
+        </ArrowButtonStyled>
+      </MoreInfoWrapper>
+
     </ListElementStyled>
   );
 };

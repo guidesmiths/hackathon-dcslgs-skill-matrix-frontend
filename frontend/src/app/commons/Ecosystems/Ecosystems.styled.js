@@ -5,6 +5,7 @@ const EcosystemColumn = styled.div`
   flex-direction: column;
   height: 100%;
   width: 80%;
+  min-height: 70vh;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0px 0px 50px;
@@ -12,6 +13,7 @@ const EcosystemColumn = styled.div`
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   font-family: ${props => props.theme.fonts.poppins};
+  scrollbar-width: none;
   &::-webkit-scrollbar{
     display: none;
   };

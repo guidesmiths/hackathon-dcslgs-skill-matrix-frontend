@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const EcosystemsSideBarStyled = styled.div`
   grid-area: ecosystems-sidebar;
   display: flex;
+  z-index: 1;
   flex-direction: column;
   height: 100%;
   width: 80%;
@@ -13,6 +14,7 @@ const EcosystemsSideBarStyled = styled.div`
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   font-family: ${props => props.theme.fonts.poppins};
+  scrollbar-width: none;
   &::-webkit-scrollbar{
     display: none;
   };

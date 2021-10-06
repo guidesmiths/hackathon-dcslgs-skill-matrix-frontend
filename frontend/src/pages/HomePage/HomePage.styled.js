@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-export default styled.div`
-  display: block;
-  box-sizing: border-box;
-  height: 100vh;
-  margin: 20px 50px;
-  font-family: Arial, Helvetica, sans-serif;
+const HomePageStyled = styled.div`
+    box-sizing: border-box;
+    font-family: ${props => props.theme.fonts.poppins};
 `;
+
+const StyledBackground = styled.div`
+    background: ${props => props.theme.colors.backgroundGradient};
+    z-index: 1;
+`;
+
+export { HomePageStyled, StyledBackground };
