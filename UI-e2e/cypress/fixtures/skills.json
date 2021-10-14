@@ -1,19 +1,18 @@
-{ "skills": [
-      {
-        "id": 4,
-        "name": "Redux-Sagas"
-      },
-      {
-        "id": 3,
-        "name": "Redux"
-      },
-      {
-        "id": 2,
-        "name": "Next.js"
-      },
-      {
-        "id": 1,
-        "name": "React"
-      }
-  ]
-}
+[
+  {
+    "id": 4,
+    "name": "Redux-Sagas"
+  },
+  {
+    "id": 3,
+    "name": "Redux"
+  },
+  {
+    "id": 2,
+    "name": "Next.js"
+  },
+  {
+    "id": 1,
+    "name": "React"
+  }
+]
