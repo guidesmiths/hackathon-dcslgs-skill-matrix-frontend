@@ -18,9 +18,9 @@ const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, sh
 
 EcosystemsSideBar.propTypes = {
   ecosystems: PropTypes.array.isRequired,
+  show: PropTypes.bool.isRequired,
   onEcosystemSelected: PropTypes.func.isRequired,
   onNewEcosystem: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
 };
 
 export default EcosystemsSideBar;

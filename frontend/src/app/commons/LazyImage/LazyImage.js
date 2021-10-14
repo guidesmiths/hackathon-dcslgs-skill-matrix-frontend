@@ -13,10 +13,10 @@ const LazyImage = ({ loadingSrc, actualSrc }) => {
   }, [actualSrc]);
   return (
     <StyledImage
-      loadingSrc={loadingSrc}
       actualSrc={actualSrc}
-      loading={!isImageLoaded}
       error={hasError}
+      loading={!isImageLoaded}
+      loadingSrc={loadingSrc}
     />
   );
 };

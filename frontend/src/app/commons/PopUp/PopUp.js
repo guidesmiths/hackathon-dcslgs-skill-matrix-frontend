@@ -13,7 +13,7 @@ import {
 
 const PopUp = ({ show, onCloseClick, isSuccess, input }) => (
   <>
-    <PopUpStyled show={show} onClick={onCloseClick} isSuccess={isSuccess}>
+    <PopUpStyled isSuccess={isSuccess} show={show} onClick={onCloseClick}>
       <PopUpStyledTitleWrapper>
         {isSuccess
           ? <PopUpStyledIcon icon={'checkCircle'}/>
@@ -34,10 +34,10 @@ const PopUp = ({ show, onCloseClick, isSuccess, input }) => (
 );
 
 PopUp.propTypes = {
+  input: PropTypes.array.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
   show: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func.isRequired,
-  isSuccess: PropTypes.bool.isRequired,
-  input: PropTypes.array.isRequired,
 };
 
 PopUp.defaultProps = {

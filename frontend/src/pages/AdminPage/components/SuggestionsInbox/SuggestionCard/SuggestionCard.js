@@ -20,7 +20,7 @@ const SuggestionCard = ({ userName, subject, index, description, id }) => {
         {subject}</SubjectStyled>
       <IconsContainerStyled>
         <IconStyled icon="delete" onClick={() => dispatch(deleteSuggestionAsync(id))}/>
-        <IconStyled icon="visibility" color="true" onClick={() => setModalShow(true)}/>
+        <IconStyled color="true" icon="visibility" onClick={() => setModalShow(true)}/>
       </IconsContainerStyled>
       <SuggestionModal key={index}
         description={description}

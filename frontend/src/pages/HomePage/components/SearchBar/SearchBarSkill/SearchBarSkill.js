@@ -43,10 +43,10 @@ const SearchBarSkill = ({ isLastFilter, filter, index }) => {
         <Input
           input={filter.skill}
           optionsList={optionsList}
-          onChangeInput={handleInput}
           width={300}
+          onChangeInput={handleInput}
         />
-        <Label top={-10} left={20}>Skill</Label>
+        <Label left={20} top={-10}>Skill</Label>
       </InputWrapper>
       <InputWrapper>
         <Select
@@ -54,12 +54,12 @@ const SearchBarSkill = ({ isLastFilter, filter, index }) => {
           selected={filter.level}
           onChange={e => handleSelectChange(e)}
         />
-        <Label top={-10} left={10}>Level</Label>
+        <Label left={10} top={-10}>Level</Label>
       </InputWrapper>
       <StyledIcon
         icon={'delete'}
-        onClick={() => dispatch(removeSkillFilter(index))}
         show={!isLastFilter}
+        onClick={() => dispatch(removeSkillFilter(index))}
       />
       <StyledIcon
         icon={'add'}

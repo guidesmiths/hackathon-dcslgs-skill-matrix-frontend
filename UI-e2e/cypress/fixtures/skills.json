@@ -1,35 +1,19 @@
 { "skills": [
       {
         "id": 4,
-        "name": "Redux-Sagas",
-        "description": "",
-        "ecosystem": "React",
-        "roles":[1],
-        "type": "Hard"
+        "name": "Redux-Sagas"
       },
       {
         "id": 3,
-        "name": "Redux",
-        "description": "",
-        "ecosystem": "React",
-        "roles":[1],
-        "type": "Hard"
+        "name": "Redux"
       },
       {
         "id": 2,
-        "name": "Next.js",
-        "description": "",
-        "ecosystem": "React",
-        "roles":[1],
-        "type": "Hard"
+        "name": "Next.js"
       },
       {
         "id": 1,
-        "name": "React",
-        "description": "",
-        "ecosystem": "React",
-        "roles":[1],
-        "type": "Hard"
+        "name": "React"
       }
   ]
 }
