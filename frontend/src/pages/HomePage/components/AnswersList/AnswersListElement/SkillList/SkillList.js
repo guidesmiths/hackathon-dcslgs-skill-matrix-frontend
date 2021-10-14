@@ -6,8 +6,8 @@ import Switch from '../../../../../../app/commons/Switch/Switch';
 
 const SkillList = ({ isCollapsed, skills }) => (
   <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
-    {skills.map(({ skillName, level, id, description }) => (
-      <SkillListElement key={id} level={level} skillName={skillName} description={description}/>
+    {skills.map(({ id, level, levelDescription, name, sublevel }) => (
+      <SkillListElement key={id} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
     ))}
     <FooterStyled>
       <AdminRoleText>Admin Role</AdminRoleText>

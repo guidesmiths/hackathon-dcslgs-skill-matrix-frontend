@@ -14,14 +14,23 @@ export const fetchSuggestionsAsync = createAsyncThunk(
   },
 );
 
+export const insertSuggestionAsync = createAsyncThunk(
+  'suggestions/insertSuggestion',
+  async suggestion => {
+    // Please, replace the 'user_id_test' with the user_id logged.
+    const response = await axios.post('/ui/suggestion', {
+      description: suggestion.suggestion,
+      subject: suggestion.selectedSuggestion,
+      user_id: 'user_id_test',
+    });
+    return response.data;
+  },
+);
+
 export const deleteSuggestionAsync = createAsyncThunk(
   'suggestions/deleteSuggestion',
   async id => {
-    await axios.delete('/ui/suggestions', {
-      params: {
-        id,
-      },
-    });
+    await axios.delete(`/ui/suggestion/${id}`);
     return id;
   },
 );
@@ -30,6 +39,9 @@ export const suggestionsSlice = createSlice({
   name: 'suggestions',
   initialState,
   reducers: {
+    suggestionAdded: (state, action) => {
+      state.value = [...state.value, ...action.payload];
+    },
     removeSuggestion: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
@@ -40,6 +52,13 @@ export const suggestionsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchSuggestionsAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = [...state.value, ...action.payload];
+      })
+      .addCase(insertSuggestionAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(insertSuggestionAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
       })

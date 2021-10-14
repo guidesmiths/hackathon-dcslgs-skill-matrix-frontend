@@ -8,14 +8,6 @@ const initialState = {
 
 export const fetchAnswersAsync = createAsyncThunk(
   'answers/fetchAnswers',
-  async () => {
-    const response = await axios.get('/ui/answers');
-    return response.data;
-  },
-);
-
-export const fetchFilteredAnswersAsync = createAsyncThunk(
-  'answers/fetchFilteredAnswers',
   async filter => {
     const response = await axios.post('/ui/answers', {
       name: filter.userFilter,
@@ -42,13 +34,6 @@ export const answersSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAnswersAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
-      })
-      .addCase(fetchFilteredAnswersAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(fetchFilteredAnswersAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
       });

@@ -9,6 +9,7 @@ import {
 } from './SuggestionsInbox.styled';
 
 const SuggestionsInbox = () => {
+  // TODO: When you delete a suggestion, it should refresh.
   const suggestions = useSelector(selectAllSuggestions);
   const [position, setPosition] = useState(0);
   const ref = useRef(null);
@@ -34,7 +35,7 @@ const SuggestionsInbox = () => {
           />
         ))}
       </SuggestionCardsStyled>
-      <StyledSlider type="range" min="0" max="100" value={position} step="0.1" onChange={e => scroll(e)}/>
+      <StyledSlider max="100" min="0" step="0.1" type="range" value={position} onChange={scroll}/>
     </SuggestionInboxStyled>
   );
 };

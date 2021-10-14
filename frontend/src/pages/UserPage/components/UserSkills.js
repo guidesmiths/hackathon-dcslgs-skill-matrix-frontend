@@ -14,7 +14,7 @@ import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice
 import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
-  fetchUserAsync,
+  fetchAnswersByUserAsync,
   selectUserData,
 } from '../../../redux/user/userSlice';
 
@@ -30,7 +30,8 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
   const ref = useRef(null);
   useEffect(() => {
     if (userData.length === 0) {
-      dispatch(fetchUserAsync());
+      // Please, change 'user_id_test' for the user_id logged.
+      dispatch(fetchAnswersByUserAsync('user_id_test'));
     }
   }, [userData, dispatch]);
 

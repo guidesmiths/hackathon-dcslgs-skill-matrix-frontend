@@ -14,14 +14,14 @@ const AnswersList = () => {
   return (
     <AnswersListStyled>
       {answers.map((answer, index) => {
-        const { user_id: userId, name, email, skills } = answer;
+        const { user_id: userId, name, email, ecosystems } = answer;
         return (
           <AnswersListElement
             key={userId}
             email={email}
             index={index}
             name={name}
-            skills={skills}
+            skills={ecosystems.flatMap(ecosystem => ecosystem.skills)}
           />);
       })}
       <Pagination

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   FormStyled,
@@ -14,8 +15,10 @@ import {
   StyledCancelIcon,
 } from './SuggestionForm.styled';
 import Label from '../../../app/commons/Label/Label';
+import { insertSuggestionAsync } from '../../../redux/suggestions/suggestionsSlice';
 
 const SuggestionForm = ({ showModal }) => {
+  const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(false);
   const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
   const [suggestion, setSuggestion] = useState('');
@@ -37,33 +40,32 @@ const SuggestionForm = ({ showModal }) => {
   const submitHandler = e => {
     e.preventDefault();
     if (suggestion && selectedSuggestion) {
+      dispatch(insertSuggestionAsync({ suggestion, selectedSuggestion }));
       setSuggestion('');
       setSelectedSuggestion('Ecosystem');
       showModal();
     }
   };
   return (
-    <FormStyled onSubmit={submitHandler} data-cy="suggestion-form">
+    <FormStyled data-cy="suggestion-form" onSubmit={submitHandler}>
       <StyledTitle>
           Do you want to propose something to us?
         <StyledCancelIcon icon={'close'} onClick={cancelForm}/>
       </StyledTitle>
-      <SelectStyled onChange={changeHandler} isCollapsed={isCollapsed} >
+      <SelectStyled isCollapsed={isCollapsed} onChange={changeHandler} >
         {selectedSuggestion}
-        <ArrowButtonStyled id="type" type="button" isCollapsed={isCollapsed} onClick={() => setCollapsed(!isCollapsed)}>
+        <ArrowButtonStyled id="type" isCollapsed={isCollapsed} type="button" onClick={() => setCollapsed(!isCollapsed)}>
           <span className="material-icons">{arrowButtonIcon}</span>
         </ArrowButtonStyled>
-        <Label top={-10} left={20} isCollapsed={isCollapsed} type={ isCollapsed && 'focus' } weight={600}>Options</Label>
-        <CustomOptions onClick={clickHandler} isCollapsed={isCollapsed}>
-          {suggestionOptions.map((x, index) =>
-            <StyledOption key={index} selected={selectedSuggestion === x}>
-              {x}
-              {selectedSuggestion === x && <StyledIcon icon={'check'}/>}
-            </StyledOption>,
-          )}
+        <Label isCollapsed={isCollapsed} left={20} top={-10} type={ isCollapsed && 'focus' } weight={600}>Options</Label>
+        <CustomOptions isCollapsed={isCollapsed} onClick={clickHandler}>
+          {suggestionOptions.map((x, index) => <StyledOption key={index} selected={selectedSuggestion === x}>
+            {x}
+            {selectedSuggestion === x && <StyledIcon icon={'check'}/>}
+          </StyledOption>)}
         </CustomOptions>
       </SelectStyled>
-      <TextAreaStyled id="content" onChange={changeHandler} value={suggestion} placeholder="Placeholder..."/>
+      <TextAreaStyled id="content" placeholder="Placeholder..." value={suggestion} onChange={changeHandler}/>
       <ButtonWrapperStyled>
         <Buttons>Send</Buttons>
         <Buttons type="button" onClick={cancelForm}>Cancel</Buttons>

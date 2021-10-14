@@ -4,7 +4,7 @@ import { ModalStyledWrapper, HeaderStyled, StyledInfo, StyledInputWrapper, Style
 import Label from '../../../../../app/commons/Label/Label';
 import Icon from '../../../../../app/commons/icon/icon';
 
-const EcosystemModal = ({ show, onCloseClick, subject }) => (
+const EcosystemModal = ({ show, onCloseClick, subject, handleDelete }) => (
   <ModalStyledWrapper show={show}>
     <HeaderStyled>
         Delete
@@ -15,9 +15,9 @@ const EcosystemModal = ({ show, onCloseClick, subject }) => (
     </StyledInfo>
     <StyledInputWrapper>
       <StyledInput placeholder="Name"/>
-      <Label top={-6} left={10}> Type the {subject} name to confirm: </Label>
+      <Label left={10} top={-6}> Type the {subject} name to confirm: </Label>
     </StyledInputWrapper>
-    <StyledButton >Yes, delete</StyledButton>
+    <StyledButton onClick={handleDelete}>Yes, delete</StyledButton>
     <StyledButton onClick={onCloseClick}>Cancel</StyledButton>
   </ModalStyledWrapper>
 );
@@ -28,4 +28,5 @@ EcosystemModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func.isRequired,
   subject: PropTypes.string.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };

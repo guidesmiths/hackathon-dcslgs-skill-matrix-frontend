@@ -29,6 +29,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   const [selectedValue, setSelectedValue] = useState(skill.level);
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
+
   const handleCheckBox = () => {
     setCheck(!isChecked);
     dispatch(
@@ -79,7 +80,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
 
   const getDescription = selectedSkill => {
     const selectedLevel = selectedSkill.levels.find(({ level }) => level === selectedSkill.level);
-    return selectedLevel ? selectedLevel.description : 'no level selected yet';
+    return selectedLevel ? selectedLevel.levelDescription : 'no level selected yet';
   };
 
   return (
@@ -90,19 +91,19 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar level={skill.level} skill/>
+          <LevelBar skill level={skill.level} />
           <ButtonWrapper>
             <ChecboxWrapper>
               <StyledCheckbox
                 checked={isChecked}
+                id={`checkInterested ${skill.name}`}
                 name={`checkInterested ${skill.name}`}
                 type="checkbox"
                 onChange={handleCheckBox}
-                id={`checkInterested ${skill.name}`}
               />
               <StyledLabel htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
             </ChecboxWrapper>
-            <ArrowButtonStyled type="button" onClick={() => setCollapsed(!isCollapsed)} data-cy={`userSkillButton-${skill.name}`}>
+            <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
               <span className="material-icons">{arrowButtonIcon}</span>
             </ArrowButtonStyled>
           </ButtonWrapper>
@@ -112,23 +113,23 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
         <RowSkillsBottom>
           <DescriptionStyled>
             <p>{getDescription(skill)}</p>
-            <Label top={-10} left={25} type={'description'}>Description Level</Label>
+            <Label left={25} top={-10} type={'description'}>Description Level</Label>
           </DescriptionStyled>
           { edit
           && <LevelEditor>
             <SelectWrapper>
-              <select value={skill.level} data-cy="select-level" onChange={handleLevel}>
+              <select data-cy="select-level" value={skill.level} onChange={handleLevel}>
                 {skill.levels.map((e, index) => (
                   <option key={index} value={e.level}>
                     {e.level}
                   </option>
                 ))}
               </select>
-              <Label top={-6} left={7} weight={700}>Level</Label>
+              <Label left={7} top={-6} weight={700}>Level</Label>
             </SelectWrapper>
             <AjustLevelButtons>
-              <AdjustButton icon={'remove'} width={50} clicked={clicked} onClick={() => handleClick('remove')}/>
-              <AdjustButton icon={'add'} width={50} clicked={clicked} onClick={() => handleClick('add')}/>
+              <AdjustButton clicked={clicked} icon={'remove'} width={50} onClick={() => handleClick('remove')}/>
+              <AdjustButton clicked={clicked} icon={'add'} width={50} onClick={() => handleClick('add')}/>
             </AjustLevelButtons>
           </LevelEditor>
           }
@@ -136,11 +137,11 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
         { edit
         && <RowSkillsBottom>
           <StyledInput
-            value={skill.comments}
             placeholder="Write some comments"
+            value={skill.comments}
             onChange={handleComments}
           />
-          <Label top={6} left={60} type={'description'}>Comment</Label>
+          <Label left={60} top={6} type={'description'}>Comment</Label>
         </RowSkillsBottom>
         }
       </RowCollapsed>

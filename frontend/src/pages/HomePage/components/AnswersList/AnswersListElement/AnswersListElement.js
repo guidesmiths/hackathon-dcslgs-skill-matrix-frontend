@@ -13,6 +13,7 @@ const AnswersListElement = ({ email, name, skills, index }) => {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <AnswersListElementStyled data-cy={`answer-list-element-${index}`}>
       {!loading

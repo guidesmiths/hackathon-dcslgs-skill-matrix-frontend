@@ -9,8 +9,8 @@ const initialState = {
   status: 'idle',
 };
 
-export const fetchUserAsync = createAsyncThunk('user/fetchUser', async () => {
-  const response = await axios.get('/ui/users/:id/answers');
+export const fetchAnswersByUserAsync = createAsyncThunk('user/fetchAnswersByUser', async user => {
+  const response = await axios.get(`/ui/user/${user}/answers`);
   return response.data;
 });
 
@@ -20,6 +20,26 @@ export const fetchUpdatedUserAsync = createAsyncThunk(
     const response = await axios.post('/ui/users/:id/answers', {
       user,
     });
+    return response.data;
+  },
+);
+
+export const insertAnswersAsync = createAsyncThunk(
+  'answers/insertAnswers',
+  async userData => {
+    const { ecosystems, id: user } = userData;
+    const answers = ecosystems.flatMap(ecosystem => ecosystem.skills.map(skill => {
+      const { id: skillId, level, sublevel, interested, comments } = skill;
+      return ({
+        skill_id: skillId,
+        skill_value: level,
+        skill_subvalue: sublevel || 'neutral',
+        interested,
+        comments,
+      });
+    }));
+
+    const response = await axios.post(`/ui/user/${user}/answers`, answers);
     return response.data;
   },
 );
@@ -46,10 +66,10 @@ export const userSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(fetchUserAsync.pending, state => {
+      .addCase(fetchAnswersByUserAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchUserAsync.fulfilled, (state, action) => {
+      .addCase(fetchAnswersByUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
       })

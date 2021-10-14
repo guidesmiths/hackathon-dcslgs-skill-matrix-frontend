@@ -1,20 +1,25 @@
 const getApiRoutes = servicesAPI => ({
   skills: {
     fetchSkills: servicesAPI.skills.fetchSkills,
+    insertSkill: servicesAPI.skills.insertSkill,
+    deleteSkill: servicesAPI.skills.deleteSkill,
   },
   answers: {
     fetchAnswers: servicesAPI.answers.fetchAnswers,
-    fetchFilteredAnswers: servicesAPI.answers.fetchFilteredAnswers,
+    fetchAnswersByUser: servicesAPI.answers.fetchAnswersByUser,
+    insertAnswers: servicesAPI.answers.insertAnswers,
   },
   user: {
-    fetchUser: servicesAPI.user.fetchUser,
     fetchUpdatedUser: servicesAPI.user.fetchUpdatedUser,
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
+    insertEcosystem: servicesAPI.ecosystems.insertEcosystem,
+    deleteEcosystem: servicesAPI.ecosystems.deleteEcosystem,
   },
   suggestions: {
     fetchSuggestions: servicesAPI.suggestions.fetchSuggestions,
+    insertSuggestion: servicesAPI.suggestions.insertSuggestion,
     deleteSuggestion: servicesAPI.suggestions.deleteSuggestion,
   },
 });
