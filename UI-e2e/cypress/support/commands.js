@@ -2,7 +2,7 @@
 Cypress.Commands.add('initHome', () => {
   cy.server();
   cy.route({
-    url: '/ui/skills/catalog',
+    url: '/ui/skills',
     method: 'get',
     response: 'fixture:skills',
   }).as('getAllSkills');
@@ -18,7 +18,7 @@ Cypress.Commands.add('initHome', () => {
 Cypress.Commands.add('initUser', () => {
   cy.server();
   cy.route({
-    url: '/ui/users/:id/answers',
+    url: '/ui/user/:id/answers',
     method: 'get',
     response: 'fixture:user.json',
   }).as('getUser');
@@ -44,7 +44,7 @@ Cypress.Commands.add('initAdmin', () => {
     response: 'fixture:ecosystems',
   }).as('getAllEcosystems');
   cy.route({
-    url: '/ui/suggestions?id=*',
+    url: '/ui/suggestion/:id',
     method: 'delete',
     status: 204,
     response: '',

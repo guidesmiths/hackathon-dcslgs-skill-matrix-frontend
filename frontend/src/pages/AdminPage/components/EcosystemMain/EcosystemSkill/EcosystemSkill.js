@@ -12,12 +12,32 @@ import {
   StyledLabel,
 } from './EcosystemSkill.styled';
 
-const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick }) => {
+const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
 
   useLayoutEffect(() => {
     setIsCollapsed(!isNewEcosystem);
   }, [isNewEcosystem]);
+
+  const [newSkill, setNewSkill] = useState();
+  const [newLevel, setNewLevel] = useState();
+
+  const handleNewSkillName = e => {
+    // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.
+    // Please, delete the mocked type, roles and description when this is fixed.
+    const type = 1;
+    const roles = [1, 3];
+    const description = 'Testing description';
+    setNewSkill({ ...newSkill, name: e.target.value, type, roles, description });
+    handleNewSkills({ ...newSkill, name: e.target.value, type, roles, description });
+  };
+
+  const handleNewLevel = (e, index) => {
+    setNewLevel({ ...newLevel, [index + 1]: e.target.value });
+    const levels = newLevel && Object.entries(newLevel).map(([key, value]) => ({ level: key, description: value }));
+    setNewSkill({ ...newSkill, levels });
+    handleNewSkills({ ...newSkill, levels });
+  };
 
   return (
     <SkillContainerStyled data-cy={`skill-container-${skillIndex}`}>
@@ -27,9 +47,10 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
           data-cy={`skill-name-input-${skillIndex}`}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
-          value={skill.name}
+          value={isNewEcosystem ? newSkill?.name : skill.name}
+          onChange={handleNewSkillName}
         />
-        <Label top={-10} left={15}>Skill Name</Label>
+        <Label left={15} top={-10}>Skill Name</Label>
         <IconsGroupStyled>
           <IconStyled icon="delete" onClick={onDeleteClick}/>
           <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
@@ -45,9 +66,10 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
             data-cy={`skill-level-textarea-${levelIndex}`}
             placeholder={`Level ${level.level} description`}
             rows="2"
-            value={level.description}
+            value={isNewEcosystem ? newLevel?.[levelIndex + 1] : level.levelDescription}
+            onChange={e => handleNewLevel(e, levelIndex)}
           />
-          <StyledLabel top={13} left={60}>Level {level.level}</StyledLabel>
+          <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>
         </LevelContainerStyled>
       ))}
     </SkillContainerStyled>
@@ -67,6 +89,7 @@ EcosystemSkill.propTypes = {
     })),
   }).isRequired,
   onDeleteClick: PropTypes.func.isRequired,
+  handleNewSkills: PropTypes.func.isRequired, // It is not required
 };
 
 export default EcosystemSkill;

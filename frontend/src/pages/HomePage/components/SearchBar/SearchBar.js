@@ -6,7 +6,7 @@ import {
   selectSkillFilters,
   selectUserFilter,
 } from '../../../../redux/filters/filtersSlice';
-import { fetchFilteredAnswersAsync } from '../../../../redux/answers/answersSlice';
+import { fetchAnswersAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
 import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
 
@@ -17,7 +17,7 @@ export const SearchBar = () => {
   const isLastFilter = index => index === skillFilters.length - 1;
 
   useEffect(() => {
-    dispatch(fetchFilteredAnswersAsync({ skillFilters, userFilter }));
+    dispatch(fetchAnswersAsync({ skillFilters, userFilter }));
   }, [skillFilters, userFilter]);
 
   return (
@@ -26,9 +26,9 @@ export const SearchBar = () => {
         <SearchBarUsers
           data-cy="user-input"
           name="user-name"
+          placeholder="Search by name..."
           value={userFilter}
           onChange={e => dispatch(updateUserFilter(e.target.value))}
-          placeholder="Search by name..."
         />
         <IconStyled icon={'search'}/>
       </SearchBarWrapper>
