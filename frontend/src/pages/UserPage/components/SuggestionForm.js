@@ -22,8 +22,8 @@ const SuggestionForm = ({ showModal }) => {
   const [isCollapsed, setCollapsed] = useState(false);
   const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
   const [suggestion, setSuggestion] = useState('');
-  const [selectedSuggestion, setSelectedSuggestion] = useState('Ecosystem');
-  const suggestionOptions = ['Ecosystem', 'Skill', 'Other'];
+  const [selectedSuggestion, setSelectedSuggestion] = useState('Ecosystems');
+  const suggestionOptions = ['Ecosystems', 'Skills', 'Others'];
 
   const clickHandler = e => {
     setSelectedSuggestion(e.target.textContent);
@@ -34,7 +34,7 @@ const SuggestionForm = ({ showModal }) => {
   };
   const cancelForm = () => {
     setSuggestion('');
-    setSelectedSuggestion('Ecosystem');
+    setSelectedSuggestion('Ecosystems');
     showModal();
   };
   const submitHandler = e => {
@@ -42,7 +42,7 @@ const SuggestionForm = ({ showModal }) => {
     if (suggestion && selectedSuggestion) {
       dispatch(insertSuggestionAsync({ suggestion, selectedSuggestion }));
       setSuggestion('');
-      setSelectedSuggestion('Ecosystem');
+      setSelectedSuggestion('Ecosystems');
       showModal();
     }
   };

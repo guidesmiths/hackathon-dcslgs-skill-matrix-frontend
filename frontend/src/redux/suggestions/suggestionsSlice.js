@@ -55,13 +55,6 @@ export const suggestionsSlice = createSlice({
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
       })
-      .addCase(insertSuggestionAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(insertSuggestionAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
-      })
       .addCase(deleteSuggestionAsync.pending, state => {
         state.status = 'loading';
       })

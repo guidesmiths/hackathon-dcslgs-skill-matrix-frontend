@@ -31,8 +31,8 @@ module.exports = () => {
      */
     app.post('/ui/suggestion',
       async (req, res) => {
-        const { body: payload } = req;
-        return controller.suggestions.insertSuggestion(payload)
+        const { body } = req;
+        return controller.suggestions.insertSuggestion({ body })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });
