@@ -1,22 +1,20 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import InputStyled from './Input.styled';
 
 const Input = ({ input, width, optionsList, onChangeInput }) => (
-  (
-    <Fragment>
-      <InputStyled
-        list={input}
-        type="text"
-        value={input}
-        width={width}
-        onChange={e => onChangeInput(e)}
-      />
-      <datalist id={input}>
-        {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
-      </datalist>
-    </Fragment>
-  )
+  <>
+    <InputStyled
+      list={input}
+      type="text"
+      value={input}
+      width={width}
+      onChange={onChangeInput}
+    />
+    <datalist id={input}>
+      {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
+    </datalist>
+  </>
 );
 
 Input.defaultProps = {

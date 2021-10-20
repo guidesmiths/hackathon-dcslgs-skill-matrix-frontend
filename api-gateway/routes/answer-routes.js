@@ -16,8 +16,8 @@ module.exports = () => {
      */
     app.post('/ui/answers',
       async (req, res) => {
-        const { body: filters } = req;
-        return controller.answers.fetchAnswers(filters)
+        const { body } = req;
+        return controller.answers.fetchAnswers({ body })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });

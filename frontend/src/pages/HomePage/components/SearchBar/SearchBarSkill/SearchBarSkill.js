@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
@@ -13,36 +13,50 @@ import Input from '../../../../../app/commons/Input/Input';
 import Select from '../../../../../app/commons/Select/Select';
 import Label from '../../../../../app/commons/Label/Label';
 
-const SearchBarSkill = ({ isLastFilter, filter, index }) => {
+const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const dispatch = useDispatch();
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
+  const [skillTyped, setSkillTyped] = useState();
+
+  useEffect(() => {
+    if (isFirstFilter) { dispatch(addSkillFilter()); }
+  }, []);
 
   const handleInput = event => {
     const inputValue = event.target.value;
+    setSkillTyped(inputValue);
+
     const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
     setOptionsList(filteredSkillsList);
-    dispatch(
-      updateSkillFilter({
-        index,
-        filter: { skill: inputValue, level: filter.level },
-      }),
-    );
+
+    const selectedSkill = filteredSkillsList.find(skill => skill.name === inputValue);
+
+    if (selectedSkill) {
+      dispatch(
+        updateSkillFilter({
+          index,
+          filter: { skill: selectedSkill.id, level: filter.level || 1 },
+        }),
+      );
+    }
   };
 
   const handleSelectChange = event => dispatch(
     updateSkillFilter({
       index,
-      filter: { skill: filter.skill, level: Number(event.target.value) },
+      filter: filter.skill && { skill: filter.skill, level: Number(event.target.value) },
     }),
   );
+
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>
         <Input
-          input={filter.skill}
+          input={skillTyped}
           optionsList={optionsList}
+          value={skillTyped}
           width={300}
           onChangeInput={handleInput}
         />
@@ -52,7 +66,7 @@ const SearchBarSkill = ({ isLastFilter, filter, index }) => {
         <Select
           options={options}
           selected={filter.level}
-          onChange={e => handleSelectChange(e)}
+          onChange={handleSelectChange}
         />
         <Label left={10} top={-10}>Level</Label>
       </InputWrapper>
@@ -74,6 +88,11 @@ SearchBarSkill.propTypes = {
   filter: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isLastFilter: PropTypes.bool.isRequired,
+  isFirstFilter: PropTypes.bool,
+};
+
+SearchBarSkill.defaultProps = {
+  isFirstFilter: false,
 };
 
 export default SearchBarSkill;

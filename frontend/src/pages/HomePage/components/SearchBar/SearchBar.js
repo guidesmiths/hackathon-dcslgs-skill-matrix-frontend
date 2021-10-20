@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,13 +34,22 @@ export const SearchBar = () => {
         <IconStyled icon={'search'}/>
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
-        {skillFilters.map((filter, index) => (
-          <SearchBarSkill
-            key={index}
-            filter={filter}
-            index={index}
-            isLastFilter={isLastFilter(index)}
-          />))}
+        {skillFilters.length > 0
+          ? skillFilters.map((filter, index) => (
+            <SearchBarSkill
+              key={index}
+              filter={filter}
+              index={index}
+              isLastFilter={isLastFilter(index)}
+            />))
+          : <SearchBarSkill
+            key={0}
+            isFirstFilter
+            isLastFilter
+            filter={[]}
+            index={0}
+          />
+        }
       </SearchBarSkillWrapper>
     </SearchBarsWrapper>
   );

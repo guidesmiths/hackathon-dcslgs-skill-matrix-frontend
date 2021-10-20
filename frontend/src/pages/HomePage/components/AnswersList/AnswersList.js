@@ -21,7 +21,7 @@ const AnswersList = () => {
             email={email}
             index={index}
             name={name}
-            skills={ecosystems.flatMap(ecosystem => ecosystem.skills)}
+            skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
           />);
       })}
       <Pagination

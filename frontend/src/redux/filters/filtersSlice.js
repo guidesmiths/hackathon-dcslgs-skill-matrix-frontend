@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const defaultFilter = { skill: '', level: 1 };
-
 const initialState = {
   user: '',
-  skills: [defaultFilter],
+  skills: [{}],
   status: 'idle',
 };
 
@@ -13,7 +11,7 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     addSkillFilter: state => {
-      state.skills = [...state.skills, defaultFilter];
+      state.skills = [...state.skills, {}];
     },
     updateSkillFilter: (state, action) => {
       const { index, filter } = action.payload;
@@ -22,7 +20,7 @@ export const filtersSlice = createSlice({
     removeSkillFilter: (state, action) => {
       const stateFilters = state.skills;
       const updatedFilters = stateFilters.length === 1
-        ? [defaultFilter]
+        ? [{}]
         : stateFilters.filter((_, i) => i !== action.payload);
       state.skills = updatedFilters;
     },
@@ -39,7 +37,7 @@ export const {
   updateUserFilter,
 } = filtersSlice.actions;
 
-export const selectSkillFilters = state => state.filters.skills;
+export const selectSkillFilters = state => state.filters.skills || [{ skill: null, level: 0 }];
 
 export const selectUserFilter = state => state.filters.user;
 
