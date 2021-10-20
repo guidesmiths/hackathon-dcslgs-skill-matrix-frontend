@@ -10,10 +10,12 @@
           "id": 2,
           "name": "Hard"
         },
-        "role": {
-          "id": 1,
-          "name": "Frontend"
-        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          }
+        ],
         "description": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials",
         "levels": [
           {
@@ -45,10 +47,12 @@
           "id": 2,
           "name": "Hard"
         },
-        "role": {
-          "id": 1,
-          "name": "Frontend"
-        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          }
+        ],
         "description": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials",
         "levels": [
           {
@@ -80,10 +84,12 @@
           "id": 2,
           "name": "Hard"
         },
-        "role": {
-          "id": 1,
-          "name": "Frontend"
-        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          }
+        ],
         "description": "I have a basic knowledge of the library. I understand when use redux state and when use the component state.",
         "levels": [
           {
@@ -115,10 +121,12 @@
           "id": 2,
           "name": "Hard"
         },
-        "role": {
-          "id": 1,
-          "name": "Frontend"
-        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          }
+        ],
         "description": "I can add new sagas into a working project",
         "levels": [
           {
@@ -156,10 +164,12 @@
           "id": 2,
           "name": "Hard"
         },
-        "role": {
-          "id": 1,
-          "name": "Frontend"
-        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          }
+        ],
         "description": null,
         "levels": [
           {

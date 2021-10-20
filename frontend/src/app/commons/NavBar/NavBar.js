@@ -9,18 +9,17 @@ const NavBar = () => (
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
-          <NavBarLink to="/" exact activeClassName="selected">Directory</NavBarLink>
+          <NavBarLink exact activeClassName="selected" to="/">Directory</NavBarLink>
         </LogoWrapper>
-        <NavBarLink to="/" exact activeClassName="selected">Skill Matrix</NavBarLink>
-        <NavBarLink to="/profile" exact activeClassName="selected">Personal Skill Matrix</NavBarLink>
+        <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>
+        <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>
       </NavStyled>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
-        <NavBarLink to="/profile" activeClassName="selected">test@email.com</NavBarLink>
+        <NavBarLink activeClassName="selected" to="/profile">test@email.com</NavBarLink>
       </UserWrapperStyled>
     </NavBarTop>
   </Fragment>
 );
 
 export default NavBar;
-

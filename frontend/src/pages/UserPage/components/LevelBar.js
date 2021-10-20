@@ -31,10 +31,11 @@ const LevelBar = ({ level, skill }) => {
   }, [skill]);
   return (
     <BarChartContainer>
-      {[...Array(4)].map((x, i) =>
+      {[...Array(4)].map((x, i) => (
         <BarChart
+          key={i}
           data={data}
-          height={ styles.height }
+          height={styles.height}
           layout="vertical"
           margin={{
             top: 8,
@@ -42,21 +43,20 @@ const LevelBar = ({ level, skill }) => {
             right: 8,
           }}
           width={styles.width}
-          key={i}
         >
-          <YAxis hide type="category" radius={[10, 10, 10, 10]}/>
-          <XAxis hide domain={ level > i ? [0, 'dataMax'] : ''} type="number" />
+          <YAxis hide radius={[10, 10, 10, 10]} type="category" />
+          <XAxis hide domain={level > i ? [0, 'dataMax'] : ''} type="number" />
           <Bar
+            alignmentBaseline="baseline"
             background={{ fill: styles.background }}
             dataKey="skillLevel"
-            fill= { styles.color }
-            radius={[10, 10, 10, 10]}
+            fill={styles.color}
             height={25}
-            alignmentBaseline="baseline"
+            radius={[10, 10, 10, 10]}
             // minPointSize={25}
           />
-        </BarChart>,
-      )}
+        </BarChart>
+      ))}
     </BarChartContainer>
   );
 };
