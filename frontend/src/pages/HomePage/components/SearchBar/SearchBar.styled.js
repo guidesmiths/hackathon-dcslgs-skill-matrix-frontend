@@ -23,7 +23,6 @@ const SearchBarsWrapper = styled.div`
     padding: 20px 0 60px;
     animation: ${animation2} 4s;
     position: relative;
-    z-index: 999;
     box-sizing:border-box;
 `;
 
