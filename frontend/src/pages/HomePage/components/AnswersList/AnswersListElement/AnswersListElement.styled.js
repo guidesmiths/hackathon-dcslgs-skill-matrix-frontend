@@ -20,8 +20,10 @@ const animation2 = keyframes`
 const AnswersListElementStyled = styled.div`
     position: relative;
     top:-10px;
-    margin: 15px auto;
-    animation: ${animation2} 3s;
+    margin: 0 auto;
+    padding:15px 0;
+    background-color: white;
+    animation: ${animation2} 4s;
 `;
 
 export default AnswersListElementStyled;

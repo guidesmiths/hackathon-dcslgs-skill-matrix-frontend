@@ -33,7 +33,7 @@ const AnswersListStyled = styled.div`
   background: transparent;
   background-repeat: no-repeat;
   background-position-y: 50px;
-  animation: ${animation2} 7s;
+  animation: ${animation2} 5s;
 `;
 
 const ScrollWrapper = styled.div`
@@ -44,7 +44,6 @@ const ScrollWrapper = styled.div`
   height: 70vh;
   margin: 0 auto;
   overflow-y: scroll;
-  background-color: white;
   background-repeat:no-repeat;
   background-size: 90% 0;
   border-radius: 10px 10px;

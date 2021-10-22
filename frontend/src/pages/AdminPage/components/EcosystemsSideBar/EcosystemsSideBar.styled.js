@@ -11,7 +11,6 @@ const EcosystemsSideBarStyled = styled.div`
   box-sizing: border-box;
   margin: 20px auto 0;
   padding: 0px 0px 50px;
-  overflow-y: scroll;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
 `;

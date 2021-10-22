@@ -25,61 +25,6 @@ const AnswersList = () => {
               skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
             />);
         })}
-        {answers.map((answer, index) => {
-          const { user_id: userId, name, email, ecosystems } = answer;
-          return (
-            <AnswersListElement
-              key={userId}
-              email={email}
-              index={index}
-              name={name}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-            />);
-        })}
-        {answers.map((answer, index) => {
-          const { user_id: userId, name, email, ecosystems } = answer;
-          return (
-            <AnswersListElement
-              key={userId}
-              email={email}
-              index={index}
-              name={name}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-            />);
-        })}
-        {answers.map((answer, index) => {
-          const { user_id: userId, name, email, ecosystems } = answer;
-          return (
-            <AnswersListElement
-              key={userId}
-              email={email}
-              index={index}
-              name={name}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-            />);
-        })}
-        {answers.map((answer, index) => {
-          const { user_id: userId, name, email, ecosystems } = answer;
-          return (
-            <AnswersListElement
-              key={userId}
-              email={email}
-              index={index}
-              name={name}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-            />);
-        })}
-        {answers.map((answer, index) => {
-          const { user_id: userId, name, email, ecosystems } = answer;
-          return (
-            <AnswersListElement
-              key={userId}
-              email={email}
-              index={index}
-              name={name}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-            />);
-        })}
       </ScrollWrapper>
       <Pagination
         currentPage={currentPage}
