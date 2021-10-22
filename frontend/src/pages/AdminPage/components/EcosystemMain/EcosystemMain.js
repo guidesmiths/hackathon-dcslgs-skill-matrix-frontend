@@ -16,6 +16,7 @@ import {
 import Label from '../../../../app/commons/Label/Label';
 import { deleteEcosystemAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import { deleteSkillAsync } from '../../../../redux/skills/skillsSlice';
+import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 
 const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin }) => {
   const dispatch = useDispatch();
@@ -67,16 +68,18 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem.skills.map((skill, index) => (
-            <EcosystemSkill
-              key={index}
-              handleNewSkills={handleNewSkills}
-              index={index}
-              isNewEcosystem={isNewEcosystem}
-              skill={skill}
-              onDeleteClick={() => onDeleteClick('skill', skill.id)}
-            />
-          ))}
+          <ScrollWrapper height={65}>
+            {ecosystem.skills.map((skill, index) => (
+              <EcosystemSkill
+                key={index}
+                handleNewSkills={handleNewSkills}
+                index={index}
+                isNewEcosystem={isNewEcosystem}
+                skill={skill}
+                onDeleteClick={() => onDeleteClick('skill', skill.id)}
+              />
+            ))}
+          </ScrollWrapper>
         </Fragment>
       )}
     {show || !ecosystem ? <ButtonsWrapper>

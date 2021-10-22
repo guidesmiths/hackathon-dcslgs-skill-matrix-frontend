@@ -18,10 +18,9 @@ const animation2 = keyframes`
     }
 `;
 const AnswersListElementStyled = styled.div`
-    width: 95%;
     position: relative;
-    top:-20px;
-    margin: -40px auto 60px auto;
+    top:-10px;
+    margin: 15px auto;
     animation: ${animation2} 3s;
 `;
 

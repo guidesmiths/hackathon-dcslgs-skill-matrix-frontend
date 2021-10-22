@@ -3,14 +3,17 @@ import Icon from '../../../../../app/commons/icon/icon';
 import Label from '../../../../../app/commons/Label/Label.styled';
 
 const SkillContainerStyled = styled.div`
-    margin: 20px auto;
-     border: 1px solid #EFEFEF;
-    box-sizing: border-box;
-    border-radius: 4px;
     position: relative;
     width: 80%;
+    margin: 20px auto;
+    box-sizing: border-box;
     font-family: ${props => props.theme.fonts.poppins};
-
+    border: 1px solid #EFEFEF;
+    border-radius: 4px;
+    &:last-child{
+        height:100%;
+        margin-bottom:30px;
+    }
 `;
 
 const SkillHeaderStyled = styled.div`
@@ -20,12 +23,12 @@ const SkillHeaderStyled = styled.div`
 `;
 
 const SkillNameStyledInput = styled.input`
-    padding: 12px;
     width: 60%;
-    border: 1px solid #EFEFEF;
-    box-sizing: border-box;
-    border-radius: 4px;
+    padding: 12px;
     margin-left: 20px;
+    box-sizing: border-box;
+    border: 1px solid #EFEFEF;
+    border-radius: 4px;
 `;
 
 const StyledLabel = styled(Label)`
@@ -41,37 +44,38 @@ const IconsGroupStyled = styled.div`
 const IconStyled = styled(Icon)`
     color: ${props => props.theme.colors.black};
     &:first-child {
-      margin-right: 20px;
+        margin-right: 20px;
     }
 `;
 const LevelStyled = styled.textarea`
-    resize: none;
     width: 90%;
     margin: 10px auto;
     padding: 12px;
-    font-size: 14px;
-    font-family: ${props => props.theme.fonts.poppins};
-    border: 1px solid #EFEFEF;
     box-sizing: border-box;
+    font-family: ${props => props.theme.fonts.poppins};
+    font-size: 14px;
+    border: 1px solid #EFEFEF;
     border-radius: 4px;
+    resize: none;
+
     &:hover{
-        cursor: pointer;
-        border: 1px solid ${props => props.theme.colors.primaryColor};
+       cursor: pointer;
+       border: 1px solid ${props => props.theme.colors.primaryColor};
     }
     &:hover + ${StyledLabel}{
-        color: ${props => props.theme.colors.primaryColor};
+      color: ${props => props.theme.colors.primaryColor};
     }
 `;
 
 const LevelContainerStyled = styled.div`
+    position: relative;
     display: ${props => (props.show ? 'flex' : 'none')};
     align-items: center;
+    box-sizing: border-box;
     padding: 10px;
     border-top: 1px solid #EFEFEF;
     border-left: 1px solid ${props => props.theme.colors.primaryColor};
-    box-sizing: border-box;
-    position: relative;
-   `;
+`;
 
 export {
   SkillContainerStyled,
