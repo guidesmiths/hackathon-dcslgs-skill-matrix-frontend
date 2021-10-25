@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
@@ -20,9 +20,6 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const skills = useSelector(selectAllSkills);
   const [skillTyped, setSkillTyped] = useState();
 
-  useEffect(() => {
-    if (isFirstFilter) { dispatch(addSkillFilter()); }
-  }, []);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -49,6 +46,10 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       filter: filter.skill && { skill: filter.skill, level: Number(event.target.value) },
     }),
   );
+  const removeFilter = arg => {
+    dispatch(removeSkillFilter(arg));
+    setSkillTyped('');
+  };
 
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
@@ -72,8 +73,8 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       </InputWrapper>
       <StyledIcon
         icon={'delete'}
-        show={!isLastFilter}
-        onClick={() => dispatch(removeSkillFilter(index))}
+        show={isFirstFilter}
+        onClick={() => removeFilter(index)}
       />
       <StyledIcon
         icon={'add'}

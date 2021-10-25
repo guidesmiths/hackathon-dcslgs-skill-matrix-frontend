@@ -20,9 +20,9 @@ const animation2 = keyframes`
 `;
 
 const SearchBarsWrapper = styled.div`
+    position: relative;
     padding: 20px 0 60px;
     animation: ${animation2} 4s;
-    position: relative;
     box-sizing:border-box;
 `;
 
