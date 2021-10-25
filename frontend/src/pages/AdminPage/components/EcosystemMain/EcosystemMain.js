@@ -17,7 +17,7 @@ import Label from '../../../../app/commons/Label/Label';
 import { deleteEcosystemAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import { deleteSkillAsync } from '../../../../redux/skills/skillsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -67,7 +67,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem.skills.map((skill, index) => (
+          {ecosystem.skills?.map((skill, index) => (
             <EcosystemSkill
               key={index}
               handleNewSkills={handleNewSkills}
@@ -80,7 +80,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
         </Fragment>
       )}
     {show || !ecosystem ? <ButtonsWrapper>
-      <StyledButton>Add new skill</StyledButton> {/* TODO: Show new skill/levels fields */}
+      <StyledButton onClick={onNewEcosystem}>{!ecosystem ? 'Add new ecosystem' : 'Add new skill'}</StyledButton> {/* TODO: Show new skill/levels fields */}
       <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
         <StyledDeleteIcon icon="delete" />
          Delete ecosystem
@@ -107,6 +107,7 @@ EcosystemsMain.propTypes = {
     })),
   }),
   isNewEcosystem: PropTypes.bool,
+  onNewEcosystem: PropTypes.func.isRequired,
   show: PropTypes.bool,
   handleNewEcosystemAdmin: PropTypes.func.isRequired, // It is not required
 };

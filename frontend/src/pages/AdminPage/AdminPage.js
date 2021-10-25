@@ -71,7 +71,13 @@ const HomePage = () => {
       <AdminPageStyled data-cy="admin-page">
         <SuggestionsInbox />
         <EcosystemsSideBar ecosystems={ecosystems} show={isOnEditableMode} onEcosystemSelected={handleEcosystemClick} onNewEcosystem={newEcosystemMode}/>
-        <EcosystemMain ecosystem={selectedEcosystem} handleNewEcosystemAdmin={handleNewEcosystemAdmin} isNewEcosystem={isNewEcosystem} show={isOnEditableMode} />
+        <EcosystemMain
+          ecosystem={selectedEcosystem}
+          handleNewEcosystemAdmin={handleNewEcosystemAdmin}
+          isNewEcosystem={isNewEcosystem}
+          show={isOnEditableMode}
+          onNewEcosystem={newEcosystemMode}
+        />
       </AdminPageStyled>
       <Footer>
         <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
