@@ -21,7 +21,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
-  const [isEmpty, setIsEpty] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(null);
 
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
@@ -45,7 +45,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     }
   };
   useEffect(() => {
-    setIsEpty(ecosystem?.id === 0);
+    setIsEmpty(ecosystem?.id === 0);
   }, [ecosystem]);
   const handleNewEcosystem = e => {
     setNewEcosystem({ ...newEcosystem, name: e.target.value });
