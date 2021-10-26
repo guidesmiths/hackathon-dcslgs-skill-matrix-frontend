@@ -3,15 +3,15 @@ import Icon from '../../app/commons/icon/icon';
 import Modal from '../../app/commons/Modal/Modal';
 
 const UserPageStyled = styled.div`
+  position: relative;
   display: block;
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
-  position: relative;
 `;
 const HeaderStyled = styled.div`
-  background: ${props => props.theme.colors.backgroundGradient};
   width: 100%;
   height: 90px;
+  background: ${props => props.theme.colors.backgroundGradient};
 `;
 
 const UserPageDisplay = styled.div`

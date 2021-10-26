@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import Icon from '../../../app/commons/icon/icon';
 
+const RowSkillsWrapper = styled.div`
+  &:last-child{
+    padding-bottom: 30px !important;
+  }
+`;
 const RowSkillsTop = styled.div`
   margin: 0 auto;
   margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
@@ -65,7 +70,6 @@ const ChecboxWrapper = styled.div`
   position: relative;
   width: 20px;
   margin: 20px 20px 20px 0;
-
 `;
 
 const StyledCheckbox = styled.input`
@@ -167,6 +171,7 @@ const StyledInput = styled.input`
 `;
 
 export {
+  RowSkillsWrapper,
   RowSkillsTop,
   RowSkills,
   UserSkillName,

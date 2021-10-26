@@ -10,6 +10,7 @@ import {
   UserInput,
   FormHeader,
 } from '../UserPage.styled';
+import ScrollWrapper from '../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice';
 import {
   selectSkillsWithLevel,
@@ -73,14 +74,16 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
           <ColumTitle>Rating</ColumTitle>
           <ColumTitle>I&apos;d Like to learn</ColumTitle>
         </ColumTitles>
-        {skillswithLevel?.map(skill => (
-          <UserRow
-            key={skill.id}
-            edit={edit}
-            idEcosystem={systemSelected}
-            skill={skill}
-          />
-        ))}
+        <ScrollWrapper height={70}>
+          {skillswithLevel?.map(skill => (
+            <UserRow
+              key={skill.id}
+              edit={edit}
+              idEcosystem={systemSelected}
+              skill={skill}
+            />
+          ))}
+        </ScrollWrapper>
       </form>
     </UserData>
   );

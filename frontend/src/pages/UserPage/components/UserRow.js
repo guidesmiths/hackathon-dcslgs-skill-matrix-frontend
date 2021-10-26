@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { RowSkillsTop,
+import { RowSkillsWrapper,
+  RowSkillsTop,
   RowSkills,
   UserSkillName,
   StyledCheckbox,
@@ -84,7 +85,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   };
 
   return (
-    <div>
+    <RowSkillsWrapper>
       <RowSkillsTop
         data-cy={`userSkill-${skill.name}`}
         isRowDown={!isCollapsed}
@@ -145,7 +146,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
         </RowSkillsBottom>
         }
       </RowCollapsed>
-    </div>
+    </RowSkillsWrapper>
   );
 };
 
