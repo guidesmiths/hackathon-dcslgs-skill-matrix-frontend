@@ -90,7 +90,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
         </Fragment>
       )}
     {show || isEmpty ? <ButtonsWrapper>
-      <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton> {/* TODO: Show new skill/levels fields */}
+      <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
       <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
         <StyledDeleteIcon icon="delete" />
          Delete ecosystem
