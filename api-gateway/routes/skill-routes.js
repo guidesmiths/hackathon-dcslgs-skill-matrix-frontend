@@ -33,8 +33,8 @@ module.exports = () => {
 
     app.post('/ui/skill',
       async (req, res) => {
-        const { body: payload } = req;
-        return controller.skills.insertSkill(payload)
+        const { body } = req;
+        return controller.skills.insertSkill({ body })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });

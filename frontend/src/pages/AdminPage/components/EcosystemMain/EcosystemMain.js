@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
@@ -17,10 +17,12 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onRefresh }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onRefresh }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
+  const [isEmpty, setIsEmpty] = useState(null);
+
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
   const [newEcosystem, setNewEcosystem] = useState();
@@ -42,7 +44,9 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
       onRefresh();
     }
   };
-
+  useEffect(() => {
+    setIsEmpty(ecosystem?.id === 0);
+  }, [ecosystem]);
   const handleNewEcosystem = e => {
     setNewEcosystem({ ...newEcosystem, name: e.target.value });
     handleNewEcosystemAdmin({ ...newEcosystem, name: e.target.value });
@@ -53,7 +57,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   };
 
   return (<EcosystemContainerStyled>
-    {!ecosystem
+    {isEmpty
       ? (
         <EcosystemFallbackStyled data-cy="fallback-text">
         Select one Ecosystem or add a new one
@@ -67,12 +71,12 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               data-cy="ecosystem-name-input"
               id="name"
               placeholder="Ecosystem name"
-              value={isNewEcosystem ? newEcosystem?.name : ecosystem.name}
+              value={isNewEcosystem ? newEcosystem?.name : ecosystem?.name}
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          <ScrollWrapper height={65}>
-            {ecosystem.skills.map((skill, index) => (
+          <ScrollWrapper height={ !show ? 65 : 50}>
+            {ecosystem?.skills.map((skill, index) => (
               <EcosystemSkill
                 key={index}
                 handleNewSkills={handleNewSkills}
@@ -85,8 +89,8 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
           </ScrollWrapper>
         </Fragment>
       )}
-    {show || !ecosystem ? <ButtonsWrapper>
-      <StyledButton>Add new skill</StyledButton> {/* TODO: Show new skill/levels fields */}
+    {show || isEmpty ? <ButtonsWrapper>
+      <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
       <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
         <StyledDeleteIcon icon="delete" />
          Delete ecosystem
@@ -114,6 +118,7 @@ EcosystemsMain.propTypes = {
   }),
   handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
+  onNewEcosystem: PropTypes.func.isRequired,
   show: PropTypes.bool,
   onRefresh: PropTypes.func,
 };
