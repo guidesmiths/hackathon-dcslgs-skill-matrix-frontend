@@ -22,22 +22,11 @@ export const insertSkillAsync = createAsyncThunk(
   },
 );
 
-export const deleteSkillAsync = createAsyncThunk(
-  'skills/deleteSkill',
-  async id => {
-    await axios.delete(`/ui/skill/${id}`);
-    return id;
-  },
-);
-
 export const skillsSlice = createSlice({
   name: 'skills',
   initialState,
   reducers: {
     skillAdded: (state, action) => {
-      state.value = [...state.value, ...action.payload];
-    },
-    removeSkill: (state, action) => {
       state.value = [...state.value, ...action.payload];
     },
   },
@@ -57,14 +46,6 @@ export const skillsSlice = createSlice({
       .addCase(insertSkillAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
-      })
-      .addCase(deleteSkillAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(deleteSkillAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        const updatedSkills = state.value.filter(({ id }) => id !== action.payload);
-        state.value = [...updatedSkills];
       });
   },
 });

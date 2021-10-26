@@ -14,11 +14,10 @@ import {
   StyledDeleteIcon,
 } from './EcosystemMain.styled';
 import Label from '../../../../app/commons/Label/Label';
-import { deleteEcosystemAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
-import { deleteSkillAsync } from '../../../../redux/skills/skillsSlice';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
+import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onRefresh }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -37,7 +36,11 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const handleDelete = () => {
     if (subject === 'ecosystem') { dispatch(deleteEcosystemAsync(idToDelete)); }
     // TODO: When I delete a skill, the modal is still open and the ecosystem's skills don't refresh
-    if (subject === 'skill') { dispatch(deleteSkillAsync(idToDelete)); }
+    if (subject === 'skill') {
+      dispatch(deleteSkillAsync(idToDelete));
+      setShowModal(false);
+      onRefresh();
+    }
   };
 
   const handleNewEcosystem = e => {
@@ -109,9 +112,10 @@ EcosystemsMain.propTypes = {
       name: PropTypes.string,
     })),
   }),
+  handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
   show: PropTypes.bool,
-  handleNewEcosystemAdmin: PropTypes.func.isRequired, // It is not required
+  onRefresh: PropTypes.func,
 };
 
 EcosystemsMain.defaultProps = {
@@ -130,7 +134,9 @@ EcosystemsMain.defaultProps = {
       ],
     }],
   },
+  handleNewEcosystemAdmin: () => {},
   isNewEcosystem: null,
+  onRefresh: () => {},
   show: false,
 };
 

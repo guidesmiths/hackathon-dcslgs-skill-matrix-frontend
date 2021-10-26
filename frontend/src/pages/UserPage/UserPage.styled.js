@@ -10,7 +10,7 @@ const UserPageStyled = styled.div`
 `;
 const HeaderStyled = styled.div`
   width: 100%;
-  height:90px;
+  height: 90px;
   background: ${props => props.theme.colors.backgroundGradient};
 `;
 
@@ -27,7 +27,7 @@ const UserData = styled.div`
   grid-column-end: 5;
   background: white;
   width: 98%;
-  margin:0 auto;
+  margin: 0 auto;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
 `;
 
@@ -38,17 +38,16 @@ const RowTitle = styled.div`
   height: 72px;
 `;
 const ColumTitles = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  align-items: center;
+  width: 80%;
+  box-sizing: border-box;
+  margin: 0 auto 20px;
+  padding: 0 15px 0 50px;
+
   border-bottom: 1px solid #EFEFEF;
   border-top: 1px solid #EFEFEF;
-  align-items: center;
-  grid-column-start: 1;
-  grid-column-end: 6;
-  width: 80%;
-  margin: 0 auto 20px;
-  padding:0 50px;
-  box-sizing:border-box;
 `;
 
 const RowWrapper = styled.div`
@@ -61,7 +60,7 @@ const RowWrapper = styled.div`
 const FormHeader = styled(RowWrapper)`
   margin-bottom: 35px;
   padding: 5px 15px;
-  border:0;
+  border: 0;
 `;
 
 const UserInput = styled.input`
@@ -70,12 +69,12 @@ const UserInput = styled.input`
 `;
 
 const DataTitle = styled.h5`
-  min-width:300px;
-  text-align: start;
+  min-width: 300px;
+  margin: 0px;
+  padding: 25px 0 20px 20px;
   font-size: 24px;
   line-height: 32px;
-  margin: 0px;
-  padding:25px 0 20px 20px;
+  text-align: start;
   border-bottom: 1px solid #EFEFEF;
 `;
 const ColumTitle = styled.h5`
@@ -83,8 +82,8 @@ const ColumTitle = styled.h5`
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
-  text-transform: uppercase;
   color: ${props => props.theme.colors.textColor};
+  text-transform: uppercase;
 `;
 
 const EditButtonStyled = styled.div`
@@ -100,17 +99,19 @@ const EditButtonStyled = styled.div`
     cursor: pointer;
   }
 `;
-const SaveButton = styled(EditButtonStyled)`
 
-&:first-child{
+const SaveButton = styled(EditButtonStyled)`
+  &:first-child {
     background: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.primaryColor};
   };
-  &:last-child{
+
+  &:last-child {
     background: ${props => props.theme.colors.primaryColor};
     color: ${props => props.theme.colors.white};
   };
-  &:hover{
+
+  &:hover {
     cursor: pointer;
   }
 `;

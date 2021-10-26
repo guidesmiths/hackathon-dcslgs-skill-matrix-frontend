@@ -31,6 +31,14 @@ export const deleteEcosystemAsync = createAsyncThunk(
   },
 );
 
+export const deleteSkillAsync = createAsyncThunk(
+  'ecosystems/deleteSkill',
+  async id => {
+    await axios.delete(`/ui/skill/${id}`);
+    return id;
+  },
+);
+
 export const ecosystemsSlice = createSlice({
   name: 'ecosystems',
   initialState,
@@ -44,6 +52,9 @@ export const ecosystemsSlice = createSlice({
     resetEcosystems: state => {
       state.value = [];
     },
+    removeSkill: (state, action) => {
+      state.value = [...state.value, ...action.payload];
+    },
   },
 
   extraReducers: builder => {
@@ -53,7 +64,7 @@ export const ecosystemsSlice = createSlice({
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
+        state.value = [...action.payload];
       })
       .addCase(insertEcosystemAsync.pending, state => {
         state.status = 'loading';
@@ -69,11 +80,19 @@ export const ecosystemsSlice = createSlice({
         state.status = 'succeded';
         const updatedEcosystems = state.value.filter(({ id }) => id !== action.payload);
         state.value = [...updatedEcosystems];
+      })
+      .addCase(deleteSkillAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(deleteSkillAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        const updatedSkills = state.value.filter(({ id }) => id !== action.payload);
+        state.value = [...updatedSkills];
       });
   },
 });
 
-export const { ecosystemAdded, removeEcosystem, resetEcosystems } = ecosystemsSlice.actions;
+export const { ecosystemAdded, removeEcosystem, resetEcosystems, removeSkill } = ecosystemsSlice.actions;
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
