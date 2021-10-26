@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { UserRowWrapper } from '../ScrollWrapper/ScrollWrapper.styled';
 
 const EcosystemColumn = styled.div`
   display: flex;
@@ -27,6 +28,9 @@ const ButtonStyled = styled.button`
   border: 0;
   background: transparent;
   text-align:start;
+  &:last-child{
+    padding-bottom: 20px;
+  }
   &:hover {
     background: #f4f4f4;
     cursor: pointer;
@@ -38,5 +42,8 @@ const TitleColumn = styled.h4`
   font-size: 24px;
   margin: 0;
 `;
-
-export { EcosystemColumn, ButtonStyled, TitleColumn };
+const EcosystemScroller = styled(UserRowWrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+export { EcosystemColumn, ButtonStyled, TitleColumn, EcosystemScroller };

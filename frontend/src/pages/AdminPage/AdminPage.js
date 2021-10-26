@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, Fragment, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
@@ -31,6 +32,7 @@ const HomePage = () => {
   const [isOnEditableMode, setIsOnEditableMode] = useState(null);
   const [beforeEdit, setBeforeEdit] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
+  const [refresh, setRefresh] = useState(false);
 
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
@@ -47,6 +49,7 @@ const HomePage = () => {
 
   const newEcosystemMode = () => {
     setIsNewEcosystem(true);
+    setIsOnEditableMode(!!isNewEcosystem);
     setSelectedEcosystem(newEcosystem);
   };
 
@@ -63,8 +66,18 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchSuggestionsAsync());
     dispatch(fetchEcosystemsAsync());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (refresh) {
+      dispatch(fetchEcosystemsAsync());
+      setRefresh(false);
+    }
+  }, [refresh]);
+
+  useEffect(() => {
+    handleEcosystemClick(selectedEcosystem?.id);
+  }, [ecosystems]);
 
   return (
     <Fragment>
@@ -77,6 +90,7 @@ const HomePage = () => {
           isNewEcosystem={isNewEcosystem}
           show={isOnEditableMode}
           onNewEcosystem={newEcosystemMode}
+          onRefresh={() => setRefresh(true)}
         />
       </AdminPageStyled>
       <Footer>

@@ -23,13 +23,35 @@ const animation2 = keyframes`
     }
 `;
 
-export default styled.div`
-  display: block;
+const AnswersListStyled = styled.div`
   position: relative;
+  top: 0;
   z-index: 1;
-  padding-top: 20px;
-  box-sizing: border-box;
+  display: block;
   width: 100%;
-  animation: ${animation2} 7s;
+  box-sizing: border-box;
   background: transparent;
+  background-repeat: no-repeat;
+  background-position-y: 50px;
+  animation: ${animation2} 5s;
 `;
+
+const ScrollWrapper = styled.div`
+  position: relative;
+  top: -40px;
+  z-index:10;
+  width: 95%;
+  height: 70vh;
+  margin: 0 auto;
+  overflow-y: scroll;
+  background-repeat:no-repeat;
+  background-size: 90% 0;
+  border-radius: 10px 10px;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar{
+    display: none;
+  }
+`;
+
+export { AnswersListStyled, ScrollWrapper };

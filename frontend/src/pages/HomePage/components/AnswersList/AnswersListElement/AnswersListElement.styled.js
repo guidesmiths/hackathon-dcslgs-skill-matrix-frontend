@@ -18,11 +18,12 @@ const animation2 = keyframes`
     }
 `;
 const AnswersListElementStyled = styled.div`
-    width: 95%;
     position: relative;
-    top:-20px;
-    margin: -40px auto 60px auto;
-    animation: ${animation2} 3s;
+    top:-10px;
+    margin: 0 auto;
+    padding:15px 0;
+    background-color: white;
+    animation: ${animation2} 4s;
 `;
 
 export default AnswersListElementStyled;
