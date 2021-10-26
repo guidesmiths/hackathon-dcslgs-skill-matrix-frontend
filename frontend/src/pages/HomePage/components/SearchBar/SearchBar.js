@@ -34,21 +34,15 @@ export const SearchBar = () => {
         <IconStyled icon={'search'}/>
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
-        {skillFilters.length > 0
-          ? skillFilters.map((filter, index) => (
+        {
+          skillFilters.map((filter, index) => (
             <SearchBarSkill
               key={index}
               filter={filter}
               index={index}
+              isFirstFilter={skillFilters.length > 1}
               isLastFilter={isLastFilter(index)}
             />))
-          : <SearchBarSkill
-            key={0}
-            isFirstFilter
-            isLastFilter
-            filter={[]}
-            index={0}
-          />
         }
       </SearchBarSkillWrapper>
     </SearchBarsWrapper>
