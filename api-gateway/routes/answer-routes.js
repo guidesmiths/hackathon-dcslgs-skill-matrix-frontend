@@ -17,7 +17,10 @@ module.exports = () => {
     app.post('/ui/answers',
       async (req, res) => {
         const { body } = req;
-        return controller.answers.fetchAnswers({ body })
+        return controller.answers.fetchAnswers({
+          body,
+          headers: { Authorization: req.headers.authorization },
+        })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });
@@ -40,6 +43,7 @@ module.exports = () => {
         const { id } = params;
         return controller.answers.fetchAnswersByUser({
           urlParams: { id },
+          headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
@@ -62,10 +66,13 @@ module.exports = () => {
         const { body: payload, params } = req;
         const { id } = params;
 
-        return controller.answers.insertAnswers({
-          urlParams: { id },
-          body: payload,
-        })
+        return controller.answers.insertAnswers(
+          {
+            urlParams: { id },
+            body: payload,
+            headers: { Authorization: req.headers.authorization },
+          },
+        )
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });

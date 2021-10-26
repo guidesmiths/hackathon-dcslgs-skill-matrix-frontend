@@ -6,13 +6,17 @@ const initialState = {
   status: 'idle',
 };
 
+function config() {
+  return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+}
+
 export const fetchAnswersAsync = createAsyncThunk(
   'answers/fetchAnswers',
   async filter => {
     const response = await axios.post('/ui/answers', {
       name: filter.userFilter,
       skills: filter.skillFilters,
-    });
+    }, config());
     return response.data;
   },
 );

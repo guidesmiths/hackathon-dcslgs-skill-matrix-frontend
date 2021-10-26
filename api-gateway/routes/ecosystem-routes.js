@@ -14,7 +14,9 @@ module.exports = () => {
      * @security jwtAuth
      */
     app.get('/ui/ecosystems',
-      async (req, res) => controller.ecosystems.fetchEcosystems()
+      async (req, res) => controller.ecosystems.fetchEcosystems({
+        headers: { Authorization: req.headers.authorization },
+      })
         .then(({ data }) => res.json(data))
         .catch(error => console.error(error)));
 
@@ -33,7 +35,10 @@ module.exports = () => {
     app.post('/ui/ecosystem',
       async (req, res) => {
         const { body: payload } = req;
-        return controller.ecosystems.insertEcosystem(payload)
+        return controller.ecosystems.insertEcosystem({
+          headers: { Authorization: req.headers.authorization },
+          payload,
+        })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });
@@ -52,6 +57,7 @@ module.exports = () => {
         const { params } = req;
         const { id } = params;
         return controller.ecosystems.deleteEcosystem({
+          headers: { Authorization: req.headers.authorization },
           urlParams: { id },
         })
           .then(({ data }) => res.json(data))

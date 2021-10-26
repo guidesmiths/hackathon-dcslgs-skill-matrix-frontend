@@ -28,9 +28,17 @@ module.exports = {
         method: 'post',
       },
     },
-    user: {
+    users: {
       fetchUpdatedUser: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/users/:id/answers`,
+        method: 'post',
+      },
+      fetchUserInfo: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/me`,
+        method: 'get',
+      },
+      insertUser: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user`,
         method: 'post',
       },
     },

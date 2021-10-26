@@ -6,10 +6,14 @@ const initialState = {
   status: 'idle',
 };
 
+function config() {
+  return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+}
+
 export const fetchSkillsAsync = createAsyncThunk(
   'skills/fetchSkills',
   async () => {
-    const response = await axios.get('/ui/skills');
+    const response = await axios.get('/ui/skills', config());
     return response.data;
   },
 );
@@ -17,7 +21,7 @@ export const fetchSkillsAsync = createAsyncThunk(
 export const insertSkillAsync = createAsyncThunk(
   'skills/insertSkill',
   async skill => {
-    const response = await axios.post('/ui/skill', skill);
+    const response = await axios.post('/ui/skill', skill, config());
     return response.data;
   },
 );

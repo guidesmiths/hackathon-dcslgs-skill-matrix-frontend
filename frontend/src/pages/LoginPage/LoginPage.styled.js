@@ -18,7 +18,7 @@ const LoginTitle = styled.h1`
     font-size: 64px;
     line-height: 72px;
 `;
-const LoginButton = styled.div`
+const LoginButtonStyled = styled.div`
     background-color: ${props => props.theme.colors.primaryColor};
     color: ${props => props.theme.colors.white};
     border-radius: 8px;
@@ -46,4 +46,4 @@ const StyledText = styled.p`
     text-align:center;
 `;
 
-export { LoginStyled, LoginTitle, LoginButton, StyledIcon, StyledText };
+export { LoginStyled, LoginTitle, LoginButtonStyled, StyledIcon, StyledText };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -7,10 +8,11 @@ import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync, resetEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
-import { insertAnswersAsync, selectUserData } from '../../redux/user/userSlice';
+import { insertAnswersAsync, selectUserData, fetchUserInfoAsync } from '../../redux/user/userSlice';
 
 const UserPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [systemSelected, setSystem] = useState(null);
   const [show, setShow] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -28,6 +30,7 @@ const UserPage = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchUserInfoAsync(history));
     dispatch(fetchEcosystemsAsync());
     return () => {
       dispatch(resetEcosystems());

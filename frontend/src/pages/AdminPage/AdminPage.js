@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, Fragment, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
@@ -8,6 +9,7 @@ import { fetchSuggestionsAsync } from '../../redux/suggestions/suggestionsSlice'
 import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import Footer from '../../app/commons/Footer/Footer';
+import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 
 // Do we need this?
 const newEcosystemEmpty = {
@@ -26,6 +28,7 @@ const newEcosystemEmpty = {
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
   const [isNewEcosystem, setIsNewEcosystem] = useState(null);
@@ -64,6 +67,7 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchUserInfoAsync(history));
     dispatch(fetchSuggestionsAsync());
     dispatch(fetchEcosystemsAsync());
   }, []);

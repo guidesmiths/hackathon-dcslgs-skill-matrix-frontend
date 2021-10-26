@@ -6,10 +6,15 @@ const initialState = {
   status: 'idle',
 };
 
+function config() {
+  return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+}
+
+
 export const fetchEcosystemsAsync = createAsyncThunk(
   'ecosystems/fetchEcosystems',
   async () => {
-    const response = await axios.get('/ui/ecosystems');
+    const response = await axios.get('/ui/ecosystems', config());
     return response.data;
   },
 );
@@ -18,7 +23,7 @@ export const insertEcosystemAsync = createAsyncThunk(
   'ecosystems/insertEcosystem',
   async ecosystem => {
     // We are receiving an ecosystem, but on the backend the body is empty :(
-    const response = await axios.post('/ui/ecosystem', ecosystem);
+    const response = await axios.post('/ui/ecosystem', ecosystem, config());
     return response.data;
   },
 );
@@ -26,7 +31,7 @@ export const insertEcosystemAsync = createAsyncThunk(
 export const deleteEcosystemAsync = createAsyncThunk(
   'ecosystems/deleteEcosystem',
   async id => {
-    await axios.delete(`/ui/ecosystem/${id}`);
+    await axios.delete(`/ui/ecosystem/${id}`, { config });
     return id;
   },
 );

@@ -3,23 +3,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+function config() {
+  return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+}
+
 const initialState = {
   value: [],
   skillsSelected: [],
   status: 'idle',
 };
 
-export const fetchAnswersByUserAsync = createAsyncThunk('user/fetchAnswersByUser', async user => {
-  const response = await axios.get(`/ui/user/${user}/answers`);
+export const fetchAnswersByUserAsync = createAsyncThunk('users/fetchAnswersByUser', async user => {
+  const response = await axios.get(`/ui/user/${user}/answers`, config());
   return response.data;
 });
 
 export const fetchUpdatedUserAsync = createAsyncThunk(
   'answers/fetchUpdatedUser',
   async user => {
-    const response = await axios.post('/ui/users/:id/answers', {
-      user,
-    });
+    const response = await axios.post('/ui/users/:id/answers', user, config());
     return response.data;
   },
 );
@@ -39,13 +41,33 @@ export const insertAnswersAsync = createAsyncThunk(
       });
     }));
 
-    const response = await axios.post(`/ui/user/${user}/answers`, answers);
+    const response = await axios.post(`/ui/user/${user}/answers`, answers, config());
+  },
+);
+
+export const fetchUserInfoAsync = createAsyncThunk(
+  'users/fetchUserInfo',
+  async history => {
+    const response = await axios.get('/ui/user/me', config())
+      // I tried insert response.data into a .then but it didn't work because arrives an undefined
+      .catch(() => {
+        localStorage.clear();
+        history.push('/login');
+      });
+    return response.data;
+  },
+);
+
+export const insertUserAsync = createAsyncThunk(
+  'users/insertUser',
+  async () => {
+    const response = await axios.post('/ui/user', {}, config());
     return response.data;
   },
 );
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'users',
   initialState,
   reducers: {
     userAdded: (state, action) => {
@@ -79,6 +101,20 @@ export const userSlice = createSlice({
       .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
+      })
+      .addCase(fetchUserInfoAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUserInfoAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = action.payload;
+      })
+      .addCase(insertUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(insertUserAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.value = action.payload;
       });
   },
 });
@@ -86,8 +122,8 @@ export const userSlice = createSlice({
 export const { userAdded, updateEcosystem, updateSkill, updateUserSkill, resetSkills } = userSlice.actions;
 
 // Selectors
-export const selectUserData = state => state.user.value;
-export const selectSkillsWithLevel = id => state => state.user?.value?.ecosystems?.[id]?.skills || [];
-export const selectEcosystemPerId = id => state => state.user?.value?.ecosystems?.[id];
+export const selectUserData = state => state.users?.value;
+export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.[id]?.skills || [];
+export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.[id];
 
 export default userSlice.reducer;

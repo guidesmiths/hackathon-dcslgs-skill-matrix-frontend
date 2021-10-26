@@ -14,7 +14,9 @@ module.exports = () => {
      * @security jwtAuth
      */
     app.get('/ui/suggestions',
-      async (req, res) => controller.suggestions.fetchSuggestions()
+      async (req, res) => controller.suggestions.fetchSuggestions({
+        headers: { Authorization: req.headers.authorization },
+      })
         .then(({ data }) => res.json(data))
         .catch(error => console.error(error)));
 
@@ -33,7 +35,10 @@ module.exports = () => {
     app.post('/ui/suggestion',
       async (req, res) => {
         const { body } = req;
-        return controller.suggestions.insertSuggestion({ body })
+        return controller.suggestions.insertSuggestion({
+          body,
+          headers: { Authorization: req.headers.authorization },
+        })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });
@@ -52,6 +57,7 @@ module.exports = () => {
         const { params } = req;
         const { id } = params;
         return controller.suggestions.deleteSuggestion({
+          headers: { Authorization: req.headers.authorization },
           urlParams: { id },
         })
           .then(({ data }) => res.json(data))

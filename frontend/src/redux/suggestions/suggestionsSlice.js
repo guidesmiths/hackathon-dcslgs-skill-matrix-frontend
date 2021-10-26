@@ -6,10 +6,14 @@ const initialState = {
   status: 'idle',
 };
 
+function config() {
+  return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+}
+
 export const fetchSuggestionsAsync = createAsyncThunk(
   'suggestions/fetchSuggestions',
   async () => {
-    const response = await axios.get('/ui/suggestions');
+    const response = await axios.get('/ui/suggestions', config());
     return response.data;
   },
 );
@@ -21,8 +25,8 @@ export const insertSuggestionAsync = createAsyncThunk(
     const response = await axios.post('/ui/suggestion', {
       description: suggestion.suggestion,
       subject: suggestion.selectedSuggestion,
-      user_id: 'user_id_test',
-    });
+      user_id: suggestion.userId,
+    }, config());
     return response.data;
   },
 );
@@ -30,7 +34,7 @@ export const insertSuggestionAsync = createAsyncThunk(
 export const deleteSuggestionAsync = createAsyncThunk(
   'suggestions/deleteSuggestion',
   async id => {
-    await axios.delete(`/ui/suggestion/${id}`);
+    await axios.delete(`/ui/suggestion/${id}`, config());
     return id;
   },
 );

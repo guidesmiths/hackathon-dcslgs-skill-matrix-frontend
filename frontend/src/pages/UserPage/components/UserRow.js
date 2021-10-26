@@ -151,9 +151,9 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
 };
 
 UserRow.propTypes = {
+  edit: PropTypes.bool.isRequired,
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
-  edit: PropTypes.bool.isRequired,
 };
 
 export default UserRow;

@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+
+import { PublicClientApplication } from '@azure/msal-browser';
+import { MsalProvider } from '@azure/msal-react';
+import { msalConfig } from './configuration/authConfig';
 import App from './App';
 import store from './app/store';
 import * as serviceWorker from './serviceWorker';
 
+const msalInstance = new PublicClientApplication(msalConfig);
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MsalProvider instance={msalInstance}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MsalProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

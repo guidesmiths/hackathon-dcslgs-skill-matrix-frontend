@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   FormStyled,
@@ -16,6 +16,7 @@ import {
 } from './SuggestionForm.styled';
 import Label from '../../../app/commons/Label/Label';
 import { insertSuggestionAsync } from '../../../redux/suggestions/suggestionsSlice';
+import { selectUserData } from '../../../redux/user/userSlice';
 
 const SuggestionForm = ({ showModal }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const SuggestionForm = ({ showModal }) => {
   const [suggestion, setSuggestion] = useState('');
   const [selectedSuggestion, setSelectedSuggestion] = useState('Ecosystems');
   const suggestionOptions = ['Ecosystems', 'Skills', 'Others'];
+
+  const userData = useSelector(selectUserData);
 
   const clickHandler = e => {
     setSelectedSuggestion(e.target.textContent);
@@ -39,8 +42,9 @@ const SuggestionForm = ({ showModal }) => {
   };
   const submitHandler = e => {
     e.preventDefault();
-    if (suggestion && selectedSuggestion) {
-      dispatch(insertSuggestionAsync({ suggestion, selectedSuggestion }));
+    if (suggestion && selectedSuggestion && userData) {
+      const { id: userId } = userData;
+      dispatch(insertSuggestionAsync({ suggestion, selectedSuggestion, userId }));
       setSuggestion('');
       setSelectedSuggestion('Ecosystems');
       showModal();

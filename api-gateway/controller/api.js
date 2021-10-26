@@ -9,8 +9,10 @@ const getApiRoutes = servicesAPI => ({
     fetchAnswersByUser: servicesAPI.answers.fetchAnswersByUser,
     insertAnswers: servicesAPI.answers.insertAnswers,
   },
-  user: {
-    fetchUpdatedUser: servicesAPI.user.fetchUpdatedUser,
+  users: {
+    fetchUpdatedUser: servicesAPI.users.fetchUpdatedUser,
+    fetchUserInfo: servicesAPI.users.fetchUserInfo,
+    insertUser: servicesAPI.users.insertUser,
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,

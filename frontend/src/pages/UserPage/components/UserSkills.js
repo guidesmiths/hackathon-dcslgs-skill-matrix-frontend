@@ -23,16 +23,16 @@ import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 
 const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
+  const userData = useSelector(selectUserData);
   const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
   const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
-  const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const ref = useRef(null);
+
   useEffect(() => {
-    if (userData.length === 0) {
-      // Please, change 'user_id_test' for the user_id logged.
-      dispatch(fetchAnswersByUserAsync('user_id_test'));
+    if (userData?.user_id) {
+      dispatch(fetchAnswersByUserAsync(userData.user_id));
     }
   }, [userData, dispatch]);
 
@@ -94,10 +94,10 @@ UserSkills.defaultProps = {
 };
 
 UserSkills.propTypes = {
+  edit: PropTypes.bool.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
   systemSelected: PropTypes.array.isRequired,
-  edit: PropTypes.bool.isRequired,
 };
 
 export default UserSkills;

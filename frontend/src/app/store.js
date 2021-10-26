@@ -10,7 +10,7 @@ export default configureStore({
   reducer: {
     skills: skillsReducer,
     answers: answersReducer,
-    user: userReducer,
+    users: userReducer,
     filters: filtersReducer,
     ecosystems: ecosystemsReducer,
     suggestions: suggestionsReducer,

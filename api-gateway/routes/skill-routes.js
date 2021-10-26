@@ -14,7 +14,7 @@ module.exports = () => {
      * @security jwtAuth
      */
     app.get('/ui/skills',
-      async (req, res) => controller.skills.fetchSkills()
+      async (req, res) => controller.skills.fetchSkills({ headers: { Authorization: req.headers.authorization } })
         .then(({ data }) => res.json(data))
         .catch(error => console.error(error)));
 
@@ -34,7 +34,10 @@ module.exports = () => {
     app.post('/ui/skill',
       async (req, res) => {
         const { body } = req;
-        return controller.skills.insertSkill({ body })
+        return controller.skills.insertSkill({
+          headers: { Authorization: req.headers.authorization },
+          body,
+        })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
       });
@@ -54,6 +57,7 @@ module.exports = () => {
         const { id } = params;
         return controller.skills.deleteSkill({
           urlParams: { id },
+          headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
           .catch(error => console.error(error));
