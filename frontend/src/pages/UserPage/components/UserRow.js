@@ -42,7 +42,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   };
 
   const handleLevel = event => {
-    const selectValue = event.target.value;
+    const selectValue = parseInt(event.target.value, 10);
     setSelectedValue(selectValue);
     dispatch(
       updateUserSkill({
@@ -61,6 +61,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
+
   const handleClick = click => {
     isClicked(click);
     let updatedValue = selectedValue;
