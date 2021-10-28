@@ -33,14 +33,15 @@ const UserRolStyled = styled.p`
 
 const MoreInfoWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 32%;
+    justify-self:end;
+    justify-content: space-between;
+    min-width:60%;
 `;
 const ListElementStyled = styled.div`
     padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
+    display:grid;
+    grid-template-columns: 2fr 1fr 2fr;
     align-items: center;
     height: 64px;
     background: ${props => props.theme.colors.white};
