@@ -148,14 +148,14 @@ const AdjustButton = styled(Icon)`
   color: black;
 
   &:first-child {
-    background-color: ${props => (props.clicked === 'remove' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'remove' && 'white')};
+    background-color: ${props => (props.clicked === 'minus' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
+    color: ${props => (props.clicked === 'minus' && 'white')};
     border-radius: 8px 0 0 8px;
  };
 
   &:last-child{
-    background-color: ${props => (props.clicked === 'add' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'add' && 'white')};
+    background-color: ${props => (props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
+    color: ${props => (props.clicked === 'plus' && 'white')};
     border-radius: 0 8px 8px 0;
   };
 `;

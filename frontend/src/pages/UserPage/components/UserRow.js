@@ -26,8 +26,7 @@ import Label from '../../../app/commons/Label/Label';
 const UserRow = ({ skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
-  const [clicked, isClicked] = useState('');
-  const [selectedValue, setSelectedValue] = useState(skill.level);
+  const [subValue, setSubValue] = useState('');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
 
@@ -43,7 +42,6 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
 
   const handleLevel = event => {
     const selectValue = event.target.value;
-    setSelectedValue(selectValue);
     dispatch(
       updateUserSkill({
         idEcosystem,
@@ -61,22 +59,18 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
-  const handleClick = click => {
-    isClicked(click);
-    let updatedValue = selectedValue;
-    if (click === 'add' && updatedValue + 1 <= 4) {
-      updatedValue += 1;
-    }
-    if (click === 'remove' && updatedValue - 1 >= 0) {
-      updatedValue -= 1;
+  const subValueHandler = subvalue => {
+    if (subValue === subvalue) {
+      setSubValue('');
+    } else {
+      setSubValue(subvalue);
     }
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, level: updatedValue },
+        skill: { ...skill, skill_subvalue: subvalue },
       }),
     );
-    setSelectedValue(updatedValue);
   };
 
   const getDescription = selectedSkill => {
@@ -92,7 +86,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar skill level={skill.level} />
+          <LevelBar skill level={skill.level} sublevel={subValue}/>
           <ButtonWrapper>
             <ChecboxWrapper>
               <StyledCheckbox
@@ -129,8 +123,8 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
               <Label left={7} top={-6} weight={700}>Level</Label>
             </SelectWrapper>
             <AjustLevelButtons>
-              <AdjustButton clicked={clicked} icon={'remove'} width={50} onClick={() => handleClick('remove')}/>
-              <AdjustButton clicked={clicked} icon={'add'} width={50} onClick={() => handleClick('add')}/>
+              <AdjustButton clicked={subValue} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
+              <AdjustButton clicked={subValue} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
             </AjustLevelButtons>
           </LevelEditor>
           }
