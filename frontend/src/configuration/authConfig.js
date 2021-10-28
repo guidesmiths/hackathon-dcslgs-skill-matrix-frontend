@@ -5,7 +5,8 @@ export const msalConfig = {
     authority: 'https://login.microsoftonline.com/24adaeaa-5002-4f6e-aa57-b66c036ba791',
 
     // This link is the url redirected when login completed
-    redirectUri: 'http://localhost:3000',
+    // redirectUri: ['', 'http://localhost:3000'],
+    redirectUri: 'https://dev-skillmatrix.azurewebsites.net/',
   },
   cache: {
     cacheLocation: 'localStorage', // This configures where your cache will be stored
