@@ -6,7 +6,7 @@ export const msalConfig = {
 
     // This link is the url redirected when login completed
     // redirectUri: ['', 'http://localhost:3000'],
-    redirectUri: 'https://dev-skillmatrix.azurewebsites.net/',
+    redirectUri: 'https://dev-skillmatrix.azurewebsites.net',
   },
   cache: {
     cacheLocation: 'localStorage', // This configures where your cache will be stored
