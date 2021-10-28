@@ -101,8 +101,9 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
                 name={`checkInterested ${skill.name}`}
                 type="checkbox"
                 onChange={handleCheckBox}
+                disabled={!edit}
               />
-              <StyledLabel htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
+              <StyledLabel htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked} edit={edit}/>
             </ChecboxWrapper>
             <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
               <span className="material-icons">{arrowButtonIcon}</span>

@@ -38,7 +38,6 @@ const StyledLabel = styled.label`
   left: 0;
   width: 20px;
   height: 20px;
-  cursor: pointer;
   border: 1px solid ${props => props.theme.colors.primaryColor};
   border-radius: 4px;
 
@@ -56,9 +55,11 @@ const StyledLabel = styled.label`
     opacity: 0;
     transform: rotate(-45deg);
   }
-
+  &:hover {
+  cursor: ${props => (props.edit ? 'pointer' : 'auto')};
+  }
   &:hover:after {
-    opacity: 0.5;
+    opacity: ${props => (props.edit ? 0.5 : 'auto')}
   };
 
   &:after{
