@@ -1,5 +1,5 @@
 process.env.SERVICE_ENV = process.env.SERVICE_ENV || 'local';
-process.env.SKILL_MATRIX_BACKEND = process.env.SKILL_MATRIX_BACKEND || 'https://dev-skillmatrix.azurewebsites.net';
+process.env.SKILL_MATRIX_BACKEND = process.env.SKILL_MATRIX_BACKEND || 'https://dev-skillmatrix-api.azurewebsites.net';
 
 const runner = require('systemic-domain-runner');
 const bunyan = require('bunyan');
