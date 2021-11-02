@@ -18,7 +18,9 @@ export const filtersSlice = createSlice({
       if (filter) {
         state.skills[index] = filter;
       } else {
-        state.skills = initialState.skills;
+        state.skills = !state.skills
+          ? initialState.skills
+          : [...state.skills];
       }
     },
     removeSkillFilter: (state, action) => {
