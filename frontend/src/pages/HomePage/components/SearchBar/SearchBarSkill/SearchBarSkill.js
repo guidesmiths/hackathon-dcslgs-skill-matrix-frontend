@@ -42,14 +42,25 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       selectedSkill,
     );
 
-    dispatch(
-      updateSkillFilter({
-        index,
-        filter: selectedSkill
-          ? { skill: selectedSkill.id, level: filter.level || 1 }
-          : !skillTyped && !filteredSkillsList.length && null,
-      }),
-    );
+    // dispatch(
+    //   updateSkillFilter({
+    //     index,
+    //     filter: selectedSkill
+    //       ? { skill: selectedSkill.id, level: filter.level || 1 }
+    //       : !skillTyped && null,
+    //   }),
+    // );
+
+    if (selectedSkill) {
+      dispatch(
+        updateSkillFilter({
+          index,
+          filter: { skill: selectedSkill.id, level: filter.level || 1 },
+        }),
+      );
+    } else if (!inputValue) {
+      dispatch(removeSkillFilter(index));
+    }
   };
 
   const handleSelectChange = event => dispatch(
