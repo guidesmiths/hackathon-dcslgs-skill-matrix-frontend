@@ -8,7 +8,11 @@ import {
   updateSkillFilter,
   removeSkillFilter,
 } from '../../../../../redux/filters/filtersSlice';
-import { SearchBarSkillStyled, InputWrapper, StyledIcon } from './SearchBarSkill.styled';
+import {
+  SearchBarSkillStyled,
+  InputWrapper,
+  StyledIcon,
+} from './SearchBarSkill.styled';
 import Input from '../../../../../app/commons/Input/Input';
 import Select from '../../../../../app/commons/Select/Select';
 import Label from '../../../../../app/commons/Label/Label';
@@ -20,30 +24,41 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const skills = useSelector(selectAllSkills);
   const [skillTyped, setSkillTyped] = useState();
 
-
   const handleInput = event => {
     const inputValue = event.target.value;
     setSkillTyped(inputValue);
-
     const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
-    setOptionsList(filteredSkillsList);
+    console.log(
+      '🚀 ~ file: SearchBarSkill.js ~ line 31 ~ SearchBarSkill ~ filteredSkillsList',
+      filteredSkillsList,
+    );
+    setOptionsList(filteredSkillsList || skills);
 
-    const selectedSkill = filteredSkillsList.find(skill => skill.name === inputValue);
+    const selectedSkill = filteredSkillsList.find(
+      skill => skill.name === inputValue,
+    );
+    console.log(
+      '🚀 ~ file: SearchBarSkill.js ~ line 40 ~ SearchBarSkill ~ selectedSkill',
+      selectedSkill,
+    );
 
-    if (selectedSkill) {
-      dispatch(
-        updateSkillFilter({
-          index,
-          filter: { skill: selectedSkill.id, level: filter.level || 1 },
-        }),
-      );
-    }
+    dispatch(
+      updateSkillFilter({
+        index,
+        filter: selectedSkill
+          ? { skill: selectedSkill.id, level: filter.level || 1 }
+          : !skillTyped && !filteredSkillsList.length && null,
+      }),
+    );
   };
 
   const handleSelectChange = event => dispatch(
     updateSkillFilter({
       index,
-      filter: filter.skill && { skill: filter.skill, level: Number(event.target.value) },
+      filter: filter.skill && {
+        skill: filter.skill,
+        level: Number(event.target.value),
+      },
     }),
   );
   const removeFilter = arg => {
@@ -61,7 +76,9 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
           width={300}
           onChangeInput={handleInput}
         />
-        <Label left={20} top={-10}>Skill</Label>
+        <Label left={20} top={-10}>
+          Skill
+        </Label>
       </InputWrapper>
       <InputWrapper>
         <Select
@@ -69,7 +86,9 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
           selected={filter.level}
           onChange={handleSelectChange}
         />
-        <Label left={10} top={-10}>Level</Label>
+        <Label left={10} top={-10}>
+          Level
+        </Label>
       </InputWrapper>
       <StyledIcon
         icon={'delete'}

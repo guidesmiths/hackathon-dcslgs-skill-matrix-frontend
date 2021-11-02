@@ -15,7 +15,11 @@ export const filtersSlice = createSlice({
     },
     updateSkillFilter: (state, action) => {
       const { index, filter } = action.payload;
-      state.skills[index] = filter;
+      if (filter) {
+        state.skills[index] = filter;
+      } else {
+        state.skills = initialState.skills;
+      }
     },
     removeSkillFilter: (state, action) => {
       const stateFilters = state.skills;
