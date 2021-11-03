@@ -26,13 +26,13 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const [existingSkill, setExistingSkill] = useState(null);
 
   useEffect(() => {
-    const previousSkill = skills.find(skill => skill.id === index);
-    setExistingSkill(index && previousSkill?.name);
-    console.log(
-      '🚀 ~ file: SearchBarSkill.js ~ line 27 ~ SearchBarSkill ~ existingSkill',
-      existingSkill,
-    );
-  }, [filter]);
+    const previousSkill = filter && skills.find(skill => skill.id === filter?.skill);
+    setExistingSkill(filter && previousSkill?.name);
+    // console.log(
+    //   '🚀 ~ file: SearchBarSkill.js ~ line 27 ~ SearchBarSkill ~ existingSkill',
+    //   existingSkill,
+    // );
+  }, []);
 
   const handleInput = event => {
     const inputValue = event.target.value;

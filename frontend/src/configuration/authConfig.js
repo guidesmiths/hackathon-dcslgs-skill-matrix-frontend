@@ -14,6 +14,8 @@ export const msalConfig = {
   },
 };
 
+console.log(process.env.SKILL_MATRIX_BACKEND);
+
 export const loginRequest = {
   scopes: ['eed1e294-b493-4456-8e47-ac00cda98a5e/Users'],
 };
