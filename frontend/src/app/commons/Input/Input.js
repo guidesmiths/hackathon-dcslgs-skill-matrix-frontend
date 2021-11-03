@@ -2,22 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputStyled from './Input.styled';
 
-const Input = ({ input, width, optionsList, onChangeInput }) => (
+const Input = ({ input, width, optionsList, onChangeInput, defaultValue }) => (
   <>
     <InputStyled
+      defaultValue={defaultValue}
       list={input}
       type="text"
-      value={input}
+      value={defaultValue || input}
       width={width}
       onChange={onChangeInput}
     />
     <datalist id={input}>
-      {optionsList.length > 0 && optionsList.map(skill => <option key={skill.id}>{skill.name}</option>)}
+      {optionsList.length > 0
+        && optionsList.map(skill => (
+          <option key={skill.id}>{skill.name}</option>
+        ))}
     </datalist>
   </>
 );
 
 Input.defaultProps = {
+  defaultValue: '',
   input: '',
   width: 500,
 };
@@ -25,6 +30,7 @@ Input.defaultProps = {
 Input.propTypes = {
   optionsList: PropTypes.array.isRequired,
   onChangeInput: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string,
   input: PropTypes.string,
   width: PropTypes.number,
 };

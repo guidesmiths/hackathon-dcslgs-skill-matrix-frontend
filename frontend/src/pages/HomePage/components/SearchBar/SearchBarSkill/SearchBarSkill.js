@@ -32,7 +32,8 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     //   '🚀 ~ file: SearchBarSkill.js ~ line 27 ~ SearchBarSkill ~ existingSkill',
     //   existingSkill,
     // );
-  }, []);
+    console.log(existingSkill);
+  }, [index]);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -72,16 +73,17 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   );
   const removeFilter = arg => {
     dispatch(removeSkillFilter(arg));
-    setSkillTyped('');
+    // setSkillTyped('');
   };
 
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>
         <Input
+          defaultValue={existingSkill && existingSkill}
           input={skillTyped}
           optionsList={optionsList}
-          value={existingSkill || skillTyped}
+          // value={existingSkill || skillTyped}
           width={300}
           onChangeInput={handleInput}
         />
