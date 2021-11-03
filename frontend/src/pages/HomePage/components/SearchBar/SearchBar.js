@@ -9,7 +9,13 @@ import {
 } from '../../../../redux/filters/filtersSlice';
 import { fetchAnswersAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
-import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
+import {
+  SearchBarUsers,
+  SearchBarsWrapper,
+  IconStyled,
+  SearchBarWrapper,
+  SearchBarSkillWrapper,
+} from './SearchBar.styled';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
@@ -19,6 +25,10 @@ export const SearchBar = () => {
 
   useEffect(() => {
     dispatch(fetchAnswersAsync({ skillFilters, userFilter }));
+    console.log(
+      '🚀 ~ file: SearchBar.js ~ line 28 ~ useEffect ~ skillFilters',
+      skillFilters,
+    );
   }, [skillFilters, userFilter]);
 
   return (
@@ -31,19 +41,18 @@ export const SearchBar = () => {
           value={userFilter}
           onChange={e => dispatch(updateUserFilter(e.target.value))}
         />
-        <IconStyled icon={'search'}/>
+        <IconStyled icon={'search'} />
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
-        {
-          skillFilters.map((filter, index) => (
-            <SearchBarSkill
-              key={index}
-              filter={filter}
-              index={index}
-              isFirstFilter={skillFilters.length > 1}
-              isLastFilter={isLastFilter(index)}
-            />))
-        }
+        {skillFilters.map((filter, index) => (
+          <SearchBarSkill
+            key={index}
+            filter={filter}
+            index={index}
+            isFirstFilter={skillFilters.length > 1}
+            isLastFilter={isLastFilter(index)}
+          />
+        ))}
       </SearchBarSkillWrapper>
     </SearchBarsWrapper>
   );

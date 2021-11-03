@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
@@ -23,6 +23,16 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
   const [skillTyped, setSkillTyped] = useState();
+  const [existingSkill, setExistingSkill] = useState(null);
+
+  useEffect(() => {
+    const previousSkill = skills.find(skill => skill.id === index);
+    setExistingSkill(index && previousSkill?.name);
+    console.log(
+      '🚀 ~ file: SearchBarSkill.js ~ line 27 ~ SearchBarSkill ~ existingSkill',
+      existingSkill,
+    );
+  }, [filter]);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -71,7 +81,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
         <Input
           input={skillTyped}
           optionsList={optionsList}
-          value={skillTyped}
+          value={existingSkill || skillTyped}
           width={300}
           onChangeInput={handleInput}
         />

@@ -18,10 +18,19 @@ export const filtersSlice = createSlice({
       state.skills[index] = filter;
     },
     removeSkillFilter: (state, action) => {
+      console.log(
+        '🚀 ~ file: filtersSlice.js ~ line 21 ~ action',
+        action.payload,
+      );
       const stateFilters = state.skills;
       const updatedFilters = stateFilters.length === 1
         ? [{}]
         : stateFilters.filter((_, i) => i !== action.payload);
+      console.log(
+        '🚀 ~ file: filtersSlice.js ~ line 27 ~ updatedFilters',
+        updatedFilters,
+      );
+
       state.skills = updatedFilters;
     },
     updateUserFilter: (state, action) => {
