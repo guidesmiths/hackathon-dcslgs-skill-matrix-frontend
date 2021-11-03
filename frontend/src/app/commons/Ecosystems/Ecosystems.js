@@ -8,6 +8,7 @@ import {
   EcosystemScroller,
 } from './Ecosystems.styled';
 import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
+import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
 
 const Ecosystem = ({ selectEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
@@ -16,11 +17,13 @@ const Ecosystem = ({ selectEcosystem }) => {
       <EcosystemColumn data-cy={'ecosystems'}>
         <TitleColumn>Ecosystem</TitleColumn>
         <EcosystemScroller height={75}>
-          {ecosystems?.map(e => (
-            <ButtonStyled key={e.id} onClick={() => selectEcosystem(e.id - 1)}>
-              {e.name}
-            </ButtonStyled>
-          ))}
+          {!ecosystems.length
+            ? <SkeletonWrapper />
+            : ecosystems?.map(({ id, name }) => (
+              <ButtonStyled key={id} onClick={() => selectEcosystem(id - 1)}>
+                {name}
+              </ButtonStyled>
+            ))}
         </EcosystemScroller>
       </EcosystemColumn>
     </Fragment>
