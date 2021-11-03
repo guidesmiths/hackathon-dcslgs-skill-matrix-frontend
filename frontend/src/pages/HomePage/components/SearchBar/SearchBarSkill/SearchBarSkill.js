@@ -28,28 +28,11 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     const inputValue = event.target.value;
     setSkillTyped(inputValue);
     const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
-    console.log(
-      '🚀 ~ file: SearchBarSkill.js ~ line 31 ~ SearchBarSkill ~ filteredSkillsList',
-      filteredSkillsList,
-    );
     setOptionsList(filteredSkillsList || skills);
 
     const selectedSkill = filteredSkillsList.find(
       skill => skill.name === inputValue,
     );
-    console.log(
-      '🚀 ~ file: SearchBarSkill.js ~ line 40 ~ SearchBarSkill ~ selectedSkill',
-      selectedSkill,
-    );
-
-    // dispatch(
-    //   updateSkillFilter({
-    //     index,
-    //     filter: selectedSkill
-    //       ? { skill: selectedSkill.id, level: filter.level || 1 }
-    //       : !skillTyped && null,
-    //   }),
-    // );
 
     if (selectedSkill) {
       dispatch(
@@ -59,7 +42,12 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
         }),
       );
     } else if (!inputValue) {
-      dispatch(removeSkillFilter(index));
+      dispatch(
+        updateSkillFilter({
+          index,
+          filter: { skill: null, level: 0 },
+        }),
+      );
     }
   };
 
