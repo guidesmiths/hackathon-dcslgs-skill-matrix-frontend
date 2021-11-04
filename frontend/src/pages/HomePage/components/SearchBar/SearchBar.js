@@ -25,10 +25,6 @@ export const SearchBar = () => {
 
   useEffect(() => {
     dispatch(fetchAnswersAsync({ skillFilters, userFilter }));
-    console.log(
-      '🚀 ~ file: SearchBar.js ~ line 28 ~ useEffect ~ skillFilters',
-      skillFilters,
-    );
   }, [skillFilters, userFilter]);
 
   return (
