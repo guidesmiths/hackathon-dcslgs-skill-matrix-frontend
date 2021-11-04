@@ -7,6 +7,7 @@ import {
   addSkillFilter,
   updateSkillFilter,
   removeSkillFilter,
+  selectSkillFilters,
 } from '../../../../../redux/filters/filtersSlice';
 import {
   SearchBarSkillStyled,
@@ -22,8 +23,8 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
+  const skillFilters = useSelector(selectSkillFilters);
   const [skillTyped, setSkillTyped] = useState();
-  const [existingSkill, setExistingSkill] = useState(null);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -63,22 +64,15 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   );
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
-    console.log(
-      '🚀 ~ file: SearchBarSkill.js ~ line 77 ~ SearchBarSkill ~ filter',
-      filter,
-    );
-
-    const previousSkill = await skills.find(skill => skill.id === filter?.skill);
-    console.log('🚀 ~ file: SearchBarSkill.js ~ line 77 ~ SearchBarSkill ~ previousSkill', previousSkill);
-    await setExistingSkill(previousSkill?.name);
-    console.log('existingSkill', index, existingSkill);
+    const newSkill = await skillFilters[index + 1];
+    const newSkillData = await skills.find(skill => skill.id === newSkill?.skill);
+    setSkillTyped(newSkillData?.name);
   };
 
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>
         <Input
-          defaultValue={existingSkill}
           input={skillTyped}
           optionsList={optionsList}
           // value={existingSkill || skillTyped}
