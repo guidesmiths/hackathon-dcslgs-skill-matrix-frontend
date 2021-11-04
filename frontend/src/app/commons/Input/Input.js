@@ -8,7 +8,7 @@ const Input = ({ input, width, optionsList, onChangeInput, defaultValue }) => (
       defaultValue={defaultValue}
       list={input}
       type="text"
-      value={defaultValue || input}
+      value={(defaultValue && !input && defaultValue) || input}
       width={width}
       onChange={onChangeInput}
     />

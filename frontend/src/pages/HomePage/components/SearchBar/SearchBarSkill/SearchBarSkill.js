@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
@@ -24,16 +24,6 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const skills = useSelector(selectAllSkills);
   const [skillTyped, setSkillTyped] = useState();
   const [existingSkill, setExistingSkill] = useState(null);
-
-  useEffect(() => {
-    const previousSkill = filter && skills.find(skill => skill.id === filter?.skill);
-    setExistingSkill(filter && previousSkill?.name);
-    // console.log(
-    //   '🚀 ~ file: SearchBarSkill.js ~ line 27 ~ SearchBarSkill ~ existingSkill',
-    //   existingSkill,
-    // );
-    console.log(existingSkill);
-  }, [index]);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -71,16 +61,24 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       },
     }),
   );
-  const removeFilter = arg => {
+  const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
-    // setSkillTyped('');
+    console.log(
+      '🚀 ~ file: SearchBarSkill.js ~ line 77 ~ SearchBarSkill ~ filter',
+      filter,
+    );
+
+    const previousSkill = await skills.find(skill => skill.id === filter?.skill);
+    console.log('🚀 ~ file: SearchBarSkill.js ~ line 77 ~ SearchBarSkill ~ previousSkill', previousSkill);
+    await setExistingSkill(previousSkill?.name);
+    console.log('existingSkill', index, existingSkill);
   };
 
   return (
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>
         <Input
-          defaultValue={existingSkill && existingSkill}
+          defaultValue={existingSkill}
           input={skillTyped}
           optionsList={optionsList}
           // value={existingSkill || skillTyped}
