@@ -26,8 +26,7 @@ import Label from '../../../app/commons/Label/Label';
 const UserRow = ({ skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
-  const [clicked, isClicked] = useState('');
-  const [selectedValue, setSelectedValue] = useState(skill.level);
+  const [subValue, setSubValue] = useState('');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
 
@@ -42,8 +41,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   };
 
   const handleLevel = event => {
-    const selectValue = parseInt(event.target.value, 10);
-    setSelectedValue(selectValue);
+    const selectValue = Number(event.target.value);
     dispatch(
       updateUserSkill({
         idEcosystem,
@@ -61,23 +59,18 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
-
-  const handleClick = click => {
-    isClicked(click);
-    let updatedValue = selectedValue;
-    if (click === 'add' && updatedValue + 1 <= 4) {
-      updatedValue += 1;
-    }
-    if (click === 'remove' && updatedValue - 1 >= 0) {
-      updatedValue -= 1;
+  const subValueHandler = value => {
+    if (subValue === value) {
+      setSubValue('');
+    } else {
+      setSubValue(value);
     }
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, level: updatedValue },
+        skill: { ...skill, skill_subvalue: value },
       }),
     );
-    setSelectedValue(updatedValue);
   };
 
   const getDescription = selectedSkill => {
@@ -93,18 +86,18 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar skill level={skill.level} />
+          <LevelBar skill level={skill.level} subValue={subValue}/>
           <ButtonWrapper>
             <ChecboxWrapper>
               <StyledCheckbox
                 checked={isChecked}
+                disabled={!edit}
                 id={`checkInterested ${skill.name}`}
                 name={`checkInterested ${skill.name}`}
                 type="checkbox"
                 onChange={handleCheckBox}
-                disabled={!edit}
               />
-              <StyledLabel htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked} edit={edit}/>
+              <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
             </ChecboxWrapper>
             <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
               <span className="material-icons">{arrowButtonIcon}</span>
@@ -131,8 +124,8 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
               <Label left={7} top={-6} weight={700}>Level</Label>
             </SelectWrapper>
             <AjustLevelButtons>
-              <AdjustButton clicked={clicked} icon={'remove'} width={50} onClick={() => handleClick('remove')}/>
-              <AdjustButton clicked={clicked} icon={'add'} width={50} onClick={() => handleClick('add')}/>
+              <AdjustButton clicked={subValue} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
+              <AdjustButton clicked={subValue} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
             </AjustLevelButtons>
           </LevelEditor>
           }
