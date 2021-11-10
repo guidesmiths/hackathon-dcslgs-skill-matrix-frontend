@@ -20,7 +20,7 @@ const NavBar = () => {
         </NavStyled>
         <UserWrapperStyled>
           <StyledIcon icon={'face'} />
-          <NavBarLink activeClassName="selected" to="/profile">{userData?.email}</NavBarLink>
+          <NavBarLink activeClassName="selected" to="/profile">{userData.email}</NavBarLink>
         </UserWrapperStyled>
       </NavBarTop>
     </Fragment>

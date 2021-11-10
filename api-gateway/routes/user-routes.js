@@ -37,6 +37,30 @@ module.exports = () => {
         .then(({ data }) => res.json(data))
         .catch(handleError(res, logger)));
 
+    /**
+     * PUT /api/v1/users/:id/role/:newRole
+     * @route PUT /api/v1/users/:id/role/:newRole
+     * @summary Change user role
+     * @tags Users
+     * @return {User} 200 - Successful operation
+     * @example response - 200 - success response example
+     * [{"user_id":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","img_url":null,"name":"John Doe","domain":null,"role":"user"}]
+     * @security jwtAuth
+     */
+    app.put('/ui/users/:id/role/:newRole',
+      async (req, res) => {
+        const { params } = req;
+        const { id, newRole } = params;
+        controller.users.changeUserRole(
+          {
+            headers: { Authorization: req.headers.authorization },
+            urlParams: { id, newRole },
+          },
+        )
+          .then(({ data }) => res.json(data))
+          .catch(handleError(res, logger));
+      });
+
     cb();
   };
 
