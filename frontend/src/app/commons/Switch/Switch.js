@@ -8,10 +8,12 @@ const Switch = ({ userId, role }) => {
   const dispatch = useDispatch();
   const roleChange = event => {
     const newRole = event.target.checked ? 'admin' : 'user';
-    dispatch(changeUserRoleAsync({
-      userId,
-      newRole,
-    }));
+    dispatch(changeUserRoleAsync(
+      {
+        userId,
+        newRole,
+      },
+    ));
   };
 
   return (

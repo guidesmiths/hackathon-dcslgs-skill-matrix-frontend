@@ -38,23 +38,21 @@ module.exports = () => {
         .catch(handleError(res, logger)));
 
     /**
-     * PUT /api/v1/users/:id/role/:newRole
-     * @route PUT /api/v1/users/:id/role/:newRole
+     * PUT /api/v1/user/role
+     * @route PUT /api/v1/users/role
      * @summary Change user role
      * @tags Users
-     * @return {User} 200 - Successful operation
-     * @example response - 200 - success response example
-     * [{"user_id":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","img_url":null,"name":"John Doe","domain":null,"role":"user"}]
+     * @param {User} request.body.required - User info
+
      * @security jwtAuth
      */
-    app.put('/ui/users/:id/role/:newRole',
+    app.put('/ui/user/role',
       async (req, res) => {
-        const { params } = req;
-        const { id, newRole } = params;
+        const { body } = req;
         controller.users.changeUserRole(
           {
+            body,
             headers: { Authorization: req.headers.authorization },
-            urlParams: { id, newRole },
           },
         )
           .then(({ data }) => res.json(data))

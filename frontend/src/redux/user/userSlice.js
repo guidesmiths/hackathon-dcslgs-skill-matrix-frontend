@@ -68,8 +68,12 @@ export const insertUserAsync = createAsyncThunk(
 
 export const changeUserRoleAsync = createAsyncThunk(
   'users/changeUserRole',
-  async data => {
-    const response = await axios.put(`/ui/users/${data.userId}/role/${data.newRole}`, {}, config());
+  async userData => {
+    const response = await axios.put('/ui/user/role',
+      {
+        id: userData.userId,
+        role: userData.newRole,
+      }, config());
     return response.data;
   },
 );

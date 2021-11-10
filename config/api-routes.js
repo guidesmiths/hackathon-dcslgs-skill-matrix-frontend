@@ -42,7 +42,7 @@ module.exports = {
         method: 'post',
       },
       changeUserRole: {
-        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/users/:id/role/:newRole`,
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/role`,
         method: 'put',
       },
     },
