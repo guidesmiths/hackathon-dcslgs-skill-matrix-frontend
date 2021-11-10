@@ -15,18 +15,18 @@ const EcosystemModal = ({ show, onCloseClick, subject, handleDelete }) => (
     </StyledInfo>
     <StyledInputWrapper>
       <StyledInput placeholder="Name"/>
-      <Label left={10} top={-6}> Type the {subject} name to confirm: </Label>
+      <Label left={10} top={-6}>{`Type the${subject} name to confirm:`}</Label>
     </StyledInputWrapper>
     <StyledButton onClick={handleDelete}>Yes, delete</StyledButton>
     <StyledButton onClick={onCloseClick}>Cancel</StyledButton>
   </ModalStyledWrapper>
 );
 
-export default EcosystemModal;
-
 EcosystemModal.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onCloseClick: PropTypes.func.isRequired,
-  subject: PropTypes.string.isRequired,
   handleDelete: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  subject: PropTypes.string.isRequired,
+  onCloseClick: PropTypes.func.isRequired,
 };
+
+export default EcosystemModal;

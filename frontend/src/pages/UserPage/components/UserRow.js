@@ -6,7 +6,7 @@ import { RowSkillsWrapper,
   RowSkills,
   UserSkillName,
   StyledCheckbox,
-  ChecboxWrapper,
+  CheckboxWrapper,
   StyledLabel,
   RowCollapsed,
   RowSkillsBottom,
@@ -88,7 +88,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
           <UserSkillName>{skill.name}</UserSkillName>
           <LevelBar skill level={skill.level} subValue={subValue}/>
           <ButtonWrapper>
-            <ChecboxWrapper>
+            <CheckboxWrapper>
               <StyledCheckbox
                 checked={isChecked}
                 disabled={!edit}
@@ -98,7 +98,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
                 onChange={handleCheckBox}
               />
               <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
-            </ChecboxWrapper>
+            </CheckboxWrapper>
             <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
               <span className="material-icons">{arrowButtonIcon}</span>
             </ArrowButtonStyled>
@@ -109,10 +109,9 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
         <RowSkillsBottom>
           <DescriptionStyled>
             <p>{getDescription(skill)}</p>
-            <Label left={25} top={-10} type={'description'}>Description Level</Label>
+            <Label left={25} top={-10} type="description">Description Level</Label>
           </DescriptionStyled>
-          { edit
-          && <LevelEditor>
+          {edit && <LevelEditor>
             <SelectWrapper>
               <select data-cy="select-level" value={skill.level} onChange={handleLevel}>
                 {skill.levels.map((e, index) => (
@@ -127,19 +126,16 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
               <AdjustButton clicked={subValue} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
               <AdjustButton clicked={subValue} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
             </AjustLevelButtons>
-          </LevelEditor>
-          }
+          </LevelEditor>}
         </RowSkillsBottom>
-        { edit
-        && <RowSkillsBottom>
+        {edit && <RowSkillsBottom>
           <StyledInput
             placeholder="Write some comments"
             value={skill.comments}
             onChange={handleComments}
           />
-          <Label left={60} top={6} type={'description'}>Comment</Label>
-        </RowSkillsBottom>
-        }
+          <Label left={60} top={6} type="description">Comment</Label>
+        </RowSkillsBottom>}
       </RowCollapsed>
     </RowSkillsWrapper>
   );

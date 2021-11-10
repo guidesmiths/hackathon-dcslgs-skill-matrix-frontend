@@ -3,10 +3,11 @@ import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled
 import Icon from '../../../app/commons/icon/icon';
 
 const RowSkillsWrapper = styled.div`
-  &:last-child{
+  &:last-child {
     padding-bottom: 30px !important;
   }
 `;
+
 const RowSkillsTop = styled.div`
   margin: 0 auto;
   margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
@@ -55,19 +56,21 @@ const StyledLabel = styled.label`
     opacity: 0;
     transform: rotate(-45deg);
   }
+
   &:hover {
-  cursor: ${props => (props.edit ? 'pointer' : 'auto')};
+    cursor: ${props => (props.edit ? 'pointer' : 'auto')};
   }
+
   &:hover:after {
     opacity: ${props => (props.edit ? 0.5 : 'auto')}
   };
 
-  &:after{
+  &:after {
     opacity: ${props => (props.isChecked ? 1 : 0)}
   }
 `;
 
-const ChecboxWrapper = styled.div`
+const CheckboxWrapper = styled.div`
   position: relative;
   width: 20px;
   margin: 20px 20px 20px 0;
@@ -177,7 +180,7 @@ export {
   RowSkills,
   UserSkillName,
   StyledLabel,
-  ChecboxWrapper,
+  CheckboxWrapper,
   StyledCheckbox,
   RowCollapsed,
   RowSkillsBottom,

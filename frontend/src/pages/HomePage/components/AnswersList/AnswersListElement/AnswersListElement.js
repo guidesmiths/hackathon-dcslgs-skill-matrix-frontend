@@ -8,6 +8,7 @@ import LoadingUserRow from '../../../../../app/commons/LoadingUserRow/LoadingUse
 const AnswersListElement = ({ userId, email, name, role, skills, index }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);

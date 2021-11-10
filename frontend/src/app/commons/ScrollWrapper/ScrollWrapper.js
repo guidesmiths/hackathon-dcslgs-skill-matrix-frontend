@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import { UserRowWrapper } from './ScrollWrapper.styled';
 
 const ScrollWrapper = ({ children, height }) => (
-  <UserRowWrapper height = {height}>
+  <UserRowWrapper height={height}>
     {children}
   </UserRowWrapper>
 );
 export default ScrollWrapper;
 
 ScrollWrapper.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
   height: PropTypes.number,
 };
 ScrollWrapper.defaultProps = {

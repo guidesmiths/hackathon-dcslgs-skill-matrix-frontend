@@ -56,6 +56,7 @@ const PopUpStyledIconWarning = styled(Icon)`
   color: #D15455;
   position: relative;
   background-color: transparent;
+
   &:before{
     content: '';
     background-color: white;

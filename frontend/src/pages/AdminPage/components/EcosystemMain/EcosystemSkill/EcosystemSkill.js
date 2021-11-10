@@ -66,7 +66,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
             data-cy={`skill-level-textarea-${levelIndex}`}
             placeholder={`Level ${level.level} description`}
             rows="2"
-            value={isNewEcosystem ? newLevel?.[levelIndex + 1] : level.levelDescription}
+            value={isNewEcosystem ? newLevel?.[levelIndex + 1] : level.levelDescription || ''}
             onChange={e => handleNewLevel(e, levelIndex)}
           />
           <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>
@@ -77,6 +77,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
 };
 
 EcosystemSkill.propTypes = {
+  handleNewSkills: PropTypes.func.isRequired, // It is not required
   index: PropTypes.number.isRequired,
   isNewEcosystem: PropTypes.bool.isRequired,
   skill: PropTypes.shape({
@@ -84,12 +85,11 @@ EcosystemSkill.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     levels: PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      level: PropTypes.number.isRequired,
+      description: PropTypes.string,
+      level: PropTypes.number,
     })),
   }).isRequired,
   onDeleteClick: PropTypes.func.isRequired,
-  handleNewSkills: PropTypes.func.isRequired, // It is not required
 };
 
 export default EcosystemSkill;

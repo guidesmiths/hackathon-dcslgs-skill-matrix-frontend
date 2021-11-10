@@ -18,7 +18,7 @@ const AnswersList = () => {
           const { id, name, email, userRole, ecosystems } = answer;
           return (
             <AnswersListElement
-              key={id}
+              key={`answers-${id}`}
               email={email.toLowerCase()}
               index={index}
               name={name}

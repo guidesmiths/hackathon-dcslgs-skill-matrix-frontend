@@ -24,13 +24,9 @@ const LoginButton = () => {
   }
 
   return (
-    <LoginButtonStyled data-cy="login-page-button"
-      onClick= {() => {
-        handleLoginPopup(instance);
-      }}
-    >
-      <StyledIcon src={Outlook}/>
-          Sign In with Outlook
+    <LoginButtonStyled data-cy="login-page-button" onClick={handleLoginPopup}>
+      <StyledIcon src={Outlook} />
+      Sign In with Outlook
     </LoginButtonStyled>
 
   );

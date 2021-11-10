@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
@@ -34,16 +35,15 @@ export const SearchBar = () => {
         <IconStyled icon={'search'}/>
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
-        {
-          skillFilters.map((filter, index) => (
-            <SearchBarSkill
-              key={index}
-              filter={filter}
-              index={index}
-              isFirstFilter={skillFilters.length > 1}
-              isLastFilter={isLastFilter(index)}
-            />))
-        }
+        {skillFilters.map((filter, index) => (
+          <SearchBarSkill
+            key={index}
+            filter={filter}
+            index={index}
+            isFirstFilter={skillFilters.length > 1}
+            isLastFilter={isLastFilter(index)}
+          />
+        ))}
       </SearchBarSkillWrapper>
     </SearchBarsWrapper>
   );

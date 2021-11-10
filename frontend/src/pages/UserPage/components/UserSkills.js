@@ -59,6 +59,7 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
       ref.current.click();
     }
   }, [isSubmited]);
+
   return (
     <UserData data-cy={'userRow'}>
       <form onSubmit={handleSubmit}>
@@ -91,13 +92,14 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
 
 UserSkills.defaultProps = {
   mySkills: [],
+  systemSelected: 0,
 };
 
 UserSkills.propTypes = {
   edit: PropTypes.bool.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
-  systemSelected: PropTypes.array.isRequired,
+  systemSelected: PropTypes.number,
 };
 
 export default UserSkills;

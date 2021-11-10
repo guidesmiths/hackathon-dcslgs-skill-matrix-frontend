@@ -61,7 +61,7 @@ const SuggestionForm = ({ showModal }) => {
         <ArrowButtonStyled id="type" isCollapsed={isCollapsed} type="button" onClick={() => setCollapsed(!isCollapsed)}>
           <span className="material-icons">{arrowButtonIcon}</span>
         </ArrowButtonStyled>
-        <Label isCollapsed={isCollapsed} left={20} top={-10} type={ isCollapsed && 'focus' } weight={600}>Options</Label>
+        <Label isCollapsed={isCollapsed} left={20} top={-10} type={isCollapsed ? 'focus' : ''} weight={600}>Options</Label>
         <CustomOptions isCollapsed={isCollapsed} onClick={clickHandler}>
           {suggestionOptions.map((x, index) => <StyledOption key={index} selected={selectedSuggestion === x}>
             {x}

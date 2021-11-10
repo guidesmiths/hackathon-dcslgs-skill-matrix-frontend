@@ -9,11 +9,11 @@ import {
 } from './SuggestionsInbox.styled';
 
 const SuggestionsInbox = () => {
-  // TODO: When you delete a suggestion, it should refresh.
   const suggestions = useSelector(selectAllSuggestions);
   const [position, setPosition] = useState(0);
   const [showScroll, setShowScroll] = useState(false);
   const ref = useRef(null);
+
   const scroll = e => {
     if (position < e.target.value) {
       ref.current.scrollLeft += 350;
@@ -22,9 +22,11 @@ const SuggestionsInbox = () => {
     }
     setPosition(e.target.value);
   };
+
   useEffect(() => {
     setShowScroll(ref.current?.offsetWidth < ref.current?.scrollWidth);
   }, [ref.current?.scrollWidth]);
+
   return (
     <SuggestionInboxStyled data-cy="suggestions-inbox">
       <SuggestionCardsStyled ref={ref}>

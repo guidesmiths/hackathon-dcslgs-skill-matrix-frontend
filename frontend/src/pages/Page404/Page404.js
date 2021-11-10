@@ -7,6 +7,7 @@ const Page404 = () => {
   const clichHandler = () => {
     history.push('/home');
   };
+
   return (
     <StyledPage404>
       <StyledTitleWrapper data-cy="title-wrapper">
@@ -16,7 +17,7 @@ const Page404 = () => {
       <StyledP>
           Maybe you got a broken link, or maybe you made a misprint in the address bar. Try to start all over again in the main sections:
       </StyledP>
-      <StyledButton onClick={clichHandler} dataCy={'redirect-home'}>Home</StyledButton>
+      <StyledButton dataCy={'redirect-home'} onClick={clichHandler}>Home</StyledButton>
     </StyledPage404>
   );
 };

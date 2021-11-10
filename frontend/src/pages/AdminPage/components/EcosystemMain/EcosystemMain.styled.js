@@ -57,6 +57,7 @@ const StyledButton = styled.div`
     cursor: pointer;
   }
 `;
+
 const StyledDelete = styled.div`
   display: flex;
   align-items: center;
@@ -69,6 +70,7 @@ const StyledDelete = styled.div`
     text-decoration: underline;
   }
 `;
+
 const StyledDeleteIcon = styled(Icon)`
   padding: 0 20px;
   margin: -10px;

@@ -5,9 +5,9 @@ const SwitchButton = styled.label`
   display: inline-block;
   width: 32px;
   height: 16px;
-  margin: 0 20px
-
+  margin: 0 20px;
 `;
+
 const SwitchSlider = styled.span`
   position: absolute;
   cursor: pointer;
@@ -33,27 +33,28 @@ const SwitchSlider = styled.span`
     background: #CCCCCC;
     -webkit-transition: .4s;
     transition: .4s;
-    }
+  }
 `;
 
 const SwitchImput = styled.input`
-     opacity: 0;
-    width: 0;
-    height: 0;
-    
-    &:checked {
-      background-color: #2196F3;
-    }
-    &:checked + ${SwitchSlider}:before {
-        -webkit-transform: translateX(14px);
-        -ms-transform: translateX(14px);
-         transform: translateX(14px);
-         background-color: ${props => props.theme.colors.primaryColor};
-    }
-    &:focus + ${SwitchSlider} {
-      box-shadow: 0 0 1px #2196F3;
-    }
-`;
+  opacity: 0;
+  width: 0;
+  height: 0;
 
+  &:checked {
+    background-color: #2196F3;
+  }
+
+  &:checked + ${SwitchSlider}:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+    background-color: ${props => props.theme.colors.primaryColor};
+  }
+
+  &:focus + ${SwitchSlider} {
+    box-shadow: 0 0 1px #2196F3;
+  }
+`;
 
 export { SwitchButton, SwitchImput, SwitchSlider };

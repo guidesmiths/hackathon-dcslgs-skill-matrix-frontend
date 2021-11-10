@@ -10,7 +10,6 @@ function config() {
   return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
 }
 
-
 export const fetchEcosystemsAsync = createAsyncThunk(
   'ecosystems/fetchEcosystems',
   async () => {

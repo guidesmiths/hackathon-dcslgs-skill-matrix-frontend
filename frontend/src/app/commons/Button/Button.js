@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import ButtonStyled from './Button.styled';
 
 const Button = ({ className, children, onClick, dataCy }) => (
-  <ButtonStyled className={className} data-cy={dataCy} onClick={onClick}>{children}</ButtonStyled>
+  <ButtonStyled className={className} data-cy={dataCy} onClick={onClick}>
+    {children}
+  </ButtonStyled>
 );
 
 Button.propTypes = {
@@ -16,7 +18,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   dataCy: 'button',
-  onClick: () => {},
+  onClick: () => { /* empty function */ },
 };
 
 export default Button;

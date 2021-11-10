@@ -4,19 +4,17 @@ import MaterialIcon from '@material-ui/core/Icon';
 import IconStyled from './Icon.styled';
 
 const Icon = ({ icon, className, border, height, width, show, onClick }) => (
-  (
-    <IconStyled
-      border={border}
-      className={className}
-      data-cy={`icon-${icon}`}
-      height={height}
-      show={show}
-      width={width}
-      onClick={onClick}
-    >
-      <MaterialIcon>{icon}</MaterialIcon>
-    </IconStyled>
-  )
+  <IconStyled
+    border={border}
+    className={className}
+    data-cy={`icon-${icon}`}
+    height={height}
+    show={show}
+    width={width}
+    onClick={onClick}
+  >
+    <MaterialIcon>{icon}</MaterialIcon>
+  </IconStyled>
 );
 
 Icon.defaultProps = {
@@ -24,9 +22,9 @@ Icon.defaultProps = {
   className: '',
   height: 50,
   icon: '',
-  onClick: () => {},
+  onClick: () => { /* empty function */ },
   show: true,
-  width: 'auto',
+  width: 25,
 };
 
 Icon.propTypes = {

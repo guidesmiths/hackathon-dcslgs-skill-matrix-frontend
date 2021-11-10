@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -6,12 +7,14 @@ import { BarChartContainer } from './LevelBar.styled';
 
 const LevelBar = ({ level, skill }) => {
   const [styles, setStyles] = useState({});
+
   const styleSkill = {
     width: 60,
     height: 20,
     background: '#B9E0D7',
     color: '#006B79',
   };
+
   const StyleEcosystem = {
     width: 85,
     height: 25,
@@ -20,15 +23,18 @@ const LevelBar = ({ level, skill }) => {
   };
 
   const switcher = () => (skill ? setStyles(styleSkill) : setStyles(StyleEcosystem));
+
   const data = [
     {
       name: 'level',
       skillLevel: level,
     },
   ];
+
   useEffect(() => {
     switcher();
   }, [skill]);
+
   return (
     <BarChartContainer>
       {[...Array(4)].map((x, i) => (
@@ -62,8 +68,13 @@ const LevelBar = ({ level, skill }) => {
 };
 
 LevelBar.propTypes = {
-  level: PropTypes.any.isRequired,
-  skill: PropTypes.bool.isRequired,
+  level: PropTypes.number,
+  skill: PropTypes.bool,
+};
+
+LevelBar.defaultProps = {
+  level: 0,
+  skill: false,
 };
 
 export default LevelBar;

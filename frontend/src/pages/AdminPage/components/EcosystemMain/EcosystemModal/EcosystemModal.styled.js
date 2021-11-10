@@ -5,6 +5,7 @@ import Modal from '../../../../../app/commons/Modal/Modal';
 const ModalStyledWrapper = styled(Modal)`
   padding: 20px;
 `;
+
 const HeaderStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -24,11 +25,13 @@ const StyledInfo = styled.div`
   line-height: 24px;
   padding: 24px;
 `;
+
 const StyledInputWrapper = styled.div`
   position: relative;
   height: 48px;
   margin-left: 20px;
 `;
+
 const StyledInput = styled.input`
   height: 48px;
   border-radius: 4px;
@@ -41,9 +44,10 @@ const StyledInput = styled.input`
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
+
   &:last-child{
-  background: rgba(192, 48, 137, 0.1);
-  color: ${props => props.theme.colors.primaryColor};
+    background: rgba(192, 48, 137, 0.1);
+    color: ${props => props.theme.colors.primaryColor};
   }
 `;
 

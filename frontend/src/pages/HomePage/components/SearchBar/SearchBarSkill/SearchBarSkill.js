@@ -20,7 +20,6 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const skills = useSelector(selectAllSkills);
   const [skillTyped, setSkillTyped] = useState();
 
-
   const handleInput = event => {
     const inputValue = event.target.value;
     setSkillTyped(inputValue);

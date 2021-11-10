@@ -12,6 +12,7 @@ import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
 
 const Ecosystem = ({ selectEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
+
   return (
     <Fragment>
       <EcosystemColumn data-cy={'ecosystems'}>

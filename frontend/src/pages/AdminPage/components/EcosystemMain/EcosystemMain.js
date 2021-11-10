@@ -37,7 +37,6 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   const handleDelete = () => {
     if (subject === 'ecosystem') { dispatch(deleteEcosystemAsync(idToDelete)); }
-    // TODO: When I delete a skill, the modal is still open and the ecosystem's skills don't refresh
     if (subject === 'skill') {
       dispatch(deleteSkillAsync(idToDelete));
       setShowModal(false);
@@ -75,7 +74,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          <ScrollWrapper height={ !show ? 65 : 50}>
+          {ecosystem?.skills.length && <ScrollWrapper height={!show ? 65 : 50}>
             {ecosystem?.skills.map((skill, index) => (
               <EcosystemSkill
                 key={index}
@@ -86,7 +85,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
                 onDeleteClick={() => onDeleteClick('skill', skill.id)}
               />
             ))}
-          </ScrollWrapper>
+          </ScrollWrapper>}
         </Fragment>
       )}
     {show || isEmpty ? <ButtonsWrapper>
@@ -102,7 +101,9 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   </EcosystemContainerStyled>
   );
 };
+
 EcosystemsMain.propTypes = {
+  onNewEcosystem: PropTypes.func.isRequired,
   ecosystem: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -118,7 +119,6 @@ EcosystemsMain.propTypes = {
   }),
   handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
-  onNewEcosystem: PropTypes.func.isRequired,
   show: PropTypes.bool,
   onRefresh: PropTypes.func,
 };
@@ -139,9 +139,9 @@ EcosystemsMain.defaultProps = {
       ],
     }],
   },
-  handleNewEcosystemAdmin: () => {},
+  handleNewEcosystemAdmin: () => { /* empty function */ },
   isNewEcosystem: null,
-  onRefresh: () => {},
+  onRefresh: () => { /* empty function */ },
   show: false,
 };
 

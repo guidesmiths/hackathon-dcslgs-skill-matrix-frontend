@@ -37,10 +37,11 @@ PopUp.propTypes = {
   input: PropTypes.array.isRequired,
   isSuccess: PropTypes.bool.isRequired,
   show: PropTypes.bool.isRequired,
-  onCloseClick: PropTypes.func.isRequired,
+  onCloseClick: PropTypes.func,
 };
 
 PopUp.defaultProps = {
   input: [],
+  onCloseClick: () => { /* empty function */ },
 };
 export default PopUp;

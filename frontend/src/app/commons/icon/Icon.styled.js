@@ -8,6 +8,7 @@ const IconStyled = styled.div`
   height: ${props => `${props.height}px`};
   width: ${props => `${props.width}px`};
   margin-right: ${props => `${props.marginRight}px`};
+
   &:hover {
     cursor:pointer;
   }

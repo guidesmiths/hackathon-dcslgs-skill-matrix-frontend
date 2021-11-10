@@ -20,7 +20,7 @@ module.exports = () => {
         headers: { Authorization: req.headers.authorization },
       })
         .then(({ data }) => res.json(data))
-        .catch(error => console.error(error)));
+        .catch(handleError(res, logger)));
 
     /**
      * GET /api/v1/user/me

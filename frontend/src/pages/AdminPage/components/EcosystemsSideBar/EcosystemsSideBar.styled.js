@@ -29,9 +29,11 @@ const EcosystemElementStyled = styled.div`
   font-size:14px;
   letter-spacing: 0.5px;
   line-height: 24px;
+
   &:last-child{
     padding-bottom: 30px;
   }
+
   &:hover {
     background: #f4f4f4;
     cursor: pointer;
