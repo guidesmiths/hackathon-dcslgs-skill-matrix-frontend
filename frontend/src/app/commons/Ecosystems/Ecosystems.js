@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import {
@@ -12,6 +12,11 @@ import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
 
 const Ecosystem = ({ selectEcosystem }) => {
   const ecosystems = useSelector(selectAllEcosystems);
+  const [selected, isSelected] = useState();
+  useEffect(() => {
+    selectEcosystem(0);
+    isSelected(1);
+  }, []);
   return (
     <Fragment>
       <EcosystemColumn data-cy={'ecosystems'}>
@@ -20,7 +25,7 @@ const Ecosystem = ({ selectEcosystem }) => {
           {!ecosystems.length
             ? <SkeletonWrapper />
             : ecosystems?.map(({ id, name }) => (
-              <ButtonStyled key={id} onClick={() => selectEcosystem(id - 1)}>
+              <ButtonStyled key={id} id={id} selected={selected} onClick={() => { selectEcosystem(id - 1); isSelected(id); }}>
                 {name}
               </ButtonStyled>
             ))}

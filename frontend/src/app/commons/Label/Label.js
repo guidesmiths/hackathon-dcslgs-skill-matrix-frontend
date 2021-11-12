@@ -7,7 +7,6 @@ const Label = ({ children, top, left, weight, type }) => (
     {children}
   </StyledName>
 );
-export default Label;
 
 Label.propTypes = {
   children: PropTypes.string.isRequired,
@@ -21,3 +20,5 @@ Label.defaultProps = {
   type: '',
   weight: 500,
 };
+
+export default Label;

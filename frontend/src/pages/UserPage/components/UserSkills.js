@@ -40,10 +40,11 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
     const index = userSkills.findIndex(
       userSkill => userSkill.id === skill.id,
     );
-    const { level, interested, comments } = index !== -1 ? userSkills[index] : { level: 0, interested: false, comments: '' };
+    const { level, sublevel, interested, comments } = index !== -1 ? userSkills[index] : { level: 0, interested: false, comments: '' };
     return {
       ...skill,
       level,
+      sublevel,
       interested,
       comments,
     };
@@ -59,6 +60,7 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
       ref.current.click();
     }
   }, [isSubmited]);
+
   return (
     <UserData data-cy={'userRow'}>
       <form onSubmit={handleSubmit}>
@@ -91,13 +93,14 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
 
 UserSkills.defaultProps = {
   mySkills: [],
+  systemSelected: 0,
 };
 
 UserSkills.propTypes = {
   edit: PropTypes.bool.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
-  systemSelected: PropTypes.array.isRequired,
+  systemSelected: PropTypes.number,
 };
 
 export default UserSkills;

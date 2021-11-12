@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconFlagES } from 'material-ui-flags';
+import es from '../../../../../../Assets/Icons/es.svg';
 import {
-  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, ArrowButtonStyled, MoreInfoWrapper,
+  ListElementStyled,
+  UserNameStyled,
+  UserEmailStyled,
+  UserRolStyled,
+  UserWrapperStyled,
+  ArrowButtonStyled,
+  MoreInfoWrapper,
+  StyledImage,
 } from './ListElementHeader.styled';
 import Icon from '../../../../../../app/commons/icon/icon';
 
@@ -17,7 +24,7 @@ const ListElementHeader = ({ email, name, setCollapsed, isCollapsed }) => {
       </UserWrapperStyled>
       <UserEmailStyled>{email}</UserEmailStyled>
       <MoreInfoWrapper>
-        <IconFlagES/>
+        <StyledImage src={es}/>
         <UserRolStyled>Medior Developer in Development Team</UserRolStyled>
         <ArrowButtonStyled onClick={setCollapsed}>
           <span className="material-icons">

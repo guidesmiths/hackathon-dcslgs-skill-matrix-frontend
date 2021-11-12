@@ -3,17 +3,18 @@ import Icon from '../../../../../app/commons/icon/icon';
 import Label from '../../../../../app/commons/Label/Label.styled';
 
 const SkillContainerStyled = styled.div`
-    position: relative;
-    width: 80%;
-    margin: 20px auto;
-    box-sizing: border-box;
-    font-family: ${props => props.theme.fonts.poppins};
-    border: 1px solid #EFEFEF;
-    border-radius: 4px;
-    &:last-child{
-        height:100%;
-        margin-bottom:30px;
-    }
+  position: relative;
+  width: 80%;
+  margin: 20px auto;
+  box-sizing: border-box;
+  font-family: ${props => props.theme.fonts.poppins};
+  border: 1px solid #EFEFEF;
+  border-radius: 4px;
+
+  &:last-child{
+      height:100%;
+      margin-bottom:30px;
+  }
 `;
 
 const SkillHeaderStyled = styled.div`
@@ -48,6 +49,7 @@ const IconStyled = styled(Icon)`
     margin-right: 20px;
   }
 `;
+
 const LevelStyled = styled.textarea`
   width: 90%;
   margin: 10px auto;

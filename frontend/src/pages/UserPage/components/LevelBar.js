@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
-const LevelBar = ({ level, skill }) => {
+const LevelBar = ({ level, skill, sublevel }) => {
   const [styles, setStyles] = useState({});
+
   const styleSkill = {
     width: 60,
     height: 20,
     background: '#B9E0D7',
     color: '#006B79',
   };
+
   const StyleEcosystem = {
     width: 85,
     height: 25,
@@ -20,15 +23,34 @@ const LevelBar = ({ level, skill }) => {
   };
 
   const switcher = () => (skill ? setStyles(styleSkill) : setStyles(StyleEcosystem));
+
+  const sublevels = {
+    minus: -1 / 3,
+    neutral: 0,
+    plus: 1 / 3,
+  };
+
+  const totalLevel = level + sublevels[sublevel];
+  const realLevel = Math.floor(totalLevel);
+  const realSublevel = totalLevel - Math.floor(totalLevel);
+
   const data = [
     {
       name: 'level',
-      skillLevel: level,
+      skillLevel: realLevel,
+      skillSublevel: realSublevel,
     },
   ];
+
   useEffect(() => {
     switcher();
   }, [skill]);
+
+  const fillBars = barIndex => {
+    if (realLevel > barIndex) return [0, 'dataMax'];
+    if (realLevel + 1 > barIndex && realSublevel > 0) return [0, dataMax => (dataMax * (1 / realSublevel))];
+    return '';
+  };
   return (
     <BarChartContainer>
       {[...Array(4)].map((x, i) => (
@@ -45,7 +67,7 @@ const LevelBar = ({ level, skill }) => {
           width={styles.width}
         >
           <YAxis hide radius={[10, 10, 10, 10]} type="category" />
-          <XAxis hide domain={level > i ? [0, 'dataMax'] : ''} type="number" />
+          <XAxis hide domain={fillBars(i)} type="number" />
           <Bar
             alignmentBaseline="baseline"
             background={{ fill: styles.background }}
@@ -53,7 +75,6 @@ const LevelBar = ({ level, skill }) => {
             fill={styles.color}
             height={25}
             radius={[10, 10, 10, 10]}
-            // minPointSize={25}
           />
         </BarChart>
       ))}
@@ -62,8 +83,15 @@ const LevelBar = ({ level, skill }) => {
 };
 
 LevelBar.propTypes = {
-  level: PropTypes.any.isRequired,
-  skill: PropTypes.bool.isRequired,
+  level: PropTypes.number,
+  skill: PropTypes.bool,
+  sublevel: PropTypes.string,
+};
+
+LevelBar.defaultProps = {
+  level: 0,
+  skill: false,
+  sublevel: 'neutral',
 };
 
 export default LevelBar;

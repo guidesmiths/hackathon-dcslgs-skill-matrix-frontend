@@ -8,6 +8,7 @@ const UserPageStyled = styled.div`
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
 `;
+
 const HeaderStyled = styled.div`
   width: 100%;
   height: 90px;
@@ -37,6 +38,7 @@ const RowTitle = styled.div`
   align-items: center;
   height: 72px;
 `;
+
 const ColumTitles = styled.div`
   display: grid;
   grid-template-columns: 40% 40% 20%;
@@ -45,7 +47,6 @@ const ColumTitles = styled.div`
   box-sizing: border-box;
   margin: 0 auto 20px;
   padding: 0 15px 0 50px;
-
   border-bottom: 1px solid #EFEFEF;
   border-top: 1px solid #EFEFEF;
 `;
@@ -77,6 +78,7 @@ const DataTitle = styled.h5`
   text-align: start;
   border-bottom: 1px solid #EFEFEF;
 `;
+
 const ColumTitle = styled.h5`
   margin: 8px 0;
   font-weight: 500;
@@ -115,14 +117,16 @@ const SaveButton = styled(EditButtonStyled)`
     cursor: pointer;
   }
 `;
+
 const StyledIcon = styled(Icon)`
   width: 112px;
   height: auto;
   box-sizing: border-box;
   background: ${props => props.theme.colors.lightGreen};
   color: ${props => props.theme.colors.green};
-  border-radius: 0px;
+  border-radius: 0;
 `;
+
 const StyledModal = styled(Modal)`
   width:600px;
 `;

@@ -3,10 +3,11 @@ import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled
 import Icon from '../../../app/commons/icon/icon';
 
 const RowSkillsWrapper = styled.div`
-  &:last-child{
+  &:last-child {
     padding-bottom: 30px !important;
   }
 `;
+
 const RowSkillsTop = styled.div`
   margin: 0 auto;
   margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
@@ -55,19 +56,21 @@ const StyledLabel = styled.label`
     opacity: 0;
     transform: rotate(-45deg);
   }
+
   &:hover {
-  cursor: ${props => (props.edit ? 'pointer' : 'auto')};
+    cursor: ${props => (props.edit ? 'pointer' : 'auto')};
   }
+
   &:hover:after {
     opacity: ${props => (props.edit ? 0.5 : 'auto')}
   };
 
-  &:after{
+  &:after {
     opacity: ${props => (props.isChecked ? 1 : 0)}
   }
 `;
 
-const ChecboxWrapper = styled.div`
+const CheckboxWrapper = styled.div`
   position: relative;
   width: 20px;
   margin: 20px 20px 20px 0;
@@ -90,6 +93,8 @@ const RowSkillsBottom = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 65px 15px 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03)
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`
@@ -149,14 +154,14 @@ const AdjustButton = styled(Icon)`
   color: black;
 
   &:first-child {
-    background-color: ${props => (props.clicked === 'remove' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'remove' && 'white')};
+    background-color: ${props => (props.clicked === 'minus' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
+    color: ${props => (props.clicked === 'minus' && 'white')};
     border-radius: 8px 0 0 8px;
  };
 
   &:last-child{
-    background-color: ${props => (props.clicked === 'add' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'add' && 'white')};
+    background-color: ${props => (props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
+    color: ${props => (props.clicked === 'plus' && 'white')};
     border-radius: 0 8px 8px 0;
   };
 `;
@@ -177,7 +182,7 @@ export {
   RowSkills,
   UserSkillName,
   StyledLabel,
-  ChecboxWrapper,
+  CheckboxWrapper,
   StyledCheckbox,
   RowCollapsed,
   RowSkillsBottom,

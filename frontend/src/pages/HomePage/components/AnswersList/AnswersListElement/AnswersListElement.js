@@ -5,9 +5,10 @@ import SkillList from './SkillList/SkillList';
 import AnswersListElementStyled from './AnswersListElement.styled';
 import LoadingUserRow from '../../../../../app/commons/LoadingUserRow/LoadingUserRow';
 
-const AnswersListElement = ({ email, name, skills, index }) => {
+const AnswersListElement = ({ userId, email, name, role, skills, index }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -20,7 +21,7 @@ const AnswersListElement = ({ email, name, skills, index }) => {
         ? <ListElementHeader email={email} isCollapsed={isCollapsed} name={name} setCollapsed={() => setCollapsed(!isCollapsed)}/>
         : <LoadingUserRow/>
       }
-      <SkillList isCollapsed={isCollapsed} skills={skills}/>
+      <SkillList isCollapsed={isCollapsed} role={role} skills={skills} userId={userId}/>
     </AnswersListElementStyled>
   );
 };
@@ -29,6 +30,8 @@ AnswersListElement.propTypes = {
   email: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
   skills: PropTypes.array,
 };
 

@@ -2,35 +2,35 @@ import styled, { keyframes } from 'styled-components';
 import Icon from '../../../../app/commons/icon/icon';
 
 const animation2 = keyframes`
-    0% {
-      opacity:0.1
-    }
-    25%{
-      opacity:0.3;
-    }
-    50%{
-      opacity:0.5;
-    }
-    75%{
-      opacity:0.8;
-    }
-    100%{
-      opacity:1;
-    }
+  0% {
+    opacity: 0.1
+  }
+  25% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 `;
 
 const SearchBarsWrapper = styled.div`
-    position: relative;
-    padding: 20px 0 60px;
-    animation: ${animation2} 4s;
-    box-sizing:border-box;
+  position: relative;
+  padding: 20px 0 60px;
+  animation: ${animation2} 4s;
+  box-sizing:border-box;
 `;
 
 const SearchBarWrapper = styled.div`
-    position: relative;
-    height: 56px;
-    width: 95%;
-    margin: 15px auto;
+  position: relative;
+  height: 56px;
+  width: 95%;
+  margin: 15px auto;
 `;
 
 const SearchBarSkillWrapper = styled.div`

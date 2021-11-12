@@ -75,7 +75,6 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
         <Input
           input={skillTyped}
           optionsList={optionsList}
-          // value={existingSkill || skillTyped}
           width={300}
           onChangeInput={handleInput}
         />

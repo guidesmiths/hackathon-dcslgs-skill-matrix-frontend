@@ -41,6 +41,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user`,
         method: 'post',
       },
+      changeUserRole: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/role`,
+        method: 'put',
+      },
     },
     ecosystems: {
       fetchEcosystems: {

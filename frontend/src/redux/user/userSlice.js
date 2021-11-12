@@ -66,6 +66,18 @@ export const insertUserAsync = createAsyncThunk(
   },
 );
 
+export const changeUserRoleAsync = createAsyncThunk(
+  'users/changeUserRole',
+  async userData => {
+    const response = await axios.put('/ui/user/role',
+      {
+        id: userData.userId,
+        role: userData.newRole,
+      }, config());
+    return response.data;
+  },
+);
+
 export const userSlice = createSlice({
   name: 'users',
   initialState,
@@ -115,6 +127,12 @@ export const userSlice = createSlice({
       .addCase(insertUserAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = action.payload;
+      })
+      .addCase(changeUserRoleAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(changeUserRoleAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
       });
   },
 });

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -24,7 +25,7 @@ const HomePage = () => {
   return (
     <HomePageStyled>
       <StyledBackground>
-        <SearchBar/>
+        <SearchBar />
       </StyledBackground>
       <AnswersList />
     </HomePageStyled>

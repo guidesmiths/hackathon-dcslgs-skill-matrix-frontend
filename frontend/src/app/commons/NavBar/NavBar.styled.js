@@ -11,6 +11,7 @@ const NavBarTop = styled.div`
   justify-content: space-between;
   background: ${props => props.theme.colors.white};
 `;
+
 const NavStyled = styled.div`
   display: flex;
   align-items: center;
@@ -23,10 +24,12 @@ const LogoWrapper = styled.div`
   align-items: center;
   height: 100%;
 `;
+
 const LogoPlaceHolder = styled.div`
   min-height: 100%;
   min-width: 20px;
 `;
+
 const UserWrapperStyled = styled.div`
   display: flex;
   align-items: center;
@@ -41,16 +44,18 @@ const NavBarLink = styled(NavLink)`
   text-decoration: none;
   padding: 5px 7px;
   border-radius: 8px;
-   &:hover {
+
+  &:hover {
     color: grey;
-   };
-   &.${props => props.activeClassName}{
+  };
+
+  &.${props => props.activeClassName}{
     font-weight:  900;
-   }
- `;
+  }
+`;
 
 const StyledIcon = styled(Icon)`
   border: none;
- `;
+`;
 
 export { NavBarTop, NavStyled, NavBarLink, LogoWrapper, LogoPlaceHolder, UserWrapperStyled, StyledIcon };

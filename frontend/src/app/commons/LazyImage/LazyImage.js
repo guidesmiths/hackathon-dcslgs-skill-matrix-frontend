@@ -5,17 +5,19 @@ import { StyledImage } from './LazyImage.styled';
 const LazyImage = ({ loadingSrc, actualSrc }) => {
   const [isImageLoaded, setImageLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
     const img = new Image();
     img.onload = () => setImageLoaded(true);
     img.onerror = () => setHasError(true);
     img.src = actualSrc;
   }, [actualSrc]);
+
   return (
     <StyledImage
+      $loading={!isImageLoaded}
       actualSrc={actualSrc}
       error={hasError}
-      loading={!isImageLoaded}
       loadingSrc={loadingSrc}
     />
   );
@@ -24,6 +26,7 @@ const LazyImage = ({ loadingSrc, actualSrc }) => {
 LazyImage.defaultProps = {
   loadingSrc: null,
 };
+
 LazyImage.propTypes = {
   actualSrc: PropTypes.string.isRequired,
   loadingSrc: PropTypes.string,

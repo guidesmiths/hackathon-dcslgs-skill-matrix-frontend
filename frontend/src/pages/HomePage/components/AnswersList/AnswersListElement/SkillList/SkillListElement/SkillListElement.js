@@ -11,7 +11,6 @@ const sublevels = {
 const SkillListElement = ({ name, level, sublevel, levelDescription }) => {
   const [isSelected, setSelected] = useState(false);
 
-  // TODO: we have to add the levelDescription in the endpoint response.
   return (
     <SkillElementStyled onClick={() => setSelected(!isSelected)} >
       <SkillNameStyled>{name}</SkillNameStyled>
@@ -25,7 +24,7 @@ SkillListElement.propTypes = {
   level: PropTypes.number.isRequired,
   levelDescription: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  sublevel: PropTypes.number.isRequired,
+  sublevel: PropTypes.string.isRequired,
 };
 
 export default SkillListElement;

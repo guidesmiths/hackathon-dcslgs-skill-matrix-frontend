@@ -1,17 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import InputStyled from './Input.styled';
 
 const Input = ({ placeholder, input, onChangeInput }) => (
-  <Fragment>
-    <InputStyled
-      list={input}
-      placeholder={placeholder}
-      type="text"
-      value={input}
-      onChange={onChangeInput}
-    />
-  </Fragment>
+  <InputStyled
+    list={input}
+    placeholder={placeholder}
+    type="text"
+    value={input}
+    onChange={onChangeInput}
+  />
 );
 
 Input.defaultProps = {

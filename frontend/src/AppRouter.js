@@ -24,7 +24,7 @@ const AppRouter = () => {
         <PrivateRoute exact component={HomePage} path={HOME_ROUTE} />
         <PrivateRoute
           exact
-          component = {AdminPage}
+          component={AdminPage}
           path={ADMIN_ROUTE}
         />
         {/* Default path for non existing pages */}

@@ -8,7 +8,7 @@ import { SkeletonWrapper as Skeleton } from './SkeletonWrapper.styled';
 const SkeletonWrapper = ({ rows }) => (
   <Box width="100%">
     {range(0, rows).map(row => (
-      <Skeleton key={row} animation="wave" animationDelay={row * 10} />
+      <Skeleton key={row} animation="wave" />
     ))}
   </Box>
 );
