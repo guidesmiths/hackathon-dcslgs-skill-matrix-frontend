@@ -10,7 +10,13 @@ import {
 } from '../../../../redux/filters/filtersSlice';
 import { fetchAnswersAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
-import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
+import {
+  SearchBarUsers,
+  SearchBarsWrapper,
+  IconStyled,
+  SearchBarWrapper,
+  SearchBarSkillWrapper,
+} from './SearchBar.styled';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
@@ -32,7 +38,7 @@ export const SearchBar = () => {
           value={userFilter}
           onChange={e => dispatch(updateUserFilter(e.target.value))}
         />
-        <IconStyled icon={'search'}/>
+        <IconStyled icon={'search'} />
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
         {skillFilters.map((filter, index) => (

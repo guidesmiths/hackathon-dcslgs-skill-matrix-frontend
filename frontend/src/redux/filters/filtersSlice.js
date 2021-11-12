@@ -22,6 +22,7 @@ export const filtersSlice = createSlice({
       const updatedFilters = stateFilters.length === 1
         ? [{}]
         : stateFilters.filter((_, i) => i !== action.payload);
+
       state.skills = updatedFilters;
     },
     updateUserFilter: (state, action) => {
