@@ -2,26 +2,26 @@ import styled, { keyframes } from 'styled-components';
 
 const animation2 = keyframes`
   0% {
-    opacity:0.1;
+    opacity: 0.1;
   }
-  25%{
-    opacity:0.3;
+  25% {
+    opacity: 0.3;
   }
-  50%{
-    opacity:0.5;
+  50% {
+    opacity: 0.5;
   }
-  75%{
-    opacity:0.7;
+  75% {
+    opacity: 0.7;
   }
-  100%{
-    opacity:1;
+  100% {
+    opacity: 1;
   }
 `;
 const AnswersListElementStyled = styled.div`
   position: relative;
-  top:-10px;
+  top: -10px;
   margin: 0 auto;
-  padding:15px 0;
+  padding: 15px 2px;
   background-color: white;
   animation: ${animation2} 4s;
 `;

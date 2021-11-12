@@ -17,6 +17,7 @@ const UserNameStyled = styled.h3`
 const UserEmailStyled = styled.h5`
   margin: 0;
   padding: 0;
+  font-weight: 400;
   color: ${props => props.theme.colors.textColor};
 `;
 
@@ -34,12 +35,14 @@ const UserRolStyled = styled.p`
 const MoreInfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-self:end;
+  justify-self: end;
   justify-content: space-between;
-  min-width:60%;
+  min-width: 60%;    
 `;
 
 const ListElementStyled = styled.div`
+  position: relative;
+  z-index: 999;
   padding: 0 50px;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
@@ -56,6 +59,11 @@ const ArrowButtonStyled = styled(ArrowButton)`
   background: transparent;
 `;
 
+const StyledImage = styled.img`
+  height: 24px;
+  width: 24px;
+`;
+
 export {
   ListElementStyled,
   UserWrapperStyled,
@@ -64,4 +72,5 @@ export {
   UserRolStyled,
   ArrowButtonStyled,
   MoreInfoWrapper,
+  StyledImage,
 };

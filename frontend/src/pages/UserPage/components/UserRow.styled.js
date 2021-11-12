@@ -93,6 +93,8 @@ const RowSkillsBottom = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 65px 15px 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03)
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`

@@ -48,7 +48,7 @@ const ScrollWrapper = styled.div`
   background-size: 90% 0;
   border-radius: 10px 10px;
   scrollbar-width: none;
-
+  
   &::-webkit-scrollbar{
     display: none;
   }
