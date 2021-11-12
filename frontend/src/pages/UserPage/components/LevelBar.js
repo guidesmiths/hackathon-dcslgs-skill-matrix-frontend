@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
-const LevelBar = ({ level, skill }) => {
+const LevelBar = ({ level, skill, sublevel }) => {
   const [styles, setStyles] = useState({});
 
   const styleSkill = {
@@ -24,10 +24,21 @@ const LevelBar = ({ level, skill }) => {
 
   const switcher = () => (skill ? setStyles(styleSkill) : setStyles(StyleEcosystem));
 
+  const sublevels = {
+    minus: -1 / 3,
+    neutral: 0,
+    plus: 1 / 3,
+  };
+
+  const totalLevel = level + sublevels[sublevel];
+  const realLevel = Math.floor(totalLevel);
+  const realSublevel = totalLevel - Math.floor(totalLevel);
+
   const data = [
     {
       name: 'level',
-      skillLevel: level,
+      skillLevel: realLevel,
+      skillSublevel: realSublevel,
     },
   ];
 
@@ -35,6 +46,11 @@ const LevelBar = ({ level, skill }) => {
     switcher();
   }, [skill]);
 
+  const fillBars = barIndex => {
+    if (realLevel > barIndex) return [0, 'dataMax'];
+    if (realLevel + 1 > barIndex && realSublevel > 0) return [0, dataMax => (dataMax * (1 / realSublevel))];
+    return '';
+  };
   return (
     <BarChartContainer>
       {[...Array(4)].map((x, i) => (
@@ -51,7 +67,7 @@ const LevelBar = ({ level, skill }) => {
           width={styles.width}
         >
           <YAxis hide radius={[10, 10, 10, 10]} type="category" />
-          <XAxis hide domain={level > i ? [0, 'dataMax'] : ''} type="number" />
+          <XAxis hide domain={fillBars(i)} type="number" />
           <Bar
             alignmentBaseline="baseline"
             background={{ fill: styles.background }}
@@ -59,7 +75,6 @@ const LevelBar = ({ level, skill }) => {
             fill={styles.color}
             height={25}
             radius={[10, 10, 10, 10]}
-            // minPointSize={25}
           />
         </BarChart>
       ))}
@@ -70,11 +85,13 @@ const LevelBar = ({ level, skill }) => {
 LevelBar.propTypes = {
   level: PropTypes.number,
   skill: PropTypes.bool,
+  sublevel: PropTypes.string,
 };
 
 LevelBar.defaultProps = {
   level: 0,
   skill: false,
+  sublevel: 'neutral',
 };
 
 export default LevelBar;

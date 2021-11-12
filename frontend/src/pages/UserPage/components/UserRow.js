@@ -26,7 +26,7 @@ import Label from '../../../app/commons/Label/Label';
 const UserRow = ({ skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
-  const [subValue, setSubValue] = useState('');
+  const [subValue, setSubValue] = useState(skill.sublevel || 'neutral');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
 
@@ -59,12 +59,14 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
+
   const subValueHandler = value => {
     if (subValue === value) {
-      setSubValue('');
+      setSubValue('neutral');
     } else {
       setSubValue(value);
     }
+
     dispatch(
       updateUserSkill({
         idEcosystem,
@@ -86,7 +88,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       >
         <RowSkills>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar skill level={skill.level} subValue={subValue}/>
+          <LevelBar skill level={skill.level} sublevel={skill.sublevel}/>
           <ButtonWrapper>
             <CheckboxWrapper>
               <StyledCheckbox
