@@ -5,7 +5,7 @@ import Icon from '../icon/icon';
 const NavBarTop = styled.div`
   height: 72px;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +18,7 @@ const NavStyled = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-  margin: 0 50px;
+  margin: 0 45px;
   border-right: 1px solid #E5E5E5;
   display: flex;
   align-items: center;
