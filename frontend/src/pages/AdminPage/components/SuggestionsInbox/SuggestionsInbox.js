@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  selectAllSuggestions,
-} from '../../../../redux/suggestions/suggestionsSlice';
+import PropTypes from 'prop-types';
 import SuggestionCard from './SuggestionCard/SuggestionCard';
 import {
   SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider,
 } from './SuggestionsInbox.styled';
 
-const SuggestionsInbox = () => {
-  const suggestions = useSelector(selectAllSuggestions);
+const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
   const [position, setPosition] = useState(0);
   const [showScroll, setShowScroll] = useState(false);
   const ref = useRef(null);
@@ -28,7 +24,7 @@ const SuggestionsInbox = () => {
   }, [ref.current?.scrollWidth]);
 
   return (
-    <SuggestionInboxStyled data-cy="suggestions-inbox">
+    <SuggestionInboxStyled data-cy="suggestions-inbox" noSuggestions={noSuggestions}>
       <SuggestionCardsStyled ref={ref}>
         {suggestions.map(({ userName, description, subject, id }, index) => (
           <SuggestionCard
@@ -47,3 +43,7 @@ const SuggestionsInbox = () => {
 };
 
 export default SuggestionsInbox;
+SuggestionsInbox.propTypes = {
+  noSuggestions: PropTypes.bool.isRequired,
+  suggestions: PropTypes.isRequired,
+};

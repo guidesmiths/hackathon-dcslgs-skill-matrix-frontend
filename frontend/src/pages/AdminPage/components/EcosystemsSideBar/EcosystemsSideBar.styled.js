@@ -27,15 +27,17 @@ const EcosystemHeaderStyled = styled.div`
 const EcosystemElementStyled = styled.div`
   padding: 8px 25px;
   font-size:14px;
+  font-weight: ${props => (props.selected === props.id ? 'bold' : '400')};
   letter-spacing: 0.5px;
   line-height: 24px;
+  color: ${props => (props.selected === props.id ? props.theme.colors.primaryColor : 'default')};
+  background: ${props => (props.selected === props.id ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
 
   &:last-child{
     padding-bottom: 30px;
   }
 
   &:hover {
-    background: #f4f4f4;
     cursor: pointer;
   }
 `;

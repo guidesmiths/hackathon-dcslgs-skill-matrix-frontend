@@ -4,7 +4,7 @@ const AdminPageStyled = styled.div`
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 3fr 9fr;
-  grid-template-rows: 200px auto;
+  grid-template-rows:  ${props => (props.noSuggestions ? ' 50px auto' : ' 200px auto')};
   grid-template-areas:
     "suggestions suggestions"
     "ecosystems-sidebar ecosystems-main";

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
-import { fetchSuggestionsAsync } from '../../redux/suggestions/suggestionsSlice';
+import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import Footer from '../../app/commons/Footer/Footer';
@@ -30,7 +30,9 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
+  const suggestions = useSelector(selectAllSuggestions);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
+  const [noSuggestions, setNoSuggestions] = useState(true);
   const [isNewEcosystem, setIsNewEcosystem] = useState(null);
   const [isOnEditableMode, setIsOnEditableMode] = useState(null);
   const [beforeEdit, setBeforeEdit] = useState(null);
@@ -83,11 +85,20 @@ const HomePage = () => {
     handleEcosystemClick(selectedEcosystem?.id);
   }, [ecosystems]);
 
+  useEffect(() => {
+    setNoSuggestions(suggestions.length === 0);
+  }, [suggestions]);
   return (
     <Fragment>
-      <AdminPageStyled data-cy="admin-page">
-        <SuggestionsInbox />
-        <EcosystemsSideBar ecosystems={ecosystems} show={isOnEditableMode} onEcosystemSelected={handleEcosystemClick} onNewEcosystem={newEcosystemMode}/>
+      <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
+        <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
+        <EcosystemsSideBar
+          ecosystems={ecosystems}
+          noSuggestions={noSuggestions}
+          show={isOnEditableMode}
+          onEcosystemSelected={handleEcosystemClick}
+          onNewEcosystem={newEcosystemMode}
+        />
         <EcosystemMain
           ecosystem={selectedEcosystem}
           handleNewEcosystemAdmin={handleNewEcosystemAdmin}

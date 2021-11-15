@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const SuggestionInboxStyled = styled.div`
   grid-area: suggestions;
   display: flex;
-  height: 270px;
-  min-height: 250px;
+  height: ${props => (props.noSuggestions ? '90px' : '270px')};
+  min-height: ${props => (props.noSuggestions ? '' : '250px')};
   border: 1px solid #aaa;
   background: ${props => props.theme.colors.backgroundGradient};
   position: relative;
