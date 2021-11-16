@@ -10,14 +10,14 @@ const LevelBar = ({ level, skill, sublevel }) => {
 
   const styleSkill = {
     width: 60,
-    height: 20,
+    height: 20.5,
     background: '#B9E0D7',
     color: '#006B79',
   };
 
   const StyleEcosystem = {
     width: 85,
-    height: 25,
+    height: 26,
     background: '#F9EBF4',
     color: '#BF3088',
   };
@@ -70,11 +70,11 @@ const LevelBar = ({ level, skill, sublevel }) => {
           <XAxis hide domain={fillBars(i)} type="number" />
           <Bar
             alignmentBaseline="baseline"
-            background={{ fill: styles.background }}
+            background={{ fill: styles.background, radius: 4 }}
             dataKey="skillLevel"
             fill={styles.color}
             height={25}
-            radius={[10, 10, 10, 10]}
+            radius={4}
           />
         </BarChart>
       ))}
