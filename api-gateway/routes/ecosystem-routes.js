@@ -36,10 +36,10 @@ module.exports = () => {
     */
     app.post('/ui/ecosystem',
       async (req, res) => {
-        const { body: payload } = req;
+        const { body } = req;
         return controller.ecosystems.insertEcosystem({
           headers: { Authorization: req.headers.authorization },
-          payload,
+          body,
         })
           .then(({ data }) => res.json(data))
           .catch(handleError(res, logger));

@@ -20,23 +20,26 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
   }, [isNewEcosystem]);
 
   const [newSkill, setNewSkill] = useState();
-  const [newLevel, setNewLevel] = useState();
+  const [levels] = useState([
+    { level: 1, description: '' },
+    { level: 2, description: '' },
+    { level: 3, description: '' },
+    { level: 4, description: '' },
+  ]);
 
-  const handleNewSkillName = e => {
+  const handleNewSkillName = event => {
     // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.
     // Please, delete the mocked type, roles and description when this is fixed.
     const type = 1;
     const roles = [1, 3];
     const description = 'Testing description';
-    setNewSkill({ ...newSkill, name: e.target.value, type, roles, description });
-    handleNewSkills({ ...newSkill, name: e.target.value, type, roles, description });
+    setNewSkill({ ...newSkill, name: event.target.value, type, roles, description, levels });
+    handleNewSkills(skillIndex, { ...newSkill, name: event.target.value, type, roles, description, levels });
   };
 
-  const handleNewLevel = (e, index) => {
-    setNewLevel({ ...newLevel, [index + 1]: e.target.value });
-    const levels = newLevel && Object.entries(newLevel).map(([key, value]) => ({ level: key, description: value }));
-    setNewSkill({ ...newSkill, levels });
-    handleNewSkills({ ...newSkill, levels });
+  const handleNewLevel = (event, index) => {
+    levels[index].description = event.target.value;
+    handleNewSkills(skillIndex, { ...newSkill, levels });
   };
 
   return (
@@ -66,7 +69,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
             data-cy={`skill-level-textarea-${levelIndex}`}
             placeholder={`Level ${level.level} description`}
             rows="2"
-            value={isNewEcosystem ? newLevel?.[levelIndex + 1] : level.levelDescription || ''}
+            value={isNewEcosystem ? levels?.[levelIndex]?.description : level.levelDescription || ''}
             onChange={e => handleNewLevel(e, levelIndex)}
           />
           <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>

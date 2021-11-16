@@ -44,6 +44,8 @@ const StyledInput = styled.input`
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
+  pointer-events: ${props => !props.enabled && 'none'};
+  opacity: ${props => !props.enabled && 0.6};
 
   &:last-child{
     background: rgba(192, 48, 137, 0.1);

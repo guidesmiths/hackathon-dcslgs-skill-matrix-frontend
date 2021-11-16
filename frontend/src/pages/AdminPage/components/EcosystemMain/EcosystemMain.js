@@ -22,10 +22,15 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
   const [isEmpty, setIsEmpty] = useState(null);
+  const [skills, setSkills] = useState();
 
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
   const [newEcosystem, setNewEcosystem] = useState();
+
+  useEffect(() => {
+    setSkills(ecosystem?.skills);
+  }, [ecosystem]);
 
   const onDeleteClick = (sub, id) => {
     setSubject(sub);
@@ -36,21 +41,29 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const onCloseClick = () => setShowModal(false);
 
   const handleDelete = () => {
-    if (subject === 'ecosystem') { dispatch(deleteEcosystemAsync(idToDelete)); }
+    if (subject === 'ecosystem') {
+      dispatch(deleteEcosystemAsync(idToDelete));
+      setShowModal(false);
+      onRefresh();
+    }
     if (subject === 'skill') {
       dispatch(deleteSkillAsync(idToDelete));
       setShowModal(false);
       onRefresh();
     }
   };
+
   useEffect(() => {
     setIsEmpty(ecosystem?.id === 0);
   }, [ecosystem]);
-  const handleNewEcosystem = e => {
-    setNewEcosystem({ ...newEcosystem, name: e.target.value });
-    handleNewEcosystemAdmin({ ...newEcosystem, name: e.target.value });
+
+  const handleNewEcosystem = event => {
+    setNewEcosystem({ ...newEcosystem, name: event.target.value });
+    handleNewEcosystemAdmin({ ...newEcosystem, name: event.target.value });
   };
-  const handleNewSkills = skills => {
+
+  const handleNewSkills = (skillIndex, skill) => {
+    skills[skillIndex] = skill;
     setNewEcosystem({ ...newEcosystem, skills });
     handleNewEcosystemAdmin({ ...newEcosystem, skills });
   };
@@ -97,7 +110,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     </ButtonsWrapper>
       : null
     }
-    <EcosystemModal handleDelete={handleDelete} show={showModal} subject={subject} onCloseClick={onCloseClick} />
+    <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} show={showModal} subject={subject} onCloseClick={onCloseClick} />
   </EcosystemContainerStyled>
   );
 };
@@ -120,6 +133,7 @@ EcosystemsMain.propTypes = {
   handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
   show: PropTypes.bool,
+  skills: PropTypes.array,
   onRefresh: PropTypes.func,
 };
 
@@ -143,6 +157,7 @@ EcosystemsMain.defaultProps = {
   isNewEcosystem: null,
   onRefresh: () => { /* empty function */ },
   show: false,
+  skills: [],
 };
 
 export default EcosystemsMain;

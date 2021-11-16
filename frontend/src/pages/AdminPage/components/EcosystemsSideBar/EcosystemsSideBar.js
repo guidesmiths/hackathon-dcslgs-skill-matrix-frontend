@@ -6,6 +6,7 @@ import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 
 const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, show, noSuggestions }) => {
   const [selected, isSelected] = useState();
+
   useEffect(() => {
     isSelected(0);
   }, []);

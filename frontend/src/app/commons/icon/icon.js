@@ -20,7 +20,7 @@ const Icon = ({ icon, className, border, height, width, show, onClick }) => (
 Icon.defaultProps = {
   border: '',
   className: '',
-  height: 50,
+  height: null,
   icon: '',
   onClick: () => { /* empty function */ },
   show: true,

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, Fragment, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
@@ -60,7 +60,11 @@ const HomePage = () => {
 
   const handleNewEcosystemAdmin = newEco => setNewEcosystem(newEco);
 
-  const saveNewEcosystem = () => dispatch(insertEcosystemAsync(newEcosystem));
+  const saveNewEcosystem = () => {
+    dispatch(insertEcosystemAsync(newEcosystem))
+      .then(() => setRefresh(true));
+    setSelectedEcosystem(null);
+  };
 
   const cancelNewEcosystem = () => {
     setIsNewEcosystem(false);
@@ -88,8 +92,9 @@ const HomePage = () => {
   useEffect(() => {
     setNoSuggestions(suggestions.length === 0);
   }, [suggestions]);
+
   return (
-    <Fragment>
+    <>
       <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
         <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
         <EcosystemsSideBar
@@ -113,7 +118,7 @@ const HomePage = () => {
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={saveNewEcosystem}>Save</SaveCancelButton>
       </Footer>
-    </Fragment>
+    </>
   );
 };
 

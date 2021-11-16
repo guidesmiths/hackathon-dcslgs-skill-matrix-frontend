@@ -21,7 +21,6 @@ export const fetchEcosystemsAsync = createAsyncThunk(
 export const insertEcosystemAsync = createAsyncThunk(
   'ecosystems/insertEcosystem',
   async ecosystem => {
-    // We are receiving an ecosystem, but on the backend the body is empty :(
     const response = await axios.post('/ui/ecosystem', ecosystem, config());
     return response.data;
   },
@@ -30,7 +29,7 @@ export const insertEcosystemAsync = createAsyncThunk(
 export const deleteEcosystemAsync = createAsyncThunk(
   'ecosystems/deleteEcosystem',
   async id => {
-    await axios.delete(`/ui/ecosystem/${id}`, { config });
+    await axios.delete(`/ui/ecosystem/${id}`, config());
     return id;
   },
 );
@@ -69,13 +68,6 @@ export const ecosystemsSlice = createSlice({
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...action.payload];
-      })
-      .addCase(insertEcosystemAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(insertEcosystemAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
       })
       .addCase(deleteEcosystemAsync.pending, state => {
         state.status = 'loading';
