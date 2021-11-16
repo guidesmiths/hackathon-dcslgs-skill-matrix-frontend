@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import callMsGraph from '../../configuration/msal';
 
 function config() {
   return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
@@ -49,7 +50,6 @@ export const fetchUserInfoAsync = createAsyncThunk(
   'users/fetchUserInfo',
   async history => {
     const response = await axios.get('/ui/user/me', config())
-      // I tried insert response.data into a .then but it didn't work because arrives an undefined
       .catch(() => {
         localStorage.clear();
         history.push('/login');
@@ -60,9 +60,18 @@ export const fetchUserInfoAsync = createAsyncThunk(
 
 export const insertUserAsync = createAsyncThunk(
   'users/insertUser',
-  async () => {
-    const response = await axios.post('/ui/user', {}, config());
-    return response.data;
+  async token => {
+    const response = await callMsGraph(token);
+
+    const user = {
+      user_id: response.id,
+      email: response.mail,
+      name: response.displayName,
+      seniority: response.jobTitle,
+    };
+    const res = await axios.post('/ui/user', user);
+    localStorage.setItem('token', res.data);
+    return res.data;
   },
 );
 

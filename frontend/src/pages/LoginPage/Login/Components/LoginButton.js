@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMsal } from '@azure/msal-react';
@@ -16,11 +17,12 @@ const LoginButton = () => {
   async function handleLoginPopup() {
     await instance.loginPopup(loginRequest).then(
       result => {
-        localStorage.setItem('token', result.accessToken);
-        dispatch(insertUserAsync());
+        dispatch(insertUserAsync(result.accessToken))
+          .then(() => history.push('/profile'));
       },
-    );
-    history.push('/profile');
+    ).catch(error => {
+      console.error(error);
+    });
   }
 
   return (

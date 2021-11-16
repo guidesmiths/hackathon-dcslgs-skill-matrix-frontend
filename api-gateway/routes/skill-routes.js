@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+const { handleError } = require('../../lib/handlerError');
+
 module.exports = () => {
-  const start = ({ app, controller }, cb) => {
+  const start = ({ app, controller, logger }, cb) => {
     /**
      * GET /ui/skills
      * @route GET /ui/skills
@@ -16,7 +18,7 @@ module.exports = () => {
     app.get('/ui/skills',
       async (req, res) => controller.skills.fetchSkills({ headers: { Authorization: req.headers.authorization } })
         .then(({ data }) => res.json(data))
-        .catch(error => console.error(error)));
+        .catch(handleError(res, logger)));
 
     /**
      * POST /ui/skill
@@ -39,7 +41,7 @@ module.exports = () => {
           body,
         })
           .then(({ data }) => res.json(data))
-          .catch(error => console.error(error));
+          .catch(handleError(res, logger));
       });
 
     /**
@@ -60,7 +62,7 @@ module.exports = () => {
           headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
-          .catch(error => console.error(error));
+          .catch(handleError(res, logger));
       });
 
     cb();

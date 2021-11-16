@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+const { handleError } = require('../../lib/handlerError');
+
 module.exports = () => {
-  const start = ({ app, controller }, cb) => {
+  const start = ({ app, controller, logger }, cb) => {
     /**
      * POST /ui/answers
      * @route POST /ui/answers
@@ -22,7 +24,7 @@ module.exports = () => {
           headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
-          .catch(error => console.error(error));
+          .catch(handleError(res, logger));
       });
 
     /**
@@ -46,7 +48,7 @@ module.exports = () => {
           headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
-          .catch(error => console.error(error));
+          .catch(handleError(res, logger));
       });
 
     /**
@@ -74,7 +76,7 @@ module.exports = () => {
           },
         )
           .then(({ data }) => res.json(data))
-          .catch(error => console.error(error));
+          .catch(handleError(res, logger));
       });
 
     cb();
