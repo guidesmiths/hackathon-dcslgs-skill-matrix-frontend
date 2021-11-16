@@ -1,8 +1,23 @@
 import styled from 'styled-components';
+import { UserRowWrapper } from '../../../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 
+const SkillListWrapper = styled(UserRowWrapper)`
+  scrollbar-width: thin;
+  scrollbar-color: #cccccc;
+  &::-webkit-scrollbar {
+    display: block !important;
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    width: 4px;
+    min-height: 178px;
+    border-radius: 8px;
+  }
+`;
 const SkillListStyled = styled.div`
   padding: 0px;
-  display: ${props => (props.isCollapsed && 'none')};
+  display: ${props => props.isCollapsed && 'none'};
 `;
 const AdminRoleText = styled.p`
   color: ${props => props.theme.colors.white};
@@ -21,4 +36,4 @@ const FooterStyled = styled.div`
   justify-content: flex-end;
 `;
 
-export { SkillListStyled, FooterStyled, AdminRoleText };
+export { SkillListStyled, FooterStyled, AdminRoleText, SkillListWrapper };
