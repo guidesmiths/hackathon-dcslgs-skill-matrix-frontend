@@ -6,19 +6,18 @@ import {
   OverlayStyled,
 } from './Modal.styled';
 
-const Modal = ({ show, onCloseClick, children, className }) => (
+const Modal = ({ onCloseClick, children, className }) => (
   <>
-    <ModalStyled className={className} data-cy="modal" show={show}>
+    <ModalStyled className={className} data-cy="modal">
       {children}
     </ModalStyled>
-    <OverlayStyled data-cy="modal-overlay" show={show} onClick={onCloseClick}/>
+    <OverlayStyled data-cy="modal-overlay" onClick={onCloseClick}/>
   </>
 );
 
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func,
 };
 

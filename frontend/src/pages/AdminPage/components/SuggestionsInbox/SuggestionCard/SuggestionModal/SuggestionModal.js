@@ -14,8 +14,8 @@ import {
 } from './SuggestionModal.styled';
 import Modal from '../../../../../../app/commons/Modal/Modal';
 
-const SuggestionModal = ({ userName, subject, description, show, onCloseClick, onDeleteClick }) => (
-  <Modal show={show} onCloseClick={onCloseClick}>
+const SuggestionModal = ({ userName, subject, description, onCloseClick, onDeleteClick }) => (
+  <Modal onCloseClick={onCloseClick}>
     <ModalContent>
       <TitleStyled>
         <UserNameStyled>{userName} has a proposal</UserNameStyled>
@@ -35,7 +35,6 @@ const SuggestionModal = ({ userName, subject, description, show, onCloseClick, o
 
 SuggestionModal.propTypes = {
   description: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
   subject: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   onCloseClick: PropTypes.func.isRequired,

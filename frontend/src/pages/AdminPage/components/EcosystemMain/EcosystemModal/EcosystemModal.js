@@ -4,11 +4,11 @@ import { ModalStyledWrapper, HeaderStyled, StyledInfo, StyledInputWrapper, Style
 import Label from '../../../../../app/commons/Label/Label';
 import Icon from '../../../../../app/commons/icon/icon';
 
-const EcosystemModal = ({ show, onCloseClick, subject, handleDelete, nameToDelete }) => {
+const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
   const [nameTyped, setNameTyped] = useState();
 
   return (
-    <ModalStyledWrapper show={show}>
+    <ModalStyledWrapper>
       <HeaderStyled>
         Delete
         <Icon icon="close" onClick={onCloseClick}/>
@@ -29,7 +29,6 @@ const EcosystemModal = ({ show, onCloseClick, subject, handleDelete, nameToDelet
 EcosystemModal.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   nameToDelete: PropTypes.string.isRequired,
-  show: PropTypes.bool.isRequired,
   subject: PropTypes.string.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };

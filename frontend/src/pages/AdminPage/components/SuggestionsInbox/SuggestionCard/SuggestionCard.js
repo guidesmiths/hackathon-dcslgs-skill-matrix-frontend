@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-bracket-location */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,15 +23,15 @@ const SuggestionCard = ({ userName, subject, index, description, id }) => {
         <IconStyled icon="delete" onClick={() => dispatch(deleteSuggestionAsync(id))}/>
         <IconStyled color="true" icon="visibility" onClick={() => setModalShow(true)}/>
       </IconsContainerStyled>
-      <SuggestionModal key={index}
+      {modalShow && <SuggestionModal
+        key={index}
         description={description}
         index={index}
-        show={modalShow}
         subject={subject}
         userName={userName}
         onCloseClick={() => setModalShow(false)}
         onDeleteClick={() => dispatch(deleteSuggestionAsync(id))}
-      />
+      />}
     </SuggestionCardStyled>
   );
 };

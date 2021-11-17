@@ -15,7 +15,7 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [systemSelected, setSystem] = useState(null);
-  const [show, setShow] = useState(false);
+  const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
@@ -45,15 +45,15 @@ const UserPage = () => {
         <Ecosystems selectEcosystem={selectEcosystem} />
         <UserSkills edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited} systemSelected={systemSelected}/>
       </UserPageDisplay>
-      <StyledModal show={show} onCloseClick={() => setShow(!show)}>
-        <SuggestionForm showModal={() => setShow(!show)}/>
-      </StyledModal>
+      {showSuggestionModal && <StyledModal>
+        <SuggestionForm onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
+      </StyledModal>}
       <PopUp isSuccess show={confirmed} />
       <PopUp isSuccess show={confirmed} onCloseClick={() => setConfirmed(false)} />
       <Footer>
         {!edit
           ? <>
-            <StyledIcon data-cy={'add'} icon={'email'} onClick={() => setShow(!show)}/>
+            <StyledIcon data-cy={'add'} icon={'email'} onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
             <EditButtonStyled data-cy="editUser" onClick={() => setEdit(true)}>Edit</EditButtonStyled>
           </>
           : <>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const OverlayStyled = styled.div`
-  display: ${props => (props.show ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +12,6 @@ const OverlayStyled = styled.div`
 `;
 
 const ModalStyled = styled.div`
-  display: ${props => (props.show ? 'block' : 'none')};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   position: fixed;
   top: 50%;

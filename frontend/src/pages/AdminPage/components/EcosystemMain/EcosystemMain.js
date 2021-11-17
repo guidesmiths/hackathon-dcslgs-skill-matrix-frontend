@@ -110,7 +110,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     </ButtonsWrapper>
       : null
     }
-    <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} show={showModal} subject={subject} onCloseClick={onCloseClick} />
+    {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
   </EcosystemContainerStyled>
   );
 };
