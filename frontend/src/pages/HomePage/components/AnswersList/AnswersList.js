@@ -15,14 +15,16 @@ const AnswersList = () => {
     <AnswersListStyled>
       <ScrollWrapper>
         {answers.map((answer, index) => {
-          const { id, name, email, userRole, ecosystems } = answer;
+          const { id, name, email, userRole, ecosystems, country, seniority } = answer;
           return (
             <AnswersListElement
               key={`answers-${id}`}
+              country={country}
               email={email.toLowerCase()}
               index={index}
               name={name}
               role={userRole}
+              seniority={seniority}
               skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
               userId={id}
             />);

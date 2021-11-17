@@ -7,7 +7,7 @@ export const msalConfig = {
 
     // This link is the url redirected when login completed
     redirectUri: 'https://dev-skillmatrix.azurewebsites.net',
-    // redirectUri: "http://localhost:3000",
+    // redirectUri: 'http://localhost:3000',
   },
   cache: {
     cacheLocation: 'localStorage', // This configures where your cache will be stored
@@ -20,7 +20,7 @@ export const loginRequest = {
 };
 
 export const graphConfig = {
-  graphMeEndpoint: 'https://graph.microsoft.com/v1.0/me',
+  graphMeEndpoint: 'https://graph.microsoft.com/v1.0/me?$select=id,displayName,mail,jobTitle,country',
 };
 
 export default msalConfig;

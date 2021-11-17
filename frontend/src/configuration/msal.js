@@ -8,6 +8,7 @@ async function callMsGraph(accessToken) {
 
   return axios.get(graphConfig.graphMeEndpoint, options)
     .then(response => response.data)
+    // eslint-disable-next-line no-console
     .catch(error => console.error(error));
 }
 

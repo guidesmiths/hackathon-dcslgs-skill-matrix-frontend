@@ -5,7 +5,7 @@ import SkillList from './SkillList/SkillList';
 import AnswersListElementStyled from './AnswersListElement.styled';
 import LoadingUserRow from '../../../../../app/commons/LoadingUserRow/LoadingUserRow';
 
-const AnswersListElement = ({ userId, email, name, role, skills, index }) => {
+const AnswersListElement = ({ userId, email, name, role, skills, index, country, seniority }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ const AnswersListElement = ({ userId, email, name, role, skills, index }) => {
   return (
     <AnswersListElementStyled data-cy={`answer-list-element-${index}`}>
       {!loading
-        ? <ListElementHeader email={email} isCollapsed={isCollapsed} name={name} setCollapsed={() => setCollapsed(!isCollapsed)}/>
+        ? <ListElementHeader country={country} email={email} isCollapsed={isCollapsed} name={name} seniority={seniority} setCollapsed={() => setCollapsed(!isCollapsed)}/>
         : <LoadingUserRow/>
       }
       <SkillList isCollapsed={isCollapsed} role={role} skills={skills} userId={userId}/>
@@ -27,10 +27,12 @@ const AnswersListElement = ({ userId, email, name, role, skills, index }) => {
 };
 
 AnswersListElement.propTypes = {
+  country: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
+  seniority: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   skills: PropTypes.array,
 };
