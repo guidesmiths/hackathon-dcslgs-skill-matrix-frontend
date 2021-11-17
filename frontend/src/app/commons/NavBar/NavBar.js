@@ -9,7 +9,7 @@ import { selectUserData } from '../../../redux/user/userSlice';
 const NavBar = () => {
   const userData = useSelector(selectUserData);
   const signOut = () => {
-    // To DO
+    localStorage.clear();
   };
   return (
     <NavBarTop>
@@ -24,7 +24,7 @@ const NavBar = () => {
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
         <NavBarLink activeClassName="selected" to="/profile">{userData?.email}</NavBarLink>
-        <NavBarLink activeClassName="selected" to="/" onClick={signOut} >
+        <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >
           <LazyImage actualSrc={logout} />
         </NavBarLink>
       </UserWrapperStyled>
