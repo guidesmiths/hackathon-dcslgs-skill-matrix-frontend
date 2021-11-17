@@ -82,9 +82,9 @@ const StyledCheckbox = styled.input`
 
 const RowCollapsed = styled.div`
   display: ${props => props.isCollapsed && 'none'};
-  width:80%;
+  width: 80%;
   margin: 0 auto;
-  background-color:white;
+  background-color: white;
   border-left: 2px solid ${props => props.theme.colors.primaryColor};
 `;
 
@@ -100,7 +100,7 @@ const RowSkillsBottom = styled.div`
 const ArrowButtonStyled = styled(ArrowButton)`
   width: auto;
   padding-left: 20px;
-  border:0;
+  border: 0;
   background-color: transparent;
 `;
 
@@ -124,7 +124,7 @@ const DescriptionStyled = styled.div`
 
 const SelectWrapper = styled.div`
   position: relative;
-  height: 50px;
+  height: 48px;
   width: 60px;
   min-width: 60px;
   margin-right: 5px;
@@ -142,17 +142,17 @@ const SelectWrapper = styled.div`
 `;
 
 const LevelEditor = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 const AjustLevelButtons = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 const AdjustButton = styled(Icon)`
+  max-height: 48px;
   background-color: #B9E0D7;
   color: black;
-
   &:first-child {
     background-color: ${props => (props.clicked === 'minus' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
     color: ${props => (props.clicked === 'minus' && 'white')};

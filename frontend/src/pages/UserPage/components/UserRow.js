@@ -26,7 +26,7 @@ import Label from '../../../app/commons/Label/Label';
 const UserRow = ({ skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
-  const [subValue, setSubValue] = useState(skill.sublevel || 'neutral');
+  const [subValue, setSubValue] = useState('neutral');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(skill?.interested || false);
 
@@ -61,16 +61,17 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   };
 
   const subValueHandler = value => {
+    let currentValue = value;
     if (subValue === value) {
       setSubValue('neutral');
+      currentValue = 'neutral';
     } else {
       setSubValue(value);
     }
-
     dispatch(
       updateUserSkill({
         idEcosystem,
-        skill: { ...skill, skill_subvalue: value },
+        skill: { ...skill, sublevel: currentValue },
       }),
     );
   };
@@ -115,7 +116,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
           </DescriptionStyled>
           {edit && <LevelEditor>
             <SelectWrapper>
-              <select data-cy="select-level" value={skill.level} onChange={handleLevel}>
+              <select data-cy="select-level" value={skill.level || ''} onChange={handleLevel}>
                 {skill.levels.map((e, index) => (
                   <option key={index} value={e.level}>
                     {e.level}
@@ -125,15 +126,15 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
               <Label left={7} top={-6} weight={700}>Level</Label>
             </SelectWrapper>
             <AjustLevelButtons>
-              <AdjustButton clicked={subValue} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
-              <AdjustButton clicked={subValue} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
+              <AdjustButton clicked={skill.sublevel} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
+              <AdjustButton clicked={skill.sublevel} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
             </AjustLevelButtons>
           </LevelEditor>}
         </RowSkillsBottom>
         {edit && <RowSkillsBottom>
           <StyledInput
             placeholder="Write some comments"
-            value={skill.comments}
+            value={skill.comments || ''}
             onChange={handleComments}
           />
           <Label left={60} top={6} type="description">Comment</Label>
