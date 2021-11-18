@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { RowSkillsWrapper,
@@ -39,7 +39,11 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
-
+  useEffect(() => {
+    if (skill.sublevel) {
+      setSubValue(skill.sublevel);
+    }
+  }, [skill.sublevel]);
   const handleLevel = event => {
     const selectValue = Number(event.target.value);
     dispatch(
