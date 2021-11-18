@@ -82,7 +82,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
 
   const getDescription = selectedSkill => {
     const selectedLevel = selectedSkill.levels.find(({ level }) => level === selectedSkill.level);
-    return selectedLevel ? selectedLevel.levelDescription : 'no level selected yet';
+    return selectedLevel ? selectedLevel.levelDescription : 'Don\'t apply';
   };
 
   return (
@@ -121,6 +121,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
           {edit && <LevelEditor>
             <SelectWrapper>
               <select data-cy="select-level" value={skill.level || ''} onChange={handleLevel}>
+                <option value={0}>0</option>
                 {skill.levels.map((e, index) => (
                   <option key={index} value={e.level}>
                     {e.level}
