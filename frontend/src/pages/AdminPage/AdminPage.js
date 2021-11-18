@@ -112,12 +112,12 @@ const HomePage = () => {
           onNewEcosystem={newEcosystemMode}
           onRefresh={() => setRefresh(true)}
         />
+        <Footer>
+          <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
+          <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
+          <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={saveNewEcosystem}>Save</SaveCancelButton>
+        </Footer>
       </AdminPageStyled>
-      <Footer>
-        <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
-        <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
-        <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={saveNewEcosystem}>Save</SaveCancelButton>
-      </Footer>
     </>
   );
 };

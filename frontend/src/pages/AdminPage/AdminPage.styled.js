@@ -22,7 +22,7 @@ const EditButton = styled.div`
   border: 0px;
   color: white;
   background-color: #10243A;
-  width: 80px;
+  width: 112px;
   justify-content: center;
   align-items:center;
   height:100%;
