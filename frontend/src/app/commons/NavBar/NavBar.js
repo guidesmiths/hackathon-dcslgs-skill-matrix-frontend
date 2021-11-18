@@ -23,7 +23,7 @@ const NavBar = () => {
       </NavStyled>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
-        <NavBarLink activeClassName="selected" to="/profile">{userData?.email}</NavBarLink>
+        <NavBarLink to="/profile">{userData?.email}</NavBarLink>
         <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >
           <LazyImage actualSrc={logout} />
         </NavBarLink>

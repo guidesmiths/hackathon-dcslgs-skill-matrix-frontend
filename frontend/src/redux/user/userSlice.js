@@ -65,7 +65,7 @@ export const insertUserAsync = createAsyncThunk(
     const { id, mail, displayName, jobTitle, country } = response;
     const user = {
       user_id: id,
-      email: mail,
+      email: mail.toLowerCase(),
       name: displayName,
       seniority: jobTitle,
       country: country.trim(),
