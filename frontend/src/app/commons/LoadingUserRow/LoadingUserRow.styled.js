@@ -25,7 +25,7 @@ const ImageHolder = styled.div`
 
 const InputHolder = styled.div`
   background-color: #EFEFEF;
-  width: 300px;
+  min-width: 300px;
   margin:0 15px;
 `;
 

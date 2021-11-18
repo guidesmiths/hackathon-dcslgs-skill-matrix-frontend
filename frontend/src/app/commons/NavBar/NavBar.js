@@ -19,6 +19,7 @@ const NavBar = () => {
           <NavBarLink exact activeClassName="selected" to="/admin">Directory</NavBarLink>
         </LogoWrapper>
         <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>
+        <NavBarLink exact activeClassName="selected" to="/userpage">Skill Matrix User</NavBarLink>
         <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>
       </NavStyled>
       <UserWrapperStyled>
