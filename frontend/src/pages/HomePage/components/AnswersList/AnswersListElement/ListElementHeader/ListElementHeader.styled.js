@@ -23,21 +23,30 @@ const UserEmailStyled = styled.h5`
 
 const UserRolStyled = styled.p`
   margin: 0 0 0 10px;
-  padding: 5px;
+  padding: 5px 10px;
   color: ${props => props.theme.colors.primaryColor};
   font-weight: 500;
   font-size: 12px;
+  text-align: center;
   line-height: 20px;
   background: rgba(191, 48, 136, 0.1);
   border-radius: 4px;
 `;
 
 const MoreInfoWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 0.1fr;
   align-items: center;
-  justify-self: end;
   justify-content: space-between;
-  min-width: 60%;    
+  justify-self: end;
+  width: 80%;
+
+    @media (min-width: 1555px){
+      width: 60%;
+    };
+    @media (max-width: 1135px){
+      width: 100%;
+    };
 `;
 
 const ListElementStyled = styled.div`
@@ -45,7 +54,7 @@ const ListElementStyled = styled.div`
   z-index: 999;
   padding: 0 50px;
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   height: 64px;
   background: ${props => props.theme.colors.white};

@@ -36,6 +36,16 @@ const SkillElementStyled = styled.div`
   border-top: none;
   background: #ffffff;
   
+  @media (max-width: 1500px){
+    grid-template-columns: 0.6fr 0.4fr 4fr;
+  }
+  @media (max-width: 1177px){
+    grid-template-columns: 0.6fr 0.5fr 4fr;
+  }
+  @media (max-width: 985px){
+    grid-template-columns: 0.6fr 0.6fr 4fr;
+  }
+  
   &:nth-child(even) {
     background: #FBFBFB;
   };
