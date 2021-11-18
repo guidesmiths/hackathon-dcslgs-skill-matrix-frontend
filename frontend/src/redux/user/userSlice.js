@@ -68,7 +68,7 @@ export const insertUserAsync = createAsyncThunk(
       email: mail.toLowerCase(),
       name: displayName,
       seniority: jobTitle,
-      country: country.trim(),
+      country: country?.trim(),
     };
     const res = await axios.post('/ui/user', user);
     localStorage.setItem('token', res.data);
