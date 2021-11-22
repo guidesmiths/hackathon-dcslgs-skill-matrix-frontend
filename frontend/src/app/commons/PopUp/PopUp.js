@@ -11,9 +11,9 @@ import {
   StyledListElement,
 } from './PopUp.styled';
 
-const PopUp = ({ show, onCloseClick, isSuccess, input }) => (
+const PopUp = ({ onCloseClick, isSuccess, input }) => (
   <>
-    <PopUpStyled isSuccess={isSuccess} show={show} onClick={onCloseClick}>
+    <PopUpStyled isSuccess={isSuccess} onClick={onCloseClick}>
       <PopUpStyledTitleWrapper>
         {isSuccess
           ? <PopUpStyledIcon icon={'checkCircle'}/>
@@ -29,14 +29,13 @@ const PopUp = ({ show, onCloseClick, isSuccess, input }) => (
       </PopUpStyledTitleWrapper>
       {input && input.map((x, i) => <StyledListElement key={i}>- {x}</StyledListElement>)}
     </PopUpStyled>
-    <OverlayStyled show={show} onClick={onCloseClick} />
+    <OverlayStyled onClick={onCloseClick} />
   </>
 );
 
 PopUp.propTypes = {
   input: PropTypes.array.isRequired,
   isSuccess: PropTypes.bool.isRequired,
-  show: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func,
 };
 

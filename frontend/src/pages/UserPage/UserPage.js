@@ -41,7 +41,7 @@ const UserPage = () => {
 
   return (
     <UserPageStyled data-cy="user">
-      <HeaderStyled/>
+      <HeaderStyled />
       <UserPageDisplay>
         <Ecosystems selectEcosystem={selectEcosystem} />
         <UserSkills edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited} systemSelected={systemSelected}/>
@@ -49,8 +49,7 @@ const UserPage = () => {
       {showSuggestionModal && <StyledModal>
         <SuggestionForm onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
       </StyledModal>}
-      <PopUp isSuccess show={confirmed} />
-      <PopUp isSuccess show={confirmed} onCloseClick={() => setConfirmed(false)} />
+      {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       <Footer>
         {!edit
           ? <>

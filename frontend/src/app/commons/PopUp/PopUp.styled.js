@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Icon from '../icon/icon';
 
 const OverlayStyled = styled.div`
-  display: ${props => (props.show ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +13,6 @@ const OverlayStyled = styled.div`
 `;
 
 const PopUpStyled = styled.div`
-  display: ${props => (props.show ? 'block' : 'none')};
   position: fixed;
   bottom: 80px;
   right:40px;
