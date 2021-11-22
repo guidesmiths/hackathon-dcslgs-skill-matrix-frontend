@@ -122,32 +122,30 @@ const HomePage = () => {
   }, [suggestions]);
 
   return (
-    <>
-      <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
-        <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
-        <EcosystemsSideBar
-          ecosystems={ecosystems}
-          noSuggestions={noSuggestions}
-          show={isOnEditableMode}
-          onEcosystemSelected={handleEcosystemClick}
-          onNewEcosystem={newEcosystemMode}
-        />
-        <EcosystemMain
-          ecosystem={selectedEcosystem}
-          handleNewEcosystemAdmin={handleNewEcosystemAdmin}
-          isNewEcosystem={isNewEcosystem}
-          show={isOnEditableMode}
-          onNewEcosystem={newEcosystemMode}
-          onNewSkill={addNewSkill}
-          onRefresh={() => setRefresh(true)}
-        />
-        <Footer>
-          <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
-          <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
-          <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
-        </Footer>
-      </AdminPageStyled>
-    </>
+    <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
+      <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
+      <EcosystemsSideBar
+        ecosystems={ecosystems}
+        noSuggestions={noSuggestions}
+        show={isOnEditableMode}
+        onEcosystemSelected={handleEcosystemClick}
+        onNewEcosystem={newEcosystemMode}
+      />
+      <EcosystemMain
+        ecosystem={selectedEcosystem}
+        handleNewEcosystemAdmin={handleNewEcosystemAdmin}
+        isNewEcosystem={isNewEcosystem}
+        show={isOnEditableMode}
+        onNewEcosystem={newEcosystemMode}
+        onNewSkill={addNewSkill}
+        onRefresh={() => setRefresh(true)}
+      />
+      <Footer>
+        <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
+        <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
+        <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
+      </Footer>
+    </AdminPageStyled>
   );
 };
 

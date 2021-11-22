@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Label from '../../../../../app/commons/Label/Label';
 import {
@@ -16,9 +16,13 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setIsCollapsed(!isNewEcosystem);
   }, [isNewEcosystem]);
+
+  useEffect(() => {
+    setCurrentSkill(skill);
+  }, [skill]);
 
   const handleNewSkillName = event => {
     // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.

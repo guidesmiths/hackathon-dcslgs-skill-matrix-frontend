@@ -19,7 +19,7 @@ const IconsGroupStyled = styled.div`
 `;
 
 const EditButton = styled.div`
-  border: 0px;
+  border: 0;
   color: white;
   background-color: #10243A;
   width: 112px;
@@ -32,8 +32,9 @@ const EditButton = styled.div`
     cursor: pointer;
   }
 `;
+
 const SaveCancelButton = styled(EditButton)`
-  border: 0px;
+  border: 0;
   color: #4f4f4f;
 
   &:nth-child(2) {

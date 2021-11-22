@@ -17,7 +17,10 @@ const EcosystemContainerStyled = styled.div`
 const EcosystemFallbackStyled = styled.div`
   display: flex;
   height: 45vh;
-  
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
   @media (min-height: 700px){
     height: 55vh;
   }
@@ -30,9 +33,6 @@ const EcosystemFallbackStyled = styled.div`
   @media (min-height: 1060px){
     height: 70vh;
   }
-  width: 100%;
-  justify-content: center;
-  align-items: center;
 `;
 
 const EcosystemHeaderStyled = styled.div`
@@ -49,7 +49,7 @@ const EcosystemNameStyledInput = styled.input`
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #efefef;
-  outline:none;
+  outline: none;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -78,6 +78,7 @@ const StyledDelete = styled.div`
   font-weight: bold;
   font-size: 14px;
   color: ${props => props.theme.colors.danger};
+
   &:hover {
     cursor: pointer;
     text-decoration: underline;

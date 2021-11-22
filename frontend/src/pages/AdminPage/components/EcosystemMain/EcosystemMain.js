@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,7 +17,21 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewSkill, onNewEcosystem, onRefresh }) => {
+const newEcosystemEmpty = {
+  name: '',
+  skills: [{
+    name: '',
+    description: '',
+    levels: [
+      { level: 1, description: '' },
+      { level: 2, description: '' },
+      { level: 3, description: '' },
+      { level: 4, description: '' },
+    ],
+  }],
+};
+
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -31,13 +44,22 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   useEffect(() => {
     setSkills(ecosystem?.skills);
+    setIsEmpty(ecosystem?.id === 0);
   }, [ecosystem]);
+
+  useEffect(() => {
+    if (isNewEcosystem) {
+      setNewEcosystem(newEcosystemEmpty);
+    }
+  }, [isNewEcosystem]);
 
   const onDeleteClick = (sub, id) => {
     setSubject(sub);
     setIdToDelete(id);
     setShowModal(true);
   };
+
+  const handleAdd = () => (isEmpty ? onNewEcosystem() : onNewSkill());
 
   const onCloseClick = () => setShowModal(false);
 
@@ -54,10 +76,6 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     }
   };
 
-  useEffect(() => {
-    setIsEmpty(ecosystem?.id === 0);
-  }, [ecosystem]);
-
   const handleNewEcosystem = event => {
     setNewEcosystem({ ...newEcosystem, name: event.target.value });
     handleNewEcosystemAdmin({ ...newEcosystem, name: event.target.value });
@@ -69,17 +87,13 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     handleNewEcosystemAdmin({ ...newEcosystem, skills });
   };
 
-  const handleAdd = () => (isEmpty ? onNewEcosystem() : onNewSkill());
-
-  return (<EcosystemContainerStyled>
-    {isEmpty
-      ? (
-        <EcosystemFallbackStyled data-cy="fallback-text">
-        Select one Ecosystem or add a new one
+  return (
+    <EcosystemContainerStyled>
+      {isEmpty
+        ? <EcosystemFallbackStyled data-cy="fallback-text">
+            Select one Ecosystem or add a new one
         </EcosystemFallbackStyled>
-      )
-      : (
-        <>
+        : <>
           <EcosystemHeaderStyled>
             <Label left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
@@ -90,33 +104,30 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem?.skills.length && <ScrollWrapper height={!show ? 75 : 65}>
-            {ecosystem?.skills.map((skill, index) => (
-              <EcosystemSkill
-                key={index}
-                handleNewSkills={handleNewSkills}
-                index={index}
-                isNewEcosystem={isNewEcosystem}
-                skill={skill}
-                onDeleteClick={() => onDeleteClick('skill', skill.id)}
-              />
-            ))}
-          </ScrollWrapper>}
+          {ecosystem?.skills.length
+            && <ScrollWrapper height={!show ? 75 : 65}>
+              {ecosystem?.skills.map((skill, index) => (
+                <EcosystemSkill
+                  key={index}
+                  handleNewSkills={handleNewSkills}
+                  index={index}
+                  isNewEcosystem={isNewEcosystem}
+                  skill={skill}
+                  onDeleteClick={() => onDeleteClick('skill', skill.id)}
+                />
+              ))}
+            </ScrollWrapper>}
         </>
-      )}
-    {show || isEmpty ? <ButtonsWrapper>
-      <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-      {!isEmpty
-        && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
-          <StyledDeleteIcon icon="delete" />
-         Delete ecosystem
-        </StyledDelete>
       }
-    </ButtonsWrapper>
-      : null
-    }
-    {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
-  </EcosystemContainerStyled>
+      {(show || isEmpty) && <ButtonsWrapper>
+        <StyledButton onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
+        {!isEmpty && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
+          <StyledDeleteIcon icon="delete" />
+          Delete ecosystem
+        </StyledDelete>}
+      </ButtonsWrapper>}
+      {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
+    </EcosystemContainerStyled>
   );
 };
 
