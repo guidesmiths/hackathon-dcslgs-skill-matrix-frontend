@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled } from './EcosystemsSideBar.styled';
+import { EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled, EcosystemScroller } from './EcosystemsSideBar.styled';
 import Icon from '../../../../app/commons/icon/icon';
-import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 
 const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, show, noSuggestions }) => {
   const [selected, isSelected] = useState();
@@ -16,7 +15,7 @@ const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, sh
       <EcosystemHeaderStyled>Ecosystem
         {show && <Icon icon="add" onClick={onNewEcosystem}/>}
       </EcosystemHeaderStyled>
-      <ScrollWrapper height={noSuggestions ? 75 : 65}>
+      <EcosystemScroller height={noSuggestions ? 80 : 65}>
         {ecosystems.map(({ name, id }, index) => (
           <EcosystemElementStyled key={index}
             data-cy={`ecosystems-element-${index}`}
@@ -27,7 +26,7 @@ const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, sh
             {name}
           </EcosystemElementStyled>
         ))}
-      </ScrollWrapper>
+      </EcosystemScroller>
     </EcosystemsSideBarStyled>
   );
 };

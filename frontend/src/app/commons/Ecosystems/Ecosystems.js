@@ -23,7 +23,7 @@ const Ecosystem = ({ selectEcosystem }) => {
   return (
     <EcosystemColumn data-cy={'ecosystems'}>
       <TitleColumn>Ecosystem</TitleColumn>
-      <EcosystemScroller height={75}>
+      <EcosystemScroller height={85}>
         {!ecosystems.length
           ? <SkeletonWrapper />
           : ecosystems?.map(({ id, name }) => (

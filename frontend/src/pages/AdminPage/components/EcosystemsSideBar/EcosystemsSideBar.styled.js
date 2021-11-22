@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 
 const EcosystemsSideBarStyled = styled.div`
   z-index: 1;
   grid-area: ecosystems-sidebar;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 95%;
   width: 80%;
   font-family: ${props => props.theme.fonts.poppins};
   box-sizing: border-box;
@@ -41,9 +42,25 @@ const EcosystemElementStyled = styled.div`
     cursor: pointer;
   }
 `;
-
+const EcosystemScroller = styled(UserRowWrapper)`
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: ${props => props.theme.colors.primaryColor} transparent;
+  &::-webkit-scrollbar {
+    display: block !important;
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.colors.primaryColor};
+    width: 4px;
+    max-height: 178px;
+    border-radius: 8px;
+  }
+`;
 export {
   EcosystemsSideBarStyled,
   EcosystemHeaderStyled,
   EcosystemElementStyled,
+  EcosystemScroller,
 };

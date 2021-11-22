@@ -4,22 +4,14 @@ import { UserRowWrapper } from '../ScrollWrapper/ScrollWrapper.styled';
 const EcosystemColumn = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 95%;
   width: 80%;
-  min-height: 70vh;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0px 0px 50px;
-  overflow-y: scroll;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   font-family: ${props => props.theme.fonts.poppins};
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  };
-
 `;
 const ButtonStyled = styled.button`
   padding: 8px 25px;
@@ -50,6 +42,18 @@ const TitleColumn = styled.h4`
 const EcosystemScroller = styled(UserRowWrapper)`
   display: flex;
   flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: ${props => props.theme.colors.primaryColor} transparent;
+  &::-webkit-scrollbar {
+    display: block !important;
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.colors.primaryColor};
+    width: 4px;
+    max-height: 178px;
+    border-radius: 8px;
+  }
 `;
 
 export { EcosystemColumn, ButtonStyled, TitleColumn, EcosystemScroller };
