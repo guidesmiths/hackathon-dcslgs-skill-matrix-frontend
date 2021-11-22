@@ -53,19 +53,22 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     }
   };
 
-  const handleSelectChange = event => dispatch(
-    updateSkillFilter({
-      index,
-      filter: filter.skill && {
-        skill: filter.skill,
-        level: Number(event.target.value),
-      },
-    }),
-  );
+  const handleSelectChange = event => skillTyped
+    && dispatch(
+      updateSkillFilter({
+        index,
+        filter: filter.skill && {
+          skill: filter.skill,
+          level: Number(event.target.value),
+        },
+      }),
+    );
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
     const newSkill = await skillFilters[index + 1];
-    const newSkillData = await skills.find(skill => skill.id === newSkill?.skill);
+    const newSkillData = await skills.find(
+      skill => skill.id === newSkill?.skill,
+    );
     setSkillTyped(newSkillData?.name);
   };
 
@@ -84,6 +87,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       </InputWrapper>
       <InputWrapper>
         <Select
+          disabled={!skillTyped}
           options={options}
           selected={filter.level}
           onChange={handleSelectChange}
