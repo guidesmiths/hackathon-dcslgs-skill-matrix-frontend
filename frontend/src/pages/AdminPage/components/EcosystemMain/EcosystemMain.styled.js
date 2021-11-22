@@ -16,19 +16,19 @@ const EcosystemContainerStyled = styled.div`
 
 const EcosystemFallbackStyled = styled.div`
   display: flex;
-
-  @media (max-height: 700px){
-    height: 20vh;
-  }
+  height: 45vh;
+  
   @media (min-height: 700px){
-    height: 30vh;
+    height: 55vh;
   }
   @media (min-height: 800px){
-    height: 50%;
-
+    height: 60vh;
   }
-  @media (min-height: 1000px){
-    height: 60%;
+  @media (min-height: 900px){
+    height: 65vh;
+  }
+  @media (min-height: 1060px){
+    height: 70vh;
   }
   width: 100%;
   justify-content: center;

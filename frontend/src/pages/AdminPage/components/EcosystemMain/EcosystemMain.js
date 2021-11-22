@@ -87,7 +87,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem?.skills.length && <ScrollWrapper height={!show ? 65 : 50}>
+          {ecosystem?.skills.length && <ScrollWrapper height={!show ? 75 : 65}>
             {ecosystem?.skills.map((skill, index) => (
               <EcosystemSkill
                 key={index}
@@ -103,10 +103,12 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
       )}
     {show || isEmpty ? <ButtonsWrapper>
       <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-      <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
-        <StyledDeleteIcon icon="delete" />
+      {!isEmpty
+        && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
+          <StyledDeleteIcon icon="delete" />
          Delete ecosystem
-      </StyledDelete>
+        </StyledDelete>
+      }
     </ButtonsWrapper>
       : null
     }
