@@ -1,4 +1,5 @@
-import React, { Fragment, useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
@@ -17,7 +18,7 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onRefresh }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewSkill, onNewEcosystem, onRefresh }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -68,6 +69,8 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     handleNewEcosystemAdmin({ ...newEcosystem, skills });
   };
 
+  const handleAdd = () => (isEmpty ? onNewEcosystem() : onNewSkill());
+
   return (<EcosystemContainerStyled>
     {isEmpty
       ? (
@@ -76,7 +79,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
         </EcosystemFallbackStyled>
       )
       : (
-        <Fragment>
+        <>
           <EcosystemHeaderStyled>
             <Label left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
@@ -99,7 +102,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               />
             ))}
           </ScrollWrapper>}
-        </Fragment>
+        </>
       )}
     {show || isEmpty ? <ButtonsWrapper>
       <StyledButton onClick={onNewEcosystem}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
@@ -119,6 +122,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
 EcosystemsMain.propTypes = {
   onNewEcosystem: PropTypes.func.isRequired,
+  onNewSkill: PropTypes.func.isRequired,
   ecosystem: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -148,10 +152,10 @@ EcosystemsMain.defaultProps = {
       name: '',
       description: '',
       levels: [
-        { level: 1, description: '' },
-        { level: 2, description: '' },
-        { level: 3, description: '' },
-        { level: 4, description: '' },
+        { level: 1, levelDescription: '' },
+        { level: 2, levelDescription: '' },
+        { level: 3, levelDescription: '' },
+        { level: 4, levelDescription: '' },
       ],
     }],
   },

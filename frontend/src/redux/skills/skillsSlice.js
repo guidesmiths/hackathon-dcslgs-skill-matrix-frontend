@@ -43,13 +43,6 @@ export const skillsSlice = createSlice({
       .addCase(fetchSkillsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...state.value, ...action.payload];
-      })
-      .addCase(insertSkillAsync.pending, state => {
-        state.status = 'loading';
-      })
-      .addCase(insertSkillAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
-        state.value = [...state.value, ...action.payload];
       });
   },
 });

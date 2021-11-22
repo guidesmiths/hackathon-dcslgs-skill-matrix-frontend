@@ -14,18 +14,11 @@ import {
 
 const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
+  const [currentSkill, setCurrentSkill] = useState(skill);
 
   useLayoutEffect(() => {
     setIsCollapsed(!isNewEcosystem);
   }, [isNewEcosystem]);
-
-  const [newSkill, setNewSkill] = useState();
-  const [levels] = useState([
-    { level: 1, description: '' },
-    { level: 2, description: '' },
-    { level: 3, description: '' },
-    { level: 4, description: '' },
-  ]);
 
   const handleNewSkillName = event => {
     // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.
@@ -33,13 +26,13 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
     const type = 1;
     const roles = [1, 3];
     const description = 'Testing description';
-    setNewSkill({ ...newSkill, name: event.target.value, type, roles, description, levels });
-    handleNewSkills(skillIndex, { ...newSkill, name: event.target.value, type, roles, description, levels });
+    setCurrentSkill({ ...currentSkill, name: event.target.value, type, roles, description, levels: currentSkill.levels });
+    handleNewSkills(skillIndex, { ...currentSkill, name: event.target.value, type, roles, description, levels: currentSkill.levels });
   };
 
   const handleNewLevel = (event, index) => {
-    levels[index].description = event.target.value;
-    handleNewSkills(skillIndex, { ...newSkill, levels });
+    currentSkill.levels[index].levelDescription = event.target.value;
+    handleNewSkills(skillIndex, { ...currentSkill, levels: currentSkill.levels });
   };
 
   return (
@@ -50,7 +43,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
           data-cy={`skill-name-input-${skillIndex}`}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
-          value={isNewEcosystem ? newSkill?.name : skill.name}
+          value={currentSkill.name || ''}
           onChange={handleNewSkillName}
         />
         <Label left={15} top={-10}>Skill Name</Label>
@@ -69,7 +62,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
             data-cy={`skill-level-textarea-${levelIndex}`}
             placeholder={`Level ${level.level} description`}
             rows="2"
-            value={isNewEcosystem ? levels?.[levelIndex]?.description : level.levelDescription || ''}
+            value={currentSkill.levels[levelIndex].levelDescription}
             onChange={e => handleNewLevel(e, levelIndex)}
           />
           <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>
@@ -85,11 +78,11 @@ EcosystemSkill.propTypes = {
   isNewEcosystem: PropTypes.bool.isRequired,
   skill: PropTypes.shape({
     description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    id: PropTypes.number,
     levels: PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.string,
       level: PropTypes.number,
+      levelDescription: PropTypes.string,
     })),
   }).isRequired,
   onDeleteClick: PropTypes.func.isRequired,

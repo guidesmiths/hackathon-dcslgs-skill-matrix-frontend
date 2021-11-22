@@ -7,9 +7,10 @@ import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar'
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchUserInfoAsync } from '../../redux/user/userSlice';
+import { insertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import Footer from '../../app/commons/Footer/Footer';
-import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 
 // Do we need this?
 const newEcosystemEmpty = {
@@ -18,10 +19,10 @@ const newEcosystemEmpty = {
     name: '',
     description: '',
     levels: [
-      { level: 1, description: '' },
-      { level: 2, description: '' },
-      { level: 3, description: '' },
-      { level: 4, description: '' },
+      { level: 1, levelDescription: '' },
+      { level: 2, levelDescription: '' },
+      { level: 3, levelDescription: '' },
+      { level: 4, levelDescription: '' },
     ],
   }],
 };
@@ -33,7 +34,8 @@ const HomePage = () => {
   const suggestions = useSelector(selectAllSuggestions);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
   const [noSuggestions, setNoSuggestions] = useState(true);
-  const [isNewEcosystem, setIsNewEcosystem] = useState(null);
+  const [isNewEcosystem, setIsNewEcosystem] = useState(false);
+  const [isNewSkill, setIsNewSkill] = useState(false);
   const [isOnEditableMode, setIsOnEditableMode] = useState(null);
   const [beforeEdit, setBeforeEdit] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
@@ -58,12 +60,38 @@ const HomePage = () => {
     setSelectedEcosystem(newEcosystem);
   };
 
+  const addNewSkill = () => {
+    setSelectedEcosystem({ ...selectedEcosystem,
+      skills: [...selectedEcosystem.skills, {
+        id: 0,
+        name: '',
+        description: '',
+        levels: [
+          { level: 1, levelDescription: '' },
+          { level: 2, levelDescription: '' },
+          { level: 3, levelDescription: '' },
+          { level: 4, levelDescription: '' },
+        ],
+      }],
+    });
+    setIsNewSkill(true);
+  };
+
   const handleNewEcosystemAdmin = newEco => setNewEcosystem(newEco);
 
-  const saveNewEcosystem = () => {
-    dispatch(insertEcosystemAsync(newEcosystem))
-      .then(() => setRefresh(true));
-    setSelectedEcosystem(null);
+  const handleSave = () => {
+    if (isNewEcosystem) {
+      dispatch(insertEcosystemAsync(newEcosystem))
+        .then(() => setRefresh(true));
+      setSelectedEcosystem(null);
+    }
+    if (isNewSkill) {
+      const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
+      newSkill.ecosystem = selectedEcosystem.id;
+      dispatch(insertSkillAsync(newSkill))
+        .then(() => setRefresh(true));
+      setSelectedEcosystem(null);
+    }
   };
 
   const cancelNewEcosystem = () => {
@@ -110,12 +138,13 @@ const HomePage = () => {
           isNewEcosystem={isNewEcosystem}
           show={isOnEditableMode}
           onNewEcosystem={newEcosystemMode}
+          onNewSkill={addNewSkill}
           onRefresh={() => setRefresh(true)}
         />
         <Footer>
           <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
           <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
-          <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={saveNewEcosystem}>Save</SaveCancelButton>
+          <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
         </Footer>
       </AdminPageStyled>
     </>
