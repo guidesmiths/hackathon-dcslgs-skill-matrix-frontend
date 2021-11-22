@@ -10,7 +10,7 @@ const animation2 = keyframes`
     background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
   }
   50% {
-    height: 100vh;
+    height: 80vh;
     background: linear-gradient(90deg, #BF3088 0%, rgba(191, 48, 136, 0.58) 100%);
   }
   75% {
@@ -41,17 +41,11 @@ const ScrollWrapper = styled.div`
   top: -40px;
   z-index: 10;
   width: 95%;
-  height: 70vh;
   margin: 0 auto;
-  overflow-y: scroll;
   background-repeat: no-repeat;
   background-size: 90% 0;
   border-radius: 10px 10px;
-  scrollbar-width: none;
   
-  &::-webkit-scrollbar{
-    display: none;
-  }
 `;
 
 export { AnswersListStyled, ScrollWrapper };

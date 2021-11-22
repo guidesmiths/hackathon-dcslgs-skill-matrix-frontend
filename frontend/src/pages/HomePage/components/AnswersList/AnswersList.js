@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import AnswersListElement from './AnswersListElement/AnswersListElement';
-import Pagination from '../../../../app/commons/Pagination/Pagination';
-import { selectAnswerPage, selectNumberOfAnswers } from '../../../../redux/answers/answersSlice';
+import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
 import { AnswersListStyled, ScrollWrapper } from './AnswersList.styled';
 
 const AnswersList = () => {
-  const pageSize = 10;
-  const numberOfPages = Math.ceil(useSelector(selectNumberOfAnswers) / pageSize);
-  const [currentPage, setCurrentPage] = useState(1);
-  const answers = useSelector(selectAnswerPage((currentPage - 1) * pageSize, currentPage * pageSize));
+  const answers = useSelector(selectAllAnswers);
 
   return (
     <AnswersListStyled>
@@ -30,13 +26,6 @@ const AnswersList = () => {
             />);
         })}
       </ScrollWrapper>
-      <Pagination
-        currentPage={currentPage}
-        numberOfPages={numberOfPages}
-        shape="rounded"
-        size="large"
-        onChange={(_, page) => setCurrentPage(page)}
-      />
     </AnswersListStyled>
   );
 };

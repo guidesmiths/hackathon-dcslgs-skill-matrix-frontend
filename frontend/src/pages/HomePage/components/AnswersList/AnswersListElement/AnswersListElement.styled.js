@@ -22,7 +22,6 @@ const AnswersListElementStyled = styled.div`
   top: -10px;
   margin: 0 auto;
   padding: 15px 2px;
-  background-color: white;
   animation: ${animation2} 4s;
 `;
 
