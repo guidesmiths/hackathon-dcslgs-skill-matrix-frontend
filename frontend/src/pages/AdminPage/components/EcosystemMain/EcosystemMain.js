@@ -17,7 +17,7 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh, errorInput }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -76,9 +76,10 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
         </EcosystemFallbackStyled>
         : <>
           <EcosystemHeaderStyled>
-            <Label left={40} top={2}>Ecosystem Name</Label>
+            <Label errorInput={errorInput === 'Ecosystem name'} left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
               data-cy="ecosystem-name-input"
+              errorInput={errorInput === 'Ecosystem name' && newEcosystem?.name === ''}
               id="name"
               placeholder="Ecosystem name"
               value={currentEcosystem?.name || ''}
@@ -90,6 +91,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               {ecosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
                   key={index}
+                  errorInput={errorInput}
                   handleNewSkills={handleNewSkills}
                   index={index}
                   isNewEcosystem={isNewEcosystem}
@@ -128,6 +130,7 @@ EcosystemsMain.propTypes = {
       name: PropTypes.string,
     })),
   }),
+  errorInput: PropTypes.string,
   handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
   show: PropTypes.bool,
@@ -151,6 +154,7 @@ EcosystemsMain.defaultProps = {
       ],
     }],
   },
+  errorInput: '',
   handleNewEcosystemAdmin: () => { /* empty function */ },
   isNewEcosystem: null,
   onRefresh: () => { /* empty function */ },

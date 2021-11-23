@@ -27,7 +27,7 @@ const SkillNameStyledInput = styled.input`
   width: 60%;
   padding: 12px;
   margin-left: 20px;
-  border: 1px solid #EFEFEF;
+  border: ${props => (props.errorInput ? '1px solid red' : '1px solid #EFEFEF')};
   border-radius: 4px;
   box-sizing: border-box;
 `;
@@ -57,9 +57,9 @@ const LevelStyled = styled.textarea`
   box-sizing: border-box;
   font-size: 14px;
   font-family: ${props => props.theme.fonts.poppins};
-  border: 1px solid #EFEFEF;
   border-radius: 4px;
   resize: none;
+  border: ${props => (props.errorInput ? '1px solid red' : '1px solid #EFEFEF')};
 
   &:hover{
     cursor: pointer;

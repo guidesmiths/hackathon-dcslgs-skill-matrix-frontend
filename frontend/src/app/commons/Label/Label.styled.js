@@ -16,7 +16,8 @@ const StyledName = styled.div`
   padding: 0 5px;
   font-size: 12px;
   white-space: nowrap;
-  color: ${props => getColor(props)};
+  color: ${props => (props.errorInput ? 'red' : getColor(props))};
+
   white-space:nowrap;
 `;
 

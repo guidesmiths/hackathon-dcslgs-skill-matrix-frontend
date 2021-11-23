@@ -11,7 +11,7 @@ import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 import { insertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import Footer from '../../app/commons/Footer/Footer';
-
+import PopUp from '../../app/commons/PopUp/PopUp';
 // Do we need this?
 const newEcosystemEmpty = {
   name: '',
@@ -40,7 +40,8 @@ const HomePage = () => {
   const [beforeEdit, setBeforeEdit] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
   const [refresh, setRefresh] = useState(false);
-
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [errorName, setErrorName] = useState();
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
   }, [isNewEcosystem]);
@@ -81,9 +82,19 @@ const HomePage = () => {
 
   const handleSave = () => {
     if (isNewEcosystem) {
-      dispatch(insertEcosystemAsync(newEcosystem))
-        .then(() => setRefresh(true));
-      setSelectedEcosystem(null);
+      if (!newEcosystem.name) {
+        setErrorName('Ecosystem name');
+      } else if (newEcosystem && !newEcosystem.skills[0].name) {
+        setErrorName('Skill name');
+      } else if (newEcosystem.skills[0].levels.find(x => x.levelDescription === '')) {
+        const item = newEcosystem.skills[0].levels.indexOf(newEcosystem.skills[0].levels.find(x => x.levelDescription === ''));
+        setErrorName(`Level description ${item + 1}`);
+      } else {
+        setErrorName();
+        dispatch(insertEcosystemAsync(newEcosystem))
+          .then(() => setRefresh(true));
+        setSelectedEcosystem(null);
+      }
     }
     if (isNewSkill) {
       const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
@@ -92,6 +103,7 @@ const HomePage = () => {
         .then(() => setRefresh(true));
       setSelectedEcosystem(null);
     }
+    setShowPopUp(true);
   };
 
   const cancelNewEcosystem = () => {
@@ -133,6 +145,7 @@ const HomePage = () => {
       />
       <EcosystemMain
         ecosystem={selectedEcosystem}
+        errorInput={errorName}
         handleNewEcosystemAdmin={handleNewEcosystemAdmin}
         isNewEcosystem={isNewEcosystem}
         show={isOnEditableMode}
@@ -140,6 +153,7 @@ const HomePage = () => {
         onNewSkill={addNewSkill}
         onRefresh={() => setRefresh(true)}
       />
+      {showPopUp && <PopUp input={errorName} isSuccess={!errorName} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
         <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>

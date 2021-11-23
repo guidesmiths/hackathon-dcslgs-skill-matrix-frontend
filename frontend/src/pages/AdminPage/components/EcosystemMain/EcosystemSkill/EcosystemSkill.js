@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from './EcosystemSkill.styled';
 
-const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills }) => {
+const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills, errorInput }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
 
@@ -45,12 +45,13 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         <SkillNameStyledInput
           key={`${skill.id}`}
           data-cy={`skill-name-input-${skillIndex}`}
+          errorInput={errorInput === 'Skill name'}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
           value={currentSkill.name || ''}
           onChange={handleNewSkillName}
         />
-        <Label left={15} top={-10}>Skill Name</Label>
+        <Label errorInput={errorInput === 'Skill name'} left={15} top={-10}>Skill Name</Label>
         <IconsGroupStyled>
           <IconStyled icon="delete" onClick={onDeleteClick}/>
           <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
@@ -64,12 +65,18 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         >
           <LevelStyled
             data-cy={`skill-level-textarea-${levelIndex}`}
+            errorInput={errorInput === `Level description ${levelIndex + 1}`}
             placeholder={`Level ${level.level} description`}
             rows="2"
             value={currentSkill.levels[levelIndex].levelDescription}
             onChange={e => handleNewLevel(e, levelIndex)}
           />
-          <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>
+          <StyledLabel
+            errorInput={errorInput === `description-${levelIndex}`}
+            left={60} top={13}
+          >
+          Level {level.level}
+          </StyledLabel>
         </LevelContainerStyled>
       ))}
     </SkillContainerStyled>
@@ -77,6 +84,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
 };
 
 EcosystemSkill.propTypes = {
+  errorInput: PropTypes.string.isRequired,
   handleNewSkills: PropTypes.func.isRequired, // It is not required
   index: PropTypes.number.isRequired,
   isNewEcosystem: PropTypes.bool.isRequired,

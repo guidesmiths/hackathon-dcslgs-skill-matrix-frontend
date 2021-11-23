@@ -27,14 +27,14 @@ const PopUp = ({ onCloseClick, isSuccess, input }) => (
         </PopUpStyledTitle>
         {!isSuccess && <PopUpStyledCloseIcon icon={'close'}/>}
       </PopUpStyledTitleWrapper>
-      {input && input.map((x, i) => <StyledListElement key={i}>- {x}</StyledListElement>)}
+      <StyledListElement>- {input}</StyledListElement>
     </PopUpStyled>
     <OverlayStyled onClick={onCloseClick} />
   </>
 );
 
 PopUp.propTypes = {
-  input: PropTypes.array.isRequired,
+  input: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func,
 };
