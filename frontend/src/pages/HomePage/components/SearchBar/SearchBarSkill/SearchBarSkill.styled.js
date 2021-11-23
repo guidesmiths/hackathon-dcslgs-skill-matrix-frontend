@@ -10,6 +10,18 @@ const SearchBarSkillStyled = styled.div`
 
 const InputWrapper = styled.div`
   position: relative;
+  font-family: ${props => props.theme.fonts.poppins};
+`;
+
+const InputWrapperUser = styled(InputWrapper)`
+  width: 100%;
+  height: 56px;
+  input {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
+    padding: 0 40px !important;
+  };
 `;
 
 const StyledName = styled.p`
@@ -30,4 +42,4 @@ const StyledIcon = styled(Icon)`
   margin-right: 10px;
 `;
 
-export { SearchBarSkillStyled, InputWrapper, StyledName, StyledIcon };
+export { SearchBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };

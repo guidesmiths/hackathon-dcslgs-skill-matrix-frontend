@@ -25,6 +25,9 @@ const SearchBarsWrapper = styled.div`
   animation: ${animation2} 4s;
   box-sizing:border-box;
 `;
+const SearchBarsUserWrapper = styled(SearchBarsWrapper)`
+  margin: 0 auto;
+`;
 
 const SearchBarWrapper = styled.div`
   position: relative;
@@ -32,7 +35,6 @@ const SearchBarWrapper = styled.div`
   width: 95%;
   margin: 15px auto;
 `;
-
 const SearchBarSkillWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -61,4 +63,4 @@ const IconStyled = styled(Icon)`
     margin: auto;
 `;
 
-export { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper };
+export { SearchBarUsers, SearchBarsWrapper, SearchBarsUserWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper };
