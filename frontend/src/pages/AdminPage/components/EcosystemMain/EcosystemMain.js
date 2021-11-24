@@ -17,41 +17,22 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const newEcosystemEmpty = {
-  name: '',
-  skills: [{
-    name: '',
-    description: '',
-    levels: [
-      { level: 1, description: '' },
-      { level: 2, description: '' },
-      { level: 3, description: '' },
-      { level: 4, description: '' },
-    ],
-  }],
-};
-
 const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
   const [isEmpty, setIsEmpty] = useState(null);
   const [skills, setSkills] = useState();
+  const [currentEcosystem, setCurrentEcosystem] = useState(ecosystem);
 
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
-  const [newEcosystem, setNewEcosystem] = useState();
 
   useEffect(() => {
     setSkills(ecosystem?.skills);
     setIsEmpty(ecosystem?.id === 0);
+    setCurrentEcosystem(ecosystem);
   }, [ecosystem]);
-
-  useEffect(() => {
-    if (isNewEcosystem) {
-      setNewEcosystem(newEcosystemEmpty);
-    }
-  }, [isNewEcosystem]);
 
   const onDeleteClick = (sub, id) => {
     setSubject(sub);
@@ -77,14 +58,14 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   };
 
   const handleNewEcosystem = event => {
-    setNewEcosystem({ ...newEcosystem, name: event.target.value });
-    handleNewEcosystemAdmin({ ...newEcosystem, name: event.target.value });
+    setCurrentEcosystem({ ...currentEcosystem, name: event.target.value });
+    handleNewEcosystemAdmin({ ...currentEcosystem, name: event.target.value });
   };
 
   const handleNewSkills = (skillIndex, skill) => {
     skills[skillIndex] = skill;
-    setNewEcosystem({ ...newEcosystem, skills });
-    handleNewEcosystemAdmin({ ...newEcosystem, skills });
+    setCurrentEcosystem({ ...currentEcosystem, skills });
+    handleNewEcosystemAdmin({ ...currentEcosystem, skills });
   };
 
   return (
@@ -100,7 +81,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               data-cy="ecosystem-name-input"
               id="name"
               placeholder="Ecosystem name"
-              value={isNewEcosystem ? newEcosystem?.name : ecosystem?.name}
+              value={currentEcosystem?.name || ''}
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
