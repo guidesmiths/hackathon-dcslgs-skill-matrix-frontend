@@ -37,8 +37,7 @@ const LevelBar = ({ level, skill, sublevel }) => {
   const data = [
     {
       name: 'level',
-      skillLevel: realLevel,
-      skillSublevel: realSublevel,
+      skillLevel: 1,
     },
   ];
 
