@@ -65,7 +65,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         >
           <LevelStyled
             data-cy={`skill-level-textarea-${levelIndex}`}
-            errorInput={errorInput === `Level description ${levelIndex + 1}`}
+            errorInput={errorInput === `Description ${levelIndex + 1}` || errorInput === `Description ${levelIndex + 1} id:${skill.id}` }
             placeholder={`Level ${level.level} description`}
             rows="2"
             value={currentSkill.levels[levelIndex].levelDescription}

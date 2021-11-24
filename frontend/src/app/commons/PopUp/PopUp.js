@@ -27,7 +27,7 @@ const PopUp = ({ onCloseClick, isSuccess, input }) => (
         </PopUpStyledTitle>
         {!isSuccess && <PopUpStyledCloseIcon icon={'close'}/>}
       </PopUpStyledTitleWrapper>
-      <StyledListElement>- {input}</StyledListElement>
+      <StyledListElement>{input.split(' id:')[0]}</StyledListElement>
     </PopUpStyled>
     <OverlayStyled onClick={onCloseClick} />
   </>

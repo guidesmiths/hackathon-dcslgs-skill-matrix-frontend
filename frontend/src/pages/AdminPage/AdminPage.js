@@ -79,29 +79,66 @@ const HomePage = () => {
   };
 
   const handleNewEcosystemAdmin = newEco => setNewEcosystem(newEco);
+  const verifyInputs = (inputs, type) => {
+    let verified;
+    switch (type) {
+      case 'Ecosystem':
+        inputs.forEach(x => {
+          const item = x.levels.find(y => y.levelDescription === '');
+          if (!x.name) {
+            setErrorName('Skill name');
+            verified = false;
+          } else if (item) {
+            verified = false;
+            setErrorName(`Description ${item.level}`);
+          } else {
+            verified = true;
+            setErrorName('');
+          }
+        });
+        break;
+      case 'Skill':
+        if (!inputs.name) {
+          verified = false;
+          setErrorName('Skill name');
+        } else if (inputs.levels.find(y => y.levelDescription === '')) {
+          verified = false;
+          const item = inputs.levels.find(y => y.levelDescription === '');
+          setErrorName(`Description ${item.level} id:${inputs.id}`);
+        } else {
+          verified = true;
+          setErrorName('');
+        }
+        break;
+      default: return verified;
+    }
+    return verified;
+  };
 
   const handleSave = () => {
     if (isNewEcosystem) {
       if (!newEcosystem.name) {
         setErrorName('Ecosystem name');
-      } else if (newEcosystem && !newEcosystem.skills[0].name) {
-        setErrorName('Skill name');
-      } else if (newEcosystem.skills[0].levels.find(x => x.levelDescription === '')) {
-        const item = newEcosystem.skills[0].levels.indexOf(newEcosystem.skills[0].levels.find(x => x.levelDescription === ''));
-        setErrorName(`Level description ${item + 1}`);
+      } else if (newEcosystem.name) {
+        verifyInputs(newEcosystem.skills, 'Ecosystem');
       } else {
-        setErrorName();
+        setErrorName('');
         dispatch(insertEcosystemAsync(newEcosystem))
           .then(() => setRefresh(true));
         setSelectedEcosystem(null);
+        setIsOnEditableMode(null);
       }
     }
     if (isNewSkill) {
       const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
       newSkill.ecosystem = selectedEcosystem.id;
-      dispatch(insertSkillAsync(newSkill))
-        .then(() => setRefresh(true));
-      setSelectedEcosystem(null);
+      const verified = verifyInputs(newSkill, 'Skill');
+      if (verified) {
+        dispatch(insertSkillAsync(newSkill))
+          .then(() => setRefresh(true));
+        setSelectedEcosystem(null);
+        setIsOnEditableMode(null);
+      }
     }
     setShowPopUp(true);
   };
