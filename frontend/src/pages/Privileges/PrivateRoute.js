@@ -6,18 +6,15 @@ import LoginPage from '../LoginPage/LoginPage';
 import { LOGIN_ROUTE } from '../../constants/routes';
 import { selectUserData } from '../../redux/user/userSlice';
 
-function redirect() {
-  return <Redirect exact component={LoginPage} to = {LOGIN_ROUTE} />;
-}
-
 const PrivateRoute = ({ component: Component, path }) => {
   const userData = useSelector(selectUserData);
 
+  if (!userData) {
+    return <Redirect exact component={LoginPage} to={LOGIN_ROUTE} />;
+  }
+
   return (
-    <Route path={path}
-      render = {props => (userData ? <Component { ...props }/>
-        : redirect()) }
-    />
+    <Route path={path} render={props => <Component {...props} />} />
   );
 };
 

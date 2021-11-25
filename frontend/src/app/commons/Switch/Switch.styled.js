@@ -36,7 +36,7 @@ const SwitchSlider = styled.span`
   }
 `;
 
-const SwitchImput = styled.input`
+const SwitchInput = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
@@ -57,4 +57,4 @@ const SwitchImput = styled.input`
   }
 `;
 
-export { SwitchButton, SwitchImput, SwitchSlider };
+export { SwitchButton, SwitchInput, SwitchSlider };

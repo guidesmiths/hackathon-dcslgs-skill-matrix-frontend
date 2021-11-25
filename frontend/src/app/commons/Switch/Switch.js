@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { SwitchButton, SwitchImput, SwitchSlider } from './Switch.styled';
+import { SwitchButton, SwitchInput, SwitchSlider } from './Switch.styled';
 import { changeUserRoleAsync } from '../../../redux/user/userSlice';
 
 const Switch = ({ userId, role }) => {
@@ -18,7 +18,7 @@ const Switch = ({ userId, role }) => {
 
   return (
     <SwitchButton>
-      <SwitchImput defaultChecked={role === 'admin'} type="checkbox" onChange={roleChange}/>
+      <SwitchInput defaultChecked={role === 'admin'} type="checkbox" onChange={roleChange}/>
       <SwitchSlider/>
     </SwitchButton>
   );

@@ -9,7 +9,7 @@ function config() {
 }
 
 const initialState = {
-  value: [],
+  value: {},
   skillsSelected: [],
   status: 'idle',
 };

@@ -1,26 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon } from './NavBar.styled';
 import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import LazyImage from '../LazyImage/LazyImage';
-import { selectUserData } from '../../../redux/user/userSlice';
+import SwitchTest from '../SwitchTest/SwitchTest';
 
-const NavBar = () => {
-  const userData = useSelector(selectUserData);
+const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const signOut = () => {
     localStorage.clear();
   };
+
   return (
     <NavBarTop>
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
-          <NavBarLink exact activeClassName="selected" to="/admin">Directory</NavBarLink>
+          <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>
         </LogoWrapper>
         <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>
-        <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>
+        {!userView && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
+      <div style={{ display: 'flex', alignItems: 'center', padding: 5, borderRadius: 10, fontFamily: 'Poppins', fontSize: 12 }}>
+        Admin<SwitchTest checked={userView} handleChange={handleChangeRoleView} />User
+      </div>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
         <NavBarLink to="/profile">{userData?.email}</NavBarLink>
@@ -30,6 +34,12 @@ const NavBar = () => {
       </UserWrapperStyled>
     </NavBarTop>
   );
+};
+
+NavBar.propTypes = {
+  handleChangeRoleView: PropTypes.func.isRequired,
+  userData: PropTypes.object.isRequired,
+  userView: PropTypes.bool.isRequired,
 };
 
 export default NavBar;
