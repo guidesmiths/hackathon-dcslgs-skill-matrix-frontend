@@ -83,9 +83,9 @@ const HomePage = () => {
     let verified;
     switch (type) {
       case 'Ecosystem':
-        inputs.forEach(x => {
-          const item = x.levels.find(y => y.levelDescription === '');
-          if (!x.name) {
+        inputs.forEach(input => {
+          const item = input.levels.find(level => level.levelDescription === '');
+          if (!input.name) {
             setErrorName('Skill name');
             verified = false;
           } else if (item) {

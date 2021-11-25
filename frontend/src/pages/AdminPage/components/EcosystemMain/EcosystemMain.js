@@ -79,7 +79,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
             <Label errorInput={errorInput === 'Ecosystem name'} left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
               data-cy="ecosystem-name-input"
-              errorInput={errorInput === 'Ecosystem name' && newEcosystem?.name === ''}
+              errorInput={errorInput === 'Ecosystem name' || currentEcosystem?.name === ''}
               id="name"
               placeholder="Ecosystem name"
               value={currentEcosystem?.name || ''}

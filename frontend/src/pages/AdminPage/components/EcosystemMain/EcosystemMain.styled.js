@@ -48,7 +48,7 @@ const EcosystemNameStyledInput = styled.input`
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
-  border: ${props => (props.errorInput ? '1px solid red' : '1px solid #efefef')};
+  border: ${props => (props.errorInput ? '1px solid #C5292A' : '1px solid #efefef')};
   outline: none;
 `;
 

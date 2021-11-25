@@ -45,13 +45,13 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         <SkillNameStyledInput
           key={`${skill.id}`}
           data-cy={`skill-name-input-${skillIndex}`}
-          errorInput={errorInput === 'Skill name'}
+          errorInput={errorInput === 'Skill name' && currentSkill.name === ''}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
           value={currentSkill.name || ''}
           onChange={handleNewSkillName}
         />
-        <Label errorInput={errorInput === 'Skill name'} left={15} top={-10}>Skill Name</Label>
+        <Label errorInput={errorInput === 'Skill name' && currentSkill.name === ''} left={15} top={-10}>Skill Name</Label>
         <IconsGroupStyled>
           <IconStyled icon="delete" onClick={onDeleteClick}/>
           <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
