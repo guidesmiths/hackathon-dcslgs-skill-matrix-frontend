@@ -22,7 +22,7 @@
     "front:tests": "cd frontend && npm test",
     "CI:front:tests": "cd frontend && npm run CI:front:tests",
     "dev": "cross-env node_modules/.bin/run-p front:dev start:local",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm i && npm run build",
     "server:bundle": "cross-env NODE_ENV=production node lib/createServerBundle.js",
     "build:ci": "cross-env node_modules/.bin/run-p build:prod manifest",
     "build:prod": "npm run build && npm run server:bundle",
@@ -32,8 +32,7 @@
     "start:coverage": "cd frontend && npm run start:coverage",
     "install:cypress": "cd UI-e2e && npm install",
     "test:push": "npm run build && npm run server:bundle && cross-env node_modules/.bin/run-p -r start:local test:run:cypress",
-    "test:push:coverage": "cross-env start-server-and-test start:coverage http://localhost:3000 test:run:cypress:ci",
-    "postinstall": "cd frontend && npm i"
+    "test:push:coverage": "cross-env start-server-and-test start:coverage http://localhost:3000 test:run:cypress:ci"
   },
   "husky": {
     "hooks": {
