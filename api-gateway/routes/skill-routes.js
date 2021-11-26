@@ -55,8 +55,7 @@ module.exports = () => {
     */
     app.delete('/ui/skill/:id',
       async (req, res) => {
-        const { params } = req;
-        const { id } = params;
+        const { params: { id } } = req;
         return controller.skills.deleteSkill({
           urlParams: { id },
           headers: { Authorization: req.headers.authorization },

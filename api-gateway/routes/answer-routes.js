@@ -41,8 +41,7 @@ module.exports = () => {
      */
     app.get('/ui/user/:id/answers',
       async (req, res) => {
-        const { params } = req;
-        const { id } = params;
+        const { params: { id } } = req;
         return controller.answers.fetchAnswersByUser({
           urlParams: { id },
           headers: { Authorization: req.headers.authorization },

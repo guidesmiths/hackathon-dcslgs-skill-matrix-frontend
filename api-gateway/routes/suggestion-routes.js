@@ -56,8 +56,7 @@ module.exports = () => {
     */
     app.delete('/ui/suggestion/:id',
       async (req, res) => {
-        const { params } = req;
-        const { id } = params;
+        const { params: { id } } = req;
         return controller.suggestions.deleteSuggestion({
           headers: { Authorization: req.headers.authorization },
           urlParams: { id },

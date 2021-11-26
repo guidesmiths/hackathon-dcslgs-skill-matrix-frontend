@@ -56,8 +56,7 @@ module.exports = () => {
      */
     app.delete('/ui/ecosystem/:id',
       async (req, res) => {
-        const { params } = req;
-        const { id } = params;
+        const { params: { id } } = req;
         return controller.ecosystems.deleteEcosystem({
           headers: { Authorization: req.headers.authorization },
           urlParams: { id },
