@@ -69,6 +69,8 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
     if (subValue === value) {
       setSubValue('neutral');
       currentValue = 'neutral';
+    } else if ((skill.level === 4 && value === 'plus') || (skill.level === 0 && value === 'minus')) {
+      return;
     } else {
       setSubValue(value);
     }
