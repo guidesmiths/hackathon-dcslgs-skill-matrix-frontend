@@ -14,7 +14,7 @@ const Select = ({ options, onChange, selected, disabled }) => (
 
 Select.propTypes = {
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.boolean,
+  disabled: PropTypes.bool,
   options: PropTypes.array,
   selected: PropTypes.number,
 };

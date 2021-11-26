@@ -38,7 +38,7 @@ const SuggestionCard = ({ userName, subject, index, description, id }) => {
 
 SuggestionCard.propTypes = {
   description: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   subject: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,

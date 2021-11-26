@@ -17,11 +17,12 @@ const Modal = ({ onCloseClick, children, className }) => (
 
 Modal.propTypes = {
   children: PropTypes.any.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   onCloseClick: PropTypes.func,
 };
 
 Modal.defaultProps = {
+  className: '',
   onCloseClick: () => { /* empty function */ },
 };
 

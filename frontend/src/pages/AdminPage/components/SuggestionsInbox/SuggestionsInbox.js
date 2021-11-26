@@ -42,8 +42,9 @@ const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
   );
 };
 
-export default SuggestionsInbox;
 SuggestionsInbox.propTypes = {
   noSuggestions: PropTypes.bool.isRequired,
-  suggestions: PropTypes.isRequired,
+  suggestions: PropTypes.array.isRequired,
 };
+
+export default SuggestionsInbox;
