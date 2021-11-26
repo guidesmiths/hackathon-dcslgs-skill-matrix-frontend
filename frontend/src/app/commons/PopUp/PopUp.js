@@ -8,10 +8,9 @@ import {
   PopUpStyledIcon,
   PopUpStyledIconWarning,
   PopUpStyledCloseIcon,
-  StyledListElement,
 } from './PopUp.styled';
 
-const PopUp = ({ onCloseClick, isSuccess, input }) => (
+const PopUp = ({ onCloseClick, isSuccess }) => (
   <>
     <PopUpStyled isSuccess={isSuccess} onClick={onCloseClick}>
       <PopUpStyledTitleWrapper>
@@ -27,14 +26,12 @@ const PopUp = ({ onCloseClick, isSuccess, input }) => (
         </PopUpStyledTitle>
         {!isSuccess && <PopUpStyledCloseIcon icon={'close'}/>}
       </PopUpStyledTitleWrapper>
-      {input && input.map((x, i) => <StyledListElement key={i}>- {x}</StyledListElement>)}
     </PopUpStyled>
     <OverlayStyled onClick={onCloseClick} />
   </>
 );
 
 PopUp.propTypes = {
-  input: PropTypes.array.isRequired,
   isSuccess: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func,
 };

@@ -48,10 +48,9 @@ const EcosystemNameStyledInput = styled.input`
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
-  border: 1px solid #efefef;
+  border: ${props => (props.hasError ? '1px solid #C5292A' : '1px solid #efefef')};
   outline: none;
 `;
-
 const ButtonsWrapper = styled.div`
   padding: 20px 0;
   margin: 20px 0;

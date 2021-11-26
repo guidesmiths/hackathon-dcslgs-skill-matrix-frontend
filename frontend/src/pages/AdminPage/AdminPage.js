@@ -10,6 +10,7 @@ import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from 
 import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 import { insertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
+import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
 
 // Do we need this?
@@ -40,7 +41,8 @@ const HomePage = () => {
   const [beforeEdit, setBeforeEdit] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
   const [refresh, setRefresh] = useState(false);
-
+  const [isThereAnyError, setIsThereAnyError] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
   }, [isNewEcosystem]);
@@ -79,19 +81,27 @@ const HomePage = () => {
 
   const handleNewEcosystemAdmin = newEco => setNewEcosystem(newEco);
 
+  const isThereAnyEmptySkillName = newEcosystem.skills.some(skill => skill.name === '');
+  const isThereAnyEmptyLevelDescription = newEcosystem.skills.some(skill => skill.levels.some(level => level.levelDescription === ''));
+
   const handleSave = () => {
-    if (isNewEcosystem) {
-      dispatch(insertEcosystemAsync(newEcosystem))
-        .then(() => setRefresh(true));
-      setSelectedEcosystem(null);
+    setIsThereAnyError(newEcosystem.name === '' || isThereAnyEmptySkillName || isThereAnyEmptyLevelDescription);
+    if (!(newEcosystem.name === '' || isThereAnyEmptySkillName || isThereAnyEmptyLevelDescription)) {
+      if (isNewEcosystem) {
+        dispatch(insertEcosystemAsync(newEcosystem))
+          .then(() => setRefresh(true));
+        setSelectedEcosystem(null);
+      }
+
+      if (isNewSkill) {
+        const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
+        newSkill.ecosystem = selectedEcosystem.id;
+        dispatch(insertSkillAsync(newSkill))
+          .then(() => setRefresh(true));
+        setSelectedEcosystem(null);
+      }
     }
-    if (isNewSkill) {
-      const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
-      newSkill.ecosystem = selectedEcosystem.id;
-      dispatch(insertSkillAsync(newSkill))
-        .then(() => setRefresh(true));
-      setSelectedEcosystem(null);
-    }
+    setShowPopUp(true);
   };
 
   const cancelNewEcosystem = () => {
@@ -135,11 +145,13 @@ const HomePage = () => {
         ecosystem={selectedEcosystem}
         handleNewEcosystemAdmin={handleNewEcosystemAdmin}
         isNewEcosystem={isNewEcosystem}
+        isThereAnyError={isThereAnyError}
         show={isOnEditableMode}
         onNewEcosystem={newEcosystemMode}
         onNewSkill={addNewSkill}
         onRefresh={() => setRefresh(true)}
       />
+      { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
         <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>

@@ -17,7 +17,7 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh, isThereAnyError }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -79,6 +79,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
             <Label left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
               data-cy="ecosystem-name-input"
+              hasError={currentEcosystem?.name === '' && isThereAnyError}
               id="name"
               placeholder="Ecosystem name"
               value={currentEcosystem?.name || ''}
@@ -93,6 +94,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
                   handleNewSkills={handleNewSkills}
                   index={index}
                   isNewEcosystem={isNewEcosystem}
+                  isThereAnyError={isThereAnyError}
                   skill={skill}
                   onDeleteClick={() => onDeleteClick('skill', skill.id)}
                 />
@@ -130,6 +132,7 @@ EcosystemsMain.propTypes = {
   }),
   handleNewEcosystemAdmin: PropTypes.func,
   isNewEcosystem: PropTypes.bool,
+  isThereAnyError: PropTypes.bool,
   show: PropTypes.bool,
   skills: PropTypes.array,
   onRefresh: PropTypes.func,
@@ -156,6 +159,7 @@ EcosystemsMain.defaultProps = {
   onRefresh: () => { /* empty function */ },
   show: false,
   skills: [],
+  isThereAnyError: false,
 };
 
 export default EcosystemsMain;

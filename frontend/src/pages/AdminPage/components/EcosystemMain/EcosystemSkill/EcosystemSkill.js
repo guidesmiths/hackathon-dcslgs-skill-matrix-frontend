@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from './EcosystemSkill.styled';
 
-const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills }) => {
+const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
 
@@ -45,6 +45,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         <SkillNameStyledInput
           key={`${skill.id}`}
           data-cy={`skill-name-input-${skillIndex}`}
+          hasError={currentSkill.name === '' && isThereAnyError}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
           value={currentSkill.name || ''}
@@ -64,6 +65,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
         >
           <LevelStyled
             data-cy={`skill-level-textarea-${levelIndex}`}
+            hasError={currentSkill.levels[levelIndex].levelDescription === '' && isThereAnyError}
             placeholder={`Level ${level.level} description`}
             rows="2"
             value={currentSkill.levels[levelIndex].levelDescription}
@@ -90,6 +92,11 @@ EcosystemSkill.propTypes = {
     })),
   }).isRequired,
   onDeleteClick: PropTypes.func.isRequired,
+  isThereAnyError: PropTypes.bool,
+};
+
+EcosystemSkill.defaultProps = {
+  isThereAnyError: false,
 };
 
 export default EcosystemSkill;

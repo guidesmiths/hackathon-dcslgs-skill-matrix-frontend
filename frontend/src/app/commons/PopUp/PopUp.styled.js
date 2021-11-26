@@ -25,18 +25,18 @@ const PopUpStyledTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+  padding: 24px;
 `;
 
 const PopUpStyledTitle = styled.h5`
+  max-width: 424px;
   font-weight: bold;
   font-size: 24px;
   line-height: 32px;
   color: white;
   color: ${props => (props.isSuccess ? 'black' : 'white')};
   white-space: break-spaces;
-  margin: 20px;
+  margin: 0 20px;
 `;
 
 const PopUpStyledIcon = styled(Icon)`
@@ -54,6 +54,7 @@ const PopUpStyledIconWarning = styled(Icon)`
   color: #D15455;
   position: relative;
   background-color: transparent;
+  align-self: flex-start;
 
   &:before{
     content: '';
@@ -74,15 +75,6 @@ const PopUpStyledCloseIcon = styled(Icon)`
   align-self: flex-start;
 `;
 
-const StyledListElement = styled.div`
-  color: white;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 1px;
-  width: 90%;
-  margin: 0 auto 10px;
-`;
-
 export {
   OverlayStyled,
   PopUpStyled,
@@ -91,5 +83,4 @@ export {
   PopUpStyledIcon,
   PopUpStyledIconWarning,
   PopUpStyledCloseIcon,
-  StyledListElement,
 };
