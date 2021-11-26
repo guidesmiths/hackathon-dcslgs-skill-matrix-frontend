@@ -16,22 +16,23 @@ const EcosystemContainerStyled = styled.div`
 
 const EcosystemFallbackStyled = styled.div`
   display: flex;
-  height: 45vh;
+  height: 30vh;
   width: 100%;
   justify-content: center;
   align-items: center;
 
   @media (min-height: 700px){
-    height: 55vh;
+    height: ${props => (props.isNewEcosystem ? '55' : '35')}vh;
   }
   @media (min-height: 800px){
-    height: 60vh;
+    height: ${props => (props.isNewEcosystem ? '60' : '40')}vh;
+
   }
   @media (min-height: 900px){
-    height: 65vh;
+    height: ${props => (props.isNewEcosystem ? '65' : '50')}vh;
   }
   @media (min-height: 1060px){
-    height: 70vh;
+    height: ${props => (props.isNewEcosystem ? '70' : '55')}vh;
   }
 `;
 

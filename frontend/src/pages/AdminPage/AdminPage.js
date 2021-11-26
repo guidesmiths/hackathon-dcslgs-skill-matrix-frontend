@@ -146,6 +146,7 @@ const HomePage = () => {
         handleNewEcosystemAdmin={handleNewEcosystemAdmin}
         isNewEcosystem={isNewEcosystem}
         isThereAnyError={isThereAnyError}
+        noSuggestions={noSuggestions}
         show={isOnEditableMode}
         onNewEcosystem={newEcosystemMode}
         onNewSkill={addNewSkill}

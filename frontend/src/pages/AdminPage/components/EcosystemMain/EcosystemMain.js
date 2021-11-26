@@ -17,7 +17,7 @@ import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, onNewSkill, onRefresh, isThereAnyError }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, onRefresh, isThereAnyError }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
@@ -71,7 +71,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   return (
     <EcosystemContainerStyled>
       {isEmpty
-        ? <EcosystemFallbackStyled data-cy="fallback-text">
+        ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
             Select one Ecosystem or add a new one
         </EcosystemFallbackStyled>
         : <>
@@ -87,7 +87,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
             />
           </EcosystemHeaderStyled>
           {ecosystem?.skills.length
-            && <ScrollWrapper height={!show ? 75 : 65}>
+            && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
               {ecosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
                   key={index}
@@ -115,6 +115,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 };
 
 EcosystemsMain.propTypes = {
+  noSuggestions: PropTypes.bool.isRequired,
   onNewEcosystem: PropTypes.func.isRequired,
   onNewSkill: PropTypes.func.isRequired,
   ecosystem: PropTypes.shape({
@@ -156,10 +157,10 @@ EcosystemsMain.defaultProps = {
   },
   handleNewEcosystemAdmin: () => { /* empty function */ },
   isNewEcosystem: null,
+  isThereAnyError: false,
   onRefresh: () => { /* empty function */ },
   show: false,
   skills: [],
-  isThereAnyError: false,
 };
 
 export default EcosystemsMain;
