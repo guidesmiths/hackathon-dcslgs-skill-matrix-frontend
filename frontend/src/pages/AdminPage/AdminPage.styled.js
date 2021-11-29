@@ -51,5 +51,15 @@ const SaveCancelButton = styled(EditButton)`
     cursor: pointer;
   }
 `;
+const ShowSuggestions = styled(EditButton)`
+  color: ${props => props.theme.colors.primaryColor};
+  background-color: white;
+  border: 0;
+  color: #4f4f4f;
 
-export { AdminPageStyled, IconsGroupStyled, EditButton, SaveCancelButton };
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export { AdminPageStyled, IconsGroupStyled, EditButton, SaveCancelButton, ShowSuggestions };

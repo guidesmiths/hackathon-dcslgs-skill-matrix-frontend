@@ -9,7 +9,7 @@ import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggest
 import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 import { insertSkillAsync } from '../../redux/skills/skillsSlice';
-import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
+import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
 
@@ -154,6 +154,7 @@ const HomePage = () => {
       />
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
+        <ShowSuggestions data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setNoSuggestions(!noSuggestions)}>Inbox</ShowSuggestions>
         <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
