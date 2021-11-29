@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from './EcosystemSkill.styled';
 
-const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
+const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
 
@@ -48,6 +48,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
           hasError={currentSkill.name === '' && isThereAnyError}
           id={`skill-${skillIndex}`}
           placeholder="Skill name"
+          readOnly={!show}
           value={currentSkill.name || ''}
           onChange={handleNewSkillName}
         />
@@ -67,6 +68,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, isNewEcosystem, onDeleteClic
             data-cy={`skill-level-textarea-${levelIndex}`}
             hasError={currentSkill.levels[levelIndex].levelDescription === '' && isThereAnyError}
             placeholder={`Level ${level.level} description`}
+            readOnly={!show}
             rows="2"
             value={currentSkill.levels[levelIndex].levelDescription}
             onChange={e => handleNewLevel(e, levelIndex)}
@@ -82,6 +84,7 @@ EcosystemSkill.propTypes = {
   handleNewSkills: PropTypes.func.isRequired, // It is not required
   index: PropTypes.number.isRequired,
   isNewEcosystem: PropTypes.bool.isRequired,
+  show: PropTypes.bool.isRequired,
   skill: PropTypes.shape({
     description: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

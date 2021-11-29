@@ -82,6 +82,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               hasError={currentEcosystem?.name === '' && isThereAnyError}
               id="name"
               placeholder="Ecosystem name"
+              readOnly={!show}
               value={currentEcosystem?.name || ''}
               onChange={handleNewEcosystem}
             />
@@ -95,6 +96,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
                   index={index}
                   isNewEcosystem={isNewEcosystem}
                   isThereAnyError={isThereAnyError}
+                  show={show}
                   skill={skill}
                   onDeleteClick={() => onDeleteClick('skill', skill.id)}
                 />
