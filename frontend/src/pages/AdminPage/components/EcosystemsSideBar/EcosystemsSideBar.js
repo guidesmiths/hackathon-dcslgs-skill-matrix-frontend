@@ -7,7 +7,7 @@ const EcosystemsSideBar = ({ ecosystems, onEcosystemSelected, onNewEcosystem, sh
   const [selected, isSelected] = useState();
 
   useEffect(() => {
-    isSelected(0);
+    isSelected(1);
   }, []);
 
   return (

@@ -124,7 +124,7 @@ const HomePage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    handleEcosystemClick(selectedEcosystem?.id);
+    handleEcosystemClick(1);
   }, [ecosystems]);
 
   useEffect(() => {
