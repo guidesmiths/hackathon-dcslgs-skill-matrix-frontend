@@ -8,21 +8,22 @@ const EcosystemColumn = styled.div`
   width: 80%;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0px 0px 50px;
+  padding: 0 0 50px;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   font-family: ${props => props.theme.fonts.poppins};
 `;
+
 const ButtonStyled = styled.button`
   padding: 8px 25px;
   font-size: 14px;
-  font-weight: ${props => (props.selected === props.id ? 'bold' : '400')};
+  font-weight: ${props => (props.selected ? 'bold' : '400')};
   letter-spacing: 0.5px;
   line-height: 24px;
   text-align: start;
   border: 0;
-  color: ${props => (props.selected === props.id ? props.theme.colors.primaryColor : 'default')};
-  background: ${props => (props.selected === props.id ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
+  color: ${props => (props.selected ? props.theme.colors.primaryColor : 'default')};
+  background: ${props => (props.selected ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
   &:last-child {
     padding-bottom: 20px;
   }
@@ -44,10 +45,12 @@ const EcosystemScroller = styled(UserRowWrapper)`
   flex-direction: column;
   scrollbar-width: thin;
   scrollbar-color: ${props => props.theme.colors.primaryColor} transparent;
+
   &::-webkit-scrollbar {
     display: block !important;
     width: 4px;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: ${props => props.theme.colors.primaryColor};
     width: 4px;

@@ -22,11 +22,11 @@ import {
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 
-const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
+const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
   const userData = useSelector(selectUserData);
-  const selectedSkills = useSelector(selectSkillsPerSystem(systemSelected));
-  const userSkills = useSelector(selectSkillsWithLevel(systemSelected));
-  const selectedEcosystem = useSelector(selectEcosystemPerId(systemSelected));
+  const selectedSkills = useSelector(selectSkillsPerSystem(ecosystemIdSelected));
+  const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
+  const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
   const dispatch = useDispatch();
   const ref = useRef(null);
 
@@ -81,7 +81,7 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
             <UserRow
               key={skill.id}
               edit={edit}
-              idEcosystem={systemSelected}
+              idEcosystem={ecosystemIdSelected}
               skill={skill}
             />
           ))}
@@ -92,15 +92,15 @@ const UserSkills = ({ systemSelected, edit, isSubmited, setIsSubmited }) => {
 };
 
 UserSkills.defaultProps = {
+  ecosystemIdSelected: 0,
   mySkills: [],
-  systemSelected: 0,
 };
 
 UserSkills.propTypes = {
   edit: PropTypes.bool.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
-  systemSelected: PropTypes.number,
+  ecosystemIdSelected: PropTypes.number,
 };
 
 export default UserSkills;

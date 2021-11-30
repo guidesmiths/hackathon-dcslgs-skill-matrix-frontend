@@ -97,11 +97,10 @@ export const userSlice = createSlice({
     },
     updateUserSkill: (state, action) => {
       const { idEcosystem, skill } = action.payload;
-      const index = state.value.ecosystems[idEcosystem].skills.findIndex(
-        s => s.id === skill.id,
-      );
-      state.value.ecosystems[idEcosystem].skills[index] = index !== -1 && skill;
-      index === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
+      const ecosystemIndex = state.value.ecosystems.findIndex(e => e.id === idEcosystem);
+      const skillIndex = state.value.ecosystems[ecosystemIndex].skills.findIndex(s => s.id === skill.id);
+      state.value.ecosystems[ecosystemIndex].skills[skillIndex] = skillIndex !== -1 && skill;
+      skillIndex === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
     resetSkills: state => {
       state.value = [];
@@ -151,7 +150,7 @@ export const { userAdded, updateEcosystem, updateSkill, updateUserSkill, resetSk
 
 // Selectors
 export const selectUserData = state => state.users?.value;
-export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.[id]?.skills || [];
-export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.[id];
+export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id)?.skills || [];
+export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id);
 
 export default userSlice.reducer;

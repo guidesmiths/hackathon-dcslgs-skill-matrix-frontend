@@ -92,6 +92,6 @@ export const { ecosystemAdded, removeEcosystem, resetEcosystems, removeSkill } =
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
-export const selectSkillsPerSystem = id => state => state.ecosystems?.value?.[id]?.skills || [];
+export const selectSkillsPerSystem = id => state => state.ecosystems?.value?.find(ecosystem => ecosystem.id === id)?.skills || [];
 
 export default ecosystemsSlice.reducer;

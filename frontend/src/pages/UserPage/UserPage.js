@@ -14,13 +14,12 @@ import { insertAnswersAsync, selectUserData, fetchUserInfoAsync } from '../../re
 const UserPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [systemSelected, setSystem] = useState(null);
+  const [ecosystemIdSelected, setEcosystemIdSelected] = useState(1);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
-  const selectEcosystem = id => setSystem(id);
   const userData = useSelector(selectUserData);
 
   const handleSubmit = () => {
@@ -43,8 +42,8 @@ const UserPage = () => {
     <UserPageStyled data-cy="user">
       <HeaderStyled />
       <UserPageDisplay>
-        <Ecosystems selectEcosystem={selectEcosystem} />
-        <UserSkills edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited} systemSelected={systemSelected}/>
+        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} setEcosystemIdSelected={id => setEcosystemIdSelected(id)} />
+        <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>
         <SuggestionForm onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />

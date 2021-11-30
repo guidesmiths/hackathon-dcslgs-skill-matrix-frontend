@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import {
@@ -11,14 +11,8 @@ import {
 import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
 
-const Ecosystem = ({ selectEcosystem }) => {
+const Ecosystem = ({ ecosystemIdSelected, setEcosystemIdSelected }) => {
   const ecosystems = useSelector(selectAllEcosystems);
-  const [selected, isSelected] = useState();
-
-  useEffect(() => {
-    selectEcosystem(0);
-    isSelected(1);
-  }, []);
 
   return (
     <EcosystemColumn data-cy={'ecosystems'}>
@@ -27,7 +21,11 @@ const Ecosystem = ({ selectEcosystem }) => {
         {!ecosystems.length
           ? <SkeletonWrapper />
           : ecosystems?.map(({ id, name }) => (
-            <ButtonStyled key={id} id={id} selected={selected} onClick={() => { selectEcosystem(id - 1); isSelected(id); }}>
+            <ButtonStyled
+              key={id}
+              selected={ecosystemIdSelected === id}
+              onClick={() => setEcosystemIdSelected(id)}
+            >
               {name}
             </ButtonStyled>
           ))}
@@ -37,7 +35,8 @@ const Ecosystem = ({ selectEcosystem }) => {
 };
 
 Ecosystem.propTypes = {
-  selectEcosystem: PropTypes.func.isRequired,
+  ecosystemIdSelected: PropTypes.number.isRequired,
+  setEcosystemIdSelected: PropTypes.func.isRequired,
 };
 
 export default Ecosystem;
