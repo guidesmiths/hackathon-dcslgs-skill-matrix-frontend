@@ -22,8 +22,12 @@ steps:
   displayName: 'npm install'
 
 - script: |
-    npm run build
-  displayName: 'npm build'
+    cd frontend && npm ci
+  displayName: 'cd frontend && npm ci'
+
+- script: |
+    cd frontend && npm run build
+  displayName: 'cd frontend && npm run build'
 
 - script: |
     rm -rf UI-e2e test frontend/src frontend/node_modules frontend/public
