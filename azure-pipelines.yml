@@ -6,7 +6,7 @@
 # TODO: add tests
 
 trigger:
-- main
+- master
 
 pool:
   vmImage: ubuntu-latest
