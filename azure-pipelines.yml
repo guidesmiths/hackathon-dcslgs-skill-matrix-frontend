@@ -26,8 +26,8 @@ steps:
   displayName: 'npm build'
 
 - script: |
-    npm run build:ci
-  displayName: 'npm build ci'
+    npm run server:bundle
+  displayName: 'npm run server:bundle'
 
 - task: ArchiveFiles@2
   inputs:
