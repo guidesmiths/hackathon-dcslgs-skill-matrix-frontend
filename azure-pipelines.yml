@@ -18,12 +18,16 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
+    npm install --only=prod
   displayName: 'npm install'
 
 - script: |
-    cd frontend && npm i && npm run build
-  displayName: 'cd frontend && npm ci && npm run build'
+    cd frontend && npm ci
+  displayName: 'cd frontend && npm ci'
+
+- script: |
+    cd frontend && npm run build
+  displayName: 'cd frontend && npm ci'
 
 - script: |
     rm -rf UI-e2e test frontend/src frontend/node_modules frontend/public
