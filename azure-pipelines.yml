@@ -25,10 +25,6 @@ steps:
     npm run build
   displayName: 'npm build'
 
-- script: |
-    npm run server:bundle
-  displayName: 'npm run server:bundle'
-
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'

@@ -22,7 +22,7 @@
     "front:tests": "cd frontend && npm test",
     "CI:front:tests": "cd frontend && npm run CI:front:tests",
     "dev": "cross-env node_modules/.bin/run-p front:dev start:local",
-    "build": "cd frontend && npm i && npm run build",
+    "build": "cd frontend && npm ci && npm run build",
     "server:bundle": "cross-env NODE_ENV=production node lib/createServerBundle.js",
     "build:ci": "cross-env node_modules/.bin/run-p build:prod manifest",
     "build:prod": "npm run build && npm run server:bundle",
