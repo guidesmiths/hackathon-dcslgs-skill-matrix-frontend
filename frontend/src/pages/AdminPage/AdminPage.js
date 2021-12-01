@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
@@ -31,6 +31,7 @@ const newEcosystemEmpty = {
 const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { search } = useLocation();
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
@@ -55,7 +56,16 @@ const HomePage = () => {
       setBeforeEdit(ecosystem);
     }
   };
-
+  useEffect(() => {
+    const currentLocation = Number(search.split('=')[1]);
+    const ecosystem = ecosystems.find(({ id }) => id === currentLocation || 0);
+    if (currentLocation && ecosystem) {
+      setSelectedEcosystem(ecosystem);
+    }
+    if (ecosystem !== 0) {
+      setBeforeEdit(ecosystem);
+    }
+  }, [search]);
   const newEcosystemMode = () => {
     setIsNewEcosystem(true);
     setIsOnEditableMode(!!isNewEcosystem);
@@ -137,6 +147,7 @@ const HomePage = () => {
       <EcosystemsSideBar
         ecosystems={ecosystems}
         noSuggestions={noSuggestions}
+        selected={selectedEcosystem?.id}
         show={isOnEditableMode}
         onEcosystemSelected={handleEcosystemClick}
         onNewEcosystem={newEcosystemMode}
