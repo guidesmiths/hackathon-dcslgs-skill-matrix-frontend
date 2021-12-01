@@ -5,7 +5,7 @@ import { StyledPage404, StyledTitleWrapper, StyledTitle, StyledH3, StyledP, Styl
 const Page404 = () => {
   const history = useHistory();
   const clichHandler = () => {
-    history.push('/home');
+    history.push('/');
   };
 
   return (
