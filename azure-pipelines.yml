@@ -20,12 +20,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install --only=prod
+    npm ci
   displayName: 'npm install'
-
-- script: |
-    cd frontend && npm ci
-  displayName: 'cd frontend && npm ci'
 
 - script: |
     cd frontend && npm run build
