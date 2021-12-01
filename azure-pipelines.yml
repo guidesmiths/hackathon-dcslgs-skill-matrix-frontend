@@ -25,7 +25,11 @@ steps:
 
 - script: |
     cd frontend && npm run build
-  displayName: 'cd frontend && npm ci'
+  displayName: 'cd frontend && npm run build'
+
+- script: |
+    npm run server:bundle
+  displayName: 'npm run server:bundle'
 
 - script: |
     rm -rf UI-e2e test frontend/src frontend/node_modules frontend/public
