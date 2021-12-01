@@ -1,3 +1,5 @@
+import getEnvConfig from './environment';
+
 export const msalConfig = {
   auth: {
     clientId: 'eed1e294-b493-4456-8e47-ac00cda98a5e',
@@ -5,9 +7,8 @@ export const msalConfig = {
     authority:
       'https://login.microsoftonline.com/24adaeaa-5002-4f6e-aa57-b66c036ba791',
 
-    // This link is the url redirected when login completed
-    redirectUri: 'https://dev-skillmatrix.azurewebsites.net',
-    // redirectUri: 'http://localhost:3000',
+    redirectUri: getEnvConfig().redirectUri,
+
   },
   cache: {
     cacheLocation: 'localStorage', // This configures where your cache will be stored
