@@ -13,7 +13,7 @@ module.exports = () => {
       contentSecurityPolicy: false,
     }));
     app.set('view engine', 'hbs');
-    app.set('views', 'frontend/build');
+    app.set('views', join(root, 'frontend', 'build'));
     app.use(express.static(join(root, 'frontend', 'build')));
 
     app.get('/__/manifest', (req, res) => res.json(manifest));
