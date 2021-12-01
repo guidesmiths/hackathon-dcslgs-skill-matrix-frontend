@@ -12,7 +12,7 @@ const envType = {
 
 const getEnvConfig = () => {
   const rootElement = document.getElementById('root');
-  if (!rootElement || rootElement === '{{environment}}') {
+  if (!rootElement) {
     return envType.local;
   }
   return envType[rootElement.dataset.environment] || envType.local;
