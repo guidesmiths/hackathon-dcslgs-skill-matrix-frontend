@@ -12,6 +12,8 @@ module.exports = () => {
       // This is neccesary because of helmet v4
       contentSecurityPolicy: false,
     }));
+    app.set('view engine', 'hbs');
+    app.set('views', 'frontend/build');
     app.use(express.static(join(root, 'frontend', 'build')));
 
     app.get('/__/manifest', (req, res) => res.json(manifest));
