@@ -57,15 +57,19 @@ const HomePage = () => {
     }
   };
   useEffect(() => {
-    const currentLocation = Number(search.split('=')[1]);
+    const params = new URLSearchParams(search);
+    const currentLocation = +params.get('ecosystem');
     const ecosystem = ecosystems.find(({ id }) => id === currentLocation || 0);
     if (currentLocation && ecosystem) {
       setSelectedEcosystem(ecosystem);
     }
+    if (!ecosystem) {
+      handleEcosystemClick(1);
+    }
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
-  }, [search]);
+  }, [search, ecosystems]);
   const newEcosystemMode = () => {
     setIsNewEcosystem(true);
     setIsOnEditableMode(!!isNewEcosystem);
@@ -132,10 +136,6 @@ const HomePage = () => {
       setRefresh(false);
     }
   }, [refresh]);
-
-  useEffect(() => {
-    handleEcosystemClick(1);
-  }, [ecosystems]);
 
   useEffect(() => {
     setNoSuggestions(suggestions.length === 0);
