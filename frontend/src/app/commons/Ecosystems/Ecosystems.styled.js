@@ -22,7 +22,7 @@ const ButtonStyled = styled(Link)`
   letter-spacing: 0.5px;
   line-height: 24px;
   text-align: start;
-  text-decoration:none;
+  text-decoration: none;
   border: 0;
   color: ${props => (props.selected ? props.theme.colors.primaryColor : props.theme.colors.black)};
   background: ${props => (props.selected ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
