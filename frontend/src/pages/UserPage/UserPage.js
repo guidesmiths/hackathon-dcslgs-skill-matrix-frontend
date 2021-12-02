@@ -37,7 +37,8 @@ const UserPage = () => {
     };
   }, [dispatch]);
   useEffect(() => {
-    const currentLocation = Number(search.split('=')[1]);
+    const params = new URLSearchParams(search);
+    const currentLocation = +params.get('ecosystem');
     if (currentLocation) {
       setEcosystemIdSelected(currentLocation);
     }
