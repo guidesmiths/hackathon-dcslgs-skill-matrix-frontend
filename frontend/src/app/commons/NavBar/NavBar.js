@@ -6,6 +6,7 @@ import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import LazyImage from '../LazyImage/LazyImage';
 import SwitchTest from '../SwitchTest/SwitchTest';
+import EnvironmentComponent from '../EnvComponent/EnvComponent';
 
 const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const signOut = () => {
@@ -22,9 +23,11 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
         <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>
         {!userView && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
-      <div style={{ display: 'flex', alignItems: 'center', padding: 5, borderRadius: 10, fontFamily: 'Poppins', fontSize: 12 }}>
-        Admin<SwitchTest checked={userView} handleChange={handleChangeRoleView} />User
-      </div>
+      <EnvironmentComponent excludedEnvironments={['production']}>
+        <div style={{ display: 'flex', alignItems: 'center', padding: 5, borderRadius: 10, fontFamily: 'Poppins', fontSize: 12 }}>
+          Admin<SwitchTest checked={userView} handleChange={handleChangeRoleView} />User
+        </div>
+      </EnvironmentComponent>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
         <NavBarLink to="/profile">{userData?.email}</NavBarLink>
