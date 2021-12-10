@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon } from './NavBar.styled';
 import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
@@ -18,10 +17,10 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
-          <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>
+          {userData.country && <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>}
         </LogoWrapper>
-        <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>
-        {!userView && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
+        {userData.country && <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>}
+        {!userView && userData.country && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
       <EnvironmentComponent excludedEnvironments={['production']}>
         <div style={{ display: 'flex', alignItems: 'center', padding: 5, borderRadius: 10, fontFamily: 'Poppins', fontSize: 12 }}>

@@ -87,6 +87,17 @@ export const changeUserRoleAsync = createAsyncThunk(
     return response.data;
   },
 );
+export const changeUserCountryAsync = createAsyncThunk(
+  'users/changeUserCountry',
+  async userData => {
+    const response = await axios.patch('/ui/user/country',
+      {
+        id: userData.userId,
+        country: userData.newCountry,
+      }, config());
+    return response.data;
+  },
+);
 
 export const userSlice = createSlice({
   name: 'users',
@@ -141,6 +152,12 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(changeUserRoleAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+      })
+      .addCase(changeUserCountryAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(changeUserCountryAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
       });
   },

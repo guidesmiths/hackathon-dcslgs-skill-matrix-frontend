@@ -14,6 +14,7 @@ const getApiRoutes = servicesAPI => ({
     fetchUserInfo: servicesAPI.users.fetchUserInfo,
     insertUser: servicesAPI.users.insertUser,
     changeUserRole: servicesAPI.users.changeUserRole,
+    changeUserCountry: servicesAPI.users.changeUserCountry,
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,

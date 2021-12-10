@@ -62,6 +62,26 @@ module.exports = () => {
           .then(({ data }) => res.json(data))
           .catch(handleError(res, logger));
       });
+    /**
+     * PATCH /api/v1/user/country
+     * @route PATCH /api/v1/users/country
+     * @summary Change user country
+     * @tags Users
+     * @param {User} request.body.required - User info
+     * @security jwtAuth
+     */
+    app.patch('/ui/user/country',
+      async (req, res) => {
+        const { body } = req;
+        controller.users.changeUserCountry(
+          {
+            body,
+            headers: { Authorization: req.headers.authorization },
+          },
+        )
+          .then(({ data }) => res.json(data))
+          .catch(handleError(res, logger));
+      });
 
     cb();
   };
