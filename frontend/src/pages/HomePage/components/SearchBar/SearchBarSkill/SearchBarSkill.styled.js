@@ -11,11 +11,15 @@ const SearchBarSkillStyled = styled.div`
 const InputWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.fonts.poppins};
+  background: white;
+  margin-right: 20px;
+  border-radius: 8px;
 `;
 
 const InputWrapperUser = styled(InputWrapper)`
   width: 100%;
   height: 56px;
+
   input {
     width: 100% !important;
     height: 100% !important;
