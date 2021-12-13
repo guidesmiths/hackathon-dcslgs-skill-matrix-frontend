@@ -68,7 +68,7 @@ const HomePage = () => {
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
-  }, [pathname]);
+  }, [pathname, ecosystems]);
   const newEcosystemMode = () => {
     setIsNewEcosystem(true);
     setIsOnEditableMode(!!isNewEcosystem);
