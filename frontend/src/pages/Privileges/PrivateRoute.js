@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { array, string } from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage';
@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, path }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  path: PropTypes.string.isRequired,
+  path: PropTypes.oneOfType([string, array]).isRequired,
 };
 
 export default PrivateRoute;

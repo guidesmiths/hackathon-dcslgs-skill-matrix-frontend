@@ -31,7 +31,7 @@ const newEcosystemEmpty = {
 const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { search } = useLocation();
+  const { pathname } = useLocation();
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
@@ -57,8 +57,7 @@ const HomePage = () => {
     }
   };
   useEffect(() => {
-    const params = new URLSearchParams(search);
-    const currentLocation = +params.get('ecosystem');
+    const currentLocation = +pathname.split('/')[2];
     const ecosystem = ecosystems.find(({ id }) => id === currentLocation || 0);
     if (currentLocation && ecosystem) {
       setSelectedEcosystem(ecosystem);
@@ -69,7 +68,7 @@ const HomePage = () => {
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
-  }, [search, ecosystems]);
+  }, [pathname]);
   const newEcosystemMode = () => {
     setIsNewEcosystem(true);
     setIsOnEditableMode(!!isNewEcosystem);
