@@ -19,7 +19,7 @@ const UserPage = () => {
   const [confirmed, setConfirmed] = useState(false);
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
-  const { search } = useLocation();
+  const { pathname } = useLocation();
   const userData = useSelector(selectUserData);
   const handleSubmit = () => {
     setIsSubmited(true);
@@ -37,12 +37,12 @@ const UserPage = () => {
     };
   }, [dispatch]);
   useEffect(() => {
-    const params = new URLSearchParams(search);
-    const currentLocation = +params.get('ecosystem');
+    const currentLocation = +pathname.split('/')[2];
+
     if (currentLocation) {
       setEcosystemIdSelected(currentLocation);
     }
-  }, [search]);
+  }, [pathname]);
 
   return (
     <UserPageStyled data-cy="user">
