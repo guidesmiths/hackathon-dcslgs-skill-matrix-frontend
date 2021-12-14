@@ -65,6 +65,27 @@ module.exports = () => {
           .catch(handleError(res, logger));
       });
 
+    /**
+     * PUT /ui/ecosystem/{id}
+     * @route PUT /ui/ecosystem/{id}
+     * @summary Update an ecosystem name by id
+     * @tags Ecosystem
+     * @param {number} id.required - Ecosystem id
+     * @return {object} 200 - Ecosystem response
+     * @security jwtAuth
+     */
+    app.put('/ui/ecosystem/:id',
+      async (req, res) => {
+        const { body, params: { id } } = req;
+        return controller.ecosystems.updateEcosystemName({
+          headers: { Authorization: req.headers.authorization },
+          urlParams: { id },
+          body,
+        })
+          .then(({ data }) => res.json(data))
+          .catch(handleError(res, logger));
+      });
+
     cb();
   };
   return { start };

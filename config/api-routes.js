@@ -67,6 +67,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystem/:id`,
         method: 'delete',
       },
+      updateEcosystemName: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystem/:id`,
+        method: 'put',
+      },
     },
     suggestions: {
       fetchSuggestions: {

@@ -42,6 +42,14 @@ export const deleteSkillAsync = createAsyncThunk(
   },
 );
 
+export const updateEcosystemNameAsync = createAsyncThunk(
+  'ecosystems/updateEcosystemName',
+  async ecosystem => {
+    const response = await axios.put(`ui/ecosystem/${ecosystem.id}`, ecosystem, config());
+    return response.data;
+  },
+);
+
 export const ecosystemsSlice = createSlice({
   name: 'ecosystems',
   initialState,
@@ -76,6 +84,12 @@ export const ecosystemsSlice = createSlice({
         state.status = 'succeded';
         const updatedEcosystems = state.value.filter(({ id }) => id !== action.payload);
         state.value = [...updatedEcosystems];
+      })
+      .addCase(updateEcosystemNameAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(updateEcosystemNameAsync.fulfilled, state => {
+        state.status = 'succeded';
       })
       .addCase(deleteSkillAsync.pending, state => {
         state.status = 'loading';

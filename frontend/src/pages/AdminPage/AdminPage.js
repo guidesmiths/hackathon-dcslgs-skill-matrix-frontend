@@ -7,7 +7,7 @@ import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
-import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems, updateEcosystemNameAsync } from '../../redux/ecosystems/ecosystemsSlice';
 import { fetchUserInfoAsync } from '../../redux/user/userSlice';
 import { insertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
@@ -93,6 +93,13 @@ const HomePage = () => {
           .then(() => setRefresh(true))
           .catch(err => console.error(err));
         setSelectedEcosystem(null);
+      } else {
+        dispatch(updateEcosystemNameAsync({
+          id: newEcosystem.id,
+          name: newEcosystem.name,
+        }))
+          .then(() => setRefresh(true))
+          .catch(err => console.error(err));
       }
 
       if (isNewSkill) {
