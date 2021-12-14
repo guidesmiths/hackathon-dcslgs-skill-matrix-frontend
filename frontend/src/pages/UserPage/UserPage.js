@@ -43,7 +43,7 @@ const UserPage = () => {
     }
   }, [pathname]);
   useEffect(() => {
-    history.push(`/profile/ecosystem/${1}`);
+    history.push('/profile/ecosystem/1');
   }, []);
 
   return (

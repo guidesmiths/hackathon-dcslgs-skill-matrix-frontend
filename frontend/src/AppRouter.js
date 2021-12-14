@@ -41,7 +41,7 @@ const AppRouter = () => {
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
         <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} userName={userData.name} />} path={COUNTRY_ROUTE} />
-        {!userView && <PrivateRoute exact component={UserPage} path={[USER_ROUTE, `${USER_ROUTE}/ecosystem/:id`]} />}
+        {!userView && <PrivateRoute exact component={UserPage} path={[USER_ROUTE, '/profile/ecosystem/:id']} />}
         <PrivateRoute exact component={userView ? UserPage : AdminPage} path={[HOME_ROUTE, (userView ? '/profile/ecosystem/:id' : '/ecosystem/:id')]} />
         <PrivateRoute exact component={userView ? HomeUserPage : HomePage} path={DIRECTORY_ROUTE} />
         {/* Default path for non existing pages */}
