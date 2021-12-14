@@ -37,7 +37,7 @@ export const deleteEcosystemAsync = createAsyncThunk(
 export const deleteSkillAsync = createAsyncThunk(
   'ecosystems/deleteSkill',
   async id => {
-    await axios.delete(`/ui/skill/${id}`);
+    await axios.delete(`/ui/skill/${id}`, config());
     return id;
   },
 );

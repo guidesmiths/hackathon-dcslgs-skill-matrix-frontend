@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -30,9 +31,9 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const [skillToDelete, setSkillToDelete] = useState('');
 
   useEffect(() => {
+    setCurrentEcosystem(ecosystem);
     setSkills(ecosystem?.skills);
     setIsEmpty(ecosystem?.id === 0);
-    setCurrentEcosystem(ecosystem);
   }, [ecosystem]);
 
   const onDeleteClick = (sub, id, name) => {
@@ -55,9 +56,12 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
       onRefresh();
     }
     if (subject === 'skill') {
-      dispatch(deleteSkillAsync(idToDelete));
-      setShowModal(false);
-      onRefresh();
+      dispatch(deleteSkillAsync(idToDelete))
+        .then(() => {
+          setShowModal(false);
+          onRefresh();
+        })
+        .catch(err => console.error(err));
     }
   };
 

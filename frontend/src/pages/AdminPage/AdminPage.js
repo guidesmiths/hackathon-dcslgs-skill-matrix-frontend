@@ -101,7 +101,6 @@ const HomePage = () => {
         dispatch(insertSkillAsync(newSkill))
           .then(() => setRefresh(true))
           .catch(err => console.error(err));
-        setSelectedEcosystem(null);
       }
     }
     setShowPopUp(true);
@@ -127,7 +126,7 @@ const HomePage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    handleEcosystemClick(1);
+    handleEcosystemClick(selectedEcosystem?.id || 1);
   }, [ecosystems]);
 
   useEffect(() => {
