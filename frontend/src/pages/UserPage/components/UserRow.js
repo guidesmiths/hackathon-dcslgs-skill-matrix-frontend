@@ -28,7 +28,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [subValue, setSubValue] = useState('neutral');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
-  const [isChecked, setCheck] = useState(skill?.interested || false);
+  const [isChecked, setCheck] = useState(false);
 
   const handleCheckBox = () => {
     setCheck(!isChecked);
@@ -39,6 +39,11 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
       }),
     );
   };
+
+  useEffect(() => {
+    setCheck(skill.interested);
+  }, [skill.interested]);
+
   useEffect(() => {
     if (skill.sublevel) {
       setSubValue(skill.sublevel);
