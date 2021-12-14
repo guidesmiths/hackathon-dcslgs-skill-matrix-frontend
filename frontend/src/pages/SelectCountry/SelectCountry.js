@@ -18,7 +18,7 @@ import spain from '../../Assets/Icons/Spain.svg';
 import uk from '../../Assets/Icons/UK.svg';
 import ro from '../../Assets/Icons/ro.svg';
 
-const SelectCountry = ({ userId, setIsSubmited }) => {
+const SelectCountry = ({ userId, userName, setIsSubmited }) => {
   const [select, setSelect] = useState('');
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ const SelectCountry = ({ userId, setIsSubmited }) => {
   return (
     <Header>
       <TextWrapper>
-        <Heading weight={400}> Hello Esther, </Heading>
+        <Heading weight={400}> Hello {userName}, </Heading>
         <Heading weight={700}> Please set up your team country</Heading>
       </TextWrapper>
       <ContanerWrapper>
@@ -97,6 +97,7 @@ const SelectCountry = ({ userId, setIsSubmited }) => {
 SelectCountry.propTypes = {
   setIsSubmited: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
 };
 
 export default SelectCountry;

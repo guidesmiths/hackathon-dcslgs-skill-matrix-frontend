@@ -40,7 +40,7 @@ const AppRouter = () => {
       {show && userData?.email && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
-        <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} />} path={COUNTRY_ROUTE} />
+        <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} userName={userData.name} />} path={COUNTRY_ROUTE} />
         <Route exact component={Page404} path={PAGE404_ROUTE} />
         {!userView && <PrivateRoute exact component={UserPage} path={USER_ROUTE} />}
         <PrivateRoute exact component={userView ? UserPage : AdminPage} path={HOME_ROUTE} />
