@@ -99,6 +99,14 @@ export const changeUserCountryAsync = createAsyncThunk(
   },
 );
 
+export const fetchLevelUserBySkillAsync = createAsyncThunk(
+  'users/skillLevel',
+  async skillId => {
+    const response = await axios.get(`/ui/user/skill/${skillId}`, config());
+    return response.data;
+  },
+);
+
 export const userSlice = createSlice({
   name: 'users',
   initialState,
@@ -158,6 +166,12 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(changeUserCountryAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+      })
+      .addCase(fetchLevelUserBySkillAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchLevelUserBySkillAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
       });
   },

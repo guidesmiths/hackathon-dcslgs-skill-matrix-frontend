@@ -19,7 +19,8 @@ const LoginButton = () => {
     await instance.loginPopup(loginRequest).then(
       result => {
         dispatch(insertUserAsync(result.accessToken))
-          .then(() => (userData.country ? history.push('/profile') : history.push('/country')));
+          .then(() => (userData.country ? history.push('/profile') : history.push('/country')))
+          .catch(err => console.error(err));
       },
     ).catch(error => {
       console.error(error);

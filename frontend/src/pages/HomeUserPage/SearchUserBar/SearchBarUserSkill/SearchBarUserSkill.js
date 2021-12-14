@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { fetchLevelUserBySkillAsync } from '../../../../redux/user/userSlice';
 import { selectAllSkills } from '../../../../redux/skills/skillsSlice';
 import {
   updateSkillFilter,
@@ -12,7 +14,7 @@ import {
 } from '../../../HomePage/components/SearchBar/SearchBarSkill/SearchBarSkill.styled';
 import Input from '../../../../app/commons/Input/Input';
 
-const SearchBarUserSkill = ({ filter, index }) => {
+const SearchBarUserSkill = ({ index }) => {
   const dispatch = useDispatch();
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
@@ -29,12 +31,17 @@ const SearchBarUserSkill = ({ filter, index }) => {
     );
 
     if (selectedSkill) {
-      dispatch(
-        updateSkillFilter({
-          index,
-          filter: { skill: selectedSkill.id, level: filter.level || 1 },
-        }),
-      );
+      dispatch(fetchLevelUserBySkillAsync(selectedSkill.id))
+        .then(response => {
+          const level = response.payload;
+          dispatch(
+            updateSkillFilter({
+              index,
+              filter: { skill: selectedSkill.id, level: level?.skill_value || 1 },
+            }),
+          );
+        })
+        .catch(err => console.error(err));
     } else if (!inputValue) {
       dispatch(
         updateSkillFilter({
@@ -61,7 +68,6 @@ const SearchBarUserSkill = ({ filter, index }) => {
 };
 
 SearchBarUserSkill.propTypes = {
-  filter: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
 };
 

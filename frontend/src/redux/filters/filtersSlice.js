@@ -28,6 +28,10 @@ export const filtersSlice = createSlice({
     updateUserFilter: (state, action) => {
       state.user = action.payload;
     },
+    resetFilters: state => {
+      state.user = '';
+      state.skills = [{}];
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   updateSkillFilter,
   removeSkillFilter,
   updateUserFilter,
+  resetFilters,
 } = filtersSlice.actions;
 
 export const selectSkillFilters = state => state.filters.skills || [{ skill: null, level: 0 }];

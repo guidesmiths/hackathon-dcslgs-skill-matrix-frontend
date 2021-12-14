@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -89,7 +90,8 @@ const HomePage = () => {
     if (!(newEcosystem.name === '' || isThereAnyEmptySkillName || isThereAnyEmptyLevelDescription)) {
       if (isNewEcosystem) {
         dispatch(insertEcosystemAsync(newEcosystem))
-          .then(() => setRefresh(true));
+          .then(() => setRefresh(true))
+          .catch(err => console.error(err));
         setSelectedEcosystem(null);
       }
 
@@ -97,7 +99,8 @@ const HomePage = () => {
         const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
         newSkill.ecosystem = selectedEcosystem.id;
         dispatch(insertSkillAsync(newSkill))
-          .then(() => setRefresh(true));
+          .then(() => setRefresh(true))
+          .catch(err => console.error(err));
         setSelectedEcosystem(null);
       }
     }

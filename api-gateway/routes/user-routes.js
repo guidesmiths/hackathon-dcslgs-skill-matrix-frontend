@@ -83,6 +83,26 @@ module.exports = () => {
           .catch(handleError(res, logger));
       });
 
+    /**
+     * GET /api/v1/user/skill/{skillId}
+     * @route GET /ui/user/skill/{skillId}
+     * @summary Get user level by skill id
+     * @tags Users
+     * @return 200 - Successful operation
+     * @example response - 200 - success response example
+     * @security jwtAuth
+     */
+    app.get('/ui/user/skill/:skillId',
+      async (req, res) => {
+        const { params: { skillId } } = req;
+        return controller.users.skillLevel({
+          urlParams: { skillId },
+          headers: { Authorization: req.headers.authorization },
+        })
+          .then(({ data }) => res.json(data))
+          .catch(handleError(res, logger));
+      });
+
     cb();
   };
 

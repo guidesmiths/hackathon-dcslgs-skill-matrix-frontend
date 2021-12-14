@@ -16,7 +16,7 @@ const AnswersList = () => {
             <AnswersListElement
               key={`answers-${id}`}
               country={country}
-              email={email.toLowerCase()}
+              email={email}
               index={index}
               name={name}
               role={userRole}

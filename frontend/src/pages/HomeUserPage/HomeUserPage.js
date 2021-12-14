@@ -8,12 +8,14 @@ import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
 import { fetchSkillsAsync } from '../../redux/skills/skillsSlice';
 import { fetchAnswersAsync, resetAnswers } from '../../redux/answers/answersSlice';
 import { fetchUserInfoAsync } from '../../redux/user/userSlice';
+import { resetFilters } from '../../redux/filters/filtersSlice';
 
 const HomeUserPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
+    dispatch(resetFilters());
     dispatch(fetchUserInfoAsync(history));
     dispatch(fetchSkillsAsync());
     dispatch(fetchAnswersAsync());

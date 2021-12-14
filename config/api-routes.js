@@ -49,6 +49,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/country`,
         method: 'patch',
       },
+      skillLevel: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/skill/:skillId`,
+        method: 'get',
+      },
     },
     ecosystems: {
       fetchEcosystems: {
