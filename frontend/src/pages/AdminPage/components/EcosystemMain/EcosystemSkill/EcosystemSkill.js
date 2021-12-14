@@ -23,6 +23,11 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
   useEffect(() => {
     setCurrentSkill(skill);
   }, [skill]);
+  useEffect(() => {
+    if (show && !currentSkill.name) {
+      setIsCollapsed(false);
+    }
+  }, [show, currentSkill.name]);
 
   const handleNewSkillName = event => {
     // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.
@@ -44,6 +49,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
       <SkillHeaderStyled>
         <SkillNameStyledInput
           key={`${skill.id}`}
+          autoFocus={show && !currentSkill.name}
           data-cy={`skill-name-input-${skillIndex}`}
           hasError={currentSkill.name === '' && isThereAnyError}
           id={`skill-${skillIndex}`}
