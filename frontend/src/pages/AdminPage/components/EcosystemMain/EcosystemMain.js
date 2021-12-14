@@ -27,6 +27,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
+  const [skillToDelete, setSkillToDelete] = useState('');
 
   useEffect(() => {
     setSkills(ecosystem?.skills);
@@ -34,8 +35,11 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setCurrentEcosystem(ecosystem);
   }, [ecosystem]);
 
-  const onDeleteClick = (sub, id) => {
+  const onDeleteClick = (sub, id, name) => {
     setSubject(sub);
+    if (name) {
+      setSkillToDelete(name);
+    }
     setIdToDelete(id);
     setShowModal(true);
   };
@@ -98,7 +102,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
                   isThereAnyError={isThereAnyError}
                   show={show}
                   skill={skill}
-                  onDeleteClick={() => onDeleteClick('skill', skill.id)}
+                  onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name)}
                 />
               ))}
             </ScrollWrapper>}
@@ -111,7 +115,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
           Delete ecosystem
         </StyledDelete>}
       </ButtonsWrapper>}
-      {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
+      {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ skillToDelete || ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
     </EcosystemContainerStyled>
   );
 };
