@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-const HOME_ROUTE = '/';
+const HOME_ROUTE = '/ecosystem';
 const LOGIN_ROUTE = '/login';
 const USER_ROUTE = '/profile';
 const DIRECTORY_ROUTE = '/directory';

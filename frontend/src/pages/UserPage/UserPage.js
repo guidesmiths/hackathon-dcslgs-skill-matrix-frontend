@@ -41,8 +41,10 @@ const UserPage = () => {
     if (currentLocation) {
       setEcosystemIdSelected(currentLocation);
     }
-    history.push(`/profile/ecosystem/${ecosystemIdSelected}`);
   }, [pathname]);
+  useEffect(() => {
+    history.push(`/profile/ecosystem/${1}`);
+  }, []);
 
   return (
     <UserPageStyled data-cy="user">

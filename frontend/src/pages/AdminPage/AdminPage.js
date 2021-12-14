@@ -52,9 +52,7 @@ const HomePage = () => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
     setIsNewEcosystem(false);
     setSelectedEcosystem(ecosystem);
-    if (ecosystem) {
-      history.push(`${pathname}ecosystem/${selectedId}`);
-    }
+    history.push(`/ecosystem/${selectedId}`);
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
