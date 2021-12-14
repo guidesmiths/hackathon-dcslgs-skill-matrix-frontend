@@ -40,12 +40,8 @@ const AppRouter = () => {
       {show && userData?.email && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
-<<<<<<< HEAD
         <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} userName={userData.name} />} path={COUNTRY_ROUTE} />
         <Route exact component={Page404} path={PAGE404_ROUTE} />
-=======
-        <PrivateRoute component={() => <SelectCountry exact setIsSubmited={setIsSubmited} userId={userData.user_id} />} path={COUNTRY_ROUTE} />
->>>>>>> 0a3c415 (fix: removed search)
         {!userView && <PrivateRoute exact component={UserPage} path={USER_ROUTE} />}
         <PrivateRoute exact component={userView ? UserPage : AdminPage} path={[HOME_ROUTE, '/ecosystem/:id']} />
         <PrivateRoute exact component={userView ? HomeUserPage : HomePage} path={DIRECTORY_ROUTE} />
