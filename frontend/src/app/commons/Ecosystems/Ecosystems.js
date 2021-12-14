@@ -23,7 +23,7 @@ const Ecosystem = ({ ecosystemIdSelected }) => {
             <ButtonStyled
               key={id}
               selected={ecosystemIdSelected === id}
-              to={ location => ({ ...location, pathname: `/ecosystem/${id}` })}
+              to={ location => ({ ...location, pathname: `/profile/ecosystem/${id}` })}
             >
               {name}
             </ButtonStyled>

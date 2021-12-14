@@ -37,11 +37,11 @@ const UserPage = () => {
     };
   }, [dispatch]);
   useEffect(() => {
-    const currentLocation = +pathname.split('/')[2];
-
+    const currentLocation = +pathname.split('/')[3];
     if (currentLocation) {
       setEcosystemIdSelected(currentLocation);
     }
+    history.push(`/profile/ecosystem/${ecosystemIdSelected}`);
   }, [pathname]);
 
   return (

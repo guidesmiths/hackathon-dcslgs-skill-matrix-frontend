@@ -52,13 +52,16 @@ const HomePage = () => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
     setIsNewEcosystem(false);
     setSelectedEcosystem(ecosystem);
+    if (ecosystem) {
+      history.push(`${pathname}ecosystem/${selectedId}`);
+    }
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
   };
   useEffect(() => {
     const currentLocation = +pathname.split('/')[2];
-    const ecosystem = ecosystems.find(({ id }) => id === currentLocation || 0);
+    const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
     if (currentLocation && ecosystem) {
       setSelectedEcosystem(ecosystem);
     }
