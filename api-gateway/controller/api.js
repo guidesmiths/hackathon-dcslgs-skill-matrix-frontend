@@ -21,6 +21,7 @@ const getApiRoutes = servicesAPI => ({
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
     insertEcosystem: servicesAPI.ecosystems.insertEcosystem,
     deleteEcosystem: servicesAPI.ecosystems.deleteEcosystem,
+    updateEcosystemName: servicesAPI.ecosystems.updateEcosystemName,
   },
   suggestions: {
     fetchSuggestions: servicesAPI.suggestions.fetchSuggestions,
