@@ -41,7 +41,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   };
 
   useEffect(() => {
-    setCheck(skill.interested);
+    setCheck(skill.interested || false);
   }, [skill.interested]);
 
   useEffect(() => {
