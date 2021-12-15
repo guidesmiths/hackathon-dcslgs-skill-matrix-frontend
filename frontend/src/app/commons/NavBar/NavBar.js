@@ -17,10 +17,10 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
-          {userData.country && <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>}
+          {userData?.email && <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>}
         </LogoWrapper>
-        {userData.country && <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>}
-        {!userView && userData.country && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
+        {userData?.email && <NavBarLink exact activeClassName="selected" to="/">Skill Matrix</NavBarLink>}
+        {!userView && userData?.email && <NavBarLink exact activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
       <EnvironmentComponent excludedEnvironments={['production']}>
         <div style={{ display: 'flex', alignItems: 'center', padding: 5, borderRadius: 10, fontFamily: 'Poppins', fontSize: 12 }}>
