@@ -17,6 +17,7 @@ import {
 import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
+import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
 
 const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, onRefresh, isThereAnyError }) => {
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     <EcosystemContainerStyled>
       {isEmpty
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
-            Select one Ecosystem or add a new one
+          <SpinnerLoader/>
         </EcosystemFallbackStyled>
         : <>
           <EcosystemHeaderStyled>
