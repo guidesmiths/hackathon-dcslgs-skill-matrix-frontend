@@ -19,7 +19,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
           <LazyImage actualSrc={logo}/>
           {userData.country && <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>}
         </LogoWrapper>
-        {userData.country && <NavBarLink activeClassName="selected" to={() => (!userView ? '/ecosystem' : '/profile/ecosystem/1')}>Skill Matrix</NavBarLink>}
+        {userData.country && <NavBarLink exact activeClassName="selected" to="/" >Skill Matrix</NavBarLink>}
         {!userView && userData.country && <NavBarLink activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
       <EnvironmentComponent excludedEnvironments={['production']}>
