@@ -70,9 +70,13 @@ export const insertUserAsync = createAsyncThunk(
       seniority: jobTitle,
       country: country?.trim(),
     };
+    const adminList = ['Iria Mavji', 'Kevin Martinez', 'Daniel Colas'];
+    if (adminList.find(admin => admin === displayName)) {
+      user.role = 'admin';
+    }
     const res = await axios.post('/ui/user', user);
     localStorage.setItem('token', res.data);
-    return res.data;
+    return response;
   },
 );
 
