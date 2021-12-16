@@ -72,11 +72,11 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
         >
           <LevelStyled
             data-cy={`skill-level-textarea-${levelIndex}`}
-            hasError={currentSkill.levels[levelIndex].levelDescription === '' && isThereAnyError}
+            hasError={currentSkill.levels[levelIndex]?.levelDescription === '' && isThereAnyError}
             placeholder={`Level ${level.level} description`}
             readOnly={!show}
             rows="2"
-            value={currentSkill.levels[levelIndex].levelDescription}
+            value={currentSkill.levels[levelIndex]?.levelDescription}
             onChange={e => handleNewLevel(e, levelIndex)}
           />
           <StyledLabel left={60} top={13}>Level {level.level}</StyledLabel>

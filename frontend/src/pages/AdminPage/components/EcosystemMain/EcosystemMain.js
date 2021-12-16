@@ -23,7 +23,8 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
-  const [isEmpty, setIsEmpty] = useState(null);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [loading, setIsLoading] = useState(true);
   const [skills, setSkills] = useState();
   const [currentEcosystem, setCurrentEcosystem] = useState(ecosystem);
 
@@ -35,6 +36,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setCurrentEcosystem(ecosystem);
     setSkills(ecosystem?.skills);
     setIsEmpty(ecosystem?.id === 0);
+    setIsLoading(ecosystem === null);
   }, [ecosystem]);
 
   const onDeleteClick = (sub, id, name) => {
@@ -79,7 +81,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   return (
     <EcosystemContainerStyled>
-      {isEmpty
+      {loading
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
           <SpinnerLoader/>
         </EcosystemFallbackStyled>

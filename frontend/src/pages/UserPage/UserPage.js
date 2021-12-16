@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -19,6 +19,7 @@ const UserPage = () => {
   const [confirmed, setConfirmed] = useState(false);
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
+  const { pathname } = useLocation();
 
   const userData = useSelector(selectUserData);
 
@@ -37,6 +38,16 @@ const UserPage = () => {
       dispatch(resetEcosystems());
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    const currentLocation = +pathname.split('/')[3];
+    if (currentLocation) {
+      setEcosystemIdSelected(currentLocation);
+    }
+    if (!currentLocation) {
+      history.push('/profile/ecosystem/1');
+    }
+  }, [pathname]);
 
   return (
     <UserPageStyled data-cy="user">

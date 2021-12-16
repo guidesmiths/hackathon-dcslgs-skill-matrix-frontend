@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
@@ -44,6 +44,7 @@ const HomePage = () => {
   const [refresh, setRefresh] = useState(false);
   const [isThereAnyError, setIsThereAnyError] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
+  const { pathname } = useLocation();
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
   }, [isNewEcosystem]);
@@ -52,6 +53,7 @@ const HomePage = () => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
     setIsNewEcosystem(false);
     setSelectedEcosystem(ecosystem);
+    history.push(`/ecosystem/${selectedId}`);
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
@@ -126,8 +128,18 @@ const HomePage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    handleEcosystemClick(selectedEcosystem?.id || 1);
-  }, [ecosystems]);
+    const currentLocation = +pathname.split('/')[2];
+    const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
+    if (currentLocation && ecosystem) {
+      setSelectedEcosystem(ecosystem);
+    }
+    if (!ecosystem && !currentLocation) {
+      handleEcosystemClick(1);
+    }
+    if (ecosystem !== 0) {
+      setBeforeEdit(ecosystem);
+    }
+  }, [pathname, ecosystems]);
 
   useEffect(() => {
     setNoSuggestions(suggestions.length === 0);
@@ -139,8 +151,8 @@ const HomePage = () => {
       <EcosystemsSideBar
         ecosystems={ecosystems}
         noSuggestions={noSuggestions}
+        selected={selectedEcosystem?.id}
         show={isOnEditableMode}
-        onEcosystemSelected={handleEcosystemClick}
         onNewEcosystem={newEcosystemMode}
       />
       <EcosystemMain

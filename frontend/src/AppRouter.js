@@ -41,10 +41,12 @@ const AppRouter = () => {
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
         <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} userName={userData.name} />} path={COUNTRY_ROUTE} />
-        <Route exact component={Page404} path={PAGE404_ROUTE} />
-        {!userView && <PrivateRoute exact component={UserPage} path={USER_ROUTE} />}
-        <PrivateRoute exact component={userView ? UserPage : AdminPage} path={HOME_ROUTE} />
+        {!userView && <PrivateRoute exact component={UserPage} path={[USER_ROUTE, '/profile/ecosystem/:id']} />}
+        <PrivateRoute exact component={userView ? UserPage : AdminPage}
+          path={ !userView ? [HOME_ROUTE, '/ecosystem/', '/ecosystem/:id'] : [HOME_ROUTE, '/profile/ecosystem/', '/profile/ecosystem/:id']}
+        />
         <PrivateRoute exact component={userView ? HomeUserPage : HomePage} path={DIRECTORY_ROUTE} />
+        <Route exact component={Page404}/>
         {/* Default path for non existing pages */}
         <Route component={() => <Redirect to={PAGE404_ROUTE} />} />
       </Switch>

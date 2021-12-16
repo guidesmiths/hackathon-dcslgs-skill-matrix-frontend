@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 
@@ -25,14 +26,15 @@ const EcosystemHeaderStyled = styled.div`
   font-size: 24px;
 `;
 
-const EcosystemElementStyled = styled.div`
+const EcosystemElementStyled = styled(Link)`
   padding: 8px 25px;
   font-size:14px;
-  font-weight: ${props => (props.selected === props.id ? 'bold' : '400')};
+  font-weight: ${props => (props.selected ? 'bold' : '400')};
   letter-spacing: 0.5px;
   line-height: 24px;
-  color: ${props => (props.selected === props.id ? props.theme.colors.primaryColor : 'default')};
-  background: ${props => (props.selected === props.id ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
+  text-decoration: none;
+  color: ${props => (props.selected ? props.theme.colors.primaryColor : props.theme.colors.black)};
+  background: ${props => (props.selected ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
 
   &:last-child{
     padding-bottom: 30px;
