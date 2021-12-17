@@ -27,8 +27,9 @@ const UserPage = () => {
     setIsSubmited(true);
     setEdit(false);
     setConfirmed(true);
-    dispatch(insertAnswersAsync(userData));
-    dispatch(fetchUserInfoAsync());
+    dispatch(insertAnswersAsync(userData))
+      .then(() => fetchUserInfoAsync())
+      .catch(err => console.error(err));
   };
 
   useEffect(() => {
