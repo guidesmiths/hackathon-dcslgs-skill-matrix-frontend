@@ -32,6 +32,11 @@ const UserPage = () => {
       .catch(err => console.error(err));
   };
 
+  const handleCancel = () => {
+    setEdit(false);
+    dispatch(fetchUserInfoAsync());
+  };
+
   useEffect(() => {
     dispatch(fetchUserInfoAsync(history));
     dispatch(fetchEcosystemsAsync());
@@ -68,7 +73,7 @@ const UserPage = () => {
             <EditButtonStyled data-cy="editUser" onClick={() => setEdit(true)}>Edit</EditButtonStyled>
           </>
           : <>
-            <SaveButton action={'cancel'} onClick={() => setEdit(false)}>Cancel</SaveButton>
+            <SaveButton action={'cancel'} onClick={handleCancel}>Cancel</SaveButton>
             <SaveButton onClick={handleSubmit}>Save</SaveButton>
           </>
         }
