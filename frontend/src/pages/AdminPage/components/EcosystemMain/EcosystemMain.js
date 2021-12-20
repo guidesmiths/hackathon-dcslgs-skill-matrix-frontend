@@ -74,9 +74,10 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   };
 
   const handleNewSkills = (skillIndex, skill) => {
-    skills[skillIndex] = skill;
-    setCurrentEcosystem({ ...currentEcosystem, skills });
-    handleNewEcosystemAdmin({ ...currentEcosystem, skills });
+    const currentSkills = [...skills];
+    currentSkills[skillIndex] = skill;
+    setCurrentEcosystem({ ...currentEcosystem, skills: currentSkills });
+    handleNewEcosystemAdmin({ ...currentEcosystem, skills: currentSkills });
   };
 
   return (
@@ -98,14 +99,13 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem?.skills.length
+          {ecosystem?.skills.length > 0
             && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
               {ecosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
-                  key={index}
+                  key={skill?.id}
                   handleNewSkills={handleNewSkills}
                   index={index}
-                  isNewEcosystem={isNewEcosystem}
                   isThereAnyError={isThereAnyError}
                   show={show}
                   skill={skill}

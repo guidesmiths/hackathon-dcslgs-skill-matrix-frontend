@@ -18,8 +18,8 @@ export const fetchSkillsAsync = createAsyncThunk(
   },
 );
 
-export const insertSkillAsync = createAsyncThunk(
-  'skills/insertSkill',
+export const upsertSkillAsync = createAsyncThunk(
+  'skills/upsertSkill',
   async skill => {
     const response = await axios.post('/ui/skill', skill, config());
     return response.data;

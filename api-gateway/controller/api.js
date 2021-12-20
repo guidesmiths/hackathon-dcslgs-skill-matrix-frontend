@@ -1,7 +1,7 @@
 const getApiRoutes = servicesAPI => ({
   skills: {
     fetchSkills: servicesAPI.skills.fetchSkills,
-    insertSkill: servicesAPI.skills.insertSkill,
+    upsertSkill: servicesAPI.skills.upsertSkill,
     deleteSkill: servicesAPI.skills.deleteSkill,
   },
   answers: {
@@ -19,7 +19,7 @@ const getApiRoutes = servicesAPI => ({
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
-    insertEcosystem: servicesAPI.ecosystems.insertEcosystem,
+    upsertEcosystem: servicesAPI.ecosystems.upsertEcosystem,
     deleteEcosystem: servicesAPI.ecosystems.deleteEcosystem,
   },
   suggestions: {

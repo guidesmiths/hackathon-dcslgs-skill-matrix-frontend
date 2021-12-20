@@ -181,7 +181,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userAdded, updateEcosystem, updateSkill, updateUserSkill, resetSkills } = userSlice.actions;
+export const { userAdded, updateSkill, updateUserSkill, resetSkills } = userSlice.actions;
 
 // Selectors
 export const selectUserData = state => state.users?.value;

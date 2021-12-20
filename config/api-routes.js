@@ -5,7 +5,7 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/skills`,
         method: 'get',
       },
-      insertSkill: {
+      upsertSkill: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/skill`,
         method: 'post',
       },
@@ -59,7 +59,7 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystems`,
         method: 'get',
       },
-      insertEcosystem: {
+      upsertEcosystem: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystem`,
         method: 'post',
       },

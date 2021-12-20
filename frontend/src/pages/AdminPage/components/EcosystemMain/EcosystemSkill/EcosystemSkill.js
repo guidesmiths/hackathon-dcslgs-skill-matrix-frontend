@@ -23,6 +23,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
   useEffect(() => {
     setCurrentSkill(skill);
   }, [skill]);
+
   useEffect(() => {
     if (show && !currentSkill.name) {
       setIsCollapsed(false);
@@ -40,8 +41,11 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
   };
 
   const handleNewLevel = (event, index) => {
-    currentSkill.levels[index].levelDescription = event.target.value;
-    handleNewSkills(skillIndex, { ...currentSkill, levels: currentSkill.levels });
+    const newLevels = [...currentSkill.levels];
+    const newCurrentLevel = { ...currentSkill.levels[index], levelDescription: event.target.value };
+    newLevels[index] = newCurrentLevel;
+    setCurrentSkill({ ...currentSkill, levels: newLevels });
+    handleNewSkills(skillIndex, { ...currentSkill, levels: newLevels });
   };
 
   return (
@@ -89,7 +93,6 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
 EcosystemSkill.propTypes = {
   handleNewSkills: PropTypes.func.isRequired, // It is not required
   index: PropTypes.number.isRequired,
-  isNewEcosystem: PropTypes.bool.isRequired,
   show: PropTypes.bool.isRequired,
   skill: PropTypes.shape({
     description: PropTypes.string.isRequired,
@@ -101,10 +104,12 @@ EcosystemSkill.propTypes = {
     })),
   }).isRequired,
   onDeleteClick: PropTypes.func.isRequired,
+  isNewEcosystem: PropTypes.bool,
   isThereAnyError: PropTypes.bool,
 };
 
 EcosystemSkill.defaultProps = {
+  isNewEcosystem: false,
   isThereAnyError: false,
 };
 

@@ -18,8 +18,8 @@ export const fetchEcosystemsAsync = createAsyncThunk(
   },
 );
 
-export const insertEcosystemAsync = createAsyncThunk(
-  'ecosystems/insertEcosystem',
+export const upsertEcosystemAsync = createAsyncThunk(
+  'ecosystems/upsertEcosystem',
   async ecosystem => {
     const response = await axios.post('/ui/ecosystem', ecosystem, config());
     return response.data;

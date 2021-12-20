@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useLayoutEffect } from 'react';
@@ -7,9 +8,9 @@ import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
-import { fetchEcosystemsAsync, insertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import { fetchUserInfoAsync } from '../../redux/user/userSlice';
-import { insertSkillAsync } from '../../redux/skills/skillsSlice';
+import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
@@ -45,6 +46,7 @@ const HomePage = () => {
   const [isThereAnyError, setIsThereAnyError] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const { pathname } = useLocation();
+
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
   }, [isNewEcosystem]);
@@ -82,30 +84,59 @@ const HomePage = () => {
     setIsNewSkill(true);
   };
 
-  const handleNewEcosystemAdmin = newEco => setNewEcosystem(newEco);
+  const handleNewEcosystemAdmin = newEco => {
+    setNewEcosystem(newEco);
+    setSelectedEcosystem(newEco);
+    setIsNewEcosystem(true);
+  };
 
-  const isThereAnyEmptySkillName = newEcosystem.skills.some(skill => skill.name === '');
-  const isThereAnyEmptyLevelDescription = newEcosystem.skills.some(skill => skill.levels.some(level => level.levelDescription === ''));
+  const isThereAnyEmptySkillName = currentEcosystem => currentEcosystem.skills.some(skill => skill.name === '');
+  const isThereAnyEmptyLevelDescription = currentEcosystem => currentEcosystem.skills.some(skill => skill.levels.some(level => level.levelDescription === ''));
+  const invalidData = currentEcosystem => currentEcosystem.name === '' || isThereAnyEmptySkillName(currentEcosystem) || isThereAnyEmptyLevelDescription(currentEcosystem);
+  const setError = currentEcosystem => setIsThereAnyError(invalidData(currentEcosystem));
 
   const handleSave = () => {
-    setIsThereAnyError(newEcosystem.name === '' || isThereAnyEmptySkillName || isThereAnyEmptyLevelDescription);
-    if (!(newEcosystem.name === '' || isThereAnyEmptySkillName || isThereAnyEmptyLevelDescription)) {
-      if (isNewEcosystem) {
-        dispatch(insertEcosystemAsync(newEcosystem))
-          .then(() => setRefresh(true))
-          .catch(err => console.error(err));
-        setSelectedEcosystem(null);
-      }
-
-      if (isNewSkill) {
-        const newSkill = selectedEcosystem.skills.find(skill => !skill.id);
-        newSkill.ecosystem = selectedEcosystem.id;
-        dispatch(insertSkillAsync(newSkill))
-          .then(() => setRefresh(true))
+    if (isNewEcosystem) {
+      setError(newEcosystem);
+      if (!invalidData(newEcosystem)) {
+        dispatch(upsertEcosystemAsync(newEcosystem))
+          .then(({ payload }) => {
+            setSelectedEcosystem(payload);
+            setNewEcosystem({
+              name: '',
+              skills: [{
+                name: '',
+                description: '',
+                levels: [
+                  { level: 1, levelDescription: '' },
+                  { level: 2, levelDescription: '' },
+                  { level: 3, levelDescription: '' },
+                  { level: 4, levelDescription: '' },
+                ],
+              }],
+            });
+            setRefresh(true);
+          })
           .catch(err => console.error(err));
       }
     }
+
+    if (isNewSkill) {
+      setError(newEcosystem);
+      if (!invalidData(newEcosystem)) {
+        const newSkills = newEcosystem.skills.filter(skill => !skill.id);
+        newSkills.forEach(skill => {
+          skill.ecosystem = selectedEcosystem.id;
+          dispatch(upsertSkillAsync(skill))
+            .then(() => setRefresh(true))
+            .catch(err => console.error(err));
+        });
+        setSelectedEcosystem(null);
+      }
+    }
+
     setShowPopUp(true);
+    setIsOnEditableMode(false);
   };
 
   const cancelNewEcosystem = () => {
@@ -139,6 +170,7 @@ const HomePage = () => {
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
+    setIsOnEditableMode(false);
   }, [pathname, ecosystems]);
 
   useEffect(() => {

@@ -36,7 +36,7 @@ module.exports = () => {
     app.post('/ui/skill',
       async (req, res) => {
         const { body } = req;
-        return controller.skills.insertSkill({
+        return controller.skills.upsertSkill({
           headers: { Authorization: req.headers.authorization },
           body,
         })

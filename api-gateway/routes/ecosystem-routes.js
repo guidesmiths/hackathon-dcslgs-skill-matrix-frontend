@@ -37,7 +37,7 @@ module.exports = () => {
     app.post('/ui/ecosystem',
       async (req, res) => {
         const { body } = req;
-        return controller.ecosystems.insertEcosystem({
+        return controller.ecosystems.upsertEcosystem({
           headers: { Authorization: req.headers.authorization },
           body,
         })
