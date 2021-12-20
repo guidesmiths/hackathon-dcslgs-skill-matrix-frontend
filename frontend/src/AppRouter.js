@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBar from './app/commons/NavBar/NavBar';
 import { fetchUserInfoAsync, selectUserData } from './redux/user/userSlice';
 import { HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE, PAGE404_ROUTE, DIRECTORY_ROUTE, COUNTRY_ROUTE } from './constants/routes';
@@ -13,27 +15,34 @@ import Page404 from './pages/Page404/Page404';
 import PrivateRoute from './pages/Privileges/PrivateRoute';
 import NotLoggedRoute from './pages/Privileges/NotLoggedRoute';
 import SelectCountry from './pages/SelectCountry/SelectCountry';
+import getEnvConfig from './configuration/environment';
 
-const AppRouter = () => {
+const AppRouter = ({ environment }) => {
   const location = useLocation().pathname;
   const show = location !== '/login'; // && location !== '/404';
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const history = useHistory();
-  // For production:
-  // const [userView, setUserView] = useState(userData.role === 'user');
+
   const [userView, setUserView] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
   const handleChangeRoleView = () => {
     setUserView(!userView);
   };
+
   useEffect(() => {
     dispatch(fetchUserInfoAsync(history));
     if (isSubmited) {
       history.push('/profile');
     }
   }, [isSubmited]);
+
+  useEffect(() => {
+    if (environment === 'production' && userData.role === 'user') {
+      setUserView(true);
+    }
+  }, [userData]);
 
   return (
     <>
@@ -52,6 +61,14 @@ const AppRouter = () => {
       </Switch>
     </>
   );
+};
+
+AppRouter.defaultProps = {
+  environment: getEnvConfig().environment,
+};
+
+AppRouter.propTypes = {
+  environment: PropTypes.string,
 };
 
 export default AppRouter;
