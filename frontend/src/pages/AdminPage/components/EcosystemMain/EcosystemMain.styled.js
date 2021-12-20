@@ -74,6 +74,7 @@ const StyledButton = styled.div`
 const StyledDelete = styled.div`
   display: flex;
   align-items: center;
+  max-width: max-content;
   margin: 20px;
   font-weight: bold;
   font-size: 14px;
