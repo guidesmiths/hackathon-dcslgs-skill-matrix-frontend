@@ -15,27 +15,16 @@ import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice
 import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
-  // fetchAnswersByUserAsync,
-  // nselectUserData,
 } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
-  // const userData = useSelector(selectUserData);
-
   const selectedSkills = useSelector(selectSkillsPerSystem(ecosystemIdSelected));
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
-  // const dispatch = useDispatch();
   const ref = useRef(null);
-
-  // useEffect(() => {
-  //   if (userData?.user_id) {
-  //     dispatch(fetchAnswersByUserAsync(userData.user_id));
-  //   }
-  // }, [dispatch, userData]);
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(
