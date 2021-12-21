@@ -38,10 +38,7 @@ module.exports = () => {
     app.get('/ui/user/me',
       async (req, res) => {
         controller.users.fetchUserInfo({ headers: { Authorization: req.headers.authorization } })
-          .then(({ data }) => {
-            console.log('------', data);
-            res.json(data);
-          })
+          .then(({ data }) => res.json(data))
           .catch(handleError(res, logger));
       });
 
