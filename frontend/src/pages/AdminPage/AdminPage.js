@@ -154,7 +154,7 @@ const HomePage = () => {
       dispatch(fetchEcosystemsAsync());
     }
     dispatch(fetchSuggestionsAsync());
-  }, [userData.id, history, ecosystems]);
+  }, [userData.id, ecosystems]);
 
   useEffect(() => {
     if (refresh) {
