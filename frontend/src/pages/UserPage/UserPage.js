@@ -8,9 +8,9 @@ import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
-import { fetchEcosystemsAsync, resetEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
-import { insertAnswersAsync, selectUserData, fetchUserInfoAsync, fetchAnswersByUserAsync } from '../../redux/user/userSlice';
+import { insertAnswersAsync, selectUserData, fetchAnswersByUserAsync } from '../../redux/user/userSlice';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const UserPage = () => {
   const { pathname } = useLocation();
 
   const userData = useSelector(selectUserData);
+  const ecosystems = useSelector(selectAllEcosystems);
 
   const handleSubmit = () => {
     setIsSubmited(true);
@@ -36,17 +37,15 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    if (userData.id && !userData.ecosystems) {
-      dispatch(fetchUserInfoAsync(history))
-        .then(({ payload }) => {
-          dispatch(fetchAnswersByUserAsync(payload.id))
-            .catch(error => console.error(error));
-        });
+    if (ecosystems.length === 0) {
       dispatch(fetchEcosystemsAsync());
     }
-    return () => {
-      dispatch(resetEcosystems());
-    };
+  }, [ecosystems]);
+
+  useEffect(() => {
+    if (!userData.ecosystems) {
+      dispatch(fetchAnswersByUserAsync(userData.id));
+    }
   }, [userData.id, userData.ecosystems]);
 
   useEffect(() => {

@@ -19,7 +19,6 @@ const LoginButton = () => {
       result => {
         dispatch(insertUserAsync(result.accessToken))
           .then(response => {
-            console.log('😙', response);
             const { payload: { country } } = response;
             // eslint-disable-next-line no-extra-boolean-cast
             if (!!country) {

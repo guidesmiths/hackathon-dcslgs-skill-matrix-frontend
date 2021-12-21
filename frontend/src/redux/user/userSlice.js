@@ -12,6 +12,7 @@ const initialState = {
   value: {},
   skillsSelected: [],
   status: 'idle',
+  insertStatus: 'idle',
 };
 
 export const fetchAnswersByUserAsync = createAsyncThunk('users/fetchAnswersByUser', async user => {
@@ -133,47 +134,50 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAnswersByUserAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'idle';
         state.value = action.payload;
       })
       .addCase(fetchUpdatedUserAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'idle';
         state.value = action.payload;
       })
       .addCase(fetchUserInfoAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchUserInfoAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'idle';
         state.value = action.payload;
       })
       .addCase(insertUserAsync.pending, state => {
-        state.status = 'loading';
+        state.insertStatus = 'loading';
       })
       .addCase(insertUserAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.insertStatus = 'idle';
         state.value = action.payload;
+      })
+      .addCase(insertUserAsync.rejected, state => {
+        state.insertStatus = 'idle';
       })
       .addCase(changeUserRoleAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(changeUserRoleAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+      .addCase(changeUserRoleAsync.fulfilled, state => {
+        state.status = 'idle';
       })
       .addCase(changeUserCountryAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(changeUserCountryAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+      .addCase(changeUserCountryAsync.fulfilled, state => {
+        state.status = 'idle';
       })
       .addCase(fetchLevelUserBySkillAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchLevelUserBySkillAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+      .addCase(fetchLevelUserBySkillAsync.fulfilled, state => {
+        state.status = 'idle';
       });
   },
 });
@@ -181,6 +185,7 @@ export const userSlice = createSlice({
 export const { userAdded, updateSkill, updateUserSkill } = userSlice.actions;
 
 // Selectors
+export const selectUserInsertLoading = state => state.users.insertStatus;
 export const selectUserData = state => state.users?.value;
 export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id)?.skills || [];
 export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id);
