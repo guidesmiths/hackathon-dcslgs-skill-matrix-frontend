@@ -9,7 +9,7 @@ import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar'
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
-import { fetchUserInfoAsync } from '../../redux/user/userSlice';
+import { fetchUserInfoAsync, selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -35,6 +35,7 @@ const HomePage = () => {
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
+  const userData = useSelector(selectUserData);
   const [selectedEcosystem, setSelectedEcosystem] = useState(null);
   const [noSuggestions, setNoSuggestions] = useState(true);
   const [isNewEcosystem, setIsNewEcosystem] = useState(false);
@@ -146,10 +147,14 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserInfoAsync(history));
+    if (!userData.id) {
+      dispatch(fetchUserInfoAsync(history));
+    }
+    if (ecosystems.length === 0) {
+      dispatch(fetchEcosystemsAsync());
+    }
     dispatch(fetchSuggestionsAsync());
-    dispatch(fetchEcosystemsAsync());
-  }, []);
+  }, [userData.id, ecosystems]);
 
   useEffect(() => {
     if (refresh) {

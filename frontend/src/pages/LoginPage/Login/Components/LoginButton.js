@@ -20,7 +20,8 @@ const LoginButton = () => {
         dispatch(insertUserAsync(result.accessToken))
           .then(response => {
             const { payload: { country } } = response;
-            if (country != null) {
+            // eslint-disable-next-line no-extra-boolean-cast
+            if (!!country) {
               history.push('/profile');
             } else {
               history.push('/country');
