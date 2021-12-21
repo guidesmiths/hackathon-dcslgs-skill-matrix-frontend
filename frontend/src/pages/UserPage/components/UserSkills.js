@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   UserData,
   DataTitle,
@@ -15,26 +15,27 @@ import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice
 import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
-  fetchAnswersByUserAsync,
-  selectUserData,
+  // fetchAnswersByUserAsync,
+  // nselectUserData,
 } from '../../../redux/user/userSlice';
 
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
-  const userData = useSelector(selectUserData);
+  // const userData = useSelector(selectUserData);
+
   const selectedSkills = useSelector(selectSkillsPerSystem(ecosystemIdSelected));
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const ref = useRef(null);
 
-  useEffect(() => {
-    if (userData?.user_id) {
-      dispatch(fetchAnswersByUserAsync(userData.user_id));
-    }
-  }, [userData, dispatch]);
+  // useEffect(() => {
+  //   if (userData?.user_id) {
+  //     dispatch(fetchAnswersByUserAsync(userData.user_id));
+  //   }
+  // }, [dispatch, userData]);
 
   const skillswithLevel = selectedSkills.map(skill => {
     const index = userSkills.findIndex(

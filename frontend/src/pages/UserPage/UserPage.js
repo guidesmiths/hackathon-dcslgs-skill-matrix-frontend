@@ -10,7 +10,7 @@ import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync, resetEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
-import { insertAnswersAsync, selectUserData, fetchUserInfoAsync } from '../../redux/user/userSlice';
+import { insertAnswersAsync, selectUserData, fetchUserInfoAsync, fetchAnswersByUserAsync } from '../../redux/user/userSlice';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -28,23 +28,26 @@ const UserPage = () => {
     setIsSubmited(true);
     setEdit(false);
     setConfirmed(true);
-    dispatch(insertAnswersAsync(userData))
-      .then(() => fetchUserInfoAsync())
-      .catch(err => console.error(err));
+    dispatch(insertAnswersAsync(userData));
   };
 
   const handleCancel = () => {
     setEdit(false);
-    dispatch(fetchUserInfoAsync());
   };
 
   useEffect(() => {
-    dispatch(fetchUserInfoAsync(history));
-    dispatch(fetchEcosystemsAsync());
+    if (userData.id && !userData.ecosystems) {
+      dispatch(fetchUserInfoAsync(history))
+        .then(({ payload }) => {
+          dispatch(fetchAnswersByUserAsync(payload.id))
+            .catch(error => console.error(error));
+        });
+      dispatch(fetchEcosystemsAsync());
+    }
     return () => {
       dispatch(resetEcosystems());
     };
-  }, [dispatch]);
+  }, [userData.id, userData.ecosystems]);
 
   useEffect(() => {
     const currentLocation = +pathname.split('/')[3];

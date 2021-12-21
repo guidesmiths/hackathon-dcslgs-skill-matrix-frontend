@@ -32,7 +32,9 @@ const AppRouter = ({ environment }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserInfoAsync(history));
+    if (!userData.id) {
+      dispatch(fetchUserInfoAsync(history));
+    }
     if (isSubmited) {
       history.push('/profile');
     }
@@ -46,10 +48,10 @@ const AppRouter = ({ environment }) => {
 
   return (
     <>
-      {show && userData?.email && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
+      {show && userData && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
-        <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.user_id} userName={userData.name} />} path={COUNTRY_ROUTE} />
+        <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.id} userName={userData.name} />} path={COUNTRY_ROUTE} />
         {!userView && <PrivateRoute exact component={UserPage} path={[USER_ROUTE, '/profile/ecosystem/:id']} />}
         <PrivateRoute exact component={userView ? UserPage : AdminPage}
           path={ !userView ? [HOME_ROUTE, '/ecosystem/', '/ecosystem/:id'] : [HOME_ROUTE, '/profile/ecosystem/', '/profile/ecosystem/:id']}

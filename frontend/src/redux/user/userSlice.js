@@ -125,9 +125,6 @@ export const userSlice = createSlice({
       state.value.ecosystems[ecosystemIndex].skills[skillIndex] = skillIndex !== -1 && skill;
       skillIndex === -1 && state.value.ecosystems[idEcosystem].skills.push(skill);
     },
-    resetSkills: state => {
-      state.value = [];
-    },
   },
 
   extraReducers: builder => {
@@ -181,7 +178,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userAdded, updateSkill, updateUserSkill, resetSkills } = userSlice.actions;
+export const { userAdded, updateSkill, updateUserSkill } = userSlice.actions;
 
 // Selectors
 export const selectUserData = state => state.users?.value;
