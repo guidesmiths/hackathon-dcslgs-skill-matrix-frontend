@@ -15,7 +15,7 @@ const LoginButton = () => {
 
   // This function shows official Microsoft login Pop up
   async function handleLoginPopup() {
-    await instance.loginPopup(loginRequest).then(
+    await instance.loginRedirect(loginRequest).then(
       result => {
         dispatch(insertUserAsync(result.accessToken))
           .then(response => {
