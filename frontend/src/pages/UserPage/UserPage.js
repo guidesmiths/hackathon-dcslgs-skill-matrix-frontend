@@ -34,6 +34,7 @@ const UserPage = () => {
 
   const handleCancel = () => {
     setEdit(false);
+    dispatch(fetchAnswersByUserAsync(userData.id));
   };
 
   useEffect(() => {
