@@ -67,7 +67,7 @@ const UserPage = () => {
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>
-        <SuggestionForm onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
+        <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
       </StyledModal>}
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       <Footer>

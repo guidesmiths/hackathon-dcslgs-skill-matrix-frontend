@@ -18,7 +18,7 @@ import Label from '../../../app/commons/Label/Label';
 import { insertSuggestionAsync } from '../../../redux/suggestions/suggestionsSlice';
 import { selectUserData } from '../../../redux/user/userSlice';
 
-const SuggestionForm = ({ onCloseClick }) => {
+const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(false);
   const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
@@ -47,6 +47,7 @@ const SuggestionForm = ({ onCloseClick }) => {
       dispatch(insertSuggestionAsync({ suggestion, selectedSuggestion, userId }));
       setSuggestion('');
       setSelectedSuggestion('Ecosystems');
+      setConfirmed(true);
       onCloseClick();
     }
   };
@@ -79,6 +80,7 @@ const SuggestionForm = ({ onCloseClick }) => {
 };
 
 SuggestionForm.propTypes = {
+  setConfirmed: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };
 
