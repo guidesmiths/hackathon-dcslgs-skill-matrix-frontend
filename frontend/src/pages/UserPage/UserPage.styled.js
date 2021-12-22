@@ -18,7 +18,6 @@ const HeaderStyled = styled.div`
 const UserPageDisplay = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 40px;
   margin-top: -40px;
   padding-bottom: 70px;
 `;

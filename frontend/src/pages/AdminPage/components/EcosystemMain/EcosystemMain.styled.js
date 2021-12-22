@@ -6,9 +6,9 @@ const EcosystemContainerStyled = styled.div`
   grid-area: ecosystems-main;
   box-sizing: border-box;
   height: 100%;
-  width: 95%;
+  width: 98%;
+  margin: 0 auto;
   padding: 10px 0;
-  margin: 20px auto;
   background-color: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.fonts.poppins};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
