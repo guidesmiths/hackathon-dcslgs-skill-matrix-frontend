@@ -9,15 +9,15 @@ import {
   UserRolStyled,
   UserWrapperStyled,
   MoreInfoWrapper,
+  StyledIcon,
 } from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 
 import FlagComponent from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/FlagComponent';
-import Icon from '../../../../app/commons/icon/icon';
 
 const ListElementUserHeader = ({ email, name, seniority, country }) => (
   <ListElementStyled data-cy="list-element-header">
     <UserWrapperStyled>
-      <Icon icon={'face'}/>
+      <StyledIcon icon={'face'}/>
       <UserNameStyled>{name}</UserNameStyled>
     </UserWrapperStyled>
     <UserEmailStyled>{email}</UserEmailStyled>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ArrowButton } from '../../../../../../app/commons/ArrowButton/arrowButton.styled';
+import Icon from '../../../../../../app/commons/icon/icon';
 
 const UserWrapperStyled = styled.div`
   display: flex;
@@ -72,6 +73,11 @@ const StyledImage = styled.img`
   height: 24px;
   width: 24px;
 `;
+const StyledIcon = styled(Icon)`
+  &:hover{
+    cursor: default;
+  }
+`;
 
 export {
   ListElementStyled,
@@ -82,4 +88,5 @@ export {
   ArrowButtonStyled,
   MoreInfoWrapper,
   StyledImage,
+  StyledIcon,
 };

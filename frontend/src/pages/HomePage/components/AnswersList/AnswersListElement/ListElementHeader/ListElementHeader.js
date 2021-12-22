@@ -10,10 +10,10 @@ import {
   UserWrapperStyled,
   ArrowButtonStyled,
   MoreInfoWrapper,
+  StyledIcon,
 } from './ListElementHeader.styled';
 
 import FlagComponent from './FlagComponent';
-import Icon from '../../../../../../app/commons/icon/icon';
 
 const ListElementHeader = ({ email, name, seniority, country, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
@@ -21,7 +21,7 @@ const ListElementHeader = ({ email, name, seniority, country, setCollapsed, isCo
   return (
     <ListElementStyled data-cy="list-element-header">
       <UserWrapperStyled>
-        <Icon icon={'face'}/>
+        <StyledIcon icon={'face'}/>
         <UserNameStyled>{name}</UserNameStyled>
       </UserWrapperStyled>
       <UserEmailStyled>{email}</UserEmailStyled>
