@@ -29,7 +29,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
       </EnvironmentComponent>
       <UserWrapperStyled>
         <StyledIcon icon={'face'} />
-        <NavBarLink to="/profile">{userData?.email}</NavBarLink>
+        <NavBarLink to={!userView ? '/profile' : '/profile/ecosystem'}>{userData?.email}</NavBarLink>
         <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >
           <LazyImage actualSrc={logout} />
         </NavBarLink>
