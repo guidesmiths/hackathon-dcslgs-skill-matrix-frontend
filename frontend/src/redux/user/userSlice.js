@@ -44,6 +44,7 @@ export const insertAnswersAsync = createAsyncThunk(
     }));
 
     const response = await axios.post(`/ui/user/${user}/answers`, answers, config());
+    return response.data;
   },
 );
 
@@ -178,6 +179,13 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLevelUserBySkillAsync.fulfilled, state => {
         state.status = 'idle';
+      })
+      .addCase(insertAnswersAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(insertAnswersAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.value = action.payload;
       });
   },
 });

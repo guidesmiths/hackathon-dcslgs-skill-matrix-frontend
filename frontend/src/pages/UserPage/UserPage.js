@@ -45,7 +45,9 @@ const UserPage = () => {
 
   useEffect(() => {
     if (!userData.ecosystems) {
-      dispatch(fetchAnswersByUserAsync(userData.id));
+      if (userData.id) {
+        dispatch(fetchAnswersByUserAsync(userData.id));
+      }
     }
   }, [userData.id, userData.ecosystems]);
 
