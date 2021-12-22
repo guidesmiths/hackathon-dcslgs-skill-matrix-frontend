@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled, EcosystemScroller } from './EcosystemsSideBar.styled';
 import Icon from '../../../../app/commons/icon/icon';
+import SkeletonWrapper from '../../../../app/commons/Skeleton/SkeletonWrapper';
 
 const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, show, noSuggestions, selected }) => (
   <EcosystemsSideBarStyled data-cy="ecosystems-sidebar">
@@ -9,16 +10,18 @@ const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, show, noSuggestions, se
       {show && <Icon icon="add" onClick={onNewEcosystem}/>}
     </EcosystemHeaderStyled>
     <EcosystemScroller height={noSuggestions ? 80 : 65}>
-      {ecosystems.map(({ name, id }, index) => (
-        <EcosystemElementStyled key={index}
-          data-cy={`ecosystems-element-${index}`}
-          id={id}
-          selected={selected === id}
-          to={location => ({ ...location, pathname: `/ecosystem/${id}` })}
-        >
-          {name}
-        </EcosystemElementStyled>
-      ))}
+      {!ecosystems.length
+        ? <SkeletonWrapper/>
+        : ecosystems.map(({ name, id }, index) => (
+          <EcosystemElementStyled key={index}
+            data-cy={`ecosystems-element-${index}`}
+            id={id}
+            selected={selected === id}
+            to={location => ({ ...location, pathname: `/ecosystem/${id}` })}
+          >
+            {name}
+          </EcosystemElementStyled>
+        ))}
     </EcosystemScroller>
   </EcosystemsSideBarStyled>
 );
