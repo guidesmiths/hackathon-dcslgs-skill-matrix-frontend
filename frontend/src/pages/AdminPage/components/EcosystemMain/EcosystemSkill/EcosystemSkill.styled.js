@@ -62,12 +62,12 @@ const LevelStyled = styled.textarea`
   resize: none;
 
   &:hover{
-    cursor: pointer;
-    border: 1px solid ${props => props.theme.colors.primaryColor};
+    cursor: ${props => !props.readOnly && 'pointer'};
+    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
   }
 
   &:hover + ${StyledLabel} {
-    color: ${props => props.theme.colors.primaryColor};
+    color: ${props => !props.readOnly && props.theme.colors.primaryColor}};
   }
 `;
 
