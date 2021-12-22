@@ -59,6 +59,7 @@ const LevelStyled = styled.textarea`
   font-family: ${props => props.theme.fonts.poppins};
   border: ${props => (props.hasError ? '1px solid #C5292A' : '1px solid #efefef')};
   border-radius: 4px;
+  outline: ${props => props.readOnly && 'none'};
   resize: none;
 
   &:hover{
