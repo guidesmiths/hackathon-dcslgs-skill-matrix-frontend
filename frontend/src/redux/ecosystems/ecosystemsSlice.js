@@ -64,7 +64,8 @@ export const ecosystemsSlice = createSlice({
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...action.payload];
+        const ecosystems = [...action.payload];
+        state.value = ecosystems.sort((a, b) => a.name.localeCompare(b.name));
       })
       .addCase(deleteEcosystemAsync.pending, state => {
         state.status = 'loading';

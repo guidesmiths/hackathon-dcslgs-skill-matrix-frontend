@@ -44,7 +44,7 @@ const UserPage = () => {
   }, [ecosystems]);
 
   useEffect(() => {
-    if (!userData.ecosystems) {
+    if (!userData.ecosystems && userData.id) {
       dispatch(fetchAnswersByUserAsync(userData.id));
     }
   }, [userData.id, userData.ecosystems]);
@@ -55,7 +55,7 @@ const UserPage = () => {
       setEcosystemIdSelected(currentLocation);
     }
     if (!currentLocation) {
-      history.push('/profile/ecosystem/1');
+      history.push(`/profile/ecosystem/${ecosystems[0]?.id}`);
     }
   }, [pathname]);
 

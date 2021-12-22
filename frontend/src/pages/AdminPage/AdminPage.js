@@ -55,7 +55,7 @@ const HomePage = () => {
   const handleEcosystemClick = selectedId => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
     setIsNewEcosystem(false);
-    setSelectedEcosystem(ecosystem);
+    setSelectedEcosystem(selectedEcosystem);
     history.push(`/ecosystem/${selectedId}`);
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
@@ -102,7 +102,11 @@ const HomePage = () => {
       if (!invalidData(newEcosystem)) {
         dispatch(upsertEcosystemAsync(newEcosystem))
           .then(({ payload }) => {
-            setSelectedEcosystem(payload);
+            dispatch(fetchEcosystemsAsync())
+              .then(() => {
+                setSelectedEcosystem(payload);
+                handleEcosystemClick(payload.id);
+              });
             setNewEcosystem({
               name: '',
               skills: [{
@@ -116,7 +120,6 @@ const HomePage = () => {
                 ],
               }],
             });
-            setRefresh(true);
           })
           .catch(err => console.error(err));
       }
@@ -158,8 +161,10 @@ const HomePage = () => {
 
   useEffect(() => {
     if (refresh) {
-      dispatch(fetchEcosystemsAsync());
-      setRefresh(false);
+      dispatch(fetchEcosystemsAsync())
+        .then(() => {
+          setRefresh(false);
+        });
     }
   }, [refresh]);
 
@@ -169,14 +174,14 @@ const HomePage = () => {
     if (currentLocation && ecosystem) {
       setSelectedEcosystem(ecosystem);
     }
-    if (!ecosystem && !currentLocation) {
-      handleEcosystemClick(1);
+    if (!ecosystem || !currentLocation) {
+      handleEcosystemClick(ecosystems[0]?.id);
     }
     if (ecosystem !== 0) {
       setBeforeEdit(ecosystem);
     }
     setIsOnEditableMode(false);
-  }, [pathname, ecosystems]);
+  }, [pathname, refresh, ecosystems]);
 
   useEffect(() => {
     setNoSuggestions(suggestions.length === 0);
