@@ -82,7 +82,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   return (
     <EcosystemContainerStyled>
-      {loading
+      {loading // TODO: Not working
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
           <SpinnerLoader/>
         </EcosystemFallbackStyled>

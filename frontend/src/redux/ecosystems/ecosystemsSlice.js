@@ -18,6 +18,14 @@ export const fetchEcosystemsAsync = createAsyncThunk(
   },
 );
 
+export const fetchSkillByEcosystemIdAsync = createAsyncThunk(
+  'ecosystems/fetchSkillsByEcosystemId',
+  async id => {
+    const response = await axios.get(`/ui/ecosystem/${id}`, config());
+    return response.data;
+  },
+);
+
 export const upsertEcosystemAsync = createAsyncThunk(
   'ecosystems/upsertEcosystem',
   async ecosystem => {
@@ -59,13 +67,20 @@ export const ecosystemsSlice = createSlice({
 
   extraReducers: builder => {
     builder
+
       .addCase(fetchEcosystemsAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        const ecosystems = [...action.payload];
-        state.value = ecosystems.sort((a, b) => a.name.localeCompare(b.name));
+        state.value = [...action.payload];
+      })
+      .addCase(fetchSkillByEcosystemIdAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchSkillByEcosystemIdAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.currentEcosystem = [...action.payload];
       })
       .addCase(deleteEcosystemAsync.pending, state => {
         state.status = 'loading';
@@ -91,5 +106,6 @@ export const { ecosystemAdded, removeEcosystem, removeSkill } = ecosystemsSlice.
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
 export const selectSkillsPerSystem = id => state => state.ecosystems?.value?.find(ecosystem => ecosystem.id === id)?.skills || [];
+export const selectCurrentEcosystem = state => state.ecosystems?.currentEcosystem?.[0];
 
 export default ecosystemsSlice.reducer;

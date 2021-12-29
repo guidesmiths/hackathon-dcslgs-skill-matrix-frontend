@@ -8,14 +8,14 @@ import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
-import { fetchEcosystemsAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
 import Footer from '../../app/commons/Footer/Footer';
-import { insertAnswersAsync, selectUserData, fetchAnswersByUserAsync } from '../../redux/user/userSlice';
+import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [ecosystemIdSelected, setEcosystemIdSelected] = useState(1);
+  const [ecosystemIdSelected, setEcosystemIdSelected] = useState();
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -34,7 +34,7 @@ const UserPage = () => {
 
   const handleCancel = () => {
     setEdit(false);
-    dispatch(fetchAnswersByUserAsync(userData.id));
+    dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
   };
 
   useEffect(() => {
@@ -44,26 +44,28 @@ const UserPage = () => {
   }, [ecosystems]);
 
   useEffect(() => {
-    if (!userData.ecosystems && userData.id) {
-      dispatch(fetchAnswersByUserAsync(userData.id));
+    if (ecosystemIdSelected && userData.id) {
+      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
     }
-  }, [userData.id, userData.ecosystems]);
+  }, [userData.id, ecosystemIdSelected]);
 
   useEffect(() => {
     const currentLocation = +pathname.split('/')[3];
-    if (currentLocation) {
+    if (currentLocation && userData.id) {
+      dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
+      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
       setEcosystemIdSelected(currentLocation);
     }
     if (!currentLocation) {
       history.push(`/profile/ecosystem/${ecosystems[0]?.id}`);
     }
-  }, [pathname]);
+  }, [pathname, userData.id]);
 
   return (
     <UserPageStyled data-cy="user">
       <HeaderStyled />
       <UserPageDisplay>
-        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} setEcosystemIdSelected={id => setEcosystemIdSelected(id)} />
+        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>

@@ -6,7 +6,7 @@ const getApiRoutes = servicesAPI => ({
   },
   answers: {
     fetchAnswers: servicesAPI.answers.fetchAnswers,
-    fetchAnswersByUser: servicesAPI.answers.fetchAnswersByUser,
+    fetchAnswersByUserAndEcosystem: servicesAPI.answers.fetchAnswersByUserAndEcosystem,
     insertAnswers: servicesAPI.answers.insertAnswers,
   },
   users: {
@@ -19,6 +19,7 @@ const getApiRoutes = servicesAPI => ({
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
+    fetchSkillsByEcosystemId: servicesAPI.ecosystems.fetchSkillsByEcosystemId,
     upsertEcosystem: servicesAPI.ecosystems.upsertEcosystem,
     deleteEcosystem: servicesAPI.ecosystems.deleteEcosystem,
   },

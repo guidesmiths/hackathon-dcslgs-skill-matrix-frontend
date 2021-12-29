@@ -8,8 +8,8 @@ import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
-import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
-import { fetchUserInfoAsync, selectUserData } from '../../redux/user/userSlice';
+import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchAnswersByUserAndEcosystemAsync, fetchUserInfoAsync, selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -41,12 +41,16 @@ const HomePage = () => {
   const [isNewEcosystem, setIsNewEcosystem] = useState(false);
   const [isNewSkill, setIsNewSkill] = useState(false);
   const [isOnEditableMode, setIsOnEditableMode] = useState(null);
-  const [beforeEdit, setBeforeEdit] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
   const [refresh, setRefresh] = useState(false);
   const [isThereAnyError, setIsThereAnyError] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const { pathname } = useLocation();
+  const currEcosystem = useSelector(selectCurrentEcosystem);
+
+  useEffect(() => {
+    setSelectedEcosystem(currEcosystem);
+  }, [currEcosystem]);
 
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
@@ -55,11 +59,7 @@ const HomePage = () => {
   const handleEcosystemClick = selectedId => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
     setIsNewEcosystem(false);
-    setSelectedEcosystem(selectedEcosystem);
     history.push(`/ecosystem/${selectedId}`);
-    if (ecosystem !== 0) {
-      setBeforeEdit(ecosystem);
-    }
   };
 
   const newEcosystemMode = () => {
@@ -146,7 +146,7 @@ const HomePage = () => {
   const cancelNewEcosystem = () => {
     setIsNewEcosystem(false);
     setIsOnEditableMode(false);
-    setSelectedEcosystem(beforeEdit);
+    setSelectedEcosystem(currEcosystem);
   };
 
   useEffect(() => {
@@ -169,19 +169,21 @@ const HomePage = () => {
   }, [refresh]);
 
   useEffect(() => {
-    const currentLocation = +pathname.split('/')[2];
-    const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
-    if (currentLocation && ecosystem) {
-      setSelectedEcosystem(ecosystem);
+    if (ecosystems.length) {
+      const currentLocation = +pathname.split('/')[2];
+      const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
+
+      if (currentLocation && userData.id) {
+        dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
+        dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
+      }
+
+      if (!currentLocation && !ecosystem) {
+        history.push(`/ecosystem/${ecosystems[0]?.id}`);
+      }
+      setIsOnEditableMode(false);
     }
-    if (!ecosystem || !currentLocation) {
-      handleEcosystemClick(ecosystems[0]?.id);
-    }
-    if (ecosystem !== 0) {
-      setBeforeEdit(ecosystem);
-    }
-    setIsOnEditableMode(false);
-  }, [pathname, refresh, ecosystems]);
+  }, [pathname, ecosystems, userData.id]);
 
   useEffect(() => {
     setNoSuggestions(suggestions.length === 0);

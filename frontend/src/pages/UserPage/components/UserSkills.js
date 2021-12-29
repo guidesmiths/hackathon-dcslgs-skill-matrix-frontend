@@ -11,7 +11,7 @@ import {
   FormHeader,
 } from '../UserPage.styled';
 import ScrollWrapper from '../../../app/commons/ScrollWrapper/ScrollWrapper';
-import { selectSkillsPerSystem } from '../../../redux/ecosystems/ecosystemsSlice';
+import { selectCurrentEcosystem } from '../../../redux/ecosystems/ecosystemsSlice';
 import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
@@ -21,12 +21,13 @@ import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
-  const selectedSkills = useSelector(selectSkillsPerSystem(ecosystemIdSelected));
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
   const ref = useRef(null);
 
-  const skillswithLevel = selectedSkills.map(skill => {
+  const currentEcosystem = useSelector(selectCurrentEcosystem);
+
+  const skillswithLevel = currentEcosystem?.skills.map(skill => {
     const index = userSkills.findIndex(
       userSkill => userSkill.id === skill.id,
     );
@@ -66,7 +67,7 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) =>
           <ColumTitle>Rating</ColumTitle>
           <ColumTitle>I&apos;d Like to learn</ColumTitle>
         </ColumTitles>
-        <ScrollWrapper height={70}>
+        {skillswithLevel && <ScrollWrapper height={70}>
           {skillswithLevel?.map(skill => (
             <UserRow
               key={skill.id}
@@ -75,7 +76,7 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) =>
               skill={skill}
             />
           ))}
-        </ScrollWrapper>
+        </ScrollWrapper>}
       </form>
     </UserData>
   );

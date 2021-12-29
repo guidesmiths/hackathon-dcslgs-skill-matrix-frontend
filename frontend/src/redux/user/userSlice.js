@@ -15,8 +15,8 @@ const initialState = {
   insertStatus: 'idle',
 };
 
-export const fetchAnswersByUserAsync = createAsyncThunk('users/fetchAnswersByUser', async user => {
-  const response = await axios.get(`/ui/user/${user}/answers`, config());
+export const fetchAnswersByUserAndEcosystemAsync = createAsyncThunk('users/fetchAnswersByUserAndEcosystem', async ({ userId, ecoId }) => {
+  const response = await axios.get(`/ui/user/${userId}/ecosystem/${ecoId}/answers`, config());
   return response.data;
 });
 
@@ -130,10 +130,10 @@ export const userSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(fetchAnswersByUserAsync.pending, state => {
+      .addCase(fetchAnswersByUserAndEcosystemAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchAnswersByUserAsync.fulfilled, (state, action) => {
+      .addCase(fetchAnswersByUserAndEcosystemAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.value = action.payload;
       })

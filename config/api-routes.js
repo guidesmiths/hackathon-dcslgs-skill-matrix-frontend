@@ -19,8 +19,8 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/answers`,
         method: 'post',
       },
-      fetchAnswersByUser: {
-        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/:id/answers`,
+      fetchAnswersByUserAndEcosystem: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/:userId/ecosystem/:ecoId/answers`,
         method: 'get',
       },
       insertAnswers: {
@@ -57,6 +57,10 @@ module.exports = {
     ecosystems: {
       fetchEcosystems: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystems`,
+        method: 'get',
+      },
+      fetchSkillsByEcosystemId: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/ecosystem/:id`,
         method: 'get',
       },
       upsertEcosystem: {
