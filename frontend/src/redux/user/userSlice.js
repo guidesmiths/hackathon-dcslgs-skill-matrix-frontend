@@ -74,7 +74,7 @@ export const insertUserAsync = createAsyncThunk(
     const adminList = [
       'victor.perez@dcsl.com', 'carlos.esquivel@dcsl.com', 'marina.davila@dcsl.com',
       'joseantonio.dorado@dcsl.com', 'iria.mavji@dcsl.com', 'alexis.shirtliff@dcsl.com',
-      'andrew.ellingford@dcsl.com', 'adam.bell@dcsl.com', 'William.Welsh@dcsl.com',
+      'andrew.ellingford@dcsl.com', 'adam.bell@dcsl.com', 'william.welsh@dcsl.com',
       'glen.docherty@dcsl.com', 'will.faulkner@dcsl.com', 'mary.jefferies@dcsl.com',
       'nick.thompson@dcsl.com',
     ];
