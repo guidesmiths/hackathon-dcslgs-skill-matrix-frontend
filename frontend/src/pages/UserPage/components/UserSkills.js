@@ -9,6 +9,7 @@ import {
   ColumTitle,
   UserInput,
   FormHeader,
+  SpinnerWrapper,
 } from '../UserPage.styled';
 import ScrollWrapper from '../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { selectCurrentEcosystem } from '../../../redux/ecosystems/ecosystemsSlice';
@@ -19,6 +20,7 @@ import {
 
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
+import SpinnerLoader from '../../../app/commons/Spinner/Spinner';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
@@ -54,30 +56,36 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) =>
 
   return (
     <UserData data-cy={'userRow'}>
-      <form onSubmit={handleSubmit}>
-        <FormHeader>
-          <RowTitle>
-            <DataTitle>{selectedEcosystem?.name}</DataTitle>
-            <LevelBar field={'ecosystem'} level={selectedEcosystem?.average} />
-            <UserInput ref={ref} type="submit" value="Save" />
-          </RowTitle>
-        </FormHeader>
-        <ColumTitles>
-          <ColumTitle>Skill Name</ColumTitle>
-          <ColumTitle>Rating</ColumTitle>
-          <ColumTitle>I&apos;d Like to learn</ColumTitle>
-        </ColumTitles>
-        {skillswithLevel && <ScrollWrapper height={70}>
-          {skillswithLevel?.map(skill => (
-            <UserRow
-              key={skill.id}
-              edit={edit}
-              idEcosystem={ecosystemIdSelected}
-              skill={skill}
-            />
-          ))}
-        </ScrollWrapper>}
-      </form>
+      {!selectedEcosystem
+        ? <SpinnerWrapper>
+          <SpinnerLoader />
+        </SpinnerWrapper>
+        : <form onSubmit={handleSubmit}>
+          <FormHeader>
+            <RowTitle>
+              <DataTitle>{selectedEcosystem?.name}</DataTitle>
+              <LevelBar field={'ecosystem'} level={selectedEcosystem?.average} />
+              <UserInput ref={ref} type="submit" value="Save" />
+            </RowTitle>
+          </FormHeader>
+          <ColumTitles>
+            <ColumTitle>Skill Name</ColumTitle>
+            <ColumTitle>Rating</ColumTitle>
+            <ColumTitle>I&apos;d Like to learn</ColumTitle>
+          </ColumTitles>
+          {skillswithLevel && <ScrollWrapper height={70}>
+            {skillswithLevel?.map(skill => (
+              <UserRow
+                key={skill.id}
+                edit={edit}
+                idEcosystem={ecosystemIdSelected}
+                skill={skill}
+              />
+            ))}
+          </ScrollWrapper>}
+        </form>
+      }
+
     </UserData>
   );
 };
