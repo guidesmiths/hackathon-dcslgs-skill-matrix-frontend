@@ -36,7 +36,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setCurrentEcosystem(ecosystem);
     setSkills(ecosystem?.skills);
     setIsEmpty(ecosystem?.id === 0);
-    setIsLoading(ecosystem === null);
+    setIsLoading(currentEcosystem === null);
   }, [ecosystem]);
 
   const onDeleteClick = (sub, id, name) => {
@@ -115,7 +115,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
             </ScrollWrapper>}
         </>
       }
-      {(show || isEmpty) && <ButtonsWrapper>
+      {(show || isEmpty) && !loading && <ButtonsWrapper>
         <StyledButton onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
         {!isEmpty && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
           <StyledDeleteIcon icon="delete" />
