@@ -21,7 +21,7 @@ const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) =
         <Label left={10} top={-6}>{`Type the ${subject} name to confirm:`}</Label>
       </StyledInputWrapper>
       <StyledButton enabled={nameToDelete === nameTyped} onClick={handleDelete} >Yes, delete</StyledButton>
-      <StyledButton enabled={nameToDelete === nameTyped} onClick={onCloseClick}>Cancel</StyledButton>
+      <StyledButton enabled onClick={onCloseClick}>Cancel</StyledButton>
     </ModalStyledWrapper>
   );
 };
