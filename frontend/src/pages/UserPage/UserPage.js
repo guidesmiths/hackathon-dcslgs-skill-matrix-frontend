@@ -28,8 +28,9 @@ const UserPage = () => {
   const handleSubmit = () => {
     setIsSubmited(true);
     setEdit(false);
-    setConfirmed(true);
-    dispatch(insertAnswersAsync(userData));
+    dispatch(insertAnswersAsync(userData))
+      .then(() => setConfirmed(true))
+      .catch(err => console.log(err));
   };
 
   const handleCancel = () => {
