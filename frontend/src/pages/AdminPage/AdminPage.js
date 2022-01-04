@@ -91,7 +91,7 @@ const HomePage = () => {
     setIsNewEcosystem(true);
   };
 
-  const isThereAnyEmptySkillName = currentEcosystem => currentEcosystem.skills.some(skill => skill.name === '');
+  const isThereAnyEmptySkillName = currentEcosystem => currentEcosystem?.skills.some(skill => skill.name === '');
   const isThereAnyEmptyLevelDescription = currentEcosystem => currentEcosystem.skills.some(skill => skill.levels.some(level => level.levelDescription === ''));
   const invalidData = currentEcosystem => currentEcosystem.name === '' || isThereAnyEmptySkillName(currentEcosystem) || isThereAnyEmptyLevelDescription(currentEcosystem);
   const setError = currentEcosystem => setIsThereAnyError(invalidData(currentEcosystem));
@@ -121,6 +121,10 @@ const HomePage = () => {
               }],
             });
           })
+          .then(() => {
+            setShowPopUp(true);
+            history.push(`/ecosystem/${ecosystems[0]?.id}`);
+          })
           .catch(err => console.error(err));
       }
     }
@@ -139,7 +143,6 @@ const HomePage = () => {
       }
     }
 
-    setShowPopUp(true);
     setIsOnEditableMode(false);
   };
 

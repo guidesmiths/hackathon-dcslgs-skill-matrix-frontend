@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
 import EcosystemModal from './EcosystemModal/EcosystemModal';
 import {
@@ -16,18 +17,21 @@ import {
 } from './EcosystemMain.styled';
 import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
-import { deleteEcosystemAsync, deleteSkillAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
+import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems } from '../../../../redux/ecosystems/ecosystemsSlice';
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
+import PopUp from '../../../../app/commons/PopUp/PopUp';
 
 const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, onRefresh, isThereAnyError }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const ecosystems = useSelector(selectAllEcosystems);
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
   const [loading, setIsLoading] = useState(true);
   const [skills, setSkills] = useState();
   const [currentEcosystem, setCurrentEcosystem] = useState(ecosystem);
-
+  const [confirmed, setConfirmed] = useState(false);
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
   const [skillToDelete, setSkillToDelete] = useState('');
@@ -54,8 +58,11 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   const handleDelete = () => {
     if (subject === 'ecosystem') {
-      dispatch(deleteEcosystemAsync(idToDelete));
+      dispatch(deleteEcosystemAsync(idToDelete))
+        .then(() => setConfirmed(true))
+        .catch(err => console.log(err));
       setShowModal(false);
+      history.push(`/ecosystem/${ecosystems[0].id}`);
       onRefresh();
     }
     if (subject === 'skill') {
@@ -99,7 +106,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem?.skills.length > 0
+          {ecosystem?.skills?.length > 0
             && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
               {ecosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
@@ -115,6 +122,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
             </ScrollWrapper>}
         </>
       }
+      {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       {(show || isEmpty) && !loading && <ButtonsWrapper>
         <StyledButton onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
         {!isEmpty && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
