@@ -16,7 +16,7 @@ import ConfirmPopUp from './components/ConfirmPopUp/ConfirmPopUp';
 const UserPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [ecosystemIdSelected, setEcosystemIdSelected] = useState();
+  const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [canceling, isCanceling] = useState(false);
@@ -27,33 +27,11 @@ const UserPage = () => {
   const userData = useSelector(selectUserData);
   const ecosystems = useSelector(selectAllEcosystems);
 
-  const handleSubmit = () => {
-    setIsSubmited(true);
-    setEdit(false);
-    dispatch(insertAnswersAsync(userData))
-      .then(() => setConfirmed(true))
-      .catch(err => console.log(err));
-  };
-  const handleCancel = confirm => {
-    if (confirm) {
-      setEdit(false);
-      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
-    } else {
-      handleSubmit();
-    }
-  };
-
   useEffect(() => {
     if (ecosystems.length === 0) {
       dispatch(fetchEcosystemsAsync());
     }
   }, [ecosystems]);
-
-  useEffect(() => {
-    if (ecosystemIdSelected && userData.id) {
-      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
-    }
-  }, [userData.id, ecosystemIdSelected]);
 
   useEffect(() => {
     if (edit) {
@@ -70,6 +48,23 @@ const UserPage = () => {
       }
     }
   }, [pathname, userData.id, canceling]);
+
+  const handleSubmit = () => {
+    setIsSubmited(true);
+    setEdit(false);
+    dispatch(insertAnswersAsync(userData))
+      .then(() => setConfirmed(true))
+      .catch(err => console.log(err));
+  };
+
+  const handleCancel = confirm => {
+    if (confirm) {
+      setEdit(false);
+      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
+    } else {
+      handleSubmit();
+    }
+  };
 
   return (
     <UserPageStyled data-cy="user">

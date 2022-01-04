@@ -9,7 +9,7 @@ import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar'
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
-import { fetchAnswersByUserAndEcosystemAsync, fetchUserInfoAsync, selectUserData } from '../../redux/user/userSlice';
+import { selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -42,7 +42,6 @@ const HomePage = () => {
   const [isNewSkill, setIsNewSkill] = useState(false);
   const [isOnEditableMode, setIsOnEditableMode] = useState(null);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
-  const [refresh, setRefresh] = useState(false);
   const [isThereAnyError, setIsThereAnyError] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const { pathname } = useLocation();
@@ -51,6 +50,36 @@ const HomePage = () => {
   useEffect(() => {
     setSelectedEcosystem(currEcosystem);
   }, [currEcosystem]);
+
+  useEffect(() => {
+    dispatch(fetchSuggestionsAsync());
+  }, []);
+
+  useEffect(() => {
+    setNoSuggestions(suggestions.length === 0);
+  }, [suggestions]);
+
+  useEffect(() => {
+    if (!ecosystems.length) {
+      dispatch(fetchEcosystemsAsync());
+    }
+  }, [ecosystems]);
+
+  useEffect(() => {
+    if (ecosystems.length) {
+      const currentLocation = +pathname.split('/')[2];
+      const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
+
+      if (currentLocation && userData.id) {
+        dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
+      }
+
+      if (!currentLocation && !ecosystem) {
+        history.push(`/ecosystem/${ecosystems[0]?.id}`);
+      }
+      setIsOnEditableMode(false);
+    }
+  }, [pathname, ecosystems, userData.id]);
 
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
@@ -136,7 +165,7 @@ const HomePage = () => {
         newSkills.forEach(skill => {
           skill.ecosystem = selectedEcosystem.id;
           dispatch(upsertSkillAsync(skill))
-            .then(() => setRefresh(true))
+            .then(() => dispatch(fetchEcosystemsAsync()))
             .catch(err => console.error(err));
         });
         setSelectedEcosystem(null);
@@ -151,46 +180,6 @@ const HomePage = () => {
     setIsOnEditableMode(false);
     setSelectedEcosystem(currEcosystem);
   };
-
-  useEffect(() => {
-    if (!userData.id) {
-      dispatch(fetchUserInfoAsync(history));
-    }
-    if (ecosystems.length === 0) {
-      dispatch(fetchEcosystemsAsync());
-    }
-    dispatch(fetchSuggestionsAsync());
-  }, [userData.id, ecosystems]);
-
-  useEffect(() => {
-    if (refresh) {
-      dispatch(fetchEcosystemsAsync())
-        .then(() => {
-          setRefresh(false);
-        });
-    }
-  }, [refresh]);
-
-  useEffect(() => {
-    if (ecosystems.length) {
-      const currentLocation = +pathname.split('/')[2];
-      const ecosystem = ecosystems.find(({ id }) => id === currentLocation);
-
-      if (currentLocation && userData.id) {
-        dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
-        dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
-      }
-
-      if (!currentLocation && !ecosystem) {
-        history.push(`/ecosystem/${ecosystems[0]?.id}`);
-      }
-      setIsOnEditableMode(false);
-    }
-  }, [pathname, ecosystems, userData.id]);
-
-  useEffect(() => {
-    setNoSuggestions(suggestions.length === 0);
-  }, [suggestions]);
 
   return (
     <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
@@ -211,7 +200,6 @@ const HomePage = () => {
         show={isOnEditableMode}
         onNewEcosystem={newEcosystemMode}
         onNewSkill={addNewSkill}
-        onRefresh={() => setRefresh(true)}
       />
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>

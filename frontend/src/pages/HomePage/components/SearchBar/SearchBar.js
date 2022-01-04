@@ -17,12 +17,17 @@ import {
   SearchBarWrapper,
   SearchBarSkillWrapper,
 } from './SearchBar.styled';
+import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
   const skillFilters = useSelector(selectSkillFilters);
   const userFilter = useSelector(selectUserFilter);
   const isLastFilter = index => index === skillFilters.length - 1;
+
+  useEffect(() => {
+    dispatch(fetchSkillsAsync());
+  }, []);
 
   useEffect(() => {
     dispatch(fetchAnswersAsync({ skillFilters, userFilter }));

@@ -17,11 +17,11 @@ import {
 } from './EcosystemMain.styled';
 import Label from '../../../../app/commons/Label/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
-import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems } from '../../../../redux/ecosystems/ecosystemsSlice';
+import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
 import PopUp from '../../../../app/commons/PopUp/PopUp';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, onRefresh, isThereAnyError }) => {
+const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
@@ -41,6 +41,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setSkills(ecosystem?.skills);
     setIsEmpty(ecosystem?.id === 0);
     setIsLoading(currentEcosystem === null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ecosystem]);
 
   const onDeleteClick = (sub, id, name) => {
@@ -59,17 +60,19 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const handleDelete = () => {
     if (subject === 'ecosystem') {
       dispatch(deleteEcosystemAsync(idToDelete))
-        .then(() => setConfirmed(true))
+        .then(() => {
+          dispatch(fetchEcosystemsAsync());
+          setConfirmed(true);
+          setShowModal(false);
+          history.push(`/ecosystem/${ecosystems[0].id}`);
+        })
         .catch(err => console.log(err));
-      setShowModal(false);
-      history.push(`/ecosystem/${ecosystems[0].id}`);
-      onRefresh();
     }
     if (subject === 'skill') {
       dispatch(deleteSkillAsync(idToDelete))
         .then(() => {
+          dispatch(fetchEcosystemsAsync());
           setShowModal(false);
-          onRefresh();
         })
         .catch(err => console.error(err));
     }
@@ -157,7 +160,6 @@ EcosystemsMain.propTypes = {
   isThereAnyError: PropTypes.bool,
   show: PropTypes.bool,
   skills: PropTypes.array,
-  onRefresh: PropTypes.func,
 };
 
 EcosystemsMain.defaultProps = {
@@ -179,7 +181,6 @@ EcosystemsMain.defaultProps = {
   handleNewEcosystemAdmin: () => { /* empty function */ },
   isNewEcosystem: null,
   isThereAnyError: false,
-  onRefresh: () => { /* empty function */ },
   show: false,
   skills: [],
 };

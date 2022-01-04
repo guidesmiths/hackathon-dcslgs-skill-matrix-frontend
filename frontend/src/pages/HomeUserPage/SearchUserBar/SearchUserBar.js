@@ -14,11 +14,16 @@ import {
   IconStyled,
   SearchBarWrapper,
 } from '../../HomePage/components/SearchBar/SearchBar.styled';
+import { fetchSkillsAsync } from '../../../redux/skills/skillsSlice';
 
 export const SearchUserBar = () => {
   const dispatch = useDispatch();
   const skillFilters = useSelector(selectSkillFilters);
   const userFilter = useSelector(selectUserFilter);
+
+  useEffect(() => {
+    dispatch(fetchSkillsAsync());
+  }, []);
 
   useEffect(() => {
     dispatch(fetchAnswersAsync({ skillFilters, userFilter }));
