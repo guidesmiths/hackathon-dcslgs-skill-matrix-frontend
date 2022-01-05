@@ -64,7 +64,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
           dispatch(fetchEcosystemsAsync());
           setConfirmed(true);
           setShowModal(false);
-          history.push(`/ecosystem/${ecosystems[0].id}`);
+          history.push(`/ecosystem/${ecosystems[0]?.id}`);
         })
         .catch(err => console.log(err));
     }
