@@ -134,7 +134,7 @@ const HomePage = () => {
             dispatch(fetchEcosystemsAsync())
               .then(() => {
                 setSelectedEcosystem(payload);
-                handleEcosystemClick(payload.id);
+                handleEcosystemClick(payload[0]?.id);
               });
             setNewEcosystem({
               name: '',
@@ -152,7 +152,6 @@ const HomePage = () => {
           })
           .then(() => {
             setShowPopUp(true);
-            history.push(`/ecosystem/${ecosystems[0]?.id}`);
           })
           .catch(err => console.error(err));
       }
