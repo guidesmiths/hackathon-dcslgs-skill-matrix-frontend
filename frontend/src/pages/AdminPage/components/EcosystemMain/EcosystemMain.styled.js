@@ -50,7 +50,11 @@ const EcosystemNameStyledInput = styled.input`
   box-sizing: border-box;
   border-radius: 4px;
   border: ${props => (props.hasError ? '1px solid #C5292A' : '1px solid #efefef')};
-  outline: none;
+  
+  &:hover{
+    cursor: ${props => !props.readOnly && 'pointer'};
+    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
+  }
 `;
 const ButtonsWrapper = styled.div`
   padding: 20px 0;

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
@@ -35,6 +35,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
   const [skillToDelete, setSkillToDelete] = useState('');
+  const ref = useRef(null);
 
   useEffect(() => {
     setCurrentEcosystem(ecosystem);
@@ -89,10 +90,14 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setCurrentEcosystem({ ...currentEcosystem, skills: currentSkills });
     handleNewEcosystemAdmin({ ...currentEcosystem, skills: currentSkills });
   };
-
+  useEffect(() => {
+    if (!currentEcosystem?.name && show) {
+      ref.current.focus();
+    }
+  }, [currentEcosystem, show]);
   return (
     <EcosystemContainerStyled>
-      {loading // TODO: Not working
+      {loading
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
           <SpinnerLoader/>
         </EcosystemFallbackStyled>
@@ -100,6 +105,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
           <EcosystemHeaderStyled>
             <Label left={40} top={2}>Ecosystem Name</Label>
             <EcosystemNameStyledInput
+              ref={ref}
               data-cy="ecosystem-name-input"
               hasError={currentEcosystem?.name === '' && isThereAnyError}
               id="name"

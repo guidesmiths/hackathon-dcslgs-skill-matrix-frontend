@@ -22,6 +22,8 @@ const SkillHeaderStyled = styled.div`
   align-items: center;
   height: 75px;
 `;
+const StyledLabel = styled(Label)`
+`;
 
 const SkillNameStyledInput = styled.input`
   width: 60%;
@@ -30,9 +32,11 @@ const SkillNameStyledInput = styled.input`
   border: ${props => (props.hasError ? '1px solid #C5292A' : '1px solid #efefef')};
   border-radius: 4px;
   box-sizing: border-box;
-`;
-
-const StyledLabel = styled(Label)`
+  
+  &:hover{
+    cursor: ${props => !props.readOnly && 'pointer'};
+    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
+  }
 `;
 
 const IconsGroupStyled = styled.div`
