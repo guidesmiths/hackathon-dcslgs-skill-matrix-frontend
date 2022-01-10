@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
-import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText } from './SkillList.styled';
+import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, SpinnerWrapper } from './SkillList.styled';
 import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
+import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
 
 const SkillList = ({ isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
@@ -19,10 +20,14 @@ const SkillList = ({ isCollapsed, userId, role }) => {
   return (
     <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
       <SkillListWrapper height={55}>
-        {/* TODO: add spinner */}
-        {skills?.map(({ id, level, levelDescription, name, sublevel }) => (
-          <SkillListElement key={id} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
-        ))}
+        {!skills
+          ? <SpinnerWrapper>
+            <SpinnerLoader/>
+          </SpinnerWrapper>
+          : skills.map(({ id, level, levelDescription, name, sublevel }) => (
+            <SkillListElement key={id} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
+          ))
+        }
       </SkillListWrapper>
       <FooterStyled>
         <AdminRoleText>Admin Role</AdminRoleText>

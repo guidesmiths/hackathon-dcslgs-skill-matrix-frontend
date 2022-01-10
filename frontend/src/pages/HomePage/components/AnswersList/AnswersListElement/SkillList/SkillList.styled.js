@@ -39,4 +39,14 @@ const FooterStyled = styled.div`
   justify-content: flex-end;
 `;
 
-export { SkillListStyled, FooterStyled, AdminRoleText, SkillListWrapper };
+const SpinnerWrapper = styled.div`
+  width: 100%;
+  min-height: inherit;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+`;
+
+export { SkillListStyled, FooterStyled, AdminRoleText, SkillListWrapper, SpinnerWrapper };
