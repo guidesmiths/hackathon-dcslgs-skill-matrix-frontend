@@ -4,19 +4,29 @@ import axios from 'axios';
 const initialState = {
   value: [],
   status: 'idle',
+  currentAnswers: [],
 };
 
 function config() {
   return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
 }
 
-export const fetchAnswersAsync = createAsyncThunk(
-  'answers/fetchAnswers',
+export const fetchUsersFilteredAsync = createAsyncThunk(
+  'answers/fetchUsersFiltered',
   async filter => {
-    const response = await axios.post('/ui/answers', {
+    const response = await axios.post('/ui/usersFiltered', {
       name: filter.userFilter,
       skills: filter.skillFilters,
     }, config());
+    return response.data;
+  },
+);
+
+export const fetchAnswersByUserAsync = createAsyncThunk(
+  'answers/fetchAnswersByUser',
+  async id => {
+    const response = await axios.post(`/ui/answersByUser/${id}`, {}, config());
+    // maybe with a GET the empty object is not necessary? ^
     return response.data;
   },
 );
@@ -31,26 +41,35 @@ export const answersSlice = createSlice({
     resetAnswers: state => {
       state.value = [];
     },
+    filterAnswerByUser: (state, action) => {
+      state.currentAnswers = state.currentAnswers.filter(curr => curr.id !== action.payload);
+    },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchAnswersAsync.pending, state => {
+      .addCase(fetchUsersFilteredAsync.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchAnswersAsync.fulfilled, (state, action) => {
+      .addCase(fetchUsersFilteredAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
         state.value = [...action.payload];
+      })
+      .addCase(fetchAnswersByUserAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(fetchAnswersByUserAsync.fulfilled, (state, action) => {
+        state.status = 'succeded';
+        state.currentAnswers = [...state.currentAnswers, ...action.payload];
       });
   },
 });
 
-export const { answerAdded, resetAnswers } = answersSlice.actions;
+export const { answerAdded, resetAnswers, filterAnswerByUser } = answersSlice.actions;
 
 // Selectors
 export const selectAllAnswers = state => state.answers.value;
-
 export const selectAnswerPage = (start, end) => state => state.answers.value.slice(start, end);
-
 export const selectNumberOfAnswers = state => state.answers.value.length;
+export const selectCurrentAnswers = id => state => state.answers?.currentAnswers?.find(curr => curr.id === id);
 
 export default answersSlice.reducer;

@@ -7,7 +7,7 @@ import {
   selectSkillFilters,
   selectUserFilter,
 } from '../../../redux/filters/filtersSlice';
-import { fetchAnswersAsync } from '../../../redux/answers/answersSlice';
+import { fetchUsersFilteredAsync } from '../../../redux/answers/answersSlice';
 import SearchBarUserSkill from './SearchBarUserSkill/SearchBarUserSkill';
 import {
   SearchBarsUserWrapper,
@@ -26,7 +26,7 @@ export const SearchUserBar = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchAnswersAsync({ skillFilters, userFilter }));
+    dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter }));
   }, [skillFilters, userFilter]);
 
   return (

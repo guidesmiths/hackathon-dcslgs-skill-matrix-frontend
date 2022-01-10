@@ -95,7 +95,7 @@ module.exports = () => {
     app.get('/ui/user/skill/:skillId',
       async (req, res) => {
         const { params: { skillId } } = req;
-        return controller.users.skillLevel({
+        return controller.users.fetchLevelUserBySkill({
           urlParams: { skillId },
           headers: { Authorization: req.headers.authorization },
         })

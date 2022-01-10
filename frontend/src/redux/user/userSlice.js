@@ -106,7 +106,7 @@ export const changeUserCountryAsync = createAsyncThunk(
 );
 
 export const fetchLevelUserBySkillAsync = createAsyncThunk(
-  'users/skillLevel',
+  'users/fetchLevelUserBySkill',
   async skillId => {
     const response = await axios.get(`/ui/user/skill/${skillId}`, config());
     return response.data;

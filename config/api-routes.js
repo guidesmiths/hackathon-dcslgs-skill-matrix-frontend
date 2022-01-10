@@ -15,8 +15,12 @@ module.exports = {
       },
     },
     answers: {
-      fetchAnswers: {
-        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/answers`,
+      fetchUsersFiltered: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/usersFiltered`,
+        method: 'post',
+      },
+      fetchAnswersByUser: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/answersByUser/:id`,
         method: 'post',
       },
       fetchAnswersByUserAndEcosystem: {
@@ -49,7 +53,7 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/country`,
         method: 'patch',
       },
-      skillLevel: {
+      fetchLevelUserBySkill: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/skill/:skillId`,
         method: 'get',
       },

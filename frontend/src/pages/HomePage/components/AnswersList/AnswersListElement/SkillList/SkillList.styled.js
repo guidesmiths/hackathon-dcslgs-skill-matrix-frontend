@@ -4,10 +4,13 @@ import { UserRowWrapper } from '../../../../../../app/commons/ScrollWrapper/Scro
 const SkillListWrapper = styled(UserRowWrapper)`
   scrollbar-width: thin;
   scrollbar-color: #cccccc;
+  min-height: 178px;
+
   &::-webkit-scrollbar {
     display: block !important;
     width: 4px;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: #cccccc;
     width: 4px;

@@ -5,23 +5,47 @@ const { handleError } = require('../../lib/handlerError');
 module.exports = () => {
   const start = ({ app, controller, logger }, cb) => {
     /**
-     * POST /ui/answers
-     * @route POST /ui/answers
-     * @summary Get user answers filtered by name, skill and level
+     * POST /api/v1/usersFiltered
+     * @route POST /api/v1/usersFiltered
+     * @summary Get users filtered by name, skill and level
      * @tags Answers
      * @param {FilterAnswers} request.body - Filter by name, skill id & level
-     * @return {array<AnswersResponse>} 200 - Successful operation
+     * @return {array<User>} 200 - Successful operation
      * @example response - 200 - success response example
-      * [{"id":"asldka12311sdkasnd","email":"rachelFern@guidesmiths.com","name":"Raquel Fernandez","ecosystems":[{"id":1,"name":"React","average":3.165,"skills":[{"id":1,"name":"React","level":4,"levelDescription":"I can define complex architectures and I can provide optimised solutions","sublevel":"plus","interested":false,"comments":""},{"id":2,"name":"Next.js","level":2,"levelDescription":"I modify effectively already working solutions to include new features","sublevel":"neutral","interested":false,"comments":""}]}],"userRole":"user"},{"id":"asldka12312sdkasnd","email":"janedoe@guidesmiths.com","name":"Jane Doe","ecosystems":[{"id":1,"name":"React","average":3,"skills":[{"id":1,"name":"React","level":3,"levelDescription":"I can analyse working solutions and propose refactors and generalization","sublevel":"neutral","interested":true,"comments":""}]},{"id":2,"name":"NodeJS","average":1,"skills":[{"id":6,"name":"Express","level":1,"levelDescription":"I know http verbs (at least POST, GET), REST basics, URL routing and how to handle basics http error codes and responses","sublevel":"neutral","interested":false,"comments":""}]}],"userRole":"user"},{"id":"asldka12367sdkasnd","email":"danicolas@guidesmiths.com","name":"Daniel Colas","ecosystems":[{"id":1,"name":"React","average":2.11,"skills":[{"id":1,"name":"React","level":2,"levelDescription":"I can modify effectively already working solutions to include new features","sublevel":"neutral","interested":true,"comments":""},{"id":2,"name":"Next.js","level":1,"levelDescription":"I understand the framework principles and I can implement solutions defined at the documentation or tutorials","sublevel":"plus","interested":true,"comments":""},{"id":4,"name":"Redux-Sagas","level":3,"levelDescription":"I can write both sync and async sagas processes","sublevel":"neutral","interested":true,"comments":""}]}],"userRole":"user"},{"id":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","name":"John Doe","ecosystems":[{"id":1,"name":"React","average":3,"skills":[{"id":1,"name":"React","level":4,"levelDescription":"I can define complex architectures and I can provide optimised solutions","sublevel":"minus","interested":true,"comments":""},{"id":2,"name":"Next.js","level":2,"levelDescription":"I modify effectively already working solutions to include new features","sublevel":"neutral","interested":false,"comments":""},{"id":4,"name":"Redux-Sagas","level":3,"levelDescription":"I can write both sync and async sagas processes","sublevel":"plus","interested":true,"comments":""}]},{"id":2,"name":"NodeJS","average":1.33,"skills":[{"id":6,"name":"Express","level":1,"levelDescription":"I know http verbs (at least POST, GET), REST basics, URL routing and how to handle basics http error codes and responses","sublevel":"plus","interested":true,"comments":""}]}],"userRole":"user"}]
+     * [{"userName":"Raquel Fernandez","userId":"asldka12311sdkasnd","email":"rachelFern@guidesmiths.com","userRole":"user","country":null,"seniority":null},{"userName":"Jane Doe","userId":"asldka12312sdkasnd","email":"janedoe@guidesmiths.com","userRole":"user","country":null,"seniority":null},{"userName":"Daniel Colas","userId":"asldka12367sdkasnd","email":"danicolas@guidesmiths.com","userRole":"user","country":null,"seniority":null},{"userName":"John Doe","userId":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","userRole":"user","country":null,"seniority":null}]
 
-      * @security jwtAuth
-      */
-    app.post('/ui/answers',
+     * @security jwtAuth
+     */
+    app.post('/ui/usersFiltered',
       async (req, res) => {
         const { body } = req;
 
-        return controller.answers.fetchAnswers({
+        return controller.answers.fetchUsersFiltered({
           body,
+          headers: { Authorization: req.headers.authorization },
+        })
+          .then(({ data }) => res.json(data))
+          .catch(handleError(res, logger));
+      });
+
+    /**
+     * POST /ui/answersByUser/{id}
+     * @route POST /ui/answersByUser/{id}
+     * @summary Get user answers by user
+     * @tags Answers
+     * @param {number} id.params.required - User id
+     * @return {array<AnswersResponse>} 200 - Successful operation
+     * @example response - 200 - success response example
+     * [{"id":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","name":"John Doe","ecosystems":[{"id":1,"name":"React","average":3,"skills":[{"id":1,"name":"React","level":4,"levelDescription":"I can define complex architectures and I can provide optimised solutions","sublevel":"minus","interested":true,"comments":""},{"id":2,"name":"Next.js","level":2,"levelDescription":"I modify effectively already working solutions to include new features","sublevel":"neutral","interested":false,"comments":""},{"id":4,"name":"Redux-Sagas","level":3,"levelDescription":"I can write both sync and async sagas processes","sublevel":"plus","interested":true,"comments":""}]},{"id":2,"name":"NodeJS","average":1.33,"skills":[{"id":6,"name":"Express","level":1,"levelDescription":"I know http verbs (at least POST, GET), REST basics, URL routing and how to handle basics http error codes and responses","sublevel":"plus","interested":true,"comments":""}]}],"userRole":"user"}]
+
+     * @security jwtAuth
+     */
+    app.post('/ui/answersByUser/:id',
+      async (req, res) => {
+        const { params: { id } } = req;
+
+        return controller.answers.fetchAnswersByUser({
+          urlParams: { id },
           headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))

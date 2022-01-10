@@ -5,7 +5,8 @@ const getApiRoutes = servicesAPI => ({
     deleteSkill: servicesAPI.skills.deleteSkill,
   },
   answers: {
-    fetchAnswers: servicesAPI.answers.fetchAnswers,
+    fetchUsersFiltered: servicesAPI.answers.fetchUsersFiltered,
+    fetchAnswersByUser: servicesAPI.answers.fetchAnswersByUser,
     fetchAnswersByUserAndEcosystem: servicesAPI.answers.fetchAnswersByUserAndEcosystem,
     insertAnswers: servicesAPI.answers.insertAnswers,
   },
@@ -15,7 +16,7 @@ const getApiRoutes = servicesAPI => ({
     insertUser: servicesAPI.users.insertUser,
     changeUserRole: servicesAPI.users.changeUserRole,
     changeUserCountry: servicesAPI.users.changeUserCountry,
-    skillLevel: servicesAPI.users.skillLevel,
+    fetchLevelUserBySkill: servicesAPI.users.fetchLevelUserBySkill,
   },
   ecosystems: {
     fetchEcosystems: servicesAPI.ecosystems.fetchEcosystems,
