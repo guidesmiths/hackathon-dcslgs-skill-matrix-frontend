@@ -54,8 +54,15 @@ const NavBarLink = styled(NavLink)`
   }
 `;
 
+const Image = styled.img`
+  margin-right: 18px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
 const StyledIcon = styled(Icon)`
   border: none;
 `;
 
-export { NavBarTop, NavStyled, NavBarLink, LogoWrapper, LogoPlaceHolder, UserWrapperStyled, StyledIcon };
+export { NavBarTop, NavStyled, NavBarLink, LogoWrapper, LogoPlaceHolder, UserWrapperStyled, StyledIcon, Image };

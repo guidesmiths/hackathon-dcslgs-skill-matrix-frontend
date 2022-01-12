@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
-const LevelBar = ({ level, skill, sublevel }) => {
+const LevelBar = ({ index, level, skill, sublevel }) => {
   const [styles, setStyles] = useState({});
 
   const styleSkill = {
@@ -51,7 +51,7 @@ const LevelBar = ({ level, skill, sublevel }) => {
     return '';
   };
   return (
-    <BarChartContainer>
+    <BarChartContainer data-cy={`skill-bars-${index}`}>
       {[...Array(4)].map((x, i) => (
         <BarChart
           key={i}
@@ -82,6 +82,7 @@ const LevelBar = ({ level, skill, sublevel }) => {
 };
 
 LevelBar.propTypes = {
+  index: PropTypes.number.isRequired,
   level: PropTypes.number,
   skill: PropTypes.bool,
   sublevel: PropTypes.string,

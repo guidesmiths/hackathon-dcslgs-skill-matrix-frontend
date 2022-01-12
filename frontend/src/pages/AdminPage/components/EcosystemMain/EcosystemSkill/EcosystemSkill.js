@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useTour } from '@reactour/tour';
 import Label from '../../../../../app/commons/Label/Label';
 import {
   SkillContainerStyled,
@@ -10,11 +12,14 @@ import {
   LevelContainerStyled,
   LevelStyled,
   StyledLabel,
+  SkillTour,
 } from './EcosystemSkill.styled';
 
 const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
+
+  const { isOpen } = useTour();
 
   useEffect(() => {
     setIsCollapsed(!isNewEcosystem);
@@ -29,6 +34,12 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
       setIsCollapsed(false);
     }
   }, [show, currentSkill.name]);
+
+  useEffect(() => {
+    if (isOpen && skillIndex === 0) {
+      setIsCollapsed(false);
+    }
+  }, [isOpen]);
 
   const handleNewSkillName = event => {
     // TODO: When I was creating a new ecosystem, I couldn't find where to add the skill type, the skill roles and the skill description.
@@ -50,24 +61,26 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
 
   return (
     <SkillContainerStyled data-cy={`skill-container-${skillIndex}`}>
-      <SkillHeaderStyled>
-        <SkillNameStyledInput
-          key={`${skill.id}`}
-          autoFocus={show && !currentSkill.name}
-          data-cy={`skill-name-input-${skillIndex}`}
-          hasError={currentSkill.name === '' && isThereAnyError}
-          id={`skill-${skillIndex}`}
-          placeholder="Skill name"
-          readOnly={!show}
-          value={currentSkill.name || ''}
-          onChange={handleNewSkillName}
-        />
-        <Label left={15} top={-10}>Skill Name</Label>
-        <IconsGroupStyled>
-          <IconStyled icon="delete" onClick={onDeleteClick}/>
-          <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
-        </IconsGroupStyled>
-      </SkillHeaderStyled>
+      <SkillTour data-cy={`skill-container-tour-${skillIndex}`}>
+        <SkillHeaderStyled data-cy={`skill-container-top-${skillIndex}`}>
+          <SkillNameStyledInput
+            key={`${skill.id}`}
+            autoFocus={show && !currentSkill.name}
+            data-cy={`skill-name-input-${skillIndex}`}
+            hasError={currentSkill.name === '' && isThereAnyError}
+            id={`skill-${skillIndex}`}
+            placeholder="Skill name"
+            readOnly={!show}
+            value={currentSkill.name || ''}
+            onChange={handleNewSkillName}
+          />
+          <Label left={15} top={1}>Skill Name</Label>
+          <IconsGroupStyled>
+            <IconStyled icon="delete" onClick={onDeleteClick}/>
+            <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
+          </IconsGroupStyled>
+        </SkillHeaderStyled>
+      </SkillTour>
       {skill.levels.map((level, levelIndex) => (
         <LevelContainerStyled
           key={levelIndex}

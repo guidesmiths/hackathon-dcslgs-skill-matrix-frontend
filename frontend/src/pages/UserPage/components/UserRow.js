@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useTour } from '@reactour/tour';
+
 import { RowSkillsWrapper,
   RowSkillsTop,
   RowSkills,
@@ -23,8 +26,9 @@ import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 import Label from '../../../app/commons/Label/Label';
 
-const UserRow = ({ skill, idEcosystem, edit }) => {
+const UserRow = ({ i, skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
+  const { isOpen } = useTour();
   const [isCollapsed, setCollapsed] = useState(true);
   const [subValue, setSubValue] = useState('neutral');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
@@ -43,6 +47,12 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
   useEffect(() => {
     setCheck(skill.interested || false);
   }, [skill.interested]);
+
+  useEffect(() => {
+    if (i === 0 && isOpen) {
+      setCollapsed(false);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (skill.sublevel) {
@@ -98,11 +108,11 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
         data-cy={`userSkill-${skill.name}`}
         isRowDown={!isCollapsed}
       >
-        <RowSkills>
+        <RowSkills data-cy={`userSkill-${i}`}>
           <UserSkillName>{skill.name}</UserSkillName>
-          <LevelBar skill level={skill.level} sublevel={skill.sublevel}/>
+          <LevelBar skill index={i} level={skill.level} sublevel={skill.sublevel}/>
           <ButtonWrapper>
-            <CheckboxWrapper>
+            <CheckboxWrapper data-cy={'checkbox'}>
               <StyledCheckbox
                 checked={isChecked}
                 disabled={!edit}
@@ -126,7 +136,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
             <Label left={25} top={-10} type="description">Description Level</Label>
           </DescriptionStyled>
           {edit && <LevelEditor>
-            <SelectWrapper>
+            <SelectWrapper data-cy={'level-selector'}>
               <select data-cy="select-level" value={skill.level || ''} onChange={handleLevel}>
                 <option value={0}>0</option>
                 {skill.levels.map((e, index) => (
@@ -135,15 +145,15 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
                   </option>
                 ))}
               </select>
-              <Label left={7} top={-6} weight={700}>Level</Label>
+              <Label left={7} top={-3} weight={700}>Level</Label>
             </SelectWrapper>
-            <AjustLevelButtons>
+            <AjustLevelButtons data-cy={'sublevel-buttons'}>
               <AdjustButton clicked={skill.sublevel} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
               <AdjustButton clicked={skill.sublevel} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
             </AjustLevelButtons>
           </LevelEditor>}
         </RowSkillsBottom>
-        {edit && <RowSkillsBottom>
+        {edit && <RowSkillsBottom data-cy={'comment-section'} >
           <StyledInput
             placeholder="Write some comments"
             value={skill.comments || ''}
@@ -158,6 +168,7 @@ const UserRow = ({ skill, idEcosystem, edit }) => {
 
 UserRow.propTypes = {
   edit: PropTypes.bool.isRequired,
+  i: PropTypes.number.isRequired,
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
 };

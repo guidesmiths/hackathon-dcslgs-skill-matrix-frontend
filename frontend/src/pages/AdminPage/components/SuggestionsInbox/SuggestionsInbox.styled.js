@@ -12,11 +12,11 @@ const SuggestionInboxStyled = styled.div`
 
 const SuggestionCardsStyled = styled.div`
   display: flex;
-  margin: 40px auto;
+  margin: 30px auto 40px;
   overflow: hidden;
   width: 95%;
   height:max-content;
-  padding-bottom:30px;
+  padding: 10px 0;
 `;
 
 const StyledSlider = styled.input`

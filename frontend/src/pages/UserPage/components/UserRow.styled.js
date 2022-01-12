@@ -41,7 +41,6 @@ const StyledLabel = styled.label`
   height: 20px;
   border: 1px solid ${props => props.theme.colors.primaryColor};
   border-radius: 4px;
-
   &:after {
     content: '';
     position: absolute;
@@ -66,14 +65,19 @@ const StyledLabel = styled.label`
   };
 
   &:after {
-    opacity: ${props => (props.isChecked ? 1 : 0)}
+    opacity: ${props => (props.isChecked ? 1 : 0)};
   }
 `;
 
 const CheckboxWrapper = styled.div`
   position: relative;
-  width: 20px;
+  display: flex;
+  align-items: center;
+  width: 22.5px;
+  height: 22.5px;
   margin: 20px 20px 20px 0;
+  padding: 2px;
+  box-sizing:border-box;
 `;
 
 const StyledCheckbox = styled.input`
@@ -128,6 +132,7 @@ const SelectWrapper = styled.div`
   width: 60px;
   min-width: 60px;
   margin-right: 5px;
+  padding: 5px 0;
 
   select {
     height: 100%;
@@ -143,10 +148,13 @@ const SelectWrapper = styled.div`
 
 const LevelEditor = styled.div`
   display: flex;
+  padding: 0 0 10px;
 `;
 
 const AjustLevelButtons = styled.div`
   display: flex;
+  height: 48px;
+  padding: 5px 0;
 `;
 
 const AdjustButton = styled(Icon)`

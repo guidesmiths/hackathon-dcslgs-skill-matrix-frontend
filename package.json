@@ -85,6 +85,7 @@
     "prepper": "^1.2.0",
     "ramda": "^0.27.0",
     "react-router-dom": "^5.2.0",
+    "reactour": "^1.18.6",
     "recharts": "^2.0.9",
     "systemic": "^3.3.7",
     "systemic-domain-runner": "^1.1.0",

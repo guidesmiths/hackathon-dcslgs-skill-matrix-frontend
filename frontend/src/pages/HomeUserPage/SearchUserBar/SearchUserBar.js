@@ -31,7 +31,7 @@ export const SearchUserBar = () => {
 
   return (
     <SearchBarsUserWrapper>
-      <SearchBarWrapper>
+      <SearchBarWrapper data-cy={'search-bar'}>
         {skillFilters.map((filter, index) => (
           <SearchBarUserSkill
             key={index}

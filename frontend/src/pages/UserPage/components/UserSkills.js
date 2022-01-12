@@ -74,10 +74,11 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) =>
             <ColumTitle>I&apos;d Like to learn</ColumTitle>
           </ColumTitles>
           {skillswithLevel && <ScrollWrapper height={70}>
-            {skillswithLevel?.map(skill => (
+            {skillswithLevel?.map((skill, index) => (
               <UserRow
                 key={skill.id}
                 edit={edit}
+                i={index}
                 idEcosystem={ecosystemIdSelected}
                 skill={skill}
               />

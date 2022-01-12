@@ -48,7 +48,7 @@ const AppRouter = ({ environment }) => {
 
   return (
     <>
-      {show && userData && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
+      {show && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
         <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.id} userName={userData.name} />} path={COUNTRY_ROUTE} />

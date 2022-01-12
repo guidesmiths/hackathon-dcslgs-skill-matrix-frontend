@@ -16,6 +16,7 @@ const AnswersList = () => {
             <AnswersListElement
               key={`answers-${id}`}
               country={country}
+              data-cy={`answer-list-element-${index}`}
               email={email}
               index={index}
               name={name}

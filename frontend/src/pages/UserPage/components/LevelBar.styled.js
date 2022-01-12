@@ -5,6 +5,8 @@ const BarChartContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  width: fit-content;
+  padding: 0 5px;
 `;
 
 export { BarChartContainer };

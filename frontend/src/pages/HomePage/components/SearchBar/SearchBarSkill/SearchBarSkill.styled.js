@@ -5,7 +5,9 @@ const SearchBarSkillStyled = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 10px 0;
+  padding: 10px 0;
+  margin-right: 20px;
+  box-sizing: border-box;
 `;
 
 const InputWrapper = styled.div`
@@ -43,7 +45,10 @@ const StyledIcon = styled(Icon)`
   background-color: white;
   height: 100%;
   width: 50px;
-  margin-right: 10px;
+
+  &:last-child{
+    margin-left: 10px;
+  }
 `;
 
 export { SearchBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };

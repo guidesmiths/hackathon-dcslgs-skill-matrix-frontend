@@ -5,10 +5,9 @@ import Label from '../../../../../app/commons/Label/Label.styled';
 const SkillContainerStyled = styled.div`
   position: relative;
   width: 80%;
-  margin: 20px auto;
+  margin: 10px auto;
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
-  border: 1px solid #EFEFEF;
   border-radius: 4px;
 
   &:last-child{
@@ -21,6 +20,7 @@ const SkillHeaderStyled = styled.div`
   display: flex;
   align-items: center;
   height: 75px;
+  border: 1px solid #EFEFEF;
 `;
 const StyledLabel = styled(Label)`
 `;
@@ -85,6 +85,10 @@ const LevelContainerStyled = styled.div`
   border-top: 1px solid #EFEFEF;
   border-left: 1px solid ${props => props.theme.colors.primaryColor};
 `;
+const SkillTour = styled.div`
+  padding: 10px 5px;
+  box-sizing: border-box;
+ `;
 
 export {
   SkillContainerStyled,
@@ -95,4 +99,5 @@ export {
   LevelContainerStyled,
   LevelStyled,
   StyledLabel,
+  SkillTour,
 };

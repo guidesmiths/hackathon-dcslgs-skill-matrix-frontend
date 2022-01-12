@@ -15,7 +15,7 @@ import {
 
 import FlagComponent from './FlagComponent';
 
-const ListElementHeader = ({ email, name, seniority, country, setCollapsed, isCollapsed }) => {
+const ListElementHeader = ({ index, email, name, seniority, country, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
   return (
@@ -27,7 +27,7 @@ const ListElementHeader = ({ email, name, seniority, country, setCollapsed, isCo
       <UserEmailStyled>{email}</UserEmailStyled>
       <MoreInfoWrapper>
         <FlagComponent country={country}/>
-        <UserRolStyled>{seniority || 'Medior Developer in Development Team'}</UserRolStyled>
+        <UserRolStyled data-cy={`user-seniority-${index}`}>{seniority || 'Medior Developer in Development Team'}</UserRolStyled>
         <ArrowButtonStyled onClick={setCollapsed}>
           <span className="material-icons">
             {arrowButtonIcon}
@@ -42,6 +42,7 @@ const ListElementHeader = ({ email, name, seniority, country, setCollapsed, isCo
 ListElementHeader.propTypes = {
   country: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   seniority: PropTypes.string.isRequired,

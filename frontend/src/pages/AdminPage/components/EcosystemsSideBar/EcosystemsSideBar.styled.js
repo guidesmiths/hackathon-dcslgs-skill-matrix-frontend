@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 
+const EcosystemBarStyled = styled.div`
+  height: fit-content;
+`;
+
 const EcosystemsSideBarStyled = styled.div`
   z-index: 1;
   grid-area: ecosystems-sidebar;
@@ -61,6 +65,7 @@ const EcosystemScroller = styled(UserRowWrapper)`
   }
 `;
 export {
+  EcosystemBarStyled,
   EcosystemsSideBarStyled,
   EcosystemHeaderStyled,
   EcosystemElementStyled,

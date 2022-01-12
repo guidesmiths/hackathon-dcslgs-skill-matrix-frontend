@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon } from './NavBar.styled';
+import { useTour } from '@reactour/tour';
 import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
+import info from '../../../Assets/Icons/info.svg';
+import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon, Image } from './NavBar.styled';
 import LazyImage from '../LazyImage/LazyImage';
 import SwitchTest from '../SwitchTest/SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
@@ -11,6 +13,8 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const signOut = () => {
     localStorage.clear();
   };
+
+  const { setIsOpen } = useTour();
 
   return (
     <NavBarTop>
@@ -28,6 +32,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
         </div>
       </EnvironmentComponent>
       <UserWrapperStyled>
+        <Image src={info} onClick={() => setIsOpen(true)} />
         <StyledIcon icon={'face'} />
         <NavBarLink to={!userView ? '/profile' : '/profile/ecosystem'}>{userData?.email}</NavBarLink>
         <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >

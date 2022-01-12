@@ -96,7 +96,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     }
   }, [currentEcosystem, show]);
   return (
-    <EcosystemContainerStyled>
+    <EcosystemContainerStyled data-cy={'ecosystem-info'}>
       {loading
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
           <SpinnerLoader/>
@@ -132,9 +132,9 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
         </>
       }
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
-      {(show || isEmpty) && !loading && <ButtonsWrapper>
-        <StyledButton onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-        {!isEmpty && <StyledDelete onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
+      {(show || isEmpty) && <ButtonsWrapper>
+        <StyledButton data-cy={'add-skill'} onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
+        {!isEmpty && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
           <StyledDeleteIcon icon="delete" />
           Delete ecosystem
         </StyledDelete>}

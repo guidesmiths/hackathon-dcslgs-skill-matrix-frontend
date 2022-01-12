@@ -10,7 +10,7 @@ const AnswersUserList = () => {
   const userData = useSelector(selectUserData);
 
   return (
-    <AnswersListStyled>
+    <AnswersListStyled data-cy={'answer-list'}>
       <ScrollWrapper>
         {answers
           .filter(answer => answer.id !== userData.user_id)

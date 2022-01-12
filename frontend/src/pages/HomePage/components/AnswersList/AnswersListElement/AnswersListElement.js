@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useTour } from '@reactour/tour';
 import ListElementHeader from './ListElementHeader/ListElementHeader';
 import SkillList from './SkillList/SkillList';
 import AnswersListElementStyled from './AnswersListElement.styled';
@@ -11,6 +13,8 @@ const AnswersListElement = ({ userId, email, name, role, skills, index, country,
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
+
+  const { isOpen } = useTour();
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,13 +31,19 @@ const AnswersListElement = ({ userId, email, name, role, skills, index, country,
     setCollapsed(!isCollapsed);
   };
 
+  useEffect(() => {
+    if (isOpen && index === 0) {
+      setCollapsed(false);
+    }
+  }, [isOpen]);
+
   return (
     <AnswersListElementStyled data-cy={`answer-list-element-${index}`}>
       {!loading
-        ? <ListElementHeader country={country} email={email} isCollapsed={isCollapsed} name={name} seniority={seniority} setCollapsed={handleCollapsed}/>
+        ? <ListElementHeader country={country} email={email} index={index} isCollapsed={isCollapsed} name={name} seniority={seniority} setCollapsed={handleCollapsed}/>
         : <LoadingUserRow />
       }
-      <SkillList isCollapsed={isCollapsed} role={role} skills={skills} userId={userId}/>
+      <SkillList index={index} isCollapsed={isCollapsed} role={role} skills={skills} userId={userId}/>
     </AnswersListElementStyled>
   );
 };

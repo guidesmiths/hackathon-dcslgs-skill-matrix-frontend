@@ -35,11 +35,12 @@ const SearchBarWrapper = styled.div`
   width: 95%;
   margin: 15px auto;
 `;
+
 const SearchBarSkillWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    width: 95%;
-    margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 10px auto;
 `;
 
 const SearchBarUsers = styled.input`

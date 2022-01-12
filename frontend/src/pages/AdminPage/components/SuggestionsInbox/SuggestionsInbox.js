@@ -26,7 +26,7 @@ const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
   return (
     <SuggestionInboxStyled data-cy="suggestions-inbox" noSuggestions={noSuggestions}>
       {!noSuggestions
-        && <SuggestionCardsStyled ref={ref}>
+        && <SuggestionCardsStyled ref={ref} data-cy="suggestions-list">
           {suggestions.map(({ userName, description, subject, id }, index) => (
             <SuggestionCard
               key={id}

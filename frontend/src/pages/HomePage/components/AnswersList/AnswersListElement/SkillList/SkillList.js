@@ -7,7 +7,7 @@ import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
 import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
 
-const SkillList = ({ isCollapsed, userId, role }) => {
+const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
   const answers = useSelector(selectCurrentAnswers(userId));
 
@@ -29,7 +29,7 @@ const SkillList = ({ isCollapsed, userId, role }) => {
           ))
         }
       </SkillListWrapper>
-      <FooterStyled>
+      <FooterStyled data-cy={`switch-admin-${index}`}>
         <AdminRoleText>Admin Role</AdminRoleText>
         <Switch role={role} userId={userId}/>
       </FooterStyled>
@@ -38,6 +38,7 @@ const SkillList = ({ isCollapsed, userId, role }) => {
 };
 
 SkillList.propTypes = {
+  index: PropTypes.number.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
   role: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,

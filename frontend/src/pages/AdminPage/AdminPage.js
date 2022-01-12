@@ -4,6 +4,7 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useTour } from '@reactour/tour';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
 import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
@@ -14,6 +15,7 @@ import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
+import TextTour from '../../app/commons/Tour/TextTour';
 
 // Do we need this?
 const newEcosystemEmpty = {
@@ -33,6 +35,10 @@ const newEcosystemEmpty = {
 const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { currentStep, isOpen, setDisabledActions, setSteps } = useTour();
+  const [step, setStep] = useState(0);
+
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
   const userData = useSelector(selectUserData);
@@ -84,6 +90,66 @@ const HomePage = () => {
   useLayoutEffect(() => {
     setIsOnEditableMode(!!isNewEcosystem);
   }, [isNewEcosystem]);
+
+  useEffect(() => {
+    if (isOpen) {
+      console.log(currentStep);
+      if (currentStep > 1) {
+        setNoSuggestions(false);
+      }
+      // } else if (currentStep === 1 && !noSuggestions && step > currentStep) {
+      //   setNoSuggestions(true);
+      // }
+
+      setStep(currentStep);
+    }
+  }, [isOpen, noSuggestions, currentStep]);
+
+  useEffect(() => {
+    if (isOpen) {
+      if (currentStep <= 3 && step > currentStep) {
+        setIsOnEditableMode(false);
+      } else if (currentStep > 3) {
+        setIsOnEditableMode(true);
+      }
+      setSteps([
+        {
+          selector: '[data-cy="ecosystems-sidebar"]',
+          content: <TextTour>Here you can see the skill</TextTour>,
+        },
+        {
+          disableActions: currentStep === 1 && noSuggestions,
+          selector: '[data-cy="inbox-button"]',
+          content: <TextTour>Here you can open the suggestions</TextTour>,
+        },
+        {
+          selector: '[data-cy="suggestions-list"]',
+          content: <TextTour>Here you can open the suggestions</TextTour>,
+        },
+        {
+          disableActions: currentStep === 3 && !isOnEditableMode,
+          selector: !isOnEditableMode ? '[data-cy="edit-skill-button"]' : '[data-cy="save-skill-button"]',
+          content: <TextTour>Here you can able the edit mode</TextTour>,
+        },
+        {
+          selector: '[data-cy="icon-add"]',
+          content: <TextTour>Here you can insert an ecosystem</TextTour>,
+        },
+        {
+          selector: '[data-cy="skill-container-tour-0"]',
+          content: <TextTour>Here you can able the edit mode</TextTour>,
+        },
+        {
+          selector: '[data-cy="add-skill"]',
+          content: <TextTour>Here you can insert an ecosystem</TextTour>,
+        },
+        {
+          selector: '[data-cy="delete-ecosystem-button"]',
+          content: <TextTour>Here you can delete an ecosystem</TextTour>,
+        },
+      ]);
+    }
+  }, [isOpen, noSuggestions, currentStep, isOnEditableMode]);
 
   const handleEcosystemClick = selectedId => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);
@@ -202,8 +268,8 @@ const HomePage = () => {
       />
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
-        <ShowSuggestions data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setNoSuggestions(!noSuggestions)}>Inbox</ShowSuggestions>
-        <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true)}>Edit</EditButton>
+        <ShowSuggestions data-cy="inbox-button" show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}>Inbox</ShowSuggestions>
+        <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
       </Footer>
