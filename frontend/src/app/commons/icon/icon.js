@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MaterialIcon from '@material-ui/core/Icon';
 import IconStyled from './Icon.styled';
 
-const Icon = ({ icon, className, border, height, width, show, onClick }) => (
+const Icon = ({ icon, className, border, height, width, show, onClick, onMouseEnter, onMouseLeave }) => (
   <IconStyled
     border={border}
     className={className}
@@ -12,6 +12,8 @@ const Icon = ({ icon, className, border, height, width, show, onClick }) => (
     show={show}
     width={width}
     onClick={onClick}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
   >
     <MaterialIcon>{icon}</MaterialIcon>
   </IconStyled>
@@ -23,6 +25,8 @@ Icon.defaultProps = {
   height: null,
   icon: '',
   onClick: () => { /* empty function */ },
+  onMouseEnter: () => { /* empty function */ },
+  onMouseLeave: () => { /* empty function */ },
   show: true,
   width: 25,
 };
@@ -35,6 +39,8 @@ Icon.propTypes = {
   show: PropTypes.bool,
   width: PropTypes.number,
   onClick: PropTypes.func,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default Icon;

@@ -152,6 +152,7 @@ const LevelEditor = styled.div`
 `;
 
 const AjustLevelButtons = styled.div`
+  position: relative;
   display: flex;
   height: 48px;
   padding: 5px 0;
@@ -184,6 +185,39 @@ const StyledInput = styled.input`
   border-radius: 4px;
 `;
 
+const Tooltip = styled.span`
+  position: absolute;
+  z-index: 999;
+  top: 70px;
+  right: -60px;
+  width: 280px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-family: ${props => props.theme.fonts.poppins};
+  font-size: 9px;
+  font-weight: 500;
+  text-align: center;
+  background: #10243A;
+  color: white;
+  opacity: 0.75;
+  border-radius: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 999;
+    top: -10px;
+    right: ${props => (props.plus ? 65 : 115)}px;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #10243A;
+  }
+`;
+
 export {
   RowSkillsWrapper,
   RowSkillsTop,
@@ -202,4 +236,5 @@ export {
   AjustLevelButtons,
   AdjustButton,
   StyledInput,
+  Tooltip,
 };

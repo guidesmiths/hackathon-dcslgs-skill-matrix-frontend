@@ -21,6 +21,7 @@ import { RowSkillsWrapper,
   AjustLevelButtons,
   AdjustButton,
   StyledInput,
+  Tooltip,
 } from './UserRow.styled';
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
@@ -33,7 +34,8 @@ const UserRow = ({ i, skill, idEcosystem, edit }) => {
   const [subValue, setSubValue] = useState('neutral');
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
   const [isChecked, setCheck] = useState(false);
-
+  const [showMinus, setShowMinus] = useState(false);
+  const [showPlus, setShowPlus] = useState(false);
   const handleCheckBox = () => {
     setCheck(!isChecked);
     dispatch(
@@ -148,8 +150,29 @@ const UserRow = ({ i, skill, idEcosystem, edit }) => {
               <Label left={7} top={-3} weight={700}>Level</Label>
             </SelectWrapper>
             <AjustLevelButtons data-cy={'sublevel-buttons'}>
-              <AdjustButton clicked={skill.sublevel} icon={'remove'} width={50} onClick={() => subValueHandler('minus')}/>
-              <AdjustButton clicked={skill.sublevel} icon={'add'} width={50} onClick={() => subValueHandler('plus')}/>
+              <AdjustButton
+                clicked={skill.sublevel}
+                icon={'remove'}
+                width={50}
+                onClick={() => subValueHandler('minus')}
+                onMouseEnter={() => setShowMinus(true)}
+                onMouseLeave={() => setShowMinus(false)}
+              />
+              {showMinus
+                && <Tooltip>When you has some of the abilities within the current skill, but hasn&prime;t developed the behaviours needed you achieved goals assigned but overdue,
+               due to a lack of prioritising or time management.</Tooltip>
+              }
+
+              <AdjustButton
+                clicked={skill.sublevel}
+                icon={'add'} width={50}
+                onClick={() => subValueHandler('plus')}
+                onMouseEnter={() => setShowPlus(true)}
+                onMouseLeave={() => setShowPlus(false)}
+              />
+              {showPlus
+                && <Tooltip plus>When you has gained certain abilities within the current skill but hasn&prime;t yet developed certain behaviours needed to move to the following level.</Tooltip>
+              }
             </AjustLevelButtons>
           </LevelEditor>}
         </RowSkillsBottom>
