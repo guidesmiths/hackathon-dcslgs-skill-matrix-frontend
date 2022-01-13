@@ -9,7 +9,7 @@ import {
   updateSkillFilter,
 } from '../../../../redux/filters/filtersSlice';
 import {
-  SearchBarSkillStyled,
+  SearchHomeBarSkillStyled,
   InputWrapperUser,
 } from '../../../HomePage/components/SearchBar/SearchBarSkill/SearchBarSkill.styled';
 import Input from '../../../../app/commons/Input/Input';
@@ -53,7 +53,7 @@ const SearchBarUserSkill = ({ index }) => {
   };
 
   return (
-    <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
+    <SearchHomeBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapperUser>
         <Input
           input={skillTyped}
@@ -63,7 +63,7 @@ const SearchBarUserSkill = ({ index }) => {
           onChangeInput={handleInput}
         />
       </InputWrapperUser>
-    </SearchBarSkillStyled>
+    </SearchHomeBarSkillStyled>
   );
 };
 

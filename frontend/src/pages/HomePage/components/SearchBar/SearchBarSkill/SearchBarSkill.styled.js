@@ -9,6 +9,7 @@ const SearchBarSkillStyled = styled.div`
   margin-right: 20px;
   box-sizing: border-box;
 `;
+const SearchHomeBarSkillStyled = styled.div``;
 
 const InputWrapper = styled.div`
   position: relative;
@@ -51,4 +52,4 @@ const StyledIcon = styled(Icon)`
   }
 `;
 
-export { SearchBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };
+export { SearchBarSkillStyled, SearchHomeBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };

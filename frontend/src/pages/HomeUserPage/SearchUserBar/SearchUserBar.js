@@ -12,7 +12,7 @@ import SearchBarUserSkill from './SearchBarUserSkill/SearchBarUserSkill';
 import {
   SearchBarsUserWrapper,
   IconStyled,
-  SearchBarWrapper,
+  HomeSearchBarWrapper,
 } from '../../HomePage/components/SearchBar/SearchBar.styled';
 import { fetchSkillsAsync } from '../../../redux/skills/skillsSlice';
 
@@ -31,7 +31,7 @@ export const SearchUserBar = () => {
 
   return (
     <SearchBarsUserWrapper>
-      <SearchBarWrapper data-cy={'search-bar'}>
+      <HomeSearchBarWrapper data-cy={'search-bar'}>
         {skillFilters.map((filter, index) => (
           <SearchBarUserSkill
             key={index}
@@ -40,7 +40,7 @@ export const SearchUserBar = () => {
           />
         ))}
         <IconStyled icon={'search'} />
-      </SearchBarWrapper>
+      </HomeSearchBarWrapper>
     </SearchBarsUserWrapper>
   );
 };

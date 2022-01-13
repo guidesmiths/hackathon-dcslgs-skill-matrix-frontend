@@ -35,6 +35,12 @@ const SearchBarWrapper = styled.div`
   width: 95%;
   margin: 15px auto;
 `;
+const HomeSearchBarWrapper = styled.div`
+  position: relative;
+  height: 56px;
+  width: 95%;
+  margin: 15px auto 25px;
+`;
 
 const SearchBarSkillWrapper = styled.div`
   display: flex;
@@ -64,4 +70,4 @@ const IconStyled = styled(Icon)`
     margin: auto;
 `;
 
-export { SearchBarUsers, SearchBarsWrapper, SearchBarsUserWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper };
+export { SearchBarUsers, HomeSearchBarWrapper, SearchBarsWrapper, SearchBarsUserWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper };
