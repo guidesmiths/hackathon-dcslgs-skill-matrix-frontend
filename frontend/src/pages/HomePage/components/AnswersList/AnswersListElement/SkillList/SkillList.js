@@ -2,28 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
-import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, SpinnerWrapper } from './SkillList.styled';
+import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image } from './SkillList.styled';
 import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
+import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
 import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
 
 const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
+  const [loaded, hasLoaded] = useState(false);
   const answers = useSelector(selectCurrentAnswers(userId));
-
   useEffect(() => {
     if (!isCollapsed) {
       setSkills(answers?.ecosystems?.flatMap(ecosystem => ecosystem.skills));
+      setTimeout(() => hasLoaded(true), [2000]);
     }
   }, [answers, isCollapsed]);
-
   return (
     <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
       <SkillListWrapper height={55}>
         {!skills
-          ? <SpinnerWrapper>
-            <SpinnerLoader/>
-          </SpinnerWrapper>
+          ? <LoaderWrapper>
+            {loaded
+              ? <><Image src={blankstate}/>
+                <p>No records have been added yet</p>
+              </>
+              : <SpinnerLoader/>
+            }
+          </LoaderWrapper>
           : skills.map(({ id, level, levelDescription, name, sublevel }) => (
             <SkillListElement key={id} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
           ))
