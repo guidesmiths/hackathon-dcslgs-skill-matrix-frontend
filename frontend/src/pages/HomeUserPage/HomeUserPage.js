@@ -1,17 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTour } from '@reactour/tour';
-import { SearchUserBar } from './SearchUserBar/SearchUserBar';
+import SearchUserBar from './SearchUserBar/SearchUserBar';
 import AnswersUserList from './AnswersUserList/AnswersUserList';
 import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
-import { resetAnswers } from '../../redux/answers/answersSlice';
+import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
 import TextTour from '../../app/commons/Tour/TextTour';
+import Pagination from '../../app/commons/Pagination/Pagination';
 
 const HomeUserPage = () => {
   const dispatch = useDispatch();
   const { setSteps } = useTour();
+  const [currentPage, setCurrentPage] = useState(1);
+  const numberOfPages = useSelector(selectNumberOfPages);
+
+  const handlePagination = (_, page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => () => {
     dispatch(resetAnswers());
@@ -34,9 +41,10 @@ const HomeUserPage = () => {
   return (
     <HomePageStyled>
       <StyledBackground>
-        <SearchUserBar/>
+        <SearchUserBar currentPage={currentPage} numberOfPages={numberOfPages} />
       </StyledBackground>
       <AnswersUserList/>
+      <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} onChange={handlePagination} />
     </HomePageStyled>
   );
 };

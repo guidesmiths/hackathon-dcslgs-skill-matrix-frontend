@@ -25,8 +25,8 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-  shape: '',
-  size: '',
+  shape: 'round',
+  size: 'medium',
 };
 
 export default Pagination;

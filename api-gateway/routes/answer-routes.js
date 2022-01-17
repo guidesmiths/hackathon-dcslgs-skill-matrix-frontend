@@ -18,9 +18,10 @@ module.exports = () => {
      */
     app.post('/ui/usersFiltered',
       async (req, res) => {
-        const { body } = req;
+        const { query, body } = req;
 
         return controller.answers.fetchUsersFiltered({
+          query,
           body,
           headers: { Authorization: req.headers.authorization },
         })

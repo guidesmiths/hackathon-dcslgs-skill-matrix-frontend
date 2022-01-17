@@ -14,9 +14,11 @@ function config() {
 export const fetchUsersFilteredAsync = createAsyncThunk(
   'answers/fetchUsersFiltered',
   async filter => {
-    const response = await axios.post('/ui/usersFiltered', {
-      name: filter.userFilter,
-      skills: filter.skillFilters,
+    const { pagination, userFilter, skillFilters } = filter;
+
+    const response = await axios.post(`/ui/usersFiltered?page=${pagination}`, {
+      name: userFilter,
+      skills: skillFilters,
     }, config());
     return response.data;
   },
@@ -52,7 +54,11 @@ export const answersSlice = createSlice({
       })
       .addCase(fetchUsersFilteredAsync.fulfilled, (state, action) => {
         state.status = 'succeded';
-        state.value = [...action.payload];
+        const { users, currentPages, numberOfPages, totalItems } = action.payload;
+        state.value = [...users];
+        state.currentPages = currentPages;
+        state.numberOfPages = numberOfPages;
+        state.totalItems = totalItems;
       })
       .addCase(fetchAnswersByUserAsync.pending, state => {
         state.status = 'loading';
@@ -71,5 +77,6 @@ export const selectAllAnswers = state => state.answers.value;
 export const selectAnswerPage = (start, end) => state => state.answers.value.slice(start, end);
 export const selectNumberOfAnswers = state => state.answers.value.length;
 export const selectCurrentAnswers = id => state => state.answers?.currentAnswers?.find(curr => curr.id === id);
+export const selectNumberOfPages = state => state.answers.numberOfPages;
 
 export default answersSlice.reducer;

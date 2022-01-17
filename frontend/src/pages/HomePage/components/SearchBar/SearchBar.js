@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   updateUserFilter,
@@ -19,7 +20,7 @@ import {
 } from './SearchBar.styled';
 import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
 
-export const SearchBar = () => {
+const SearchBar = ({ currentPage, numberOfPages }) => {
   const dispatch = useDispatch();
   const skillFilters = useSelector(selectSkillFilters);
   const userFilter = useSelector(selectUserFilter);
@@ -30,8 +31,9 @@ export const SearchBar = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter }));
-  }, [skillFilters, userFilter]);
+    const pagination = currentPage > numberOfPages ? numberOfPages - 1 : currentPage - 1;
+    dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter, pagination }));
+  }, [skillFilters, userFilter, currentPage, numberOfPages]);
 
   return (
     <SearchBarsWrapper>
@@ -59,3 +61,10 @@ export const SearchBar = () => {
     </SearchBarsWrapper>
   );
 };
+
+SearchBar.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  numberOfPages: PropTypes.number.isRequired,
+};
+
+export default SearchBar;

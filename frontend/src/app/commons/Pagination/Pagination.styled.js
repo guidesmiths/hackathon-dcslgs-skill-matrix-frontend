@@ -6,6 +6,7 @@ const PaginationStyled = styled.div`
   position: fixed;
   bottom: 10px;
   left: 45%;
+  z-index: 999;
 `;
 
 export default PaginationStyled;
