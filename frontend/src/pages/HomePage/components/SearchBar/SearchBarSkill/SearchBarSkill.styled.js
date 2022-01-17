@@ -46,10 +46,6 @@ const StyledIcon = styled(Icon)`
   background-color: white;
   height: 100%;
   width: 50px;
-
-  &:last-child{
-    margin-left: 10px;
-  }
 `;
 
 export { SearchBarSkillStyled, SearchHomeBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };
