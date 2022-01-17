@@ -134,7 +134,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       {(show || isEmpty) && <ButtonsWrapper>
         <StyledButton data-cy={'add-skill'} onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-        {!isEmpty && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
+        {!isEmpty && show && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
           <StyledDeleteIcon icon="delete" />
           Delete ecosystem
         </StyledDelete>}
