@@ -1,11 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PaginationMaterial from '@material-ui/lab/Pagination';
+import { makeStyles, createStyles } from '@material-ui/core';
 import PaginationStyled from './Pagination.styled';
 
-const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => (
-  <PaginationStyled>
+const useStyles = makeStyles(() => createStyles({
+  root: {
+    '& .Mui-selected': {
+      backgroundColor: '#BF3088',
+      color: 'white',
+      fontFamily: '\'Poppins\', sans-serif',
+    },
+  },
+}));
+
+const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
+  const classes = useStyles();
+  return (<PaginationStyled>
     <PaginationMaterial
+      className={classes.root}
       count={numberOfPages}
       data-cy="pagination"
       page={currentPage}
@@ -14,7 +27,8 @@ const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => (
       onChange={onChange}
     />
   </PaginationStyled>
-);
+  );
+};
 
 Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,

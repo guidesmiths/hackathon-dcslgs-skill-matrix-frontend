@@ -8,7 +8,6 @@ import { HomePageStyled, StyledBackground } from './HomePage.styled';
 import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
 import TextTour from '../../app/commons/Tour/TextTour';
-import Pagination from '../../app/commons/Pagination/Pagination';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -55,8 +54,7 @@ const HomePage = () => {
       <StyledBackground>
         <SearchBar currentPage={currentPage} numberOfPages={numberOfPages} />
       </StyledBackground>
-      <AnswersList />
-      <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} onChange={handlePagination} />
+      <AnswersList currentPage={currentPage} handlePagination={handlePagination} numberOfPages={numberOfPages}/>
     </HomePageStyled>
   );
 };
