@@ -189,7 +189,7 @@ const HomePage = () => {
   const isThereAnyEmptySkillName = currentEcosystem => currentEcosystem?.skills.some(skill => skill.name === '');
   const isThereAnyEmptyLevelDescription = currentEcosystem => currentEcosystem.skills.some(skill => skill.levels.some(level => level.levelDescription === ''));
   const invalidData = currentEcosystem => currentEcosystem.name === '' || isThereAnyEmptySkillName(currentEcosystem) || isThereAnyEmptyLevelDescription(currentEcosystem);
-  const setError = currentEcosystem => setIsThereAnyError(invalidData(currentEcosystem));
+  const setError = currentEcosystem => { setIsThereAnyError(invalidData(currentEcosystem)); setShowPopUp(true); };
 
   const handleSave = () => {
     if (isNewEcosystem) {
