@@ -1,8 +1,10 @@
 import answers from '../fixtures/answers.json';
+import { user } from '../users';
 
 /* eslint-disable no-undef */
 describe('Home page', () => {
   beforeEach(() => {
+    cy.login(user, '/');
     cy.initHome();
   });
 

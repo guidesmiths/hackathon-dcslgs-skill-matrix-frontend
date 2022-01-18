@@ -10,5 +10,7 @@ module.exports = (on, config) => {
     require('@cypress/code-coverage/task')(on, config);
   }
 
+  config.env.jwtSecret = process.env.JWT_SECRET;
+
   return config;
 };

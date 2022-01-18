@@ -1,4 +1,20 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
+const { sign } = require('jsonwebtoken');
+
+Cypress.Commands.add('setLocalStorage', (key, value) => {
+  cy.get('html').then(() => {
+    window.localStorage.setItem(key, value);
+  });
+});
+
+Cypress.Commands.add('login', (user, path = '/') => {
+  const { jwtSecret } = Cypress.env();
+  const testToken = sign(user, jwtSecret);
+  cy.setLocalStorage('token', testToken);
+  cy.visit(path);
+});
+
 Cypress.Commands.add('initHome', () => {
   cy.server();
   cy.route({

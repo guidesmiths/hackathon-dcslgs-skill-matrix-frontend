@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
 import suggestions from '../fixtures/suggestions.json';
 import ecosystems from '../fixtures/ecosystems.json';
+import { user } from '../users';
 
 describe('Admin page', () => {
   beforeEach(() => {
+    cy.login(user, '/');
     cy.initAdmin();
   });
 

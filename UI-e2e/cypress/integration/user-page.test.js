@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
+import { user } from '../users';
+
 describe('User page', () => {
   beforeEach(() => {
+    cy.login(user, '/');
     cy.initUser();
   });
 

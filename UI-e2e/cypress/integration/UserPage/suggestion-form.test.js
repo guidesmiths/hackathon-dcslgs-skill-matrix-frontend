@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
+import { user } from '../../users';
+
 describe('Suggestion form', () => {
   beforeEach(() => {
+    cy.login(user, '/');
     cy.initUser();
   });
   it('should open and close suggestion modal form', () => {
