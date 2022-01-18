@@ -34,7 +34,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   const [confirmed, setConfirmed] = useState(false);
   // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
-  const [skillToDelete, setSkillToDelete] = useState('');
+  const [nameToDelete, setNameToDelete] = useState('');
   const ref = useRef(null);
 
   useEffect(() => {
@@ -47,9 +47,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 
   const onDeleteClick = (sub, id, name) => {
     setSubject(sub);
-    if (name) {
-      setSkillToDelete(name);
-    }
+    setNameToDelete(name);
     setIdToDelete(id);
     setShowModal(true);
   };
@@ -134,12 +132,12 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       {(show || isEmpty) && <ButtonsWrapper>
         <StyledButton data-cy={'add-skill'} onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-        {!isEmpty && show && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id)}>
+        {!isEmpty && show && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id, ecosystem.name)}>
           <StyledDeleteIcon icon="delete" />
           Delete ecosystem
         </StyledDelete>}
       </ButtonsWrapper>}
-      {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ skillToDelete || ecosystem?.name} subject={subject} onCloseClick={onCloseClick} />}
+      {showModal && <EcosystemModal handleDelete={handleDelete} nameToDelete={ nameToDelete} subject={subject} onCloseClick={onCloseClick} />}
     </EcosystemContainerStyled>
   );
 };

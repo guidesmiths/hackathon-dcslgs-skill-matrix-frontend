@@ -12,6 +12,7 @@ const HeaderStyled = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 24px;
+  text-transform: capitalize;
   line-height: 32px;
   margin: 0 10px;
 `;
