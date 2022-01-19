@@ -244,6 +244,11 @@ const HomePage = () => {
     setSelectedEcosystem(currEcosystem);
   };
 
+  const deleteNewSkill = newCurrentEcosystem => {
+    setSelectedEcosystem(newCurrentEcosystem);
+    setNewEcosystem(newCurrentEcosystem);
+  };
+
   return (
     <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
       <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
@@ -255,6 +260,7 @@ const HomePage = () => {
         onNewEcosystem={newEcosystemMode}
       />
       <EcosystemMain
+        deleteNewSkill={deleteNewSkill}
         ecosystem={selectedEcosystem}
         handleNewEcosystemAdmin={handleNewEcosystemAdmin}
         isNewEcosystem={isNewEcosystem}

@@ -21,7 +21,7 @@ import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosy
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
 import PopUp from '../../../../app/commons/PopUp/PopUp';
 
-const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError }) => {
+const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
@@ -45,11 +45,18 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ecosystem]);
 
-  const onDeleteClick = (sub, id, name) => {
-    setSubject(sub);
-    setNameToDelete(name);
-    setIdToDelete(id);
-    setShowModal(true);
+  const onDeleteClick = (sub, id, name, index) => {
+    if (id === 0) {
+      const newEco = { ...currentEcosystem, skills: skills.filter((_, idx) => idx !== index) };
+      setCurrentEcosystem(newEco);
+      setSkills(newEco?.skills);
+      deleteNewSkill(newEco);
+    } else {
+      setSubject(sub);
+      setNameToDelete(name);
+      setIdToDelete(id);
+      setShowModal(true);
+    }
   };
 
   const handleAdd = () => (isEmpty ? onNewEcosystem() : onNewSkill());
@@ -88,11 +95,13 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
     setCurrentEcosystem({ ...currentEcosystem, skills: currentSkills });
     handleNewEcosystemAdmin({ ...currentEcosystem, skills: currentSkills });
   };
+
   useEffect(() => {
     if (!currentEcosystem?.name && show) {
       ref.current.focus();
     }
   }, [currentEcosystem, show]);
+
   return (
     <EcosystemContainerStyled data-cy={'ecosystem-info'}>
       {loading
@@ -113,9 +122,9 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
               onChange={handleNewEcosystem}
             />
           </EcosystemHeaderStyled>
-          {ecosystem?.skills?.length > 0
+          {currentEcosystem?.skills?.length > 0
             && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
-              {ecosystem?.skills.map((skill, index) => (
+              {currentEcosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
                   key={skill?.id}
                   handleNewSkills={handleNewSkills}
@@ -123,7 +132,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
                   isThereAnyError={isThereAnyError}
                   show={show}
                   skill={skill}
-                  onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name)}
+                  onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name, index)}
                 />
               ))}
             </ScrollWrapper>}
@@ -143,6 +152,7 @@ const EcosystemsMain = ({ ecosystem, isNewEcosystem, show, handleNewEcosystemAdm
 };
 
 EcosystemsMain.propTypes = {
+  deleteNewSkill: PropTypes.func.isRequired,
   noSuggestions: PropTypes.bool.isRequired,
   onNewEcosystem: PropTypes.func.isRequired,
   onNewSkill: PropTypes.func.isRequired,

@@ -76,7 +76,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
           />
           <Label left={15} top={1}>Skill Name</Label>
           <IconsGroupStyled>
-            {show && <IconStyled icon="delete" onClick={onDeleteClick}/>}
+            {show && <IconStyled icon="delete" id={skillIndex} onClick={onDeleteClick}/>}
             <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
           </IconsGroupStyled>
         </SkillHeaderStyled>
