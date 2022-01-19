@@ -271,7 +271,7 @@ const HomePage = () => {
         <ShowSuggestions data-cy="inbox-button" show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}>Inbox</ShowSuggestions>
         <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
-        <SaveCancelButton data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
+        <SaveCancelButton save data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
       </Footer>
     </AdminPageStyled>
   );

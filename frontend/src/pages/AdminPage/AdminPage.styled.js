@@ -36,16 +36,8 @@ const EditButton = styled.div`
 const SaveCancelButton = styled(EditButton)`
   border: 0;
   color: #4f4f4f;
-
-  &:nth-child(2) {
-    background-color: white;
-    color: ${props => props.theme.colors.primaryColor};
-  }
-
-  &:last-child {
-    background-color: ${props => props.theme.colors.primaryColor};
-    color: white;
-  }
+  background-color:  ${props => (props.save ? props.theme.colors.primaryColor : 'white')};
+  color: ${props => (props.save ? 'white' : props.theme.colors.primaryColor)};
 
   &:hover {
     cursor: pointer;
