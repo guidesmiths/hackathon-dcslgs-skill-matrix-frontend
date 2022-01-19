@@ -199,8 +199,10 @@ const HomePage = () => {
           .then(({ payload }) => {
             dispatch(fetchEcosystemsAsync())
               .then(() => {
-                setSelectedEcosystem(payload);
-                handleEcosystemClick(payload[0]?.id);
+                if (payload) {
+                  setSelectedEcosystem(payload);
+                  handleEcosystemClick(payload[0]?.id);
+                }
               });
             setNewEcosystem({
               name: '',
@@ -215,8 +217,6 @@ const HomePage = () => {
                 ],
               }],
             });
-          })
-          .then(() => {
             setShowPopUp(true);
             setIsOnEditableMode(false);
           })
@@ -234,7 +234,6 @@ const HomePage = () => {
             .then(() => dispatch(fetchEcosystemsAsync()))
             .catch(err => console.error(err));
         });
-        setSelectedEcosystem(null);
       }
     }
   };
