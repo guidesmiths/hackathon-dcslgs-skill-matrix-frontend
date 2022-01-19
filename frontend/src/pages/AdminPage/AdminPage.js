@@ -218,6 +218,7 @@ const HomePage = () => {
           })
           .then(() => {
             setShowPopUp(true);
+            setIsOnEditableMode(false);
           })
           .catch(err => console.error(err));
       }
@@ -236,8 +237,6 @@ const HomePage = () => {
         setSelectedEcosystem(null);
       }
     }
-
-    setIsOnEditableMode(false);
   };
 
   const cancelNewEcosystem = () => {
