@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTour } from '@reactour/tour';
+import { useHistory, useLocation } from 'react-router-dom';
 import SearchUserBar from './SearchUserBar/SearchUserBar';
 import AnswersUserList from './AnswersUserList/AnswersUserList';
 import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
@@ -14,6 +15,15 @@ const HomeUserPage = () => {
   const { setSteps } = useTour();
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfPages = useSelector(selectNumberOfPages);
+  const history = useHistory();
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const page = +params.get('page');
+    setCurrentPage(page || 1);
+  }, []);
+  useEffect(() => history.push({ search: `page=${currentPage}` }), [currentPage]);
 
   const handlePagination = (_, page) => {
     setCurrentPage(page);
