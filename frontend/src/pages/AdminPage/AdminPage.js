@@ -202,6 +202,9 @@ const HomePage = () => {
                 if (payload) {
                   setSelectedEcosystem(payload);
                   handleEcosystemClick(payload[0]?.id);
+                } else {
+                  setSelectedEcosystem(newEcosystem?.id);
+                  handleEcosystemClick(newEcosystem?.id);
                 }
               });
             setNewEcosystem({
