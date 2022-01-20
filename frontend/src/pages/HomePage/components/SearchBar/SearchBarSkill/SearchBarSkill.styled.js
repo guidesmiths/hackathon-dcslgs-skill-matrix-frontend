@@ -6,7 +6,7 @@ const SearchBarSkillStyled = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 10px 0;
-  margin-right: 20px;
+  margin-right: 80px;
   box-sizing: border-box;
 `;
 const SearchHomeBarSkillStyled = styled.div``;
@@ -15,7 +15,7 @@ const InputWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.fonts.poppins};
   background: white;
-  margin-right: 20px;
+  margin-right: 16px;
   border-radius: 8px;
 `;
 
@@ -46,6 +46,7 @@ const StyledIcon = styled(Icon)`
   background-color: white;
   height: 100%;
   width: 50px;
+  margin-right: 16px;
 `;
 
 export { SearchBarSkillStyled, SearchHomeBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };
