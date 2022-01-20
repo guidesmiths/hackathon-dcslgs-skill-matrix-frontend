@@ -151,27 +151,31 @@ const UserRow = ({ i, skill, idEcosystem, edit }) => {
             </SelectWrapper>
             <AjustLevelButtons data-cy={'sublevel-buttons'}>
               <AdjustButton
+                minus
                 clicked={skill.sublevel}
                 icon={'remove'}
+                level={skill.level}
                 width={50}
                 onClick={() => subValueHandler('minus')}
                 onMouseEnter={() => setShowMinus(true)}
                 onMouseLeave={() => setShowMinus(false)}
               />
               {showMinus
-                && <Tooltip>When you has some of the abilities within the current skill, but hasn&prime;t developed the behaviours needed you achieved goals assigned but overdue,
+                && <Tooltip>When you have some of the abilities within the current skill, but haven&prime;t developed the behaviours needed you achieved goals assigned but overdue,
                due to a lack of prioritising or time management.</Tooltip>
               }
 
               <AdjustButton
                 clicked={skill.sublevel}
-                icon={'add'} width={50}
+                icon={'add'}
+                level={skill.level}
+                width={50}
                 onClick={() => subValueHandler('plus')}
                 onMouseEnter={() => setShowPlus(true)}
                 onMouseLeave={() => setShowPlus(false)}
               />
               {showPlus
-                && <Tooltip plus>When you has gained certain abilities within the current skill but hasn&prime;t yet developed certain behaviours needed to move to the following level.</Tooltip>
+                && <Tooltip plus>When you have gained certain abilities within the current skill but haven&prime;t yet developed certain behaviours needed to move to the following level.</Tooltip>
               }
             </AjustLevelButtons>
           </LevelEditor>}

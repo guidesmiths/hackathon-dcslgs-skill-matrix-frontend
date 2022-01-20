@@ -160,20 +160,21 @@ const AjustLevelButtons = styled.div`
 
 const AdjustButton = styled(Icon)`
   max-height: 48px;
-  background-color: #B9E0D7;
-  color: black;
-  &:first-child {
-    background-color: ${props => (props.clicked === 'minus' && props.clicked !== '' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'minus' && 'white')};
-    border-radius: 8px 0 0 8px;
- };
+  background-color: ${props => (props.minus ? (props.level === 0 ? '#EFEFEF' : props.clicked === 'minus' ? '#006B79' : props.clicked !== '' && '#B9E0D7')
+    : (props.level === 4 ? '#EFEFEF' : props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#B9E0D7'))};
+  color: ${props => (props.minus ? (props.level === 0 ? '#CCCCCC' : props.clicked === 'minus' ? '#FFF' : props.clicked !== '' && '#10243A')
+    : (props.level === 4 ? '#CCCCCC' : props.clicked === 'plus' ? '#FFF' : props.clicked !== '' && '#10243A'))};
+  border-radius: ${props => (props.minus ? '8px 0 0 8px' : '0 8px 8px 0')};
 
-  &:last-child{
-    background-color: ${props => (props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#EFEFEF')};
-    color: ${props => (props.clicked === 'plus' && 'white')};
-    border-radius: 0 8px 8px 0;
+  &:hover {
+    background-color: ${props => (props.minus ? (props.level === 0 ? '#EFEFEF' : props.clicked === 'minus' ? '#006B79' : props.clicked !== '' && '#50C0C2')
+    : (props.level === 4 ? '#EFEFEF' : props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#50C0C2'))};
+    color: ${props => (props.minus ? (props.level === 0 ? '#CCCCCC' : props.clicked === 'minus' ? '#FFF' : props.clicked !== '' && '#10243A')
+    : (props.level === 4 ? '#CCCCCC' : props.clicked === 'plus' ? '#FFF' : props.clicked !== '' && '#10243A'))};
   };
+  
 `;
+
 const StyledInput = styled.input`
   width: 100%;
   min-height: 60px;
@@ -201,8 +202,10 @@ const Tooltip = styled.span`
   text-align: center;
   background: #10243A;
   color: white;
-  opacity: 0.75;
+  opacity: 0;
   border-radius: 4px;
+  animation: appear 1 normal forwards;
+  animation-delay: 0.3s;
 
   &::after {
     content: '';
@@ -216,6 +219,14 @@ const Tooltip = styled.span`
     border-right: 20px solid transparent;
     border-bottom: 20px solid #10243A;
   }
+
+  @keyframes appear {
+    to {
+      opacity: 0.75;
+    }
+  }
+
+
 `;
 
 export {
