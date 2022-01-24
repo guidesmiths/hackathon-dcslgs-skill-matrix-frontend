@@ -37,12 +37,31 @@ const HomeUserPage = () => {
   useEffect(() => {
     setSteps([
       {
-        selector: '[data-cy="search-bar"]',
-        content: <TextTour>You can look for colleagues with upper skills than you in a determined skill</TextTour>,
+        highlightedSelectors: [
+          '[data-cy="navbar"]',
+          '[data-cy="search-bar"]',
+          '[data-cy="answers-list"]',
+        ],
+        content: <TextTour>If you need support on a project due to skills requirements, this is the place to be.</TextTour>,
       },
       {
-        selector: '[data-cy="answer-list-element-0"]',
-        content: <TextTour>Here there is an example of the results of the search</TextTour>,
+        selector: '[data-cy="search-bar"]',
+        content: <TextTour>By the directory, you will be able to know what team mates could help you.
+           Search by the skill needed, and the tool will show you all the team mates from any country who have
+            a higher expertise level than the one you currently have to help &amp; guide if needed with any skill included in the skills matrix database.</TextTour>,
+      },
+      {
+        highlightedSelectors: [
+          '[data-cy="answers-list"]',
+          // '[data-cy="answer-list-element-0"]',
+          // '[data-cy="answer-list-element-1"]',
+          // '[data-cy="answer-list-element-2"]',
+          // '[data-cy="answer-list-element-3"]',
+        ],
+        content: <TextTour>The directory will show you the name,
+           email as well as role at the company info of those colleagues
+           who may help you so then, you can contact them easily by Slack
+           or email. Sounds good right?</TextTour>,
       },
     ]);
   }, []);

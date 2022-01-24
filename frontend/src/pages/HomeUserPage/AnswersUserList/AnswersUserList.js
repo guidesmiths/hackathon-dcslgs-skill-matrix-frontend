@@ -12,8 +12,8 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
   const userData = useSelector(selectUserData);
 
   return (
-    <AnswersListStyled data-cy={'answer-list'}>
-      <ScrollWrapper>
+    <AnswersListStyled>
+      <ScrollWrapper data-cy={'answers-list'}>
         {answers
           .filter(answer => answer.id !== userData.user_id)
           .map((answer, index) => {
