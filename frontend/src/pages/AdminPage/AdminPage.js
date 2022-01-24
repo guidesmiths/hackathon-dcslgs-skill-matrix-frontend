@@ -93,60 +93,58 @@ const HomePage = () => {
 
   useEffect(() => {
     if (isOpen) {
-      console.log(currentStep);
-      if (currentStep > 1) {
-        setNoSuggestions(false);
-      }
-      // } else if (currentStep === 1 && !noSuggestions && step > currentStep) {
-      //   setNoSuggestions(true);
-      // }
-
       setStep(currentStep);
     }
   }, [isOpen, noSuggestions, currentStep]);
 
   useEffect(() => {
     if (isOpen) {
-      if (currentStep <= 3 && step > currentStep) {
+      if (currentStep <= 1 && step > currentStep) {
         setIsOnEditableMode(false);
-      } else if (currentStep > 3) {
+      } else if (currentStep > 1) {
         setIsOnEditableMode(true);
       }
       setSteps([
         {
           selector: '[data-cy="ecosystems-sidebar"]',
-          content: <TextTour>Here you can see the skill</TextTour>,
+          content: <TextTour>As an Admin you can edit, delete and include any ecosystem. If you click in an
+            ecosystem, you will find all the skills related to each one of them.</TextTour>,
         },
+        // {
+        //   disableActions: currentStep === 1 && noSuggestions,
+        //   selector: '[data-cy="inbox-button"]',
+        //   content: <TextTour>Here you can open the suggestions</TextTour>,
+        // },
+        // {
+        //   selector: '[data-cy="suggestions-list"]',
+        //   content: <TextTour>Here you can open the suggestions</TextTour>,
+        // },
         {
-          disableActions: currentStep === 1 && noSuggestions,
-          selector: '[data-cy="inbox-button"]',
-          content: <TextTour>Here you can open the suggestions</TextTour>,
-        },
-        {
-          selector: '[data-cy="suggestions-list"]',
-          content: <TextTour>Here you can open the suggestions</TextTour>,
-        },
-        {
-          disableActions: currentStep === 3 && !isOnEditableMode,
+          disableActions: currentStep === 1 && !isOnEditableMode,
           selector: !isOnEditableMode ? '[data-cy="edit-skill-button"]' : '[data-cy="save-skill-button"]',
-          content: <TextTour>Here you can able the edit mode</TextTour>,
-        },
-        {
-          selector: '[data-cy="icon-add"]',
-          content: <TextTour>Here you can insert an ecosystem</TextTour>,
+          content: <TextTour>You may edit</TextTour>,
         },
         {
           selector: '[data-cy="skill-container-tour-0"]',
-          content: <TextTour>Here you can able the edit mode</TextTour>,
+          content: <TextTour>Delete</TextTour>,
         },
         {
           selector: '[data-cy="add-skill"]',
-          content: <TextTour>Here you can insert an ecosystem</TextTour>,
+          content: <TextTour>And include any skill name</TextTour>,
         },
         {
-          selector: '[data-cy="delete-ecosystem-button"]',
-          content: <TextTour>Here you can delete an ecosystem</TextTour>,
+          highlightedSelectors: [
+            '[data-cy="skill-container-tour-0"]',
+            '[data-cy="skill-level-container-0"]',
+            '[data-cy="skill-level-container-1"]',
+            '[data-cy="skill-level-container-2"]',
+          ],
+          content: <TextTour>All skills are rated by expertise levels - each level has their own description; As an Admin you are also able to modify any of them.</TextTour>,
         },
+        // {
+        //   selector: '[data-cy="icon-add"]',
+        //   content: <TextTour>Here you can insert an ecosystem</TextTour>,
+        // },
       ]);
     }
   }, [isOpen, noSuggestions, currentStep, isOnEditableMode]);
