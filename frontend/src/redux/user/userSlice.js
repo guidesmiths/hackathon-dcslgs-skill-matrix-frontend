@@ -72,7 +72,13 @@ export const insertUserAsync = createAsyncThunk(
       seniority: jobTitle,
       country: country?.trim(),
     };
-    const adminList = ['iria.mavji@dcsl.com', 'joseantonio.dorado@dcsl.com'];
+    const adminList = [
+      'victor.perez@dcsl.com', 'carlos.esquivel@dcsl.com', 'marina.davila@dcsl.com',
+      'joseantonio.dorado@dcsl.com', 'iria.mavji@dcsl.com', 'alexis.shirtliff@dcsl.com',
+      'andrew.ellingford@dcsl.com', 'adam.bell@dcsl.com', 'william.welsh@dcsl.com',
+      'glen.docherty@dcsl.com', 'will.faulkner@dcsl.com', 'mary.jefferies@dcsl.com',
+      'nick.thompson@dcsl.com',
+    ];
     if (adminList.find(admin => admin === user.email)) {
       user.role = 'admin';
     }
