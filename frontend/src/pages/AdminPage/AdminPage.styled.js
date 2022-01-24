@@ -18,7 +18,7 @@ const IconsGroupStyled = styled.div`
   justify-content: flex-end;
 `;
 
-const EditButton = styled.div`
+const EditButton = styled.button`
   border: 0;
   color: white;
   background-color: #10243A;
@@ -27,7 +27,6 @@ const EditButton = styled.div`
   align-items:center;
   height:100%;
   display:${props => (props.show ? 'flex' : 'none')};
-
   &:hover {
     cursor: pointer;
   }
@@ -43,15 +42,5 @@ const SaveCancelButton = styled(EditButton)`
     cursor: pointer;
   }
 `;
-const ShowSuggestions = styled(EditButton)`
-  color: ${props => props.theme.colors.primaryColor};
-  background-color: white;
-  border: 0;
-  color: #4f4f4f;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export { AdminPageStyled, IconsGroupStyled, EditButton, SaveCancelButton, ShowSuggestions };
+export { AdminPageStyled, IconsGroupStyled, EditButton, SaveCancelButton };

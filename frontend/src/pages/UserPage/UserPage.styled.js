@@ -130,7 +130,7 @@ const StyledModal = styled(Modal)`
   width:600px;
 `;
 
-const SpinnerWrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,5 +154,5 @@ export {
   HeaderStyled,
   StyledModal,
   SaveButton,
-  SpinnerWrapper,
+  Wrapper,
 };

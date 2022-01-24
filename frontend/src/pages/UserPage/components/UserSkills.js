@@ -9,7 +9,7 @@ import {
   ColumTitle,
   UserInput,
   FormHeader,
-  SpinnerWrapper,
+  Wrapper,
 } from '../UserPage.styled';
 import ScrollWrapper from '../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { selectCurrentEcosystem } from '../../../redux/ecosystems/ecosystemsSlice';
@@ -17,12 +17,12 @@ import {
   selectSkillsWithLevel,
   selectEcosystemPerId,
 } from '../../../redux/user/userSlice';
-
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 import SpinnerLoader from '../../../app/commons/Spinner/Spinner';
+import StateComponent from '../../../app/commons/StateComponent/StateComponent';
 
-const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) => {
+const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, emptyState }) => {
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
   const ref = useRef(null);
@@ -57,34 +57,41 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited }) =>
   return (
     <UserData data-cy={'userRow'}>
       {!selectedEcosystem
-        ? <SpinnerWrapper>
-          <SpinnerLoader />
-        </SpinnerWrapper>
-        : <form onSubmit={handleSubmit}>
-          <FormHeader>
-            <RowTitle>
-              <DataTitle>{selectedEcosystem?.name}</DataTitle>
-              <LevelBar field={'ecosystem'} level={selectedEcosystem?.average} />
-              <UserInput ref={ref} type="submit" value="Save" />
-            </RowTitle>
-          </FormHeader>
-          <ColumTitles>
-            <ColumTitle>Skill Name</ColumTitle>
-            <ColumTitle>Rating</ColumTitle>
-            <ColumTitle>I&apos;d Like to learn</ColumTitle>
-          </ColumTitles>
-          {skillswithLevel && <ScrollWrapper height={70}>
-            {skillswithLevel?.map((skill, index) => (
-              <UserRow
-                key={skill.id}
-                edit={edit}
-                i={index}
-                idEcosystem={ecosystemIdSelected}
-                skill={skill}
-              />
-            ))}
-          </ScrollWrapper>}
-        </form>
+        ? <Wrapper>
+          {emptyState
+            ? <StateComponent location={'user'}/>
+            : <SpinnerLoader />
+          }
+        </Wrapper>
+        : !emptyState
+          ? <form onSubmit={handleSubmit}>
+            <FormHeader>
+              <RowTitle>
+                <DataTitle>{selectedEcosystem?.name}</DataTitle>
+                <LevelBar field={'ecosystem'} level={selectedEcosystem?.average} />
+                <UserInput ref={ref} type="submit" value="Save" />
+              </RowTitle>
+            </FormHeader>
+            <ColumTitles>
+              <ColumTitle>Skill Name</ColumTitle>
+              <ColumTitle>Rating</ColumTitle>
+              <ColumTitle>I&apos;d Like to learn</ColumTitle>
+            </ColumTitles>
+            {skillswithLevel && <ScrollWrapper height={70}>
+              {skillswithLevel?.map((skill, index) => (
+                <UserRow
+                  key={skill.id}
+                  edit={edit}
+                  i={index}
+                  idEcosystem={ecosystemIdSelected}
+                  skill={skill}
+                />
+              ))}
+            </ScrollWrapper>}
+          </form>
+          : <Wrapper>
+            <StateComponent location={'user'}/>
+          </Wrapper>
       }
 
     </UserData>
@@ -98,6 +105,7 @@ UserSkills.defaultProps = {
 
 UserSkills.propTypes = {
   edit: PropTypes.bool.isRequired,
+  emptyState: PropTypes.bool.isRequired,
   isSubmited: PropTypes.bool.isRequired,
   setIsSubmited: PropTypes.func.isRequired,
   ecosystemIdSelected: PropTypes.number,

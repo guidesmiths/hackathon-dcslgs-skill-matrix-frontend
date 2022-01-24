@@ -20,8 +20,9 @@ import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
 import PopUp from '../../../../app/commons/PopUp/PopUp';
+import StateComponent from '../../../../app/commons/StateComponent/StateComponent';
 
-const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError }) => {
+const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
@@ -113,23 +114,27 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
     <EcosystemContainerStyled data-cy={'ecosystem-info'}>
       {loading
         ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
-          <SpinnerLoader/>
+          {emptyState
+            ? <StateComponent/>
+            : <SpinnerLoader/>
+          }
         </EcosystemFallbackStyled>
-        : <>
-          <EcosystemHeaderStyled>
-            <Label left={40} top={2}>Ecosystem Name</Label>
-            <EcosystemNameStyledInput
-              ref={ref}
-              data-cy="ecosystem-name-input"
-              hasError={currentEcosystem?.name === '' && isThereAnyError}
-              id="name"
-              placeholder="Ecosystem name"
-              readOnly={!show}
-              value={currentEcosystem?.name || ''}
-              onChange={handleNewEcosystem}
-            />
-          </EcosystemHeaderStyled>
-          {currentEcosystem?.skills?.length > 0
+        : !emptyState
+          ? <>
+            <EcosystemHeaderStyled>
+              <Label left={40} top={2}>Ecosystem Name</Label>
+              <EcosystemNameStyledInput
+                ref={ref}
+                data-cy="ecosystem-name-input"
+                hasError={currentEcosystem?.name === '' && isThereAnyError}
+                id="name"
+                placeholder="Ecosystem name"
+                readOnly={!show}
+                value={currentEcosystem?.name || ''}
+                onChange={handleNewEcosystem}
+              />
+            </EcosystemHeaderStyled>
+            {currentEcosystem?.skills?.length > 0
             && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
               {currentEcosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
@@ -143,10 +148,13 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
                 />
               ))}
             </ScrollWrapper>}
-        </>
+          </>
+          : <EcosystemFallbackStyled>
+            <StateComponent/>
+          </EcosystemFallbackStyled>
       }
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
-      {(show || isEmpty) && <ButtonsWrapper>
+      {show && <ButtonsWrapper>
         <StyledButton data-cy={'add-skill'} onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
         {!isEmpty && show && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id, ecosystem.name)}>
           <StyledDeleteIcon icon="delete" />
@@ -160,6 +168,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
 
 EcosystemsMain.propTypes = {
   deleteNewSkill: PropTypes.func.isRequired,
+  emptyState: PropTypes.bool.isRequired,
   noSuggestions: PropTypes.bool.isRequired,
   onNewEcosystem: PropTypes.func.isRequired,
   onNewSkill: PropTypes.func.isRequired,

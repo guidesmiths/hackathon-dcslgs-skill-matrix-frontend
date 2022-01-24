@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import Ecosystems from '../../app/commons/Ecosystems/Ecosystems';
@@ -17,7 +17,6 @@ import TextTour from '../../app/commons/Tour/TextTour';
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
   const { isOpen, currentStep, setDisabledActions, setSteps } = useTour();
   const [step, setStep] = useState(0);
@@ -27,10 +26,9 @@ const UserPage = () => {
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
   const { pathname } = useLocation();
-
+  const [emptyState, setEmptyState] = useState(true);
   const userData = useSelector(selectUserData);
   const ecosystems = useSelector(selectAllEcosystems);
-
   useEffect(() => {
     if (ecosystems.length === 0) {
       dispatch(fetchEcosystemsAsync());
@@ -46,13 +44,13 @@ const UserPage = () => {
         dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
         dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
         setEcosystemIdSelected(currentLocation);
+        setEmptyState(false);
       }
       if (!currentLocation) {
-        history.push(`/profile/ecosystem/${ecosystems[0]?.id}`);
+        setEmptyState(true);
       }
     }
   }, [pathname, userData.id, canceling]);
-
   const handleSubmit = () => {
     setIsSubmited(true);
     setEdit(false);
@@ -191,9 +189,10 @@ const UserPage = () => {
       dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
       dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
       setEcosystemIdSelected(currentLocation);
+      setEmptyState(false);
     }
     if (!currentLocation) {
-      history.push(`/profile/ecosystem/${ecosystems[0]?.id}`);
+      setEmptyState(true);
     }
   }, []);
 
@@ -202,7 +201,7 @@ const UserPage = () => {
       <HeaderStyled data-cy="header" />
       <UserPageDisplay>
         <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
-        <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
+        <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} emptyState={emptyState} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>
         <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
@@ -212,7 +211,7 @@ const UserPage = () => {
         {!edit
           ? <>
             <StyledIcon data-cy={'add'} icon={'email'} onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
-            <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); setDisabledActions(false); }}>Edit</EditButtonStyled>
+            { !emptyState && <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); setDisabledActions(false); }}>Edit</EditButtonStyled>}
           </>
           : <>
             <SaveButton action={'cancel'} onClick={() => isCanceling(true)}>Cancel</SaveButton>

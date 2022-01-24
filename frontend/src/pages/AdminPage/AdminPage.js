@@ -12,11 +12,11 @@ import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggest
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
 import { selectUserData, selectUserInsertLoading } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
-import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
+import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
 import TextTour from '../../app/commons/Tour/TextTour';
-
+import { StyledIcon } from '../UserPage/UserPage.styled';
 // Do we need this?
 const newEcosystemEmpty = {
   name: '',
@@ -54,6 +54,7 @@ const HomePage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const { pathname } = useLocation();
   const currEcosystem = useSelector(selectCurrentEcosystem);
+  const [emptyState, setEmptyState] = useState(true);
 
   useEffect(() => {
     setSelectedEcosystem(currEcosystem);
@@ -80,10 +81,11 @@ const HomePage = () => {
 
       if (currentLocation && userData.id) {
         dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
+        setEmptyState(false);
       }
 
       if (!currentLocation && !ecosystem) {
-        history.push(`/ecosystem/${ecosystems[0]?.id}`);
+        setEmptyState(true);
       }
       setIsOnEditableMode(false);
     }
@@ -266,6 +268,7 @@ const HomePage = () => {
       <EcosystemMain
         deleteNewSkill={deleteNewSkill}
         ecosystem={selectedEcosystem}
+        emptyState={emptyState}
         handleNewEcosystemAdmin={handleNewEcosystemAdmin}
         isNewEcosystem={isNewEcosystem}
         isThereAnyError={isThereAnyError}
@@ -276,8 +279,8 @@ const HomePage = () => {
       />
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
-        <ShowSuggestions data-cy="inbox-button" show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}>Inbox</ShowSuggestions>
-        <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>
+        <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
+        {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>}
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton save data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
       </Footer>
