@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
+import Icon from '../../../../app/commons/icon/icon';
 
 const EcosystemBarStyled = styled.div`
   height: fit-content;
@@ -64,10 +65,67 @@ const EcosystemScroller = styled(UserRowWrapper)`
     border-radius: 8px;
   }
 `;
+
+const StyledInputWrapper = styled.div`
+  height: 40px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 10px auto;
+  border: none;
+`;
+
+const StyledInput = styled.input`
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding-left: 50px;
+  width: 100%;
+  height: 100%;
+  color: #8D9091;
+  font-family: ${params => params.theme.fonts.poppins};
+  border: 1px solid #EFEFEF;
+`;
+
+const IconStyled = styled(Icon)`
+  position: absolute;
+  transform: rotate(90deg);
+  width: 14px;
+  height: 14px;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  margin: auto;
+`;
+
+const Image = styled.img`
+  display:block;
+  width: 80px;
+  margin : 10vh auto 10px auto;
+`;
+
+const NoEcosystemsMessage = styled.p`
+  display: block;
+  margin : auto;
+  font-family: ${props => props.theme.fonts.poppins};
+  font-size: 14px;
+  text-align: center;
+`;
+
+const NoEcosystems = styled.div`
+  height: 100%;
+`;
+
 export {
   EcosystemBarStyled,
   EcosystemsSideBarStyled,
   EcosystemHeaderStyled,
   EcosystemElementStyled,
   EcosystemScroller,
+  IconStyled,
+  Image,
+  NoEcosystems,
+  NoEcosystemsMessage,
+  StyledInput,
+  StyledInputWrapper,
 };

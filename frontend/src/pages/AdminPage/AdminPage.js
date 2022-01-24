@@ -10,7 +10,7 @@ import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar'
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
-import { selectUserData } from '../../redux/user/userSlice';
+import { selectUserData, selectUserInsertLoading } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton, ShowSuggestions } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
@@ -39,6 +39,8 @@ const HomePage = () => {
   const { currentStep, isOpen, setDisabledActions, setSteps } = useTour();
   const [step, setStep] = useState(0);
 
+  const [loading, setLoading] = useState(true);
+
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
   const userData = useSelector(selectUserData);
@@ -66,10 +68,10 @@ const HomePage = () => {
   }, [suggestions]);
 
   useEffect(() => {
-    if (!ecosystems.length) {
-      dispatch(fetchEcosystemsAsync());
-    }
-  }, [ecosystems]);
+    dispatch(fetchEcosystemsAsync())
+      .then(() => setLoading(false))
+      .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     if (ecosystems.length) {
@@ -255,6 +257,7 @@ const HomePage = () => {
       <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
       <EcosystemsSideBar
         ecosystems={ecosystems}
+        loading={loading}
         noSuggestions={noSuggestions}
         selected={selectedEcosystem?.id}
         show={isOnEditableMode}

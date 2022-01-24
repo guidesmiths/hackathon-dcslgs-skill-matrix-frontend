@@ -67,7 +67,6 @@ export const ecosystemsSlice = createSlice({
 
   extraReducers: builder => {
     builder
-
       .addCase(fetchEcosystemsAsync.pending, state => {
         state.status = 'loading';
       })
