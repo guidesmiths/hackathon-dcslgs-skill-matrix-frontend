@@ -38,23 +38,29 @@ const HomePage = () => {
     setSteps([
       {
         selector: '[data-cy="user-input"]',
-        content: <TextTour>You can look for colleagues through their names&apos;</TextTour>,
+        content: <TextTour>Do you want to know the complete skills set a team member has? Insert their
+        name in the search tab and voila!</TextTour>,
       },
       {
         selector: '[data-cy="search-bar-skill-0"]',
-        content: <TextTour>Or just type a skill and the minimum level you wish to find</TextTour>,
+        content: <TextTour>If you need to know more about who has a certain skill and expertise level, this
+        is the solution for you. You may include as many skills and expertise levels as needed by
+        clicking on the + tab. Efficient and easy peasy!</TextTour>,
       },
       {
         selector: '[data-cy="answer-list-element-0"]',
-        content: <TextTour>Example of answer</TextTour>,
+        content: <TextTour>Need an example on how the Directory works? Check this out! You may see the
+        name of the employee, email and role at the business.</TextTour>,
       },
       {
         selector: '[data-cy="user-seniority-0"]',
-        content: <TextTour>Seniority of the user</TextTour>,
+        content: <TextTour>Here, you may see the current role of each employee.
+        As an Admin, you may change employees&apos; access settings to the skill matrix tool by</TextTour>,
       },
       {
         selector: '[data-cy="switch-admin-0"]',
-        content: <TextTour>Here you can change the role of a determined user</TextTour>,
+        content: <TextTour>As an Admin, you may change employees&apos; access settings to the skill matrix tool by
+        clicking on this tab. </TextTour>,
       },
     ]);
   }, []);
