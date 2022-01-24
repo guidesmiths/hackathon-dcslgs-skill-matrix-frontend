@@ -63,18 +63,25 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
 
   const onCloseClick = () => setShowModal(false);
 
+  const triggerDeleteEcosystem = id => {
+    dispatch(deleteEcosystemAsync(id))
+      .then(() => {
+        dispatch(fetchEcosystemsAsync());
+        setConfirmed(true);
+        setShowModal(false);
+        history.push(`/ecosystem/${ecosystems[0]?.id}`);
+      })
+      .catch(err => console.log(err));
+  };
+
   const handleDelete = () => {
     if (subject === 'ecosystem') {
-      dispatch(deleteEcosystemAsync(idToDelete))
-        .then(() => {
-          dispatch(fetchEcosystemsAsync());
-          setConfirmed(true);
-          setShowModal(false);
-          history.push(`/ecosystem/${ecosystems[0]?.id}`);
-        })
-        .catch(err => console.log(err));
+      triggerDeleteEcosystem(idToDelete);
     }
     if (subject === 'skill') {
+      if (currentEcosystem?.skills?.length === 1) {
+        triggerDeleteEcosystem(currentEcosystem?.id);
+      }
       dispatch(deleteSkillAsync(idToDelete))
         .then(() => {
           dispatch(fetchEcosystemsAsync());
