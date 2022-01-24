@@ -34,8 +34,8 @@ const SkillElementStyled = styled.div`
   padding: 0 50px;
   border: 1px solid #ddd;
   border-top: none;
-  background: #ffffff;
-  
+  background: ${props => (props.isSearched ? '#EFEFEF' : '#FFFFFF')};
+
   @media (max-width: 1500px){
     grid-template-columns: 0.6fr 0.4fr 4fr;
   }
@@ -47,7 +47,7 @@ const SkillElementStyled = styled.div`
   }
   
   &:nth-child(even) {
-    background: #FBFBFB;
+    background: ${props => (props.isSearched ? '#EFEFEF' : '#FBFBFB')}
   };
 `;
 

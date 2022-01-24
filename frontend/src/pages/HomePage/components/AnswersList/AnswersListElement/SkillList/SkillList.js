@@ -7,17 +7,20 @@ import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
 import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
 import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
+import { selectSkillFilters } from '../../../../../../redux/filters/filtersSlice';
 
 const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
   const [loaded, hasLoaded] = useState(false);
   const answers = useSelector(selectCurrentAnswers(userId));
+  const skillFilters = useSelector(selectSkillFilters);
   useEffect(() => {
     if (!isCollapsed) {
       setSkills(answers?.ecosystems?.flatMap(ecosystem => ecosystem.skills));
       setTimeout(() => hasLoaded(true), [2000]);
     }
   }, [answers, isCollapsed]);
+
   return (
     <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
       <SkillListWrapper height={55}>
@@ -31,7 +34,7 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
             }
           </LoaderWrapper>
           : skills.map(({ id, level, levelDescription, name, sublevel }) => (
-            <SkillListElement key={id} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
+            <SkillListElement key={id} isSearched = {skillFilters.find(x => x.skill === id)} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
           ))
         }
       </SkillListWrapper>
