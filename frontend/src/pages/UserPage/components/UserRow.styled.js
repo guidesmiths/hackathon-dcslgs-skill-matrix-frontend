@@ -225,8 +225,10 @@ const Tooltip = styled.span`
       opacity: 0.75;
     }
   }
+`;
 
-
+const RowSkillTour = styled.div`
+  width: 100%;
 `;
 
 export {
@@ -246,6 +248,7 @@ export {
   LevelEditor,
   AjustLevelButtons,
   AdjustButton,
+  RowSkillTour,
   StyledInput,
   Tooltip,
 };

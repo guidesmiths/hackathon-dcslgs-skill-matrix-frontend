@@ -140,34 +140,46 @@ const UserPage = () => {
     }
     setSteps([
       {
-        selector: '[data-cy="userSkill-0"]',
-        content: <TextTour>Here you can see the skill</TextTour>,
+        selector: '[data-cy="ecosystems"]',
+        content: <TextTour>Have a look at all the different ecosystems we currently have identified at the
+        team. If you click in an ecosystem, you will find all the skills related to each one of them</TextTour>,
       },
       {
-        /*  TODO: This selector is not working */
-        selector: '[data-cy="skill-bars-0"]',
-        content: <TextTour>Here you can see the skill in bars</TextTour>,
+        selector: '[data-cy="skill-0"]',
+        content: <TextTour>All skills are rated by expertise levels - each level has their own description.</TextTour>,
       },
       {
-        selector: '[data-cy="checkbox"]',
-        content: <TextTour>Here you can see the skill</TextTour>,
+        highlightedSelectors: [
+          '[data-cy="navbar"]',
+          '[data-cy="header"]',
+          '[data-cy="userRow"]',
+          '[data-cy="footer]',
+        ],
+        content: <TextTour>Once you have had a look at the ecosystems and skills, you are ready to start! Go to the
+        ecosystems you feel most comfortable with</TextTour>,
       },
       {
         disableActions: !edit,
         selector: !edit ? '[data-cy="editUser"]' : '[data-cy="saveUser"]',
-        content: <TextTour>To edit the skills, you have to click on &apos;Edit&apos;</TextTour>,
+        content: <TextTour>Click on the edit button</TextTour>,
       },
       {
-        selector: '[data-cy="level-selector"]',
-        content: <TextTour>Edit the skill level</TextTour>,
-      },
-      {
-        selector: '[data-cy="sublevel-buttons"]',
-        content: <TextTour>Here you can adjust the skill level with minus and plus</TextTour>,
+        selector: '[data-cy="skill-0-description-level"]',
+        content: <TextTour>Have a look at the
+        descriptions of each level for that skill and choose the one you feel identified with. We have up
+        to 16 skills levels considering the + and the -</TextTour>,
       },
       {
         selector: '[data-cy="comment-section"]',
-        content: <TextTour>Here you can adjust the skill level with minus and plus</TextTour>,
+        content: <TextTour>Include comments if needed to justify your skill level rate.</TextTour>,
+      },
+      {
+        selector: '[data-cy="checkbox"]',
+        content: <TextTour>If you are willing to learn certain skills, click on the “I’d like to learn tab”</TextTour>,
+      },
+      {
+        selector: '[data-cy="saveUser"]',
+        content: <TextTour>Don&apos;t forget to save it!</TextTour>,
       },
     ]);
     setStep(currentStep);
@@ -187,7 +199,7 @@ const UserPage = () => {
 
   return (
     <UserPageStyled data-cy="user">
-      <HeaderStyled />
+      <HeaderStyled data-cy="header" />
       <UserPageDisplay>
         <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>

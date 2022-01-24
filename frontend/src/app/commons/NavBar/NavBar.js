@@ -17,7 +17,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const { setIsOpen } = useTour();
 
   return (
-    <NavBarTop>
+    <NavBarTop data-cy={'navbar'}>
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
