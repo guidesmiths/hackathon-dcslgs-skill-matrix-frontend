@@ -36,7 +36,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { currentStep, isOpen, setDisabledActions, setSteps } = useTour();
+  const { currentStep, isOpen, setCurrentStep, setDisabledActions, setSteps } = useTour();
   const [step, setStep] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -108,8 +108,15 @@ const HomePage = () => {
       } else if (currentStep > 1) {
         setIsOnEditableMode(true);
       }
+      if (currentStep === 0 && pathname.split('/')[2]) {
+        setDisabledActions(false);
+      }
+      if (!pathname.split('/')[2]) {
+        setCurrentStep(0);
+      }
       setSteps([
         {
+          disableActions: !pathname.split('/')[2],
           selector: '[data-cy="ecosystems-sidebar"]',
           content: <TextTour>As an Admin you can edit, delete and include any ecosystem. If you click in an
             ecosystem, you will find all the skills related to each one of them.</TextTour>,
@@ -151,7 +158,7 @@ const HomePage = () => {
         // },
       ]);
     }
-  }, [isOpen, noSuggestions, currentStep, isOnEditableMode]);
+  }, [isOpen, noSuggestions, currentStep, isOnEditableMode, pathname.split('/')[2]]);
 
   const handleEcosystemClick = selectedId => {
     const ecosystem = ecosystems.find(({ id }) => id === selectedId);

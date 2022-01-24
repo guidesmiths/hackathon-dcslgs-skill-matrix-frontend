@@ -18,7 +18,7 @@ import TextTour from '../../app/commons/Tour/TextTour';
 const UserPage = () => {
   const dispatch = useDispatch();
   const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
-  const { isOpen, currentStep, setDisabledActions, setSteps } = useTour();
+  const { isOpen, currentStep, setCurrentStep, setDisabledActions, setSteps } = useTour();
   const [step, setStep] = useState(0);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -67,57 +67,6 @@ const UserPage = () => {
       handleSubmit();
     }
   };
-  useEffect(() => {
-    /*
-    - This currentStep allows to check when I can keep the edit mode or reset it, the 3 corresponds to the index of the tour step which
-    the user needs to activate the edit mode for the tour.
-
-    - The step parameter allowed me to check if I came from a following step to disable again the edit mode
-     */
-    if (isOpen && (currentStep <= 3 && step > currentStep)) {
-      setEdit(!(currentStep <= 3));
-      setDisabledActions(currentStep === 3);
-    } else if (isOpen && currentStep < 3) {
-      setEdit(false);
-    }
-    /* If the user passed the step of activate the edit mode, there is no need to disable again */
-    if (isOpen && currentStep > 3) {
-      setEdit(true);
-    }
-    setSteps([
-      {
-        selector: '[data-cy="userSkill-0"]',
-        content: <TextTour>Here you can see the skill</TextTour>,
-      },
-      {
-        /*  TODO: This selector is not working */
-        selector: '[data-cy="level-bar"]',
-        content: <TextTour>Here you can see the skill in bars</TextTour>,
-      },
-      {
-        selector: '[data-cy="checkbox"]',
-        content: <TextTour>Here you can see the skill</TextTour>,
-      },
-      {
-        disableActions: !edit,
-        selector: !edit ? '[data-cy="editUser"]' : '[data-cy="saveUser"]',
-        content: <TextTour>To edit the skills, you have to click on &apos;Edit&apos;</TextTour>,
-      },
-      {
-        selector: '[data-cy="level-selector"]',
-        content: <TextTour>Edit the skill level</TextTour>,
-      },
-      {
-        selector: '[data-cy="sublevel-buttons"]',
-        content: <TextTour>Here you can adjust the skill level with minus and plus</TextTour>,
-      },
-      {
-        selector: '[data-cy="comment-section"]',
-        content: <TextTour>Here you can write a comment</TextTour>,
-      },
-    ]);
-    setStep(currentStep);
-  }, [isOpen, edit, currentStep]);
 
   useEffect(() => {
     /*
@@ -136,8 +85,15 @@ const UserPage = () => {
     if (isOpen && currentStep > 3) {
       setEdit(true);
     }
+    if (!pathname.split('/')[3]) {
+      setCurrentStep(0);
+    }
+    if (isOpen && currentStep === 0 && pathname.split('/')[3]) {
+      setDisabledActions(false);
+    }
     setSteps([
       {
+        disableActions: !pathname.split('/')[3],
         selector: '[data-cy="ecosystems"]',
         content: <TextTour>Have a look at all the different ecosystems we currently have identified at the
         team. If you click in an ecosystem, you will find all the skills related to each one of them</TextTour>,
@@ -181,7 +137,7 @@ const UserPage = () => {
       },
     ]);
     setStep(currentStep);
-  }, [isOpen, edit, currentStep]);
+  }, [isOpen, edit, currentStep, pathname.split('/')[3]]);
 
   useEffect(() => {
     const currentLocation = +pathname.split('/')[3];
