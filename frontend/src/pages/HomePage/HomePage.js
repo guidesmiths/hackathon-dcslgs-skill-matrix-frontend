@@ -8,11 +8,11 @@ import AnswersList from './components/AnswersList/AnswersList';
 import { HomePageStyled, StyledBackground } from './HomePage.styled';
 import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
-import TextTour from '../../app/commons/Tour/TextTour';
+import { TextTour } from '../../app/commons/Tour/TextTour';
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { setSteps } = useTour();
+  const { currentStep, isOpen, setCurrentStep, setSteps } = useTour();
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfPages = useSelector(selectNumberOfPages);
   const history = useHistory();
@@ -35,6 +35,9 @@ const HomePage = () => {
   useEffect(() => history.push({ search: `page=${currentPage}` }), [currentPage]);
 
   useEffect(() => {
+    if (!isOpen && currentStep === 4) {
+      setCurrentStep(0);
+    }
     setSteps([
       {
         selector: '[data-cy="user-input"]',
@@ -55,12 +58,12 @@ const HomePage = () => {
       {
         selector: '[data-cy="user-seniority-0"]',
         content: <TextTour>Here, you may see the current role of each employee.
-        As an Admin, you may change employees&apos; access settings to the skill matrix tool by</TextTour>,
+        As an Admin, you may change employees&apos; access settings to the skill matrix tool by.</TextTour>,
       },
       {
         selector: '[data-cy="switch-admin-0"]',
         content: <TextTour>As an Admin, you may change employees&apos; access settings to the skill matrix tool by
-        clicking on this tab. </TextTour>,
+        clicking on this tab.</TextTour>,
       },
     ]);
   }, []);

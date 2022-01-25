@@ -15,7 +15,7 @@ import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
-import TextTour from '../../app/commons/Tour/TextTour';
+import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
 import { StyledIcon } from '../UserPage/UserPage.styled';
 // Do we need this?
 const newEcosystemEmpty = {
@@ -102,6 +102,9 @@ const HomePage = () => {
   }, [isOpen, noSuggestions, currentStep]);
 
   useEffect(() => {
+    if ((!pathname.split('/')[2]) || (currentStep === 4 && !isOpen)) {
+      setCurrentStep(0);
+    }
     if (isOpen) {
       if (currentStep <= 1 && step > currentStep) {
         setIsOnEditableMode(false);
@@ -111,37 +114,40 @@ const HomePage = () => {
       if (currentStep === 0 && pathname.split('/')[2]) {
         setDisabledActions(false);
       }
-      if (!pathname.split('/')[2]) {
-        setCurrentStep(0);
-      }
       setSteps([
         {
           disableActions: !pathname.split('/')[2],
           selector: '[data-cy="ecosystems-sidebar"]',
           content: <TextTour>As an Admin you can edit, delete and include any ecosystem. If you click in an
-            ecosystem, you will find all the skills related to each one of them.</TextTour>,
+            ecosystem, you will find all the skills related to each one of them.
+          {!pathname.split('/')[2] ? <Warning>To continue, please click on any ecosystem.</Warning>
+            : <Success>You can continue with the tour.</Success>
+          }</TextTour>,
         },
         // {
         //   disableActions: currentStep === 1 && noSuggestions,
         //   selector: '[data-cy="inbox-button"]',
-        //   content: <TextTour>Here you can open the suggestions</TextTour>,
+        //   content: <TextTour>Here you can open the suggestions.</TextTour>,
         // },
         // {
         //   selector: '[data-cy="suggestions-list"]',
-        //   content: <TextTour>Here you can open the suggestions</TextTour>,
+        //   content: <TextTour>Here you can open the suggestions.</TextTour>,
         // },
         {
-          disableActions: currentStep === 1 && !isOnEditableMode,
-          selector: !isOnEditableMode ? '[data-cy="edit-skill-button"]' : '[data-cy="save-skill-button"]',
-          content: <TextTour>You may edit</TextTour>,
+          disableActions: !isOnEditableMode,
+          selector: '[data-cy="edit-skill-button"]',
+          content: <TextTour>You may edit,
+            {!isOnEditableMode ? <Warning>To continue, please click on the <em>Edit</em> button.</Warning>
+              : <Success>You can continue with the tour.</Success>
+            } </TextTour>,
         },
         {
           selector: '[data-cy="skill-container-tour-0"]',
-          content: <TextTour>Delete</TextTour>,
+          content: <TextTour>Delete,</TextTour>,
         },
         {
           selector: '[data-cy="add-skill"]',
-          content: <TextTour>And include any skill name</TextTour>,
+          content: <TextTour>And include any skill name.</TextTour>,
         },
         {
           highlightedSelectors: [

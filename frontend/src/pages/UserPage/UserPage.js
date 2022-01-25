@@ -13,12 +13,12 @@ import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems
 import Footer from '../../app/commons/Footer/Footer';
 import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
 import ConfirmPopUp from './components/ConfirmPopUp/ConfirmPopUp';
-import TextTour from '../../app/commons/Tour/TextTour';
+import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
-  const { isOpen, currentStep, setCurrentStep, setDisabledActions, setSteps } = useTour();
+  const { isOpen, currentStep, setCurrentStep, setDisabledActions, setIsOpen, setSteps } = useTour();
   const [step, setStep] = useState(0);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -57,6 +57,9 @@ const UserPage = () => {
     dispatch(insertAnswersAsync(userData))
       .then(() => setConfirmed(true))
       .catch(err => console.log(err));
+    if (currentStep === 7) {
+      setIsOpen(false);
+    }
   };
 
   const handleCancel = confirm => {
@@ -75,6 +78,9 @@ const UserPage = () => {
 
     - The step parameter allowed me to check if I came from a following step to disable again the edit mode
      */
+    if (currentStep === 7 && !isOpen) {
+      setCurrentStep(0);
+    }
     if (isOpen && (currentStep <= 3 && step > currentStep)) {
       setEdit(!(currentStep <= 3));
       setDisabledActions(currentStep === 3);
@@ -96,7 +102,10 @@ const UserPage = () => {
         disableActions: !pathname.split('/')[3],
         selector: '[data-cy="ecosystems"]',
         content: <TextTour>Have a look at all the different ecosystems we currently have identified at the
-        team. If you click in an ecosystem, you will find all the skills related to each one of them</TextTour>,
+        team. If you click in an ecosystem, you will find all the skills related to each one of them.
+        {!pathname.split('/')[3] ? <Warning>To continue, please click on any ecosystem.</Warning>
+          : <Success>You can continue with the tour.</Success>
+        }</TextTour>,
       },
       {
         selector: '[data-cy="skill-0"]',
@@ -110,18 +119,22 @@ const UserPage = () => {
           '[data-cy="footer]',
         ],
         content: <TextTour>Once you have had a look at the ecosystems and skills, you are ready to start! Go to the
-        ecosystems you feel most comfortable with</TextTour>,
+        ecosystems you feel most comfortable with.</TextTour>,
       },
       {
         disableActions: !edit,
         selector: !edit ? '[data-cy="editUser"]' : '[data-cy="saveUser"]',
-        content: <TextTour>Click on the edit button</TextTour>,
+        content: <TextTour>Once you&apos;ve had a look to the ecosystems and skills,
+           you are ready to create your skill matrix profile. To proceed, search for the skills you may feel identified with and click on the option edit.
+        {!edit ? <Warning>To continue, please click on the <em>Edit</em> button.</Warning>
+          : <Success>You can continue with the tour.</Success>
+        } </TextTour>,
       },
       {
         selector: '[data-cy="skill-0-description-level"]',
         content: <TextTour>Have a look at the
         descriptions of each level for that skill and choose the one you feel identified with. We have up
-        to 16 skills levels considering the + and the -</TextTour>,
+        to 16 skills levels considering the + and the -.</TextTour>,
       },
       {
         selector: '[data-cy="comment-section"]',
@@ -129,7 +142,7 @@ const UserPage = () => {
       },
       {
         selector: '[data-cy="checkbox"]',
-        content: <TextTour>If you are willing to learn certain skills, click on the “I’d like to learn tab”</TextTour>,
+        content: <TextTour>If you are willing to learn certain skills, click on the “I’d like to learn tab”.</TextTour>,
       },
       {
         selector: '[data-cy="saveUser"]',

@@ -27,6 +27,7 @@ const EditButton = styled.button`
   align-items:center;
   height:100%;
   font-family: ${props => props.theme.fonts.poppins};
+  font-size: 16px;
   display:${props => (props.show ? 'flex' : 'none')};
   &:hover {
     cursor: pointer;

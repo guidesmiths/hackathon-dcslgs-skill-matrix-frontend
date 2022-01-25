@@ -8,11 +8,11 @@ import AnswersUserList from './AnswersUserList/AnswersUserList';
 import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
 import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
-import TextTour from '../../app/commons/Tour/TextTour';
+import { TextTour } from '../../app/commons/Tour/TextTour';
 
 const HomeUserPage = () => {
   const dispatch = useDispatch();
-  const { setSteps } = useTour();
+  const { currentStep, setCurrentStep, isOpen, setSteps } = useTour();
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfPages = useSelector(selectNumberOfPages);
   const history = useHistory();
@@ -35,6 +35,9 @@ const HomeUserPage = () => {
   }, []);
 
   useEffect(() => {
+    if (currentStep === 3 && !isOpen) {
+      setCurrentStep(0);
+    }
     setSteps([
       {
         highlightedSelectors: [
@@ -46,9 +49,13 @@ const HomeUserPage = () => {
       },
       {
         selector: '[data-cy="search-bar"]',
-        content: <TextTour>By the directory, you will be able to know what team mates could help you.
-           Search by the skill needed, and the tool will show you all the team mates from any country who have
-            a higher expertise level than the one you currently have to help &amp; guide if needed with any skill included in the skills matrix database.</TextTour>,
+        content: <TextTour>The directory, gives you the opportunity
+           to easily know who may help you on a certain skill/ecosystem.
+           To do so, please search by the skill needed so you may see all
+           the team mates based in any of our locations whose expertise
+           level within the skill requested, is higher than yours.
+           By this, you will be able to know who at the company may help,
+           teach and/or support you on any skill included in our skill matrix tool.</TextTour>,
       },
       {
         highlightedSelectors: [
@@ -58,10 +65,10 @@ const HomeUserPage = () => {
           // '[data-cy="answer-list-element-2"]',
           // '[data-cy="answer-list-element-3"]',
         ],
-        content: <TextTour>The directory will show you the name,
-           email as well as role at the company info of those colleagues
-           who may help you so then, you can contact them easily by Slack
-           or email. Sounds good right?</TextTour>,
+        content: <TextTour>The aim of the directory,
+           is to show you the full name, email and role
+           info of those colleagues who may give the support
+           needed within a certain skill by Slack or email. Sounds good right?</TextTour>,
       },
     ]);
   }, []);

@@ -10,4 +10,16 @@ const TextTour = styled.div`
   font-weight: 400
   `;
 
-export default TextTour;
+const Warning = styled.p`
+  color: red;
+`;
+
+const Success = styled.p`
+  color: ${props => props.theme.colors.darkGreen};
+`;
+
+export {
+  TextTour,
+  Success,
+  Warning,
+};
