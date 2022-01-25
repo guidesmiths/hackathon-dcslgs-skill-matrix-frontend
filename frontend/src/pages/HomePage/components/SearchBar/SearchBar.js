@@ -4,6 +4,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import { updateUserFilter, selectSkillFilters, selectUserFilter } from '../../../../redux/filters/filtersSlice';
 import { fetchUsersFilteredAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';

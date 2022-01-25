@@ -35,10 +35,10 @@ const HomePage = () => {
   useEffect(() => {
     const params = new URLSearchParams(search);
     const name = params.get('name');
-    const pageQuerry = `page=${currentPage}`;
-    const nameQuerry = name ? `&name=${name}` : '';
-    const querry = `${pageQuerry}${nameQuerry}`;
-    history.push({ search: `${querry}` });
+    const pageQuery = `page=${currentPage}`;
+    const nameQuery = name ? `&name=${name}` : '';
+    const query = `${pageQuery}${nameQuery}`;
+    history.push({ search: `${query}` });
   }, [currentPage]);
 
   useEffect(() => {
