@@ -4,7 +4,6 @@ import { UserRowWrapper } from '../../../../../../app/commons/ScrollWrapper/Scro
 const SkillListWrapper = styled(UserRowWrapper)`
   scrollbar-width: thin;
   scrollbar-color: #cccccc;
-  min-height: 178px;
 
   &::-webkit-scrollbar {
     display: block !important;
@@ -48,10 +47,15 @@ const LoaderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 const Image = styled.img`
   width: 80px;
 `;
 
-export { SkillListStyled, FooterStyled, AdminRoleText, SkillListWrapper, LoaderWrapper, Image };
+const NoSkills = styled.p`
+  margin-bottom: 0;
+`;
+
+export { SkillListStyled, FooterStyled, AdminRoleText, SkillListWrapper, LoaderWrapper, NoSkills, Image };

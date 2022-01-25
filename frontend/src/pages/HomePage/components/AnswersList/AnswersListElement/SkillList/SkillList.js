@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
-import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image } from './SkillList.styled';
+import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image, NoSkills } from './SkillList.styled';
 import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
 import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
@@ -24,7 +24,7 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
 
   const NoRecords = () => <>
     <Image src={blankstate}/>
-    <p>No records have been added yet</p>
+    <NoSkills>No records have been added yet</NoSkills>
   </>;
 
   return (
