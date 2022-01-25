@@ -12,6 +12,8 @@ import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
 
 const SearchBar = ({ currentPage, numberOfPages }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { search } = useLocation();
   const skillFilters = useSelector(selectSkillFilters);
   const userFilter = useSelector(selectUserFilter);
   const isLastFilter = index => index === skillFilters.length - 1;
@@ -25,6 +27,17 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
     dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter, pagination }));
   }, [skillFilters, userFilter, currentPage, numberOfPages]);
 
+  const updateFilter = event => {
+    dispatch(updateUserFilter(event.target.value));
+    history.replace({ search: `&name=${event.target.value}` });
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const name = params.get('name');
+    dispatch(updateUserFilter(name));
+  }, [search]);
+
   return (
     <SearchBarsWrapper>
       <SearchBarWrapper>
@@ -33,7 +46,7 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
           name="user-name"
           placeholder="Search by name..."
           value={userFilter}
-          onChange={e => dispatch(updateUserFilter(e.target.value))}
+          onChange={updateFilter}
         />
         <IconStyled icon={'search'} />
       </SearchBarWrapper>
