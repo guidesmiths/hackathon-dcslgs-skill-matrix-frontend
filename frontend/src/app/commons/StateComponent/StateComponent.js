@@ -6,6 +6,7 @@ import admin from '../../../Assets/Images/Admin.png';
 
 const StateComponent = ({ location }) => {
   const isUser = location === 'user';
+
   return (
     <StateWrapper>
       <Image isUser={isUser} src={isUser ? completeProfile : admin}/>
@@ -19,7 +20,11 @@ const StateComponent = ({ location }) => {
 };
 
 StateComponent.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.string,
+};
+
+StateComponent.defaultProps = {
+  location: 'admin',
 };
 
 export default StateComponent;

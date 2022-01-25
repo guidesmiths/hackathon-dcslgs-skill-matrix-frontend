@@ -14,6 +14,7 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [loaded, hasLoaded] = useState(false);
   const answers = useSelector(selectCurrentAnswers(userId));
   const skillFilters = useSelector(selectSkillFilters);
+
   useEffect(() => {
     if (!isCollapsed) {
       setSkills(answers?.ecosystems?.flatMap(ecosystem => ecosystem.skills));
@@ -21,22 +22,23 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
     }
   }, [answers, isCollapsed]);
 
+  const NoRecords = () => <>
+    <Image src={blankstate}/>
+    <p>No records have been added yet</p>
+  </>;
+
   return (
     <SkillListStyled data-cy="skill-list" isCollapsed={isCollapsed}>
       <SkillListWrapper height={55}>
-        {!skills
-          ? <LoaderWrapper>
-            {loaded
-              ? <><Image src={blankstate}/>
-                <p>No records have been added yet</p>
-              </>
-              : <SpinnerLoader/>
-            }
-          </LoaderWrapper>
-          : skills.map(({ id, level, levelDescription, name, sublevel }) => (
-            <SkillListElement key={id} isSearched = {skillFilters.find(x => x.skill === id)} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
-          ))
-        }
+        {!skills && <LoaderWrapper>
+          {loaded
+            ? <NoRecords />
+            : <SpinnerLoader/>
+          }
+        </LoaderWrapper>}
+        {skills && skills.map(({ id, level, levelDescription, name, sublevel }) => (
+          <SkillListElement key={id} isSearched={skillFilters.find(x => x.skill === id)} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
+        ))}
       </SkillListWrapper>
       <FooterStyled data-cy={`switch-admin-${index}`}>
         <AdminRoleText>Admin Role</AdminRoleText>

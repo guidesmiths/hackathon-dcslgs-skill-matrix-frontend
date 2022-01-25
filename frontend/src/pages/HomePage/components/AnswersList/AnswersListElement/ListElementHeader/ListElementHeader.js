@@ -1,18 +1,7 @@
 /* eslint-disable import/no-dynamic-require */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  ListElementStyled,
-  UserNameStyled,
-  UserEmailStyled,
-  UserRolStyled,
-  UserWrapperStyled,
-  ArrowButtonStyled,
-  MoreInfoWrapper,
-  StyledIcon,
-} from './ListElementHeader.styled';
-
+import { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, ArrowButtonStyled, MoreInfoWrapper, StyledIcon } from './ListElementHeader.styled';
 import FlagComponent from './FlagComponent';
 
 const ListElementHeader = ({ index, email, name, seniority, country, setCollapsed, isCollapsed }) => {
@@ -34,19 +23,22 @@ const ListElementHeader = ({ index, email, name, seniority, country, setCollapse
           </span>
         </ArrowButtonStyled>
       </MoreInfoWrapper>
-
     </ListElementStyled>
   );
 };
 
 ListElementHeader.propTypes = {
-  country: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   isCollapsed: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   seniority: PropTypes.string.isRequired,
   setCollapsed: PropTypes.func.isRequired,
+  country: PropTypes.string,
+};
+
+ListElementHeader.defaultProps = {
+  country: '',
 };
 
 export default ListElementHeader;

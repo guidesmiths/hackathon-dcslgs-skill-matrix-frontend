@@ -17,7 +17,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
         {answers
           .filter(answer => answer.id !== userData.user_id)
           .map((answer, index) => {
-            const { id, name, email, userRole, ecosystems, country, seniority } = answer;
+            const { id, name, email, ecosystems, country, seniority } = answer;
             return (
               <AnswersListUserElement
                 key={`answers-${id}`}
@@ -25,7 +25,6 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
                 email={email}
                 index={index}
                 name={name}
-                role={userRole}
                 seniority={seniority}
                 skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
                 userId={id}
@@ -33,7 +32,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
           })
         }
         {answers.length > 0
-      && <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'16px'} onChange={handlePagination} />}
+      && <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'medium'} onChange={handlePagination} />}
       </ScrollWrapper>
     </AnswersListStyled>
   );
@@ -41,6 +40,11 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
 AnswersUserList.propTypes = {
   currentPage: PropTypes.number.isRequired,
   handlePagination: PropTypes.func.isRequired,
-  numberOfPages: PropTypes.number.isRequired,
+  numberOfPages: PropTypes.number,
 };
+
+AnswersUserList.defaultProps = {
+  numberOfPages: 1,
+};
+
 export default AnswersUserList;

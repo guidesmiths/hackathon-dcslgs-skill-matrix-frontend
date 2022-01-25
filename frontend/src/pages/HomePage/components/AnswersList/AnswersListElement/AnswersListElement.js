@@ -49,17 +49,18 @@ const AnswersListElement = ({ userId, email, name, role, skills, index, country,
 };
 
 AnswersListElement.propTypes = {
-  country: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   seniority: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
+  country: PropTypes.string,
   skills: PropTypes.array,
 };
 
 AnswersListElement.defaultProps = {
+  country: '',
   skills: [],
 };
 

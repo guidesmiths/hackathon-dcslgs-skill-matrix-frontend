@@ -50,6 +50,7 @@ const LevelBar = ({ index, level, skill, sublevel }) => {
     if (realLevel + 1 > barIndex && realSublevel > 0) return [0, dataMax => (dataMax * (1 / realSublevel))];
     return '';
   };
+
   return (
     <BarChartContainer data-cy={`skill-bars-${index}`}>
       {[...Array(4)].map((x, i) => (
@@ -82,13 +83,14 @@ const LevelBar = ({ index, level, skill, sublevel }) => {
 };
 
 LevelBar.propTypes = {
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   level: PropTypes.number,
   skill: PropTypes.bool,
   sublevel: PropTypes.string,
 };
 
 LevelBar.defaultProps = {
+  index: null,
   level: 0,
   skill: false,
   sublevel: 'neutral',

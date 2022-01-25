@@ -10,6 +10,7 @@ const sublevels = {
 
 const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched }) => {
   const [isSelected, setSelected] = useState(false);
+
   return (
     <SkillElementStyled isSearched={isSearched} onClick={() => setSelected(!isSelected)} >
       <SkillNameStyled>{name}</SkillNameStyled>
@@ -20,11 +21,15 @@ const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched 
 };
 
 SkillListElement.propTypes = {
-  isSearched: PropTypes.bool.isRequired,
   level: PropTypes.number.isRequired,
   levelDescription: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   sublevel: PropTypes.string.isRequired,
+  isSearched: PropTypes.bool,
+};
+
+SkillListElement.defaultProps = {
+  isSearched: null,
 };
 
 export default SkillListElement;

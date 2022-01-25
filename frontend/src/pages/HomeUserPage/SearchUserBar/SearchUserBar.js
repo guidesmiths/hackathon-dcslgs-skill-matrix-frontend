@@ -4,17 +4,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectSkillFilters,
-  selectUserFilter,
-} from '../../../redux/filters/filtersSlice';
+import { selectSkillFilters, selectUserFilter } from '../../../redux/filters/filtersSlice';
 import { fetchUsersFilteredAsync } from '../../../redux/answers/answersSlice';
 import SearchBarUserSkill from './SearchBarUserSkill/SearchBarUserSkill';
-import {
-  SearchBarsUserWrapper,
-  IconStyled,
-  HomeSearchBarWrapper,
-} from '../../HomePage/components/SearchBar/SearchBar.styled';
+import { SearchBarsUserWrapper, IconStyled, HomeSearchBarWrapper } from '../../HomePage/components/SearchBar/SearchBar.styled';
 import { fetchSkillsAsync } from '../../../redux/skills/skillsSlice';
 
 const SearchUserBar = ({ currentPage, numberOfPages }) => {
@@ -49,7 +42,11 @@ const SearchUserBar = ({ currentPage, numberOfPages }) => {
 
 SearchUserBar.propTypes = {
   currentPage: PropTypes.number.isRequired,
-  numberOfPages: PropTypes.number.isRequired,
+  numberOfPages: PropTypes.number,
+};
+
+SearchUserBar.defaultProps = {
+  numberOfPages: 1,
 };
 
 export default SearchUserBar;

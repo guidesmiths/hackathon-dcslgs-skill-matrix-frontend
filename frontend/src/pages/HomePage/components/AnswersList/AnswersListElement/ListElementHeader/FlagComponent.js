@@ -17,7 +17,11 @@ const FlagComponent = ({ country }) => {
 };
 
 FlagComponent.propTypes = {
-  country: PropTypes.string.isRequired,
+  country: PropTypes.string,
+};
+
+FlagComponent.defaultProps = {
+  country: '',
 };
 
 export default FlagComponent;
