@@ -1,13 +1,23 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AnswersListElement from './AnswersListElement/AnswersListElement';
 import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
-import { AnswersListStyled, ScrollWrapper } from './AnswersList.styled';
+import { AnswersListStyled, ScrollWrapper, NoAnswers } from './AnswersList.styled';
 import Pagination from '../../../../app/commons/Pagination/Pagination';
+import blankstate from '../../../../Assets/Icons/blankstate.svg';
+import { Image } from './AnswersListElement/SkillList/SkillList.styled';
 
 const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
   const answers = useSelector(selectAllAnswers);
+  const [isEmpty, setIsEmpty] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      if (answers.length === 0) {
+        setIsEmpty(true);
+      }
+    }, [2000]);
+  }, [answers]);
 
   return (
     <AnswersListStyled>
@@ -30,7 +40,12 @@ const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
             />);
         })}
         {answers.length > 0
-      && <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'medium'} onChange={handlePagination} />}
+          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'16px'} onChange={handlePagination} />
+          : isEmpty && <NoAnswers>
+            <Image src={blankstate}/>
+            <p>There no person with this skill</p>
+          </NoAnswers>
+        }
       </ScrollWrapper>
     </AnswersListStyled>
   );

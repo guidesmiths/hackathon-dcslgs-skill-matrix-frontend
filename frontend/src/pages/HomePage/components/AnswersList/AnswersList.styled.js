@@ -47,5 +47,12 @@ const ScrollWrapper = styled.div`
   border-radius: 10px 10px;
   
 `;
+const NoAnswers = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  margin: 100px auto;
+`;
 
-export { AnswersListStyled, ScrollWrapper };
+export { AnswersListStyled, ScrollWrapper, NoAnswers };

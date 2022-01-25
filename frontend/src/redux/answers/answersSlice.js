@@ -78,5 +78,6 @@ export const selectAnswerPage = (start, end) => state => state.answers.value.sli
 export const selectNumberOfAnswers = state => state.answers.value.length;
 export const selectCurrentAnswers = id => state => state.answers?.currentAnswers?.find(curr => curr.id === id);
 export const selectNumberOfPages = state => state.answers.numberOfPages;
+export const selectStatus = state => state.answers.status;
 
 export default answersSlice.reducer;

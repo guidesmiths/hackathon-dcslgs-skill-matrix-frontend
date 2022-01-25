@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
 import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image, NoSkills } from './SkillList.styled';
 import Switch from '../../../../../../app/commons/Switch/Switch';
-import { selectCurrentAnswers } from '../../../../../../redux/answers/answersSlice';
+import { selectCurrentAnswers, selectStatus } from '../../../../../../redux/answers/answersSlice';
 import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
 import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
 import { selectSkillFilters } from '../../../../../../redux/filters/filtersSlice';
@@ -13,14 +13,15 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
   const [loaded, hasLoaded] = useState(false);
   const answers = useSelector(selectCurrentAnswers(userId));
+  const status = useSelector(selectStatus);
   const skillFilters = useSelector(selectSkillFilters);
 
   useEffect(() => {
     if (!isCollapsed) {
       setSkills(answers?.ecosystems?.flatMap(ecosystem => ecosystem.skills));
-      setTimeout(() => hasLoaded(true), [2000]);
+      hasLoaded(status === 'succeded');
     }
-  }, [answers, isCollapsed]);
+  }, [answers, isCollapsed, status]);
 
   const NoRecords = () => <>
     <Image src={blankstate}/>
