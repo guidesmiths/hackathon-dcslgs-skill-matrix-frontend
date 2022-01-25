@@ -25,6 +25,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const skills = useSelector(selectAllSkills);
   const skillFilters = useSelector(selectSkillFilters);
   const [skillTyped, setSkillTyped] = useState();
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   const handleInput = event => {
     const inputValue = event.target.value;
@@ -32,15 +33,17 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
     setOptionsList(filteredSkillsList || skills);
 
-    const selectedSkill = filteredSkillsList.find(
+    const foundSkill = filteredSkillsList.find(
       skill => skill.name === inputValue,
     );
 
-    if (selectedSkill) {
+    setSelectedSkill(foundSkill);
+
+    if (foundSkill) {
       dispatch(
         updateSkillFilter({
           index,
-          filter: { skill: selectedSkill.id, level: filter.level || 1 },
+          filter: { skill: foundSkill.id, level: filter.level || 1 },
         }),
       );
     } else if (!inputValue) {
@@ -53,7 +56,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     }
   };
 
-  const handleSelectChange = event => skillTyped
+  const handleSelectChange = event => selectedSkill
     && dispatch(
       updateSkillFilter({
         index,
@@ -87,7 +90,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
       </InputWrapper>
       <InputWrapper>
         <Select
-          disabled={!skillTyped}
+          disabled={!selectedSkill}
           options={options}
           selected={filter.level}
           onChange={handleSelectChange}
