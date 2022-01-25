@@ -84,7 +84,7 @@ export const insertUserAsync = createAsyncThunk(
     }
     const res = await axios.post('/ui/user', user);
     localStorage.setItem('token', res.data);
-    return response;
+    return user;
   },
 );
 
