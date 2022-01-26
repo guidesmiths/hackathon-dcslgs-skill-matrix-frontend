@@ -32,12 +32,20 @@ const HomePage = () => {
     const page = +params.get('page');
     setCurrentPage(page || 1);
   }, []);
+
   useEffect(() => {
     const params = new URLSearchParams(search);
+    const skill = params.get('skill');
+    const level = params.get('level');
     const name = params.get('name');
-    let query = `page=${currentPage}`;
+    let query;
+
     if (name) {
-      query = `&name=${name}`;
+      query = `page=${currentPage}&name=${name}`;
+    } else if (skill) {
+      query = `page=${currentPage}&skill=${skill}&level=${level || 1}`;
+    } else {
+      query = `page=${currentPage}`;
     }
     history.push({ search: `${query}` });
   }, [search]);

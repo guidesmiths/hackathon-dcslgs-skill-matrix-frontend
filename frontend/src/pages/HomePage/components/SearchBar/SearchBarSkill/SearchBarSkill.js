@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
 import {
@@ -20,6 +21,8 @@ import Label from '../../../../../app/commons/Label/Label';
 
 const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { search } = useLocation();
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
@@ -38,8 +41,9 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     );
 
     setSelectedSkill(foundSkill);
-
     if (foundSkill) {
+      history.push({ search: `&skill=${foundSkill.id}&level=${filter.level || 1}` });
+
       dispatch(
         updateSkillFilter({
           index,
@@ -56,16 +60,41 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     }
   };
 
-  const handleSelectChange = event => selectedSkill
-    && dispatch(
+  const handleSelectChange = event => {
+    if (selectedSkill) {
+      history.push({ search: `&skill=${filter.skill}&level=${Number(event.target.value)}` });
+
+      dispatch(
+        updateSkillFilter({
+          index,
+          filter: filter.skill && {
+            skill: filter.skill,
+            level: Number(event.target.value),
+          },
+        }),
+      );
+    }
+  };
+  const getFilteredSkillName = id => {
+    const foundSkill = skills.find(x => x.id === Number(id));
+    return foundSkill?.name || '';
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const skill = params.get('skill');
+    const level = params.get('level');
+    dispatch(
       updateSkillFilter({
         index,
-        filter: filter.skill && {
-          skill: filter.skill,
-          level: Number(event.target.value),
+        filter: {
+          skill: skill || null,
+          level: level || 1,
         },
       }),
     );
+  }, [search]);
+
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
     const newSkill = await skillFilters[index + 1];
@@ -79,7 +108,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     <SearchBarSkillStyled data-cy={`search-bar-skill-${index}`}>
       <InputWrapper>
         <Input
-          input={skillTyped}
+          input={skillTyped || getFilteredSkillName(filter.skill)}
           optionsList={optionsList}
           width={300}
           onChangeInput={handleInput}
