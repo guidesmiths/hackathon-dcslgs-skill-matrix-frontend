@@ -48,7 +48,7 @@ const HomePage = () => {
       query = `page=${currentPage}`;
     }
     history.push({ search: `${query}` });
-  }, [search]);
+  }, [search, currentPage]);
 
   useEffect(() => {
     if (!isOpen && currentStep === 4) {
