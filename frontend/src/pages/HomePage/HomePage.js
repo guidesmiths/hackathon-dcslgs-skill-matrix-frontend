@@ -44,6 +44,8 @@ const HomePage = () => {
       query = `page=${currentPage}&name=${name}`;
     } else if (skill) {
       query = `page=${currentPage}&skill=${skill}&level=${level || 1}`;
+    } else if (currentPage > numberOfPages) {
+      query = `page=${numberOfPages}`;
     } else {
       query = `page=${currentPage}`;
     }
