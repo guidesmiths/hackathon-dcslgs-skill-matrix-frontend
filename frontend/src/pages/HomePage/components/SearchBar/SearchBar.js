@@ -30,13 +30,13 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
 
   const updateFilter = event => {
     dispatch(updateUserFilter(event.target.value));
-    history.replace({ search: `&name=${event.target.value}` });
+    history.push({ search: `&name=${event.target.value}` });
   };
 
   useEffect(() => {
     const params = new URLSearchParams(search);
     const name = params.get('name');
-    dispatch(updateUserFilter(name));
+    dispatch(updateUserFilter(name || ''));
   }, [search]);
 
   return (
