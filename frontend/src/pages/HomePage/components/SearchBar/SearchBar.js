@@ -4,7 +4,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
 import { updateUserFilter, selectSkillFilters, selectUserFilter } from '../../../../redux/filters/filtersSlice';
 import { fetchUsersFilteredAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
@@ -13,8 +12,6 @@ import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
 
 const SearchBar = ({ currentPage, numberOfPages }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { search } = useLocation();
   const skillFilters = useSelector(selectSkillFilters);
   const userFilter = useSelector(selectUserFilter);
   const isLastFilter = index => index === skillFilters.length - 1;
@@ -28,17 +25,6 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
     dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter, pagination }));
   }, [skillFilters, userFilter, currentPage, numberOfPages]);
 
-  const updateFilter = event => {
-    dispatch(updateUserFilter(event.target.value));
-    history.replace({ search: `&name=${event.target.value}` });
-  };
-
-  useEffect(() => {
-    const params = new URLSearchParams(search);
-    const name = params.get('name');
-    dispatch(updateUserFilter(name));
-  }, [search]);
-
   return (
     <SearchBarsWrapper>
       <SearchBarWrapper>
@@ -47,7 +33,7 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
           name="user-name"
           placeholder="Search by name..."
           value={userFilter}
-          onChange={updateFilter}
+          onChange={event => dispatch(updateUserFilter(event.target.value))}
         />
         <IconStyled icon={'search'} />
       </SearchBarWrapper>

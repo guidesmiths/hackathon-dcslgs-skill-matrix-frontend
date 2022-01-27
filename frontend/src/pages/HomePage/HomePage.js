@@ -32,14 +32,8 @@ const HomePage = () => {
     const page = +params.get('page');
     setCurrentPage(page || 1);
   }, []);
-  useEffect(() => {
-    const params = new URLSearchParams(search);
-    const name = params.get('name');
-    const pageQuery = `page=${currentPage}`;
-    const nameQuery = name ? `&name=${name}` : '';
-    const query = `${pageQuery}${nameQuery}`;
-    history.push({ search: `${query}` });
-  }, [currentPage]);
+
+  useEffect(() => history.push({ search: `page=${currentPage}` }), [currentPage]);
 
   useEffect(() => {
     if (!isOpen && currentStep === 4) {
