@@ -68,11 +68,19 @@ Cypress.Commands.add('initAdmin', () => {
   cy.visit('/admin');
   cy.wait(['@getAllSuggestions', '@getAllEcosystems']);
 });
+
 Cypress.Commands.add('initLogin', () => {
   cy.server();
   cy.visit('/login');
 });
+
 Cypress.Commands.add('init404', () => {
   cy.server();
+  cy.route({
+    url: '/ui/user/me',
+    method: 'get',
+    response: 'fixture:user.json',
+  }).as('getUser');
   cy.visit('/404');
+  cy.wait(['@getUser']);
 });

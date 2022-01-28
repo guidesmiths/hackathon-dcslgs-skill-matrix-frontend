@@ -1,8 +1,12 @@
 /* eslint-disable no-undef */
+import { user } from '../users';
+
 describe('404 page', () => {
   beforeEach(() => {
+    cy.login(user, '/');
     cy.init404();
   });
+
   it('Shoud have 404 title', () => {
     cy.get('[data-cy="title-404"]').should('be.visible');
   });
