@@ -34,7 +34,7 @@ Cypress.Commands.add('initHome', () => {
 Cypress.Commands.add('initUser', () => {
   cy.server();
   cy.route({
-    url: '/ui/user/:id/answers',
+    url: '/ui/user/me',
     method: 'get',
     response: 'fixture:user.json',
   }).as('getUser');
