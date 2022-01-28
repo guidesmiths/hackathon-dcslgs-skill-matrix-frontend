@@ -10,7 +10,7 @@ import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar'
 import EcosystemMain from './components/EcosystemMain/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
-import { selectUserData, selectUserInsertLoading } from '../../redux/user/userSlice';
+import { selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
