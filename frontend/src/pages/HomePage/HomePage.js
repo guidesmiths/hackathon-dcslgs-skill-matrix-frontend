@@ -12,11 +12,12 @@ import { TextTour } from '../../app/commons/Tour/TextTour';
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { currentStep, isOpen, setCurrentStep, setSteps } = useTour();
-  const [currentPage, setCurrentPage] = useState(1);
-  const numberOfPages = useSelector(selectNumberOfPages);
   const history = useHistory();
   const { search } = useLocation();
+  const { currentStep, isOpen, setCurrentStep, setSteps } = useTour();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentName, setCurrentName] = useState('');
+  const numberOfPages = useSelector(selectNumberOfPages);
 
   const handlePagination = (_, page) => {
     setCurrentPage(page);
@@ -33,7 +34,13 @@ const HomePage = () => {
     setCurrentPage(page || 1);
   }, []);
 
-  useEffect(() => history.push({ search: `page=${currentPage}` }), [currentPage]);
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    const name = params.get('name');
+    setCurrentName(name);
+    const query = name ? `&name=${name}` : '';
+    history.push({ search: `page=${currentPage}${query}` });
+  }, [currentPage, search]);
 
   useEffect(() => {
     if (!isOpen && currentStep === 4) {
@@ -69,10 +76,17 @@ const HomePage = () => {
     ]);
   }, []);
 
+  const handleName = name => {
+    setCurrentName(name);
+    setCurrentPage(1);
+    const query = name ? `&name=${name}` : '';
+    history.push({ search: `page=1${query}` });
+  };
+
   return (
     <HomePageStyled>
       <StyledBackground>
-        <SearchBar currentPage={currentPage} numberOfPages={numberOfPages} />
+        <SearchBar currentPage={currentPage} handleName={handleName} name={currentName} numberOfPages={numberOfPages} />
       </StyledBackground>
       <AnswersList currentPage={currentPage} handlePagination={handlePagination} numberOfPages={numberOfPages}/>
     </HomePageStyled>

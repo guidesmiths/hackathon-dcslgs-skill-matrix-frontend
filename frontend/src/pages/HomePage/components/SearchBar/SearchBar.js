@@ -4,16 +4,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserFilter, selectSkillFilters, selectUserFilter } from '../../../../redux/filters/filtersSlice';
+import { selectSkillFilters } from '../../../../redux/filters/filtersSlice';
 import { fetchUsersFilteredAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
 import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
 import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
 
-const SearchBar = ({ currentPage, numberOfPages }) => {
+const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   const dispatch = useDispatch();
+
   const skillFilters = useSelector(selectSkillFilters);
-  const userFilter = useSelector(selectUserFilter);
   const isLastFilter = index => index === skillFilters.length - 1;
 
   useEffect(() => {
@@ -21,9 +21,9 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
   }, []);
 
   useEffect(() => {
-    const pagination = currentPage > numberOfPages ? numberOfPages : currentPage - 1;
-    dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter, pagination }));
-  }, [skillFilters, userFilter, currentPage, numberOfPages]);
+    const page = currentPage > numberOfPages ? numberOfPages : currentPage;
+    dispatch(fetchUsersFilteredAsync({ skillFilters, page, name }));
+  }, [skillFilters, name, currentPage, numberOfPages]);
 
   return (
     <SearchBarsWrapper>
@@ -32,8 +32,8 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
           data-cy="user-input"
           name="user-name"
           placeholder="Search by name..."
-          value={userFilter}
-          onChange={event => dispatch(updateUserFilter(event.target.value))}
+          value={name}
+          onChange={event => handleName(event.target.value)}
         />
         <IconStyled icon={'search'} />
       </SearchBarWrapper>
@@ -54,10 +54,13 @@ const SearchBar = ({ currentPage, numberOfPages }) => {
 
 SearchBar.propTypes = {
   currentPage: PropTypes.number.isRequired,
+  handleName: PropTypes.func.isRequired,
+  name: PropTypes.string,
   numberOfPages: PropTypes.number,
 };
 
 SearchBar.defaultProps = {
+  name: '',
   numberOfPages: 1,
 };
 

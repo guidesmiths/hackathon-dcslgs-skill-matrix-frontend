@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: '',
   skills: [{}],
   status: 'idle',
 };
@@ -25,11 +24,7 @@ export const filtersSlice = createSlice({
 
       state.skills = updatedFilters;
     },
-    updateUserFilter: (state, action) => {
-      state.user = action.payload;
-    },
     resetFilters: state => {
-      state.user = '';
       state.skills = [{}];
     },
   },
@@ -39,7 +34,6 @@ export const {
   addSkillFilter,
   updateSkillFilter,
   removeSkillFilter,
-  updateUserFilter,
   resetFilters,
 } = filtersSlice.actions;
 

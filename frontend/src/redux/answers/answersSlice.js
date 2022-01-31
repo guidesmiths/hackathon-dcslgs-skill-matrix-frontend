@@ -14,10 +14,10 @@ function config() {
 export const fetchUsersFilteredAsync = createAsyncThunk(
   'answers/fetchUsersFiltered',
   async filter => {
-    const { pagination, userFilter, skillFilters } = filter;
+    const { page, name, skillFilters } = filter;
 
-    const response = await axios.post(`/ui/usersFiltered?page=${pagination}`, {
-      name: userFilter,
+    const queryName = name ? `&name=${name}` : '';
+    const response = await axios.post(`/ui/usersFiltered?page=${page}${queryName}`, {
       skills: skillFilters,
     }, config());
     return response.data;
