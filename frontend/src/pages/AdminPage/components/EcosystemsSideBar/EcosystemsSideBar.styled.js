@@ -4,18 +4,17 @@ import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrap
 import Icon from '../../../../app/commons/icon/icon';
 
 const EcosystemBarStyled = styled.div`
-  height: fit-content;
+  height: 100%;
 `;
 
 const EcosystemsSideBarStyled = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
-  height: 95%;
+  height: 100%;
   width: 80%;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 0 50px;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
   font-family: ${props => props.theme.fonts.poppins};
@@ -39,10 +38,6 @@ const EcosystemElementStyled = styled(Link)`
   text-decoration: none;
   color: ${props => (props.selected ? props.theme.colors.primaryColor : props.theme.colors.black)};
   background: ${props => (props.selected ? props.theme.colors.primaryColorWithOpacity : 'transparent')};
-
-  &:last-child{
-    padding-bottom: 30px;
-  }
 
   &:hover {
     cursor: pointer;

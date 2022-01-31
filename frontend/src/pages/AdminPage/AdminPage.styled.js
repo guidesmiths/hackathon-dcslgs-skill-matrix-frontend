@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 const AdminPageStyled = styled.div`
-   position: relative;
+  position: relative;
   display: block;
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
+  overflow-y: auto;
+  height: 100vh;
 `;
 
 const EcosystemsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
-  padding-bottom: 70px;
+  margin-bottom: 25vh;
 `;
 
 const IconsGroupStyled = styled.div`
