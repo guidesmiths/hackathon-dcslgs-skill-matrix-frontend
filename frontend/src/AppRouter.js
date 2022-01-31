@@ -36,7 +36,11 @@ const AppRouter = ({ environment }) => {
       dispatch(fetchUserInfoAsync(history));
     }
     if (isSubmited) {
-      history.push('/profile');
+      const route = '/profile';
+      if (userData.role) {
+        route.concat('/ecosystem');
+      }
+      history.push(route);
     }
   }, [isSubmited]);
 
