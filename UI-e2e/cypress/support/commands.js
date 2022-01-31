@@ -50,6 +50,11 @@ Cypress.Commands.add('initUser', () => {
 Cypress.Commands.add('initAdmin', () => {
   cy.server();
   cy.route({
+    url: '/ui/user/me',
+    method: 'get',
+    response: 'fixture:user.json',
+  }).as('getUser');
+  cy.route({
     url: '/ui/suggestions',
     method: 'get',
     response: 'fixture:suggestions',
@@ -65,8 +70,8 @@ Cypress.Commands.add('initAdmin', () => {
     status: 204,
     response: '',
   }).as('deleteSuggestion');
-  cy.visit('/admin');
-  cy.wait(['@getAllSuggestions', '@getAllEcosystems']);
+  cy.visit('/ecosystem');
+  cy.wait(['@getUser', '@getAllSuggestions', '@getAllEcosystems']);
 });
 
 Cypress.Commands.add('initLogin', () => {

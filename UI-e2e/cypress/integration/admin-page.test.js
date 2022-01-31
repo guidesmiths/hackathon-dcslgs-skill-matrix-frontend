@@ -24,14 +24,13 @@ describe('Admin page', () => {
     it('should delete the suggestion card when clicking on the delete icon', () => {
       cy.get('[data-cy="suggestion-card-0"]').within(() => {
         cy.get('[data-cy="icon-delete"]').click();
-        cy.wait('@deleteSuggestion');
         cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
       });
     });
 
     describe('For the suggestion modal', () => {
       it('should not display the modal by default', () => {
-        cy.get('[data-cy="modal"]').should('not.be.visible');
+        cy.get('[data-cy="modal"]').should('not.exist');
       });
 
       it('should display the modal when clicking on the display button', () => {
@@ -46,7 +45,7 @@ describe('Admin page', () => {
           cy.get('[data-cy="icon-visibility"]').click();
           cy.get('[data-cy="modal"]').should('be.visible');
           cy.get('[data-cy="modal-button-close"]').click();
-          cy.get('[data-cy="modal"]').should('not.be.visible');
+          cy.get('[data-cy="modal"]').should('not.exist');
         });
       });
 
@@ -55,7 +54,7 @@ describe('Admin page', () => {
           cy.get('[data-cy="icon-visibility"]').click();
           cy.get('[data-cy="modal"]').should('be.visible');
           cy.get('[data-cy="modal-overlay"]').click({ force: true });
-          cy.get('[data-cy="modal"]').should('not.be.visible');
+          cy.get('[data-cy="modal"]').should('not.exist');
         });
       });
 
@@ -63,10 +62,9 @@ describe('Admin page', () => {
         cy.get('[data-cy="suggestion-card-0"]').within(() => {
           cy.get('[data-cy="icon-visibility"]').click();
           cy.get('[data-cy="modal-button-delete"]').click();
-          cy.wait('@deleteSuggestion');
           cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
         });
-        cy.get('[data-cy="modal"]').should('not.be.visible');
+        cy.get('[data-cy="modal"]').should('not.exist');
       });
     });
   });
@@ -81,17 +79,18 @@ describe('Admin page', () => {
 
   describe('For the main content', () => {
     it('should display a fallback value when entering the page before selecting anything', () => {
-      cy.get('[data-cy="fallback-text"]').contains('Select one Ecosystem or add a new one');
+      cy.get('[data-cy="fallback-text"]').contains('Add all the ecosystem needed and complete them with the skill that the employee can have in them');
     });
 
     describe('When clicking on add a new ecosystem', () => {
       beforeEach(() => {
+        cy.get('[data-cy="ecosystems-element-0"]').click();
         cy.get('[data-cy="edit-skill-button"]').click();
         cy.get('[data-cy="icon-add"]').click();
       });
 
       it('should display the ecosystem form with only one skill by default', () => {
-        cy.get('[data-cy^="skill-container-"]').should('have.length', 1);
+        cy.get('[data-cy^="skill-container-tour"]').should('have.length', 1);
       });
 
       it('should display the ecosystem form with the levels for the skill expanded by default', () => {
@@ -131,11 +130,15 @@ describe('Admin page', () => {
       });
 
       it('should display the ecosystem form with all its skills pre-populated', () => {
-        cy.get('[data-cy^="skill-container-"]').should('have.length', 4);
-        cy.get('[data-cy="skill-name-input-0"]').should('have.attr', 'value', 'React');
-        cy.get('[data-cy="skill-name-input-1"]').should('have.attr', 'value', 'Next.js');
-        cy.get('[data-cy="skill-name-input-2"]').should('have.attr', 'value', 'Redux');
-        cy.get('[data-cy="skill-name-input-3"]').should('have.attr', 'value', 'Redux-Sagas');
+        cy.get('[data-cy^="skill-container-tour"]').should('have.length', 8);
+        cy.get('[data-cy="skill-name-input-0"]').should('have.attr', 'value', 'Gatsby');
+        cy.get('[data-cy="skill-name-input-1"]').should('have.attr', 'value', 'i18Next');
+        cy.get('[data-cy="skill-name-input-2"]').should('have.attr', 'value', 'Next.js');
+        cy.get('[data-cy="skill-name-input-3"]').should('have.attr', 'value', 'React');
+        cy.get('[data-cy="skill-name-input-4"]').should('have.attr', 'value', 'React Native Web');
+        cy.get('[data-cy="skill-name-input-5"]').should('have.attr', 'value', 'ReactCssTransition');
+        cy.get('[data-cy="skill-name-input-6"]').should('have.attr', 'value', 'Redux');
+        cy.get('[data-cy="skill-name-input-7"]').should('have.attr', 'value', 'Redux-Sagas');
       });
 
       it('should display the skill\'s levels not expanded by defaul', () => {
@@ -143,13 +146,12 @@ describe('Admin page', () => {
       });
 
       it('should display the ecosystem form with all the levels for the skill pre-populated', () => {
-        cy.get('[data-cy="skill-container-0"]').within(() => {
-          cy.get('[data-cy^="skill-level-container-"]').should('have.length', 5);
-          cy.get('[data-cy="skill-level-textarea-0"]').contains('Please select corresponding level');
-          cy.get('[data-cy="skill-level-textarea-1"]').contains('I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials');
-          cy.get('[data-cy="skill-level-textarea-2"]').contains('I can modify effectively already working solutions to include new features');
-          cy.get('[data-cy="skill-level-textarea-3"]').contains('I can analyse working solutions and propose refactors and generalization');
-          cy.get('[data-cy="skill-level-textarea-4"]').contains('I can define complex architectures and I can provide optimised solutions');
+        cy.get('[data-cy="skill-container-3"]').within(() => {
+          cy.get('[data-cy^="skill-level-container-"]').should('have.length', 4);
+          cy.get('[data-cy="skill-level-textarea-0"]').contains('I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials');
+          cy.get('[data-cy="skill-level-textarea-1"]').contains('I can modify effectively already working solutions to include new features');
+          cy.get('[data-cy="skill-level-textarea-2"]').contains('I can analyse working solutions and propose refactors and generalization');
+          cy.get('[data-cy="skill-level-textarea-3"]').contains('I can define complex architectures and I can provide optimised solutions');
         });
       });
     });
