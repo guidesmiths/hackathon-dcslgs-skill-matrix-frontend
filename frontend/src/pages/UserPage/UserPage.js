@@ -29,10 +29,15 @@ const UserPage = () => {
   const [emptyState, setEmptyState] = useState(true);
   const userData = useSelector(selectUserData);
   const ecosystems = useSelector(selectAllEcosystems);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (ecosystems.length === 0) {
-      dispatch(fetchEcosystemsAsync());
+      dispatch(fetchEcosystemsAsync())
+        .then(() => setLoading(false))
+        .catch(err => console.error(err));
     }
+    setLoading(false);
   }, [ecosystems]);
 
   useEffect(() => {
@@ -169,7 +174,7 @@ const UserPage = () => {
     <UserPageStyled data-cy="user">
       <HeaderStyled data-cy="header" />
       <UserPageDisplay>
-        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
+        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} loading={loading} />
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} emptyState={emptyState} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>

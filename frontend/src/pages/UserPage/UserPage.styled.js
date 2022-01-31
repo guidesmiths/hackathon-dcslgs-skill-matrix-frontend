@@ -4,9 +4,10 @@ import Modal from '../../app/commons/Modal/Modal';
 
 const UserPageStyled = styled.div`
   position: relative;
-  display: block;
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
+  height: 100vh;
+  overflow-y: auto;
 `;
 
 const HeaderStyled = styled.div`
@@ -19,7 +20,7 @@ const UserPageDisplay = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
-  padding-bottom: 70px;
+  margin-bottom: 25vh;
 `;
 
 const UserData = styled.div`
@@ -127,7 +128,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 const StyledModal = styled(Modal)`
-  width:600px;
+  width: 600px;
 `;
 
 const Wrapper = styled.div`
