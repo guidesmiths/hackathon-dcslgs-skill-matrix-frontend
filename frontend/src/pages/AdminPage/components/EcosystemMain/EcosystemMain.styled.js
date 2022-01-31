@@ -3,37 +3,21 @@ import Icon from '../../../../app/commons/icon/icon';
 
 const EcosystemContainerStyled = styled.div`
   z-index: 1;
-  grid-area: ecosystems-main;
-  box-sizing: border-box;
-  height: 100%;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  background: white;
   width: 98%;
-  margin: 0 auto;
   padding: 10px 0;
-  background-color: ${props => props.theme.colors.white};
-  font-family: ${props => props.theme.fonts.poppins};
+  margin: 0 auto;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
 `;
 
 const EcosystemFallbackStyled = styled.div`
   display: flex;
-  height: 30vh;
+  height: 80%;
   width: 100%;
   justify-content: center;
   align-items: center;
-
-  @media (min-height: 700px){
-    height: ${props => (props.isNewEcosystem ? '55' : '35')}vh;
-  }
-  @media (min-height: 800px){
-    height: ${props => (props.isNewEcosystem ? '60' : '40')}vh;
-
-  }
-  @media (min-height: 900px){
-    height: ${props => (props.isNewEcosystem ? '65' : '50')}vh;
-  }
-  @media (min-height: 1060px){
-    height: ${props => (props.isNewEcosystem ? '70' : '55')}vh;
-  }
 `;
 
 const EcosystemHeaderStyled = styled.div`

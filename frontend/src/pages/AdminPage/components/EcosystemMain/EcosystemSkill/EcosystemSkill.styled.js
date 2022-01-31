@@ -4,8 +4,8 @@ import Label from '../../../../../app/commons/Label/Label.styled';
 
 const SkillContainerStyled = styled.div`
   position: relative;
-  width: 80%;
   margin: 10px auto;
+  width: 80%;
   box-sizing: border-box;
   font-family: ${props => props.theme.fonts.poppins};
   border-radius: 4px;
@@ -43,7 +43,7 @@ const IconsGroupStyled = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin: 0 20px;
+  margin: 19px 20px;
 `;
 
 const IconStyled = styled(Icon)`
@@ -90,6 +90,36 @@ const SkillTour = styled.div`
   box-sizing: border-box;
  `;
 
+const RowSkills = styled.div`
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 15px 0px 50px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+`;
+
+const RowSkillsTop = styled.div`
+  margin: 0 auto;
+  margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
+  min-height: 62.5px;
+`;
+
+const RowSkillsWrapper = styled.div`
+  &:last-child {
+    padding-bottom: 30px !important;
+  }
+`;
+
+const SkillName = styled.p`
+  min-width: 100px;
+  padding-left: 5px;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+`;
+
 export {
   SkillContainerStyled,
   SkillHeaderStyled,
@@ -98,6 +128,10 @@ export {
   IconStyled,
   LevelContainerStyled,
   LevelStyled,
+  RowSkills,
+  RowSkillsTop,
+  RowSkillsWrapper,
   StyledLabel,
+  SkillName,
   SkillTour,
 };

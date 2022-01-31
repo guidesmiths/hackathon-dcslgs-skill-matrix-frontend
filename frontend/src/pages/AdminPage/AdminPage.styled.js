@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 const AdminPageStyled = styled.div`
-  display: grid;
+   position: relative;
+  display: block;
   box-sizing: border-box;
-  grid-template-columns: 3fr 9fr;
-  grid-template-rows:  ${props => (props.noSuggestions ? ' 50px auto' : ' 200px auto')};
-  grid-template-areas:
-    "suggestions suggestions"
-    "ecosystems-sidebar ecosystems-main";
-  height: 100vh;
   font-family: ${props => props.theme.fonts.poppins};
+`;
+
+const EcosystemsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: -40px;
+  padding-bottom: 70px;
 `;
 
 const IconsGroupStyled = styled.div`
@@ -45,4 +47,4 @@ const SaveCancelButton = styled(EditButton)`
   }
 `;
 
-export { AdminPageStyled, IconsGroupStyled, EditButton, SaveCancelButton };
+export { AdminPageStyled, IconsGroupStyled, EcosystemsContainer, EditButton, SaveCancelButton };

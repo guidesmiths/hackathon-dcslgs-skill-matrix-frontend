@@ -21,6 +21,7 @@ import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosy
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
 import PopUp from '../../../../app/commons/PopUp/PopUp';
 import StateComponent from '../../../../app/commons/StateComponent/StateComponent';
+import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 
 const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();
@@ -121,7 +122,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
         </EcosystemFallbackStyled>
         : !emptyState
           ? <>
-            <EcosystemHeaderStyled>
+            {show ? <EcosystemHeaderStyled>
               <Label left={40} top={2}>Ecosystem Name</Label>
               <EcosystemNameStyledInput
                 ref={ref}
@@ -134,8 +135,12 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
                 onChange={handleNewEcosystem}
               />
             </EcosystemHeaderStyled>
+              : <FormHeader>
+                <DataTitle>{currentEcosystem?.name}</DataTitle>
+              </FormHeader>
+            }
             {currentEcosystem?.skills?.length > 0
-            && <ScrollWrapper height={!show ? 75 : noSuggestions ? 60 : 45}>
+            && <ScrollWrapper height={!show ? 70 : noSuggestions ? 60 : 45}>
               {currentEcosystem?.skills.map((skill, index) => (
                 <EcosystemSkill
                   key={skill?.id}

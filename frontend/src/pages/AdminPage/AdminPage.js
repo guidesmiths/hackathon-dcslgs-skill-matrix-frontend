@@ -12,7 +12,7 @@ import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggest
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
 import { selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
-import { AdminPageStyled, EditButton, SaveCancelButton } from './AdminPage.styled';
+import { AdminPageStyled, EcosystemsContainer, EditButton, SaveCancelButton } from './AdminPage.styled';
 import PopUp from '../../app/commons/PopUp/PopUp';
 import Footer from '../../app/commons/Footer/Footer';
 import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
@@ -270,26 +270,28 @@ const HomePage = () => {
   return (
     <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
       <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
-      <EcosystemsSideBar
-        ecosystems={ecosystems}
-        loading={loading}
-        noSuggestions={noSuggestions}
-        selected={selectedEcosystem?.id}
-        show={isOnEditableMode}
-        onNewEcosystem={newEcosystemMode}
-      />
-      <EcosystemMain
-        deleteNewSkill={deleteNewSkill}
-        ecosystem={selectedEcosystem}
-        emptyState={emptyState}
-        handleNewEcosystemAdmin={handleNewEcosystemAdmin}
-        isNewEcosystem={isNewEcosystem}
-        isThereAnyError={isThereAnyError}
-        noSuggestions={noSuggestions}
-        show={isOnEditableMode}
-        onNewEcosystem={newEcosystemMode}
-        onNewSkill={addNewSkill}
-      />
+      <EcosystemsContainer>
+        <EcosystemsSideBar
+          ecosystems={ecosystems}
+          loading={loading}
+          noSuggestions={noSuggestions}
+          selected={selectedEcosystem?.id}
+          show={isOnEditableMode}
+          onNewEcosystem={newEcosystemMode}
+        />
+        <EcosystemMain
+          deleteNewSkill={deleteNewSkill}
+          ecosystem={selectedEcosystem}
+          emptyState={emptyState}
+          handleNewEcosystemAdmin={handleNewEcosystemAdmin}
+          isNewEcosystem={isNewEcosystem}
+          isThereAnyError={isThereAnyError}
+          noSuggestions={noSuggestions}
+          show={isOnEditableMode}
+          onNewEcosystem={newEcosystemMode}
+          onNewSkill={addNewSkill}
+        />
+      </EcosystemsContainer>
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
         <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>

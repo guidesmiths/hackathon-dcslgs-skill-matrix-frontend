@@ -11,7 +11,11 @@ import {
   IconStyled,
   LevelContainerStyled,
   LevelStyled,
+  RowSkills,
+  RowSkillsTop,
+  RowSkillsWrapper,
   StyledLabel,
+  SkillName,
   SkillTour,
 } from './EcosystemSkill.styled';
 
@@ -61,7 +65,7 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
 
   return (
     <SkillContainerStyled data-cy={`skill-container-${skillIndex}`}>
-      <SkillTour data-cy={`skill-container-tour-${skillIndex}`}>
+      {show ? <SkillTour data-cy={`skill-container-tour-${skillIndex}`}>
         <SkillHeaderStyled data-cy={`skill-container-top-${skillIndex}`}>
           <SkillNameStyledInput
             key={`${skill.id}`}
@@ -81,6 +85,23 @@ const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDele
           </IconsGroupStyled>
         </SkillHeaderStyled>
       </SkillTour>
+        : <RowSkillsWrapper>
+          <RowSkillsTop
+            data-cy={`userSkill-${skill.name}`}
+            isRowDown={!isCollapsed}
+          >
+            <RowSkills>
+              <SkillName>{skill.name}</SkillName>
+              <IconsGroupStyled>
+                {show && <IconStyled icon="delete" id={skillIndex} onClick={onDeleteClick}/>}
+                <IconStyled icon={isCollapsed ? 'expand_more' : 'expand_less'} onClick={() => setIsCollapsed(!isCollapsed)}/>
+              </IconsGroupStyled>
+            </RowSkills>
+          </RowSkillsTop>
+
+        </RowSkillsWrapper>
+      }
+
       {skill.levels.map((level, levelIndex) => (
         <LevelContainerStyled
           key={levelIndex}
