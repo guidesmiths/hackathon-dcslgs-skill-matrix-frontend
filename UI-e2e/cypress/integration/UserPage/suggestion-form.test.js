@@ -7,15 +7,15 @@ describe('Suggestion form', () => {
     cy.initUser();
   });
   it('should open and close suggestion modal form', () => {
-    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="ecosystems"] > div > a').last().click();
     cy.get('[data-cy^="icon-email"]').click();
     cy.get('[data-cy^="modal"] > [data-cy^="suggestion-form"]').should('be.visible');
     cy.contains('Cancel').click();
-    cy.get('[data-cy^="modal"]').should('be.not.visible');
+    cy.get('[data-cy^="modal"]').should('not.exist');
   });
 
   it('should be able to select type and type siggestion', () => {
-    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="ecosystems"] > div > a').last().click();
     cy.get('[data-cy^="icon-email"]').click();
     cy.get('#type').click();
     cy.contains('Other').click();
@@ -24,7 +24,7 @@ describe('Suggestion form', () => {
   });
 
   it('should be able to send a siggestion', () => {
-    cy.get('[data-cy^="ecosystems"] > button').last().click();
+    cy.get('[data-cy^="ecosystems"] > div > a').last().click();
     cy.get('[data-cy^="icon-email"]').click();
     cy.get('#type').click();
     cy.contains('Other').click();
