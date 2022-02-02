@@ -17,7 +17,7 @@ const ListElementHeader = ({ index, email, name, seniority, country, setCollapse
       <MoreInfoWrapper>
         <FlagComponent country={country}/>
         <UserRolStyled data-cy={`user-seniority-${index}`}>{seniority || 'Medior Developer in Development Team'}</UserRolStyled>
-        <ArrowButtonStyled onClick={setCollapsed}>
+        <ArrowButtonStyled data-cy={`arrow-button-${index}`} onClick={setCollapsed}>
           <span className="material-icons">
             {arrowButtonIcon}
           </span>
