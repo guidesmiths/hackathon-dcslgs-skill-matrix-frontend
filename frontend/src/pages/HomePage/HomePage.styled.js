@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 const HomePageStyled = styled.div`
   box-sizing: border-box;
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   overflow-y: auto;
   height: 95vh;
   padding-top: 72px;
 `;
 
 const StyledBackground = styled.div`
-  background: ${props => props.theme.colors.backgroundGradient};
+  background: ${({ theme }) => theme.colors.backgroundGradient};
   z-index: 1;
 `;
 

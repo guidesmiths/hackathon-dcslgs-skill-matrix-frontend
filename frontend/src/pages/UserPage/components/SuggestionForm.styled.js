@@ -5,13 +5,13 @@ import Label from '../../../app/commons/Label/Label';
 import Icon from '../../../app/commons/icon/icon';
 
 const FormStyled = styled.form`
-  padding: 32px;
+  z-index: 99;
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 99;
-  font-family: ${props => props.theme.fonts.poppins};
-  background-color: ${props => props.theme.colors.white};
+  padding: 32px;
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const SelectWrapperStyled = styled.div`
@@ -19,28 +19,28 @@ const SelectWrapperStyled = styled.div`
 `;
 
 const SelectStyled = styled.div`
-  height:40px;
-  width: 45%;
-  margin: 30px 0;
-  border: 1px solid ${props => (props.isCollapsed ? '#BF3088' : '#EFEFEF')};
-  box-sizing: border-box;
-  border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 30px 0;
   padding-left: 20px;
+  height: 40px;
+  width: 45%;
+  border: 1px solid ${({ isCollapsed, theme }) => (isCollapsed ? theme.colors.primaryColor : theme.colors.grey3)};
+  box-sizing: border-box;
+  border-radius: 8px;
 `;
 
 const CustomOptions = styled.div`
-  width: 100%;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
-  border-radius: 4px;
   position: absolute;
-  bottom: -162px;
   left: 0;
-  display: ${props => (props.isCollapsed ? 'block' : 'none')};
-  background-color: ${props => props.theme.colors.white};
+  bottom: -162px;
+  width: 100%;
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
+  border-radius: 4px;
+  display: ${({ isCollapsed }) => (isCollapsed ? 'block' : 'none')};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledOption = styled.div`
@@ -49,7 +49,7 @@ const StyledOption = styled.div`
   justify-content: space-between;
   position: relative;
   padding: 15px;
-  color: ${props => (props.selected ? '#BF3088' : 'black')};
+  color: ${({ selected, theme }) => (selected ? theme.colors.primaryColor : 'black')};
 
   &:hover {
     cursor: pointer;
@@ -58,24 +58,24 @@ const StyledOption = styled.div`
 
 const StyledLabel = styled(Label)`
   font-weight: 600;
-  color: ${props => (props.isCollapsed ? '#BF3088' : 'black')};
+  color: ${({ isCollapsed, theme }) => (isCollapsed ? theme.colors.primaryColor : 'black')};
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`
   width: auto;
   height: auto;
   background-color: transparent;
-  border:0;
-  color: ${props => (props.isCollapsed ? '#BF3088' : 'black')};
+  border: 0;
+  color: ${({ isCollapsed, theme }) => (isCollapsed ? theme.colors.primaryColor : 'black')};
 `;
 
 const TextAreaStyled = styled.textarea`
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   height: 130px;
   resize: none;
   padding: 10px;
   box-sizing: border-box;
-  border: 1px solid #EFEFEF;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-radius: 4px;
   margin-bottom: 20px;
   outline: none;
@@ -89,31 +89,32 @@ const ButtonWrapperStyled = styled.div`
 const Buttons = styled(Button)`
   width: 100px;
 
-  &:first-child{
-    background-color: ${props => props.theme.colors.primaryColor};
-    color: ${props => props.theme.colors.white};
+  &:first-child {
+    background-color: ${({ theme }) => theme.colors.primaryColor};
+    color: ${({ theme }) => theme.colors.white};
     margin-left: 0;
   }
-  &:last-child{
-    background-color: ${props => props.theme.colors.primaryColorWithOpacity};
-    color: ${props => props.theme.colors.primaryColor};
+
+  &:last-child {
+    background-color: ${({ theme }) => theme.colors.primaryColorWithOpacity};
+    color: ${({ theme }) => theme.colors.primaryColor};
   }
 `;
 
 const StyledTitle = styled.div`
   font-size: 24px;
   line-height: 32px;
-  font-weight:600;
+  font-weight: 600;
   margin: 0;
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
 `;
 
 const StyledIcon = styled(Icon)`
   height: auto;
   width: auto;
-  color: ${props => props.theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.primaryColor};
 `;
 
 const StyledCancelIcon = styled(Icon)`

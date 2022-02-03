@@ -15,7 +15,7 @@ const animation = keyframes`
 `;
 
 const StyledPage404 = styled.div`
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   text-align: center;
   padding-top: 72px;
 `;
@@ -23,9 +23,9 @@ const StyledPage404 = styled.div`
 const StyledTitleWrapper = styled.div`
   background: url(${Waves});
   background-size: cover;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   -webkit-text-fill-color: transparent;
-  background-clip:text;
+  background-clip: text;
   -webkit-background-clip: text;
   background-repeat: no-repeat;
   animation: ${animation} 7s linear infinite;
@@ -34,7 +34,7 @@ const StyledTitleWrapper = styled.div`
 
 const StyledTitle = styled.h1`
   text-align: center;
-  text-shadow: 0 0 1px rgba(0,0,0,0.02);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.02);
   font-style: normal;
   font-weight: bold;
   font-size: 350px;
@@ -55,8 +55,8 @@ const StyledP = styled.p`
 const StyledButton = styled(Button)`
   margin-top: 30px;
   font-size: 16px;
-  background-color: ${props => props.theme.colors.primaryColorWithOpacity};
-  color: ${props => props.theme.colors.primaryColor};
+  background-color: ${({ theme }) => theme.colors.primaryColorWithOpacity};
+  color: ${({ theme }) => theme.colors.primaryColor};
 `;
 
 export { StyledPage404, StyledTitleWrapper, StyledTitle, StyledP, StyledH3, StyledButton };

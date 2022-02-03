@@ -5,7 +5,7 @@ const InputStyled = styled.input`
   outline: none;
   border-radius: 5px;
   height: 48px;
-  width: ${props => `${props.width}px`};
+  width: ${({ width }) => `${width}px`};
   padding-left: 15px;
   margin-right: 10px;
 `;

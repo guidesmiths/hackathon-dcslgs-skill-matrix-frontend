@@ -24,13 +24,14 @@ const animation2 = keyframes`
 `;
 
 export default styled.div`
-  display: block;
+  z-index: 999;
   position: fixed;
   top: 20%;
-  z-index: 999;
+  display: block;
+
+  width: 95%;
   box-sizing: border-box;
   margin: -20px auto 0;
-  padding: 0px;
-  width: 95%;
+  padding: 0;
   animation: ${animation2} 3s;
 `;

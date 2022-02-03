@@ -33,11 +33,11 @@ const WaveWrapper = styled.div`
 `;
 
 const Wave = styled.div`
-  bottom: ${props => props.bottom}px;
+  bottom: ${({ bottom }) => bottom}px;
   animation: ${props => (props.animation ? (animate) : (animate2))} ${props => props.speed}s linear infinite;
-  animation-delay: ${props => props.delay}s;
-  opacity: ${props => props.opacity};
-  z-index: ${props => props.zIndex};
+  animation-delay: ${({ delay }) => delay}s;
+  opacity: ${({ opacity }) => opacity};
+  z-index: ${({ zIndex }) => zIndex};
   position: absolute;
   left: -10px;
   background-image: url(${WaveImage});

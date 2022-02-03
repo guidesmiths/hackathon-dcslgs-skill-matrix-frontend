@@ -17,7 +17,7 @@ const SkillLevelStyled = styled.p`
   line-height: 20px;
   text-align: center;
   margin-right: 20px;
-  background: ${props => props.theme.colors.lightGreen};
+  background: ${({ theme }) => theme.colors.lightGreen};
 `;
 
 const DescriptionStyled = styled.p`
@@ -32,9 +32,9 @@ const SkillElementStyled = styled.div`
   grid-template-columns: 0.4fr 0.3fr 4fr;
   align-items: center;
   padding: 0 50px;
-  border: 1px solid #ddd;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-top: none;
-  background: ${props => (props.isSearched ? '#EFEFEF' : '#FFFFFF')};
+  background: ${({ isSearched, theme }) => (isSearched ? theme.colors.grey3 : theme.colors.white)};
 
   @media (max-width: 1500px){
     grid-template-columns: 0.6fr 0.4fr 4fr;
@@ -45,9 +45,9 @@ const SkillElementStyled = styled.div`
   @media (max-width: 985px){
     grid-template-columns: 0.6fr 0.6fr 4fr;
   }
-  
+
   &:nth-child(even) {
-    background: ${props => (props.isSearched ? '#EFEFEF' : '#FBFBFB')}
+    background: ${({ isSearched, theme }) => (isSearched ? theme.colors.grey3 : theme.colors.grey4)}
   };
 `;
 

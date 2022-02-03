@@ -4,27 +4,29 @@ import Button from '../../app/commons/Button/Button';
 
 const Header = styled(StyledBackground)`
   position: relative;
-  width: 100%;
   height: 200px;
+  width: 100%;
 `;
 
 const TextWrapper = styled.div`
-  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  height: 90%;
   margin-left: 100px;
+
   @media (max-width: 1140px) {
     margin-left: 60px;
   }
 `;
 
 const Heading = styled.h1`
-  color: white;
-  font-size: 40px;
-  font-family: ${props => props.theme.fonts.poppins};
-  font-weight: ${props => props.weight};
   margin: 0;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 40px;
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  font-weight: ${({ weight }) => weight};
+
   @media (max-width: 1370px) {
     font-size: 36px;
   }
@@ -41,6 +43,7 @@ const ContanerWrapper = styled.div`
   right: 80px;
   top: 80px;
   width: 500px;
+
   @media (max-width: 1370px) {
     width: 400px;
   }
@@ -55,24 +58,26 @@ const ContanerWrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  background-color: ${props => props.theme.colors.white};
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
+
 const Country = styled.div`
-  width: 100%;
-  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #EFEFEF;
-  background-color: ${props => props.theme.colors.white};
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey3};
+  background-color: ${({ theme }) => theme.colors.white};
+
   @media (max-width: 1140px) {
     height: 80px;
   }
 `;
 
 const Label = styled.p`
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   font-size: 16px;
   margin: 0 6px;
 `;
@@ -89,7 +94,7 @@ const RadioButtonLabel = styled.label`
   height: 24px;
   border-radius: 50%;
   background: white;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.colors.grey2};
 `;
 
 const Item = styled.div`
@@ -103,49 +108,54 @@ const Item = styled.div`
 `;
 
 const RadioButton = styled.input`
-  opacity: 0;
   z-index: 99;
-  cursor: pointer;
   width: 24px;
   height: 24px;
   margin-right: 10px;
+  opacity: 0;
+  cursor: pointer;
 
   &:hover ~ ${RadioButtonLabel} {
-    border: 1px solid ${props => props.theme.colors.primaryColor};
+    border: 1px solid ${({ theme }) => theme.colors.primaryColor};
+
     &::after {
       content: "";
       display: block;
-      background-color: ${props => props.theme.colors.primaryColor};
-      border-radius: 50%;
       width: 12px;
       height: 12px;
-       margin: 6px;
+      margin: 6px;
+      background-color: ${({ theme }) => theme.colors.primaryColor};
+      border-radius: 50%;
     }
   }
+
   &:checked + ${Item} {
     background: yellowgreen;
     border: 2px solid yellowgreen;
   }
+
   &:checked + ${RadioButtonLabel} {
     background: white;
-    border: 1px solid ${props => props.theme.colors.primaryColor};
+    border: 1px solid ${({ theme }) => theme.colors.primaryColor};
+
     &::after {
       content: "";
       display: block;
-      background-color: ${props => props.theme.colors.primaryColor};
-      border-radius: 50%;
       width: 12px;
       height: 12px;
       margin: 6px;
+      background-color: ${({ theme }) => theme.colors.primaryColor};
+      border-radius: 50%;
     }
   }
 `;
 
 const StyledButton = styled(Button)`
-  margin: 10px 0; 
+  margin: 10px 0;
 `;
 
-export { Header,
+export {
+  Header,
   Heading,
   TextWrapper,
   ContanerWrapper,

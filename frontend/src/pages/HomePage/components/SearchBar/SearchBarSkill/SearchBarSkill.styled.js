@@ -13,7 +13,7 @@ const SearchHomeBarSkillStyled = styled.div``;
 
 const InputWrapper = styled.div`
   position: relative;
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   background: white;
   margin-right: 16px;
   border-radius: 8px;
@@ -36,17 +36,17 @@ const StyledName = styled.p`
   top: -12px;
   left: 20px;
   margin: 0;
-  background-color: white;
-  font-size: 12px;
   padding: 0 5px;
+  background-color: ${({ theme }) => theme.colors.white}
+  font-size: 12px;
   border-radius: 4px;
 `;
 
 const StyledIcon = styled(Icon)`
-  background-color: white;
   height: 100%;
   width: 50px;
   margin-right: 16px;
+  background-color: ${({ theme }) => theme.colors.white}
 `;
 
 export { SearchBarSkillStyled, SearchHomeBarSkillStyled, InputWrapper, InputWrapperUser, StyledName, StyledIcon };

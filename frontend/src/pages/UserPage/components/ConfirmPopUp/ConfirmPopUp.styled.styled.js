@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { Buttons, ButtonWrapperStyled } from '../SuggestionForm.styled';
 
 const StyledPopUp = styled.div`
-  padding: 32px;
+  z-index: 99;
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 99;
-  font-family: ${props => props.theme.fonts.poppins};
-  background-color: ${props => props.theme.colors.white};
+  padding: 32px;
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const ButtonWrapper = styled(ButtonWrapperStyled)`
@@ -17,10 +17,12 @@ const ButtonWrapper = styled(ButtonWrapperStyled)`
 
 const StyledButtons = styled(Buttons)`
   width: 150px;
+
   &:hover {
     cursor: pointer;
   }
 `;
+
 const StyledText = styled.div`
   font-size: 18px;
   line-height: 32px;
@@ -28,5 +30,4 @@ const StyledText = styled.div`
   margin: 25px 0;
 `;
 
-export {
-  StyledPopUp, ButtonWrapper, StyledButtons, StyledText };
+export { StyledPopUp, ButtonWrapper, StyledButtons, StyledText };

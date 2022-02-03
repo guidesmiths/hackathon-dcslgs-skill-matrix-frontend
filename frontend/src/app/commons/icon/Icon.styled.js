@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const IconStyled = styled.div`
-  display: ${props => (props.show ? 'flex' : 'none')};
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  height: ${props => `${props.height}px`};
-  width: ${props => `${props.width}px`};
-  margin-right: ${props => `${props.marginRight}px`};
+  height: ${({ height }) => `${height}px`};
+  width: ${({ width }) => `${width}px`};
+  margin-right: ${({ marginRight }) => `${marginRight}px`};
 
   &:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 `;
 

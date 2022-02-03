@@ -18,7 +18,7 @@ const HeaderStyled = styled.div`
 `;
 
 const StyledInfo = styled.div`
-  color: ${props => props.theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.grey1};
   justify-content: space-between;
   align-items: center;
   font-weight: 400;
@@ -36,21 +36,21 @@ const StyledInputWrapper = styled.div`
 const StyledInput = styled.input`
   height: 48px;
   border-radius: 4px;
-  border: 1px solid #EFEFEF;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
   box-sizing: border-box;
   width: 60%;
   padding: 0 10px;
-  outline: ${props => props.theme.colors.primaryColor};
+  outline: ${({ theme }) => theme.colors.primaryColor};
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
-  pointer-events: ${props => !props.enabled && 'none'};
-  opacity: ${props => !props.enabled && 0.6};
+  pointer-events: ${({ enabled }) => !enabled && 'none'};
+  opacity: ${({ enabled }) => !enabled && 0.6};
 
   &:last-child{
     background: rgba(192, 48, 137, 0.1);
-    color: ${props => props.theme.colors.primaryColor};
+    color: ${({ theme }) => theme.colors.primaryColor};
   }
 `;
 

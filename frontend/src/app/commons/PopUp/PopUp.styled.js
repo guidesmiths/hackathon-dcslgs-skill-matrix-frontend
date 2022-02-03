@@ -2,26 +2,26 @@ import styled from 'styled-components';
 import Icon from '../icon/icon';
 
 const OverlayStyled = styled.div`
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 1;
   background: transparent;
   opacity: 0.2;
 `;
 
 const PopUpStyled = styled.div`
+  z-index: 2;
   position: fixed;
   bottom: 80px;
   right:0;
   left: 0;
-  margin: auto;
   width: fit-content;
   max-width: 600px;
-  background-color: ${props => (props.isSuccess ? '#73D13D' : '#C5292A')};
-  z-index: 2;
+  margin: auto;
+  background-color: ${({ isSuccess, theme }) => (isSuccess ? theme.colors.success : theme.colors.error)};
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
 `;
@@ -38,45 +38,43 @@ const PopUpStyledTitle = styled.h5`
   font-weight: 500;
   font-size: 12px;
   line-height: 32px;
-  color: white;
-  color: ${props => (props.isSuccess ? 'black' : 'white')};
+  color: ${({ isSuccess }) => (isSuccess ? 'black' : 'white')};
   white-space: break-spaces;
   margin: 0 20px;
 `;
 
 const PopUpStyledIcon = styled(Icon)`
-  width:auto;
+  width: auto;
   height: auto;
-  background-color: transparent;
-  color: black;
+  color: ${({ theme }) => theme.colors.black}
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const PopUpStyledIconWarning = styled(Icon)`
-  width:auto;
-  height: auto;
-  color: #D15455;
   position: relative;
+  width: auto;
+  height: auto;
+  color: ${({ theme }) => theme.colors.error};
   background-color: transparent;
   align-self: flex-start;
 
   &:before{
     content: '';
-    background-color: white;
+    z-index: -1;
+    position: absolute;
+    top: 10px;
     width: 8px;
     height: 10px;
-    top: 10px;
-    position: absolute;
-    z-index: -1;
+    background-color: ${({ theme }) => theme.colors.white}
   }
 `;
 
 const PopUpStyledCloseIcon = styled(Icon)`
-  width:auto;
+  width: auto;
   height: auto;
   background-color: transparent;
-  color: white;
+  color: ${({ theme }) => theme.colors.white}
   align-self: flex-start;
 `;
 

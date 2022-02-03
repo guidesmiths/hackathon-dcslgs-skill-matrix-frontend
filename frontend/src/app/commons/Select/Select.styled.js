@@ -11,9 +11,9 @@ const SelectStyled = styled.select`
 `;
 
 const OptionStyled = styled.option`
-  color: ${props => props.isSelected && 'red'};
+  color: ${({ isSelected }) => isSelected && 'red'};
 
-  &:invalid{
+  &:invalid {
     color: blue;
   }
 `;

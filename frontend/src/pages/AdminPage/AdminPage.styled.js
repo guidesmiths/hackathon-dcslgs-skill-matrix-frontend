@@ -5,7 +5,7 @@ const AdminPageStyled = styled.div`
   padding-top: 72px;
   display: block;
   box-sizing: border-box;
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   overflow-y: auto;
   height: 100vh;
 `;
@@ -24,16 +24,17 @@ const IconsGroupStyled = styled.div`
 `;
 
 const EditButton = styled.button`
-  border: 0;
-  color: white;
-  background-color: #10243A;
-  width: 112px;
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   justify-content: center;
-  align-items:center;
-  height:100%;
-  font-family: ${props => props.theme.fonts.poppins};
+  align-items: center;
+  width: 112px;
+  height: 100%;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.green};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   font-size: 16px;
-  display:${props => (props.show ? 'flex' : 'none')};
+  border: 0;
+
   &:hover {
     cursor: pointer;
   }
@@ -41,9 +42,8 @@ const EditButton = styled.button`
 
 const SaveCancelButton = styled(EditButton)`
   border: 0;
-  color: #4f4f4f;
-  background-color:  ${props => (props.save ? props.theme.colors.primaryColor : 'white')};
-  color: ${props => (props.save ? 'white' : props.theme.colors.primaryColor)};
+  background-color: ${({ save, theme }) => (save ? theme.colors.primaryColor : theme.colors.white)};
+  color: ${({ save, theme }) => (save ? theme.colors.white : theme.colors.primaryColor)};
 
   &:hover {
     cursor: pointer;

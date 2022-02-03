@@ -9,11 +9,11 @@ const LoginStyled = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
 `;
 
 const LoginTitle = styled.h1`
-  color: ${props => props.theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.primaryColor};
   text-transform: uppercase;
   font-weight: bold;
   font-size: 64px;
@@ -21,8 +21,8 @@ const LoginTitle = styled.h1`
 `;
 
 const LoginButtonStyled = styled.div`
-  background-color: ${props => props.theme.colors.primaryColor};
-  color: ${props => props.theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   font-weight: bold;
   font-size: 16px;
@@ -48,7 +48,7 @@ const StyledText = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
-  text-align:center;
+  text-align: center;
 `;
 
 export { LoginStyled, LoginTitle, LoginButtonStyled, StyledIcon, StyledText };

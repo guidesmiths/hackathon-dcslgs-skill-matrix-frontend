@@ -11,7 +11,7 @@ const StateWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: ${props => (props.isUser ? '215.1px' : '120px')};
+  width: ${({ isUser }) => (isUser ? '215.1px' : '120px')};
 `;
 
 export { StateWrapper, Image };

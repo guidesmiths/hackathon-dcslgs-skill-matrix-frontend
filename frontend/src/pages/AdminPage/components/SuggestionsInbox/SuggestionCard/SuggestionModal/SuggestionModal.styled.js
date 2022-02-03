@@ -10,9 +10,9 @@ const ModalContent = styled.div`
   height: 100%;
   padding: 20px 30px;
   box-sizing: border-box;
-  background: #f4f4f4;
-  font-family: ${props => props.theme.fonts.poppins};
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  background: ${({ theme }) => theme.colors.white};
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 const UserNameStyled = styled.h3`
@@ -23,19 +23,19 @@ const UserNameStyled = styled.h3`
 `;
 
 const SuggestionContentStyled = styled.div`
-  border: 0.2px solid #B9E0D7;
+  border: 0.2px solid ${({ theme }) => theme.colors.lightGreen};
   box-sizing: border-box;
   border-radius: 4px;
 `;
 
 const SuggestionStyled = styled.div`
   padding: 10px 10px 0;
-  color: #006B79;
+  color: ${({ theme }) => theme.colors.darkGreen};;
 `;
 
 const DescriptionStyled = styled.p`
   padding: 0 10px;
-  color: ${props => props.theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.grey1};
   min-height: 120px;
 `;
 
@@ -47,18 +47,18 @@ const ButtonStyled = styled(Button)`
   margin: 10px 10px 0 0;
   padding: 10px;
   min-width: 80px;
-  color: ${props => props.theme.colors.white};
-  background: ${props => props.theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.primaryColor};
 
-  &:last-child{
-    color: ${props => props.theme.colors.primaryColor};
+  &:last-child {
+    color: ${({ theme }) => theme.colors.primaryColor};
     background: rgba(192, 48, 137, 0.1);
   }
 `;
 
 const StyledIcon = styled(Icon)`
   border: none;
-  align-self:flex-start;
+  align-self: flex-start;
   margin-top: 2px;
 `;
 

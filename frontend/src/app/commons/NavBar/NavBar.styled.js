@@ -3,16 +3,16 @@ import { NavLink } from 'react-router-dom';
 import Icon from '../icon/icon';
 
 const NavBarTop = styled.div`
-  height: 72px;
-  box-sizing: border-box;
-  padding: 20px;
+  z-index: 1;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${props => props.theme.colors.white};
-  z-index: 1;
-  position: fixed;
+  height: 72px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  background: ${({ theme }) => theme.colors.white};
 `;
 
 const NavStyled = styled.div`
@@ -22,7 +22,7 @@ const NavStyled = styled.div`
 
 const LogoWrapper = styled.div`
   margin: 0 45px;
-  border-right: 1px solid #E5E5E5;
+  border-right: 1px solid ${({ theme }) => theme.colors.grey3};;
   display: flex;
   align-items: center;
   height: 100%;
@@ -40,20 +40,20 @@ const UserWrapperStyled = styled.div`
 `;
 
 const NavBarLink = styled(NavLink)`
-  color: black;
+  padding: 5px 7px;
+  color: ${({ theme }) => theme.colors.black};
   font-weight: 500;
   font-size: 12px;
-  font-family: ${params => params.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   text-decoration: none;
-  padding: 5px 7px;
   border-radius: 8px;
 
   &:hover {
-    color: grey;
+    color: ${({ theme }) => theme.colors.grey1};
   };
 
-  &.${props => props.activeClassName}{
-    font-weight:  900;
+  &.${({ activeClassName }) => activeClassName}{
+    font-weight: 900;
   }
 `;
 

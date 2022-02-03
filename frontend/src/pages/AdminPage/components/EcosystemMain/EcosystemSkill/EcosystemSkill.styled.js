@@ -2,17 +2,22 @@ import styled from 'styled-components';
 import Icon from '../../../../../app/commons/icon/icon';
 import Label from '../../../../../app/commons/Label/Label.styled';
 
+const getBorder = ({ hasError, theme, readOnly }) => {
+  if (hasError) return `1px solid ${theme.colors.error}`;
+  return !readOnly ? `1px solid ${theme.colors.grey3}` : 'none';
+};
+
 const SkillContainerStyled = styled.div`
   position: relative;
-  margin: 10px auto;
   width: 80%;
   box-sizing: border-box;
-  font-family: ${props => props.theme.fonts.poppins};
+  margin: 10px auto;
+  font-family: ${({ theme }) => theme.fonts.poppins};
   border-radius: 4px;
 
-  &:last-child{
-      height:100%;
-      margin-bottom:30px;
+  &:last-child {
+    height: 100%;
+    margin-bottom: 30px;
   }
 `;
 
@@ -20,22 +25,22 @@ const SkillHeaderStyled = styled.div`
   display: flex;
   align-items: center;
   height: 75px;
-  border: 1px solid #EFEFEF;
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
 `;
-const StyledLabel = styled(Label)`
-`;
+
+const StyledLabel = Label;
 
 const SkillNameStyledInput = styled.input`
   width: 60%;
   padding: 12px;
   margin-left: 20px;
-  border: ${props => (props.hasError ? '1px solid #C5292A' : !props.readOnly ? '1px solid #efefef' : 'none')};
+  border: ${getBorder};
   border-radius: 4px;
   box-sizing: border-box;
-  
-  &:hover{
-    cursor: ${props => !props.readOnly && 'pointer'};
-    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
+
+  &:hover {
+    cursor: ${({ readOnly }) => !readOnly && 'pointer'};
+    border: ${({ readOnly, theme }) => !readOnly && `1px solid ${theme.colors.primaryColor}`};
   }
 `;
 
@@ -47,7 +52,7 @@ const IconsGroupStyled = styled.div`
 `;
 
 const IconStyled = styled(Icon)`
-  color: ${props => props.theme.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 
   &:first-child {
     margin-right: 20px;
@@ -60,35 +65,36 @@ const LevelStyled = styled.textarea`
   padding: 12px;
   box-sizing: border-box;
   font-size: 14px;
-  font-family: ${props => props.theme.fonts.poppins};
-  border: ${props => (props.hasError ? '1px solid #C5292A' : !props.readOnly ? '1px solid #efefef' : 'none')};
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  border: ${getBorder};
   border-radius: 4px;
-  outline: ${props => props.readOnly && 'none'};
+  outline: ${({ readOnly }) => readOnly && 'none'};
   resize: none;
 
   &:hover{
-    cursor: ${props => !props.readOnly && 'pointer'};
-    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
+    cursor: ${({ readOnly }) => !readOnly && 'pointer'};
+    border: ${({ readOnly, theme }) => !readOnly && `1px solid ${theme.colors.primaryColor}`};
   }
 
   &:hover + ${StyledLabel} {
-    color: ${props => !props.readOnly && props.theme.colors.primaryColor}};
+    color: ${({ readOnly, theme }) => !readOnly && theme.colors.primaryColor};
   }
 `;
 
 const LevelContainerStyled = styled.div`
   position: relative;
-  display: ${props => (props.show ? 'flex' : 'none')};
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   align-items: center;
   box-sizing: border-box;
   padding: 10px;
-  border-top: 1px solid #EFEFEF;
-  border-left: 1px solid ${props => props.theme.colors.primaryColor};
+  border-top: 1px solid ${({ theme }) => theme.colors.grey3};
+  border-left: 1px solid ${({ theme }) => theme.colors.primaryColor};
 `;
+
 const SkillTour = styled.div`
   padding: 10px 5px;
   box-sizing: border-box;
- `;
+`;
 
 const RowSkills = styled.div`
   display: grid;
@@ -96,13 +102,13 @@ const RowSkills = styled.div`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 15px 0px 50px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  padding: 0 15px 0 50px;
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 const RowSkillsTop = styled.div`
   margin: 0 auto;
-  margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
+  margin-bottom: ${({ isRowDown }) => (isRowDown ? 'none' : '8px')};
   min-height: 62.5px;
 `;
 

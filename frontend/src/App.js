@@ -39,7 +39,7 @@ function App() {
             dot: (base, { current }) => ({
               ...base,
               background: current ? '#BF3088' : '#FFF',
-              borderColor: current ? '#BF3088' : '#BF3088',
+              borderColor: '#BF3088',
               height: current ? 8 : 6,
               width: current ? 8 : 6,
               transform: 'none',

@@ -7,10 +7,9 @@ const SwitchTestButton = styled(SwitchButton)`
 
 const SwitchTestSlider = styled(SwitchSlider)`
   &:before {
-    background: #006B79;
+    background: ${({ theme }) => theme.colors.darkGreen};
   }
 `;
 
 const SwitchTestInput = SwitchInput;
-
 export { SwitchTestButton, SwitchTestInput, SwitchTestSlider };

@@ -5,18 +5,18 @@ const EcosystemContainerStyled = styled.div`
   z-index: 1;
   grid-column-start: 2;
   grid-column-end: 5;
-  background: white;
   width: 98%;
   margin: 0 auto;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  background: ${({ theme }) => theme.colors.white};;
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 const EcosystemFallbackStyled = styled.div`
   display: flex;
-  height: 80%;
-  width: 100%;
   justify-content: center;
   align-items: center;
+  height: 80%;
+  width: 100%;
 `;
 
 const EcosystemHeaderStyled = styled.div`
@@ -32,11 +32,11 @@ const EcosystemNameStyledInput = styled.input`
   padding: 16px;
   box-sizing: border-box;
   border-radius: 4px;
-  border: ${props => (props.hasError ? '1px solid #C5292A' : '1px solid #efefef')};
-  
-  &:hover{
-    cursor: ${props => !props.readOnly && 'pointer'};
-    border: ${props => !props.readOnly && `1px solid ${props.theme.colors.primaryColor}`};
+  border: ${({ hasError, theme }) => `1px solid ${hasError ? theme.colors.error : theme.colors.grey3}`};
+
+  &:hover {
+    cursor: ${({ readOnly }) => !readOnly && 'pointer'};
+    border: ${({ readOnly, theme }) => !readOnly && `1px solid ${theme.colors.primaryColor}`};
   }
 `;
 const ButtonsWrapper = styled.div`
@@ -49,8 +49,8 @@ const StyledButton = styled.div`
   margin-left: 7%;
   padding: 10px 16px;
   font-size: 16px;
-  color: white;
-  background-color: ${props => props.theme.colors.primaryColor};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.primaryColor};
   border-radius: 8px;
 
   &:hover {
@@ -65,7 +65,7 @@ const StyledDelete = styled.div`
   margin: 20px;
   font-weight: bold;
   font-size: 14px;
-  color: ${props => props.theme.colors.danger};
+  color: ${({ theme }) => theme.colors.error};
 
   &:hover {
     cursor: pointer;
@@ -76,7 +76,7 @@ const StyledDelete = styled.div`
 const StyledDeleteIcon = styled(Icon)`
   padding: 0 20px;
   margin: -10px;
-  color: ${props => props.theme.colors.danger};
+  color: ${({ theme }) => theme.colors.error};
   border: none;
 `;
 

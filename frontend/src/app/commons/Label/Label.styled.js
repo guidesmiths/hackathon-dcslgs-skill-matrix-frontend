@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
 const getColor = ({ type, theme }) => {
-  if (type === 'focus') return theme.colors.primaryColor;
-  if (type === 'description') return theme.colors.textColor;
-  return '#000000';
+  const { colors: { primaryColor, grey1, black } } = theme;
+  if (type === 'focus') return primaryColor;
+  if (type === 'description') return grey1;
+  return black;
 };
 
 const StyledName = styled.div`
   position: absolute;
-  top: ${props => props.top}px;
-  left: ${props => props.left}px;
-  font-weight: ${props => props.weight};
-  background-color: white;
+  top: ${({ top }) => top}px;
+  left: ${({ left }) => left}px;
+  font-weight: ${({ weight }) => weight};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   padding: 0 5px;
   font-size: 12px;
   white-space: nowrap;
-  color: ${props => getColor(props)};
-  white-space:nowrap;
+  color: ${getColor};
+  white-space: nowrap;
 `;
 
 export default StyledName;

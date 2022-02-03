@@ -14,7 +14,7 @@ const RowSkillsWrapper = styled.div`
 
 const RowSkillsTop = styled.div`
   margin: 0 auto;
-  margin-bottom: ${props => (props.isRowDown ? 'none' : '8px')};
+  margin-bottom: ${({ isRowDown }) => (isRowDown ? 'none' : '8px')};
   padding: 0 15px;
   width: 80%;
 `;
@@ -25,8 +25,8 @@ const RowSkills = styled.div`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 15px 0px 50px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03);
+  padding: 0 15px 0 50px;
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 const UserSkillName = styled.p`
@@ -43,8 +43,9 @@ const StyledLabel = styled.label`
   left: 0;
   width: 20px;
   height: 20px;
-  border: 1px solid ${props => props.theme.colors.primaryColor};
+  border: 1px solid ${({ theme }) => theme.colors.primaryColor};
   border-radius: 4px;
+
   &:after {
     content: '';
     position: absolute;
@@ -52,7 +53,7 @@ const StyledLabel = styled.label`
     left: 5px;
     width: 7px;
     height: 3px;
-    border: 3px solid ${props => props.theme.colors.primaryColor};
+    border: 3px solid ${({ theme }) => theme.colors.primaryColor};
     border-top: none;
     border-right: none;
     background: transparent;
@@ -61,15 +62,15 @@ const StyledLabel = styled.label`
   }
 
   &:hover {
-    cursor: ${props => (props.edit ? 'pointer' : 'auto')};
+    cursor: ${({ edit }) => (edit ? 'pointer' : 'auto')};
   }
 
   &:hover:after {
-    opacity: ${props => (props.edit ? 0.5 : 'auto')}
+    opacity: ${({ edit }) => (edit ? 0.5 : 'auto')}
   };
 
   &:after {
-    opacity: ${props => (props.isChecked ? 1 : 0)};
+    opacity: ${({ isChecked }) => (isChecked ? 1 : 0)};
   }
 `;
 
@@ -81,7 +82,7 @@ const CheckboxWrapper = styled.div`
   height: 22.5px;
   margin: 20px 20px 20px 0;
   padding: 2px;
-  box-sizing:border-box;
+  box-sizing: border-box;
 `;
 
 const StyledCheckbox = styled.input`
@@ -89,11 +90,11 @@ const StyledCheckbox = styled.input`
 `;
 
 const RowCollapsed = styled.div`
-  display: ${props => props.isCollapsed && 'none'};
+  display: ${({ isCollapsed }) => isCollapsed && 'none'};
   width: 80%;
   margin: 0 auto;
-  background-color: white;
-  border-left: 2px solid ${props => props.theme.colors.primaryColor};
+  background-color: ${({ theme }) => theme.colors.white};
+  border-left: 2px solid ${({ theme }) => theme.colors.primaryColor};
 `;
 
 const RowSkillsBottom = styled.div`
@@ -102,7 +103,7 @@ const RowSkillsBottom = styled.div`
   justify-content: space-between;
   padding: 15px 65px 15px 15px;
   margin-bottom: 15px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), 0px 25px 35px rgba(0, 0, 0, 0.03)
+  box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
 
 const ArrowButtonStyled = styled(ArrowButton)`
@@ -144,7 +145,7 @@ const SelectWrapper = styled.div`
     box-sizing: border-box;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #EFEFEF;
+    border: 1px solid ${({ theme }) => theme.colors.grey3};
     font-size: 16px;
     outline: none;
   }
@@ -162,21 +163,44 @@ const AjustLevelButtons = styled.div`
   padding: 5px 0;
 `;
 
+const getBackgroundColor = ({ minus, level, clicked, theme }) => {
+  if (minus) {
+    if (level === 0) return theme.colors.grey3;
+    if (clicked === 'minus') return theme.colors.darkGreen;
+    return theme.colors.lightGreen;
+  }
+  if (level === 4) return theme.colors.grey3;
+  if (clicked === 'plus') return theme.colors.darkGreen;
+  return theme.colors.lightGreen;
+};
+
+const getColor = ({ minus, level, clicked, theme }) => {
+  if (minus) {
+    if (level === 0) return theme.colors.grey2;
+    if (clicked === 'minus') return theme.colors.white;
+    return theme.colors.green;
+  }
+  if (level === 4) return theme.colors.grey2;
+  if (clicked === 'plus') return theme.colors.white;
+  return theme.colors.green;
+};
+
+const getBackgroundColorHover = ({ minus, level, clicked, theme }) => {
+  if (minus && level !== 0 && clicked !== 'minus' && clicked !== '') return theme.colors.secondaryColor;
+  if (!minus && level !== 4 && clicked !== 'plus' && clicked !== '') return theme.colors.secondaryColor;
+  return '';
+};
+
 const AdjustButton = styled(Icon)`
   max-height: 48px;
-  background-color: ${props => (props.minus ? (props.level === 0 ? '#EFEFEF' : props.clicked === 'minus' ? '#006B79' : props.clicked !== '' && '#B9E0D7')
-    : (props.level === 4 ? '#EFEFEF' : props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#B9E0D7'))};
-  color: ${props => (props.minus ? (props.level === 0 ? '#CCCCCC' : props.clicked === 'minus' ? '#FFF' : props.clicked !== '' && '#10243A')
-    : (props.level === 4 ? '#CCCCCC' : props.clicked === 'plus' ? '#FFF' : props.clicked !== '' && '#10243A'))};
-  border-radius: ${props => (props.minus ? '8px 0 0 8px' : '0 8px 8px 0')};
+  background-color: ${getBackgroundColor};
+  color: ${getColor};
+  border-radius: ${({ minus }) => (minus ? '8px 0 0 8px' : '0 8px 8px 0')};
 
   &:hover {
-    background-color: ${props => (props.minus ? (props.level === 0 ? '#EFEFEF' : props.clicked === 'minus' ? '#006B79' : props.clicked !== '' && '#50C0C2')
-    : (props.level === 4 ? '#EFEFEF' : props.clicked === 'plus' ? '#006B79' : props.clicked !== '' && '#50C0C2'))};
-    color: ${props => (props.minus ? (props.level === 0 ? '#CCCCCC' : props.clicked === 'minus' ? '#FFF' : props.clicked !== '' && '#10243A')
-    : (props.level === 4 ? '#CCCCCC' : props.clicked === 'plus' ? '#FFF' : props.clicked !== '' && '#10243A'))};
+    background-color: ${getBackgroundColorHover};
+    color: ${getColor};
   };
-  
 `;
 
 const StyledInput = styled.input`
@@ -185,27 +209,27 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   padding: 0 15px;
   margin-left: 30px;
-  font-family: ${props => props.theme.fonts.poppins};
-  border: 1px solid #EFEFEF;
+  font-family: ${({ theme }) => theme.fonts.poppins};
+  border: 1px solid ${({ theme }) => theme.colors.grey3};
   border-radius: 4px;
 `;
 
 const Tooltip = styled.span`
-  position: absolute;
   z-index: 999;
+  position: absolute;
   top: 70px;
   right: -60px;
-  width: 280px;
-  height: 50px;
   display: flex;
   align-items: center;
+  width: 280px;
+  height: 50px;
   padding: 10px;
-  font-family: ${props => props.theme.fonts.poppins};
+  font-family: ${({ theme }) => theme.fonts.poppins};
   font-size: 9px;
   font-weight: 500;
   text-align: center;
-  background: #10243A;
-  color: white;
+  background: ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.white};
   opacity: 0;
   border-radius: 4px;
   animation: appear 1 normal forwards;
@@ -213,15 +237,15 @@ const Tooltip = styled.span`
 
   &::after {
     content: '';
-    position: absolute;
     z-index: 999;
+    position: absolute;
     top: -10px;
-    right: ${props => (props.plus ? 65 : 115)}px;
-    width: 0; 
-    height: 0; 
+    right: ${({ plus }) => (plus ? 65 : 115)}px;
+    width: 0;
+    height: 0;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid #10243A;
+    border-bottom: 20px solid ${({ theme }) => theme.colors.green};
   }
 
   @keyframes appear {
