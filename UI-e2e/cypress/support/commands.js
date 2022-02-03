@@ -22,13 +22,8 @@ Cypress.Commands.add('initHome', () => {
     method: 'get',
     response: 'fixture:skills',
   }).as('getAllSkills');
-  cy.route({
-    url: '/ui/answers',
-    method: 'get',
-    response: 'fixture:answers',
-  }).as('getAllAnswers');
-  cy.visit('/');
-  cy.wait(['@getAllSkills', '@getAllAnswers']);
+  cy.visit('/directory');
+  cy.wait(['@getAllSkills']);
 });
 
 Cypress.Commands.add('initUser', () => {

@@ -21,7 +21,7 @@ const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
 
   return (
     <AnswersListStyled>
-      <ScrollWrapper>
+      <ScrollWrapper data-cy={'answer-list'}>
         {answers.map((answer, index) => {
           const { id, name, email, role, ecosystems, country, seniority } = answer;
 

@@ -15,19 +15,20 @@ describe('Home page', () => {
 
   describe('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
-      cy.visit('/');
-      cy.get('[data-cy^="answer-list-element-"]').should('have.length', answers.length);
+      cy.visit('/directory');
+      cy.get('[data-cy^="answer-list"]').should('have.length', 11);
     });
 
     it('should render the correct number of skill for a given list element', () => {
-      cy.visit('/');
-      cy.get('[data-cy="answer-list-element-1"]').within(() => {
-        cy.get('[data-cy="skill-list"] > div').should('have.length', 4);
+      cy.visit('/directory');
+      cy.get('[data-cy="answer-list-element-2"]').within(() => {
+        cy.get('[data-cy^="arrow-button-2"]').click();
+        cy.get('[data-cy="skill-list"] > div').should('have.length', 2);
       });
     });
 
     it('should not display the skill list of an element when first rendering the AnswerListElement\'s', () => {
-      cy.visit('/');
+      cy.visit('/directory');
       cy.get('[data-cy="answer-list-element-1"]').within(() => {
         cy.get('[data-cy="skill-list"]').should('have.css', 'display', 'none');
       });
@@ -112,7 +113,7 @@ describe('Home page', () => {
   });
 
   describe('For the filter request', () => {
-    it('should send the request to get the answers with the correct filters', () => {
+    it.skip('should send the request to get the answers with the correct filters', () => {
       cy.intercept('/ui/answers', []).as('getFilteredAnswers');
       const userFilter = 'John';
       const skillFilter = { skill: 'React', level: 3 };
