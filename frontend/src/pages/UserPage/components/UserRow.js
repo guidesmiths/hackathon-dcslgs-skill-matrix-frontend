@@ -27,6 +27,7 @@ import { RowSkillsWrapper,
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 import Label from '../../../app/commons/Label/Label';
+import Icon from '../../../app/commons/icon/icon';
 
 const UserRow = ({ i, skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
@@ -116,16 +117,22 @@ const UserRow = ({ i, skill, idEcosystem, edit }) => {
             <UserSkillName>{skill.name}</UserSkillName>
             <LevelBar skill index={i} level={skill.level} sublevel={skill.sublevel}/>
             <ButtonWrapper>
+
               <CheckboxWrapper data-cy={'checkbox'}>
-                <StyledCheckbox
-                  checked={isChecked}
-                  disabled={!edit}
-                  id={`checkInterested ${skill.name}`}
-                  name={`checkInterested ${skill.name}`}
-                  type="checkbox"
-                  onChange={handleCheckBox}
-                />
-                <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
+                {edit
+                  ? <>
+                    <StyledCheckbox
+                      checked={isChecked}
+                      disabled={!edit}
+                      id={`checkInterested ${skill.name}`}
+                      name={`checkInterested ${skill.name}`}
+                      type="checkbox"
+                      onChange={handleCheckBox}
+                    />
+                    <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
+                  </>
+                  : <Icon className={'check-box'} icon={'check'} show={isChecked}/>
+                }
               </CheckboxWrapper>
               <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
                 <span className="material-icons">{arrowButtonIcon}</span>

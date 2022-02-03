@@ -6,6 +6,10 @@ const RowSkillsWrapper = styled.div`
   &:last-child {
     padding-bottom: 30px !important;
   }
+
+  .check-box{
+    color: ${({ theme }) => theme.colors.primaryColor};
+  }
 `;
 
 const RowSkillsTop = styled.div`
