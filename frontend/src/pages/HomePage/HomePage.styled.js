@@ -5,6 +5,7 @@ const HomePageStyled = styled.div`
   font-family: ${props => props.theme.fonts.poppins};
   overflow-y: auto;
   height: 95vh;
+  padding-top: 72px;
 `;
 
 const StyledBackground = styled.div`

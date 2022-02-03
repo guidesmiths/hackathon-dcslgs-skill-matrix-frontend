@@ -10,6 +10,9 @@ const NavBarTop = styled.div`
   align-items: center;
   justify-content: space-between;
   background: ${props => props.theme.colors.white};
+  z-index: 1;
+  position: fixed;
+  width: 100%;
 `;
 
 const NavStyled = styled.div`

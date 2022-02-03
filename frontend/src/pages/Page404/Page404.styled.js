@@ -16,7 +16,8 @@ const animation = keyframes`
 
 const StyledPage404 = styled.div`
   font-family: ${props => props.theme.fonts.poppins};
-  text-align:center;
+  text-align: center;
+  padding-top: 72px;
 `;
 
 const StyledTitleWrapper = styled.div`

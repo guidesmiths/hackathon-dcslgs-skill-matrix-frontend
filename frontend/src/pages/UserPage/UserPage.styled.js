@@ -8,6 +8,7 @@ const UserPageStyled = styled.div`
   font-family: ${props => props.theme.fonts.poppins};
   height: 100vh;
   overflow-y: auto;
+  padding-top: 72px;
 `;
 
 const HeaderStyled = styled.div`

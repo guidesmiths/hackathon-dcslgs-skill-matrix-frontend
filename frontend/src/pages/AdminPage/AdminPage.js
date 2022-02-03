@@ -106,7 +106,7 @@ const HomePage = () => {
       setCurrentStep(0);
     }
     if (isOpen) {
-      if (currentStep <= 1 && step > currentStep) {
+      if (currentStep < 1 && step > currentStep) {
         setIsOnEditableMode(false);
       } else if (currentStep > 1) {
         setIsOnEditableMode(true);
@@ -135,7 +135,7 @@ const HomePage = () => {
         // },
         {
           disableActions: !isOnEditableMode,
-          selector: '[data-cy="edit-skill-button"]',
+          selector: !isOnEditableMode ? '[data-cy="edit-skill-button"]' : '[data-cy="save-skill-button"]',
           content: <TextTour>You may edit,
             {!isOnEditableMode ? <Warning>To continue, please click on the <em>Edit</em> button.</Warning>
               : <Success>You can continue with the tour.</Success>
