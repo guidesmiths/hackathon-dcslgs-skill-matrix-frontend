@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import callMsGraph from '../../configuration/msal';
 
 function config() {
   return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
@@ -63,30 +62,12 @@ export const fetchUserInfoAsync = createAsyncThunk(
 export const insertUserAsync = createAsyncThunk(
   'users/insertUser',
   async token => {
-    const response = await callMsGraph(token);
-    const { id, mail, displayName, jobTitle, country } = response;
-    const user = {
-      user_id: id,
-      email: mail.toLowerCase(),
-      name: displayName,
-      seniority: jobTitle,
-      country: country?.trim(),
-    };
-    const adminList = [
-      'victor.perez@dcsl.com', 'carlos.esquivel@dcsl.com', 'marina.davila@dcsl.com',
-      'joseantonio.dorado@dcsl.com', 'iria.mavji@dcsl.com', 'alexis.shirtliff@dcsl.com',
-      'andrew.ellingford@dcsl.com', 'adam.bell@dcsl.com', 'william.welsh@dcsl.com',
-      'glen.docherty@dcsl.com', 'will.faulkner@dcsl.com', 'mary.jefferies@dcsl.com',
-      'nick.thompson@dcsl.com',
-    ];
-    if (adminList.find(admin => admin === user.email)) {
-      user.role = 'admin';
-    }
-    const res = await axios.post('/ui/user', user);
+    const res = await axios.post('/ui/user', {
+      token,
+    });
     localStorage.setItem('token', res.data);
-    delete user.user_id;
-    user.id = id;
-    return user;
+    const response = await axios.get('/ui/user/me', config());
+    return response.data;
   },
 );
 
