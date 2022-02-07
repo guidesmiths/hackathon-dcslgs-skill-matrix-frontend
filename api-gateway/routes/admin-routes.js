@@ -10,7 +10,11 @@ module.exports = () => {
     app.use(express.json());
     app.use(helmet({
       // This is neccesary because of helmet v4
-      contentSecurityPolicy: false,
+      contentSecurityPolicy: {
+        directives: {
+          'default-src': 'self',
+        },
+      },
     }));
     logger.info(`path: ${join(root, 'frontend', 'build')}`);
     app.set('view engine', 'hbs');
