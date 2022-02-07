@@ -9,7 +9,6 @@ module.exports = () => {
     app.use(express.urlencoded());
     app.use(express.json());
     app.use(helmet({
-      // This is neccesary because of helmet v4
       contentSecurityPolicy: {
         directives: {
           'default-src': 'self',
