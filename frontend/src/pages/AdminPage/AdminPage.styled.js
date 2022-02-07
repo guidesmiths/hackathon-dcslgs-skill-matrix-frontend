@@ -14,7 +14,7 @@ const EcosystemsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
-  padding-bottom: 125px;
+  padding-bottom: 85px;
 `;
 
 const IconsGroupStyled = styled.div`

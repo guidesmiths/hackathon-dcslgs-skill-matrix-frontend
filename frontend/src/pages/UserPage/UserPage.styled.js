@@ -21,7 +21,7 @@ const UserPageDisplay = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
-  margin-bottom: 25vh;
+  padding-bottom: 85px
 `;
 
 const UserData = styled.div`

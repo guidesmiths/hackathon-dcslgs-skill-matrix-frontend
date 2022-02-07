@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Icon from '../icon/icon';
 
 const NavBarTop = styled.div`
-  z-index: 1;
+  z-index: 100;
   position: fixed;
   display: flex;
   align-items: center;
@@ -13,6 +13,7 @@ const NavBarTop = styled.div`
   box-sizing: border-box;
   padding: 20px;
   background: ${({ theme }) => theme.colors.white};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey2};
 `;
 
 const NavStyled = styled.div`
@@ -22,7 +23,7 @@ const NavStyled = styled.div`
 
 const LogoWrapper = styled.div`
   margin: 0 45px;
-  border-right: 1px solid ${({ theme }) => theme.colors.grey3};;
+  border-right: 1px solid ${({ theme }) => theme.colors.grey3};
   display: flex;
   align-items: center;
   height: 100%;
