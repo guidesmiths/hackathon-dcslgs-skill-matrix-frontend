@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const { handleError } = require('../../lib/handlerError');
+const { limiter } = require('../../lib/rate-limiter');
 
 module.exports = () => {
   const start = ({ app, controller, logger }, cb) => {
@@ -34,7 +35,7 @@ module.exports = () => {
 
      * @security jwtAuth
      */
-    app.post('/ui/suggestion',
+    app.post('/ui/suggestion', limiter,
       async (req, res) => {
         const { body } = req;
         return controller.suggestions.insertSuggestion({

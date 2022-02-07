@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const { handleError } = require('../../lib/handlerError');
+const { limiter } = require('../../lib/rate-limiter');
 
 module.exports = () => {
   const start = ({ app, controller, logger }, cb) => {
@@ -33,7 +34,7 @@ module.exports = () => {
      * @security jwtAuth
      */
 
-    app.post('/ui/skill',
+    app.post('/ui/skill', limiter,
       async (req, res) => {
         const { body } = req;
         return controller.skills.upsertSkill({
@@ -53,7 +54,7 @@ module.exports = () => {
 
     * @security jwtAuth
     */
-    app.delete('/ui/skill/:id',
+    app.delete('/ui/skill/:id', limiter,
       async (req, res) => {
         const { params: { id } } = req;
         return controller.skills.deleteSkill({

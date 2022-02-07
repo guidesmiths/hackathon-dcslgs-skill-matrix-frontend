@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const { handleError } = require('../../lib/handlerError');
+const { limiter } = require('../../lib/rate-limiter');
 
 module.exports = () => {
   const start = ({ app, controller, logger }, cb) => {
@@ -58,7 +59,7 @@ module.exports = () => {
 
     * @security jwtAuth
     */
-    app.post('/ui/ecosystem',
+    app.post('/ui/ecosystem', limiter,
       async (req, res) => {
         const { body } = req;
 
@@ -79,7 +80,7 @@ module.exports = () => {
 
      * @security jwtAuth
      */
-    app.delete('/ui/ecosystem/:id',
+    app.delete('/ui/ecosystem/:id', limiter,
       async (req, res) => {
         const { params: { id } } = req;
 

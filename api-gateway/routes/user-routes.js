@@ -1,4 +1,5 @@
 const { handleError } = require('../../lib/handlerError');
+const { limiter } = require('../../lib/rate-limiter');
 
 /* eslint-disable no-unused-vars */
 module.exports = () => {
@@ -15,7 +16,7 @@ module.exports = () => {
      * [{"user_id":"asldkan21ansdkasnd","email":"johndoe@guidesmiths.com","img_url":null,"name":"John Doe","domain":null,"role":"user"}]
      * @security jwtAuth
      */
-    app.post('/ui/user',
+    app.post('/ui/user', limiter,
       async (req, res) => {
         const { body } = req;
         controller.users.insertUser({
