@@ -70,11 +70,18 @@ const SearchBarSkill = ({ addUsedSkill, removeUsedSkill, isFirstFilter, isLastFi
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
     const newSkill = await skillFilters[arg + 1];
+    const previousSkill = await skillFilters[arg];
     // The usedSkill list is used to recover the name of the following filter and apply to the index of the deleted one
     const newSkillData = await usedSkills.find(
       skill => skill.info.id === newSkill?.skill,
     );
-    removeUsedSkill(arg);
+    const existsFilter = await usedSkills.find(
+      skill => skill.info.id === previousSkill?.skill,
+    );
+    // To avoid delete an existing filter when the skill filter is not available
+    if (existsFilter) {
+      removeUsedSkill(arg);
+    }
     setSkillTyped(newSkillData?.info.name);
   };
 

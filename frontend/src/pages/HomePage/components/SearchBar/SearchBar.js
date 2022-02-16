@@ -56,9 +56,11 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   };
 
   const removeUsedSkill = index => {
-    const position = usedSkills.findIndex(s => s.index === index);
-    usedSkills.splice(position, 1);
-    setFilteredSkills(skills.filter(({ name: skillName }) => !usedSkills.find(s => s.info.name === skillName)));
+    if (index) {
+      const position = usedSkills.findIndex(s => s.index === index);
+      usedSkills.splice(position, 1);
+      setFilteredSkills(skills.filter(({ name: skillName }) => !usedSkills.find(s => s.info.name === skillName)));
+    }
   };
 
   return (
