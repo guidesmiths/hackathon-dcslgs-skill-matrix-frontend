@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
 import {
   addSkillFilter,
   updateSkillFilter,
@@ -18,11 +17,10 @@ import Input from '../../../../../app/commons/Input/Input';
 import Select from '../../../../../app/commons/Select/Select';
 import Label from '../../../../../app/commons/Label/Label';
 
-const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
+const SearchBarSkill = ({ addUsedSkill, removeUsedSkill, isFirstFilter, isLastFilter, filter, index, skills, usedSkills }) => {
   const dispatch = useDispatch();
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
-  const skills = useSelector(selectAllSkills);
   const skillFilters = useSelector(selectSkillFilters);
   const [skillTyped, setSkillTyped] = useState();
   const [selectedSkill, setSelectedSkill] = useState(null);
@@ -40,6 +38,8 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
     setSelectedSkill(foundSkill);
 
     if (foundSkill) {
+      // It's important to save in which filter the users are writing in order to delete correctly if needed
+      addUsedSkill({ info: foundSkill, index });
       dispatch(
         updateSkillFilter({
           index,
@@ -66,13 +66,16 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
         },
       }),
     );
+
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
-    const newSkill = await skillFilters[index + 1];
-    const newSkillData = await skills.find(
-      skill => skill.id === newSkill?.skill,
+    const newSkill = await skillFilters[arg + 1];
+    // The usedSkill list is used to recover the name of the following filter and apply to the index of the deleted one
+    const newSkillData = await usedSkills.find(
+      skill => skill.info.id === newSkill?.skill,
     );
-    setSkillTyped(newSkillData?.name);
+    removeUsedSkill(arg);
+    setSkillTyped(newSkillData?.info.name);
   };
 
   return (
@@ -114,9 +117,22 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
 };
 
 SearchBarSkill.propTypes = {
+  addUsedSkill: PropTypes.func.isRequired,
   filter: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isLastFilter: PropTypes.bool.isRequired,
+  removeUsedSkill: PropTypes.func.isRequired,
+  skills: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
+  usedSkills: PropTypes.arrayOf(PropTypes.shape({
+    index: PropTypes.number.isRequired,
+    info: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  })).isRequired,
   isFirstFilter: PropTypes.bool,
 };
 
