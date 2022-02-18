@@ -11,7 +11,13 @@ module.exports = () => {
     app.use(helmet({
       contentSecurityPolicy: {
         directives: {
-          defaultSrc: ['self', 'fonts.googleapis.com'],
+          defaultSrc: ['self'],
+          fontSrc: [
+            'self',
+            'fonts.googleapis.com',
+            'themes.googleusercontent.com',
+            'fonts.gstatic.com',
+          ],
         },
       },
     }));
