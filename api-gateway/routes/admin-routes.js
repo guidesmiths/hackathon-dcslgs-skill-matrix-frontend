@@ -11,13 +11,17 @@ module.exports = () => {
     app.use(helmet({
       contentSecurityPolicy: {
         directives: {
-          defaultSrc: ['self'],
+          defaultSrc: ['\'self\''],
+          scriptSrc: ['\'self\'', '\'unsafe-inline\''],
           fontSrc: [
-            'self',
+            '\'self\'',
             'fonts.googleapis.com',
             'themes.googleusercontent.com',
             'fonts.gstatic.com',
           ],
+          styleSrc: ['\'self\'', 'fonts.googleapis.com', '\'unsafe-inline\''],
+          imgSrc: ['\'self\'', 'data:'],
+          connectSrc: ['\'self\'', 'login.microsoftonline.com'],
         },
       },
     }));
