@@ -8,11 +8,11 @@ import { selectSkillFilters } from '../../../../redux/filters/filtersSlice';
 import { fetchUsersFilteredAsync } from '../../../../redux/answers/answersSlice';
 import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
 import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
-import { fetchSkillsAsync } from '../../../../redux/skills/skillsSlice';
+import { fetchSkillsAsync, selectAllSkills } from '../../../../redux/skills/skillsSlice';
 
 const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   const dispatch = useDispatch();
-
+  const skills = useSelector(selectAllSkills);
   const skillFilters = useSelector(selectSkillFilters);
   const isLastFilter = index => index === skillFilters.length - 1;
 
@@ -24,6 +24,9 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
     const page = (currentPage > numberOfPages ? numberOfPages : currentPage) || 1;
     dispatch(fetchUsersFilteredAsync({ skillFilters, page, name }));
   }, [skillFilters, name, currentPage]);
+
+  const skillsIdSearched = skillFilters.map(filter => filter.skill);
+  const skillsNotSearched = skills.filter(skill => !skillsIdSearched.includes(skill.id));
 
   return (
     <SearchBarsWrapper>
@@ -45,6 +48,7 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
             index={index}
             isFirstFilter={skillFilters.length > 1}
             isLastFilter={isLastFilter(index)}
+            skills={skillsNotSearched}
           />
         ))}
       </SearchBarSkillWrapper>

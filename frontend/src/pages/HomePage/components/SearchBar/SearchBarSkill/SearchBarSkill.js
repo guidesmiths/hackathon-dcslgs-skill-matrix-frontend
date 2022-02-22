@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectAllSkills } from '../../../../../redux/skills/skillsSlice';
 import {
   addSkillFilter,
   updateSkillFilter,
@@ -18,11 +17,10 @@ import Input from '../../../../../app/commons/Input/Input';
 import Select from '../../../../../app/commons/Select/Select';
 import Label from '../../../../../app/commons/Label/Label';
 
-const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index }) => {
+const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) => {
   const dispatch = useDispatch();
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
-  const skills = useSelector(selectAllSkills);
   const skillFilters = useSelector(selectSkillFilters);
   const [skillTyped, setSkillTyped] = useState();
   const [selectedSkill, setSelectedSkill] = useState(null);
@@ -117,6 +115,7 @@ SearchBarSkill.propTypes = {
   filter: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isLastFilter: PropTypes.bool.isRequired,
+  skills: PropTypes.array.isRequired,
   isFirstFilter: PropTypes.bool,
 };
 
