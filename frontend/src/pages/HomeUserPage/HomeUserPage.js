@@ -23,6 +23,7 @@ const HomeUserPage = () => {
     const page = +params.get('page');
     setCurrentPage(page || 1);
   }, []);
+
   useEffect(() => history.push({ search: `page=${currentPage}` }), [currentPage]);
 
   const handlePagination = (_, page) => {

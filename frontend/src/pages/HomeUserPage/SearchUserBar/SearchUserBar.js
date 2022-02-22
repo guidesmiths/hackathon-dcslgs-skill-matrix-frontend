@@ -22,7 +22,7 @@ const SearchUserBar = ({ currentPage, numberOfPages }) => {
   useEffect(() => {
     const page = (currentPage > numberOfPages ? numberOfPages : currentPage) || 1;
     dispatch(fetchUsersFilteredAsync({ skillFilters, userFilter, page }));
-  }, [skillFilters, userFilter, currentPage, numberOfPages]);
+  }, [skillFilters, userFilter, currentPage]);
 
   return (
     <SearchBarsUserWrapper>

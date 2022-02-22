@@ -23,7 +23,7 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   useEffect(() => {
     const page = (currentPage > numberOfPages ? numberOfPages : currentPage) || 1;
     dispatch(fetchUsersFilteredAsync({ skillFilters, page, name }));
-  }, [skillFilters, name, currentPage, numberOfPages]);
+  }, [skillFilters, name, currentPage]);
 
   return (
     <SearchBarsWrapper>
@@ -60,7 +60,7 @@ SearchBar.propTypes = {
 };
 
 SearchBar.defaultProps = {
-  name: '',
+  name: null,
   numberOfPages: 1,
 };
 
