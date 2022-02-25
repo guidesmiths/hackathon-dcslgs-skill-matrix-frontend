@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 import { TourProvider, components } from '@reactour/tour';
+import { ThemeProvider } from 'styled-components';
 import AppRouter from './AppRouter';
 import theme from './app/commons/Theme/Theme';
 
@@ -21,6 +21,7 @@ function App() {
       </components.Badge>
     );
   }
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>

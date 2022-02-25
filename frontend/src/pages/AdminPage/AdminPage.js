@@ -36,7 +36,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { currentStep, isOpen, setCurrentStep, setDisabledActions, setSteps } = useTour();
+  const { currentStep, isOpen, setCurrentStep, setSteps } = useTour();
   const [step, setStep] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -111,12 +111,9 @@ const HomePage = () => {
       } else if (currentStep > 1) {
         setIsOnEditableMode(true);
       }
-      if (currentStep === 0 && pathname.split('/')[2]) {
-        setDisabledActions(false);
-      }
       setSteps([
         {
-          disableActions: !pathname.split('/')[2],
+          stepInteraction: !pathname.split('/')[2],
           selector: '[data-cy="ecosystems-sidebar"]',
           content: <TextTour>As an Admin you can edit, delete and include any ecosystem. If you click in an
             ecosystem, you will find all the skills related to each one of them.
@@ -124,17 +121,8 @@ const HomePage = () => {
             : <Success>You can continue with the tour.</Success>
           }</TextTour>,
         },
-        // {
-        //   disableActions: currentStep === 1 && noSuggestions,
-        //   selector: '[data-cy="inbox-button"]',
-        //   content: <TextTour>Here you can open the suggestions.</TextTour>,
-        // },
-        // {
-        //   selector: '[data-cy="suggestions-list"]',
-        //   content: <TextTour>Here you can open the suggestions.</TextTour>,
-        // },
         {
-          disableActions: !isOnEditableMode,
+          stepInteraction: !isOnEditableMode,
           selector: !isOnEditableMode ? '[data-cy="edit-skill-button"]' : '[data-cy="save-skill-button"]',
           content: <TextTour>You may edit,
             {!isOnEditableMode ? <Warning>To continue, please click on the <em>Edit</em> button.</Warning>
@@ -294,8 +282,8 @@ const HomePage = () => {
       </EcosystemsContainer>
       { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
       <Footer>
-        <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
-        {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>}
+        <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => setNoSuggestions(!noSuggestions)}/>
+        {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => setIsOnEditableMode(true) }>Edit</EditButton>}
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton save data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
       </Footer>

@@ -18,7 +18,7 @@ import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
 const UserPage = () => {
   const dispatch = useDispatch();
   const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
-  const { isOpen, currentStep, setCurrentStep, setDisabledActions, setIsOpen, setSteps } = useTour();
+  const { isOpen, currentStep, setCurrentStep, setIsOpen, setSteps } = useTour();
   const [step, setStep] = useState(0);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -88,7 +88,6 @@ const UserPage = () => {
     }
     if (isOpen && (currentStep <= 3 && step > currentStep)) {
       setEdit(!(currentStep <= 3));
-      setDisabledActions(currentStep === 3);
     } else if (isOpen && currentStep < 3) {
       setEdit(false);
     }
@@ -99,12 +98,9 @@ const UserPage = () => {
     if (!pathname.split('/')[3]) {
       setCurrentStep(0);
     }
-    if (isOpen && currentStep === 0 && pathname.split('/')[3]) {
-      setDisabledActions(false);
-    }
     setSteps([
       {
-        disableActions: !pathname.split('/')[3],
+        stepInteraction: !pathname.split('/')[3],
         selector: '[data-cy="ecosystems"]',
         content: <TextTour>Have a look at all the different ecosystems we currently have identified at the
         team. If you click in an ecosystem, you will find all the skills related to each one of them.
@@ -127,7 +123,7 @@ const UserPage = () => {
         ecosystems you feel most comfortable with.</TextTour>,
       },
       {
-        disableActions: !edit,
+        stepInteraction: !edit,
         selector: !edit ? '[data-cy="editUser"]' : '[data-cy="saveUser"]',
         content: <TextTour>Once you&apos;ve had a look to the ecosystems and skills,
            you are ready to create your skill matrix profile. To proceed, search for the skills you may feel identified with and click on the option edit.
@@ -185,7 +181,7 @@ const UserPage = () => {
         {!edit
           ? <>
             <StyledIcon data-cy={'add'} icon={'email'} onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
-            { !emptyState && <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); setDisabledActions(false); }}>Edit</EditButtonStyled>}
+            { !emptyState && <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); }}>Edit</EditButtonStyled>}
           </>
           : <>
             <SaveButton action={'cancel'} onClick={() => isCanceling(true)}>Cancel</SaveButton>
