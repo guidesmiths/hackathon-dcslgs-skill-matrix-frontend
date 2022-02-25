@@ -14,8 +14,8 @@ const initialState = {
   insertStatus: 'idle',
 };
 
-export const fetchAnswersByUserAndEcosystemAsync = createAsyncThunk('users/fetchAnswersByUserAndEcosystem', async ({ userId, ecoId }) => {
-  const response = await axios.get(`/ui/user/${userId}/ecosystem/${ecoId}/answers`, config());
+export const fetchAnswersByUserAndEcosystemAsync = createAsyncThunk('users/fetchAnswersByUserAndEcosystem', async ({ ecoId }) => {
+  const response = await axios.get(`/ui/user/ecosystem/${ecoId}/answers`, config());
   return response.data;
 });
 

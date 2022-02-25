@@ -47,7 +47,7 @@ const UserPage = () => {
       const currentLocation = +pathname.split('/')[3];
       if (currentLocation && userData.id) {
         dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
-        dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
+        dispatch(fetchAnswersByUserAndEcosystemAsync({ ecoId: currentLocation }));
         setEcosystemIdSelected(currentLocation);
         setEmptyState(false);
       }
@@ -70,7 +70,7 @@ const UserPage = () => {
   const handleCancel = confirm => {
     if (confirm) {
       setEdit(false);
-      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: ecosystemIdSelected }));
+      dispatch(fetchAnswersByUserAndEcosystemAsync({ ecoId: ecosystemIdSelected }));
     } else {
       handleSubmit();
     }
@@ -161,7 +161,7 @@ const UserPage = () => {
     const currentLocation = +pathname.split('/')[3];
     if (currentLocation && userData.id) {
       dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
-      dispatch(fetchAnswersByUserAndEcosystemAsync({ userId: userData.id, ecoId: currentLocation }));
+      dispatch(fetchAnswersByUserAndEcosystemAsync({ ecoId: currentLocation }));
       setEcosystemIdSelected(currentLocation);
       setEmptyState(false);
     }
