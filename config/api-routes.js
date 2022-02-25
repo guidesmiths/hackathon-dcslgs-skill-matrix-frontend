@@ -24,7 +24,7 @@ module.exports = {
         method: 'post',
       },
       fetchAnswersByUserAndEcosystem: {
-        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/:userId/ecosystem/:ecoId/answers`,
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/ecosystem/:ecoId/answers`,
         method: 'get',
       },
       insertAnswers: {

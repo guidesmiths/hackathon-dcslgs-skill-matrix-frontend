@@ -66,12 +66,12 @@ module.exports = () => {
 
      * @security jwtAuth
      */
-    app.get('/ui/user/:userId/ecosystem/:ecoId/answers',
+    app.get('/ui/user/ecosystem/:ecoId/answers',
       async (req, res) => {
-        const { params: { userId, ecoId } } = req;
+        const { params: { ecoId } } = req;
 
         return controller.answers.fetchAnswersByUserAndEcosystem({
-          urlParams: { userId, ecoId },
+          urlParams: { ecoId },
           headers: { Authorization: req.headers.authorization },
         })
           .then(({ data }) => res.json(data))
