@@ -38,7 +38,7 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: "e2e-test-output.xml"
+    testResultsFiles: "e2e-test-output-*.xml"
     searchFolder: '$(System.DefaultWorkingDirectory)/UI-e2e/cytestresults'
     failTaskOnFailedTests: true
 
