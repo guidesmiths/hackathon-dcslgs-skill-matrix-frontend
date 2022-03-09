@@ -58,7 +58,7 @@ describe('Admin page', () => {
         });
       });
 
-      it('should delete the suggestion card and close the modal when clicking on the modal\'s delete button', () => {
+      it.skip('should delete the suggestion card and close the modal when clicking on the modal\'s delete button', () => {
         cy.get('[data-cy="suggestion-card-0"]').within(() => {
           cy.get('[data-cy="icon-visibility"]').click();
           cy.get('[data-cy="modal-button-delete"]').click();
@@ -82,7 +82,7 @@ describe('Admin page', () => {
       cy.get('[data-cy="fallback-text"]').contains('Add all the ecosystem needed and complete them with the skill that the employee can have in them');
     });
 
-    describe('When clicking on add a new ecosystem', () => {
+    describe.skip('When clicking on add a new ecosystem', () => {
       beforeEach(() => {
         cy.get('[data-cy="ecosystems-element-0"]').click();
         cy.get('[data-cy="edit-skill-button"]').click();
@@ -124,7 +124,7 @@ describe('Admin page', () => {
       });
     });
 
-    describe('When clicking on an existent ecosystem', () => {
+    describe.skip('When clicking on an existent ecosystem', () => {
       beforeEach(() => {
         cy.get('[data-cy="ecosystems-element-0"]').click();
       });
@@ -141,7 +141,7 @@ describe('Admin page', () => {
         cy.get('[data-cy="skill-name-input-7"]').should('have.attr', 'value', 'Redux-Sagas');
       });
 
-      it('should display the skill\'s levels not expanded by defaul', () => {
+      it('should display the skill\'s levels not expanded by default', () => {
         cy.get('[data-cy^="skill-level-container-"]').should('not.be.visible');
       });
 

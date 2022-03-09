@@ -13,7 +13,7 @@ describe('Home page', () => {
     cy.url().should('match', new RegExp('/'));
   });
 
-  describe('For the answer list', () => {
+  describe.skip('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
       cy.visit('/directory');
       cy.get('[data-cy^="answer-list"]').should('have.length', 11);
@@ -35,7 +35,7 @@ describe('Home page', () => {
     });
   });
 
-  describe('For the user input filter on the search bar', () => {
+  describe.skip('For the user input filter on the search bar', () => {
     it('should update the input with every keystroke', () => {
       const userFilter = 'John';
       cy.get('[data-cy="user-input"]').type(userFilter, { force: true });
@@ -43,7 +43,7 @@ describe('Home page', () => {
     });
   });
 
-  describe('For the skill filters on the search bar', () => {
+  describe.skip('For the skill filters on the search bar', () => {
     it('should show only one skill filter with the default values when visiting the page', () => {
       cy.get('[data-cy^="search-bar-skill"]').should('have.length', 1);
       cy.get('[data-cy="search-bar-skill-0"]').within(() => {
@@ -102,7 +102,7 @@ describe('Home page', () => {
     });
   });
 
-  describe('For the pagination', () => {
+  describe.skip('For the pagination', () => {
     const pageSize = 10;
     it('should render the correct number of pages according to the size of the payload and the page size', () => {
       cy.get('[data-cy="pagination"]').within(() => {

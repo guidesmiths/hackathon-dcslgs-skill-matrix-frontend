@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev:e2e": "cross-env CYPRESS_REMOTE_DEBUGGING_PORT=9222 ./node_modules/.bin/cypress open",
-    "headless:e2e": "cross-env CLI=true CYPRESS_baseUrl=http://localhost:4000 ./node_modules/.bin/cypress run",
+    "headless:e2e": "cross-env CLI=true CYPRESS_baseUrl=http://localhost:3000 ./node_modules/.bin/cypress run",
     "headless:e2e:ci": "cross-env CI=true CLI=true CYPRESS_baseUrl=http://localhost:3000 ./node_modules/.bin/cypress run",
+    "merge:e2e": "./node_modules/.bin/junit-merge -C -d cytestresults -o ./cytestresults/merged-e2e-test-output.xml",
     "lint": "cross-env ./node_modules/.bin/eslint --config .eslintrc_cypress.json ."
   },
   "keywords": [
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "cross-env": "^7.0.2",
-    "dotenv": "^8.6.0"
+    "dotenv": "^8.6.0",
+    "junit-merge": "^2.0.0"
   }
 }

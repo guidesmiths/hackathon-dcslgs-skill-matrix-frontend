@@ -35,6 +35,13 @@ steps:
     rm -rf UI-e2e test frontend/src frontend/node_modules frontend/public
   displayName: 'clean files'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: "merged-e2e-test-output.xml"
+    searchFolder: '$(System.DefaultWorkingDirectory)/UI-e2e/cytestresults'
+    failTaskOnFailedTests: true
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'

@@ -3,5 +3,10 @@
   "experimentalStudio": true,
   "viewportWidth": 1280,
   "viewportHeight": 800,
-  "video": false
+  "video": false,
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "cytestresults/e2e-test-output-[hash].xml",
+    "toConsole": true
+  }
 }

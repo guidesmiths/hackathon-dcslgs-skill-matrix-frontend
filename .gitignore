@@ -2,3 +2,6 @@ node_modules
 manifest.json
 *.log
 .env
+junit.xml
+UI-e2e/cypress/downloads
+**/cytestresults
