@@ -5,3 +5,9 @@ manifest.json
 junit.xml
 UI-e2e/cypress/downloads
 **/cytestresults
+
+# testing
+/coverage
+UI-e2e/coverage
+UI-e2e/cypress/screenshots
+.nyc_output
