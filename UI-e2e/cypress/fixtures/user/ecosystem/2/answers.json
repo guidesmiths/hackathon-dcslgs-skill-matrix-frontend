@@ -1,0 +1,89 @@
+{
+  "id": "3619141e-e20a-434f-8c88-ecf2929073ed",
+  "email": "johndoe@guidesmiths.com",
+  "name": "John Doe",
+  "ecosystems": [
+    {
+      "id": 2,
+      "name": "NodeJS",
+      "average": 0.3333333333333333,
+      "skills": [
+        {
+          "id": 11,
+          "name": "NPM",
+          "level": 1,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 21,
+          "name": "Security",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 22,
+          "name": "Process Management",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 24,
+          "name": "Scraping",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 9,
+          "name": "Express",
+          "level": 4,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 12,
+          "name": "Webpack",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 15,
+          "name": "Logging",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 17,
+          "name": "Hardware",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        },
+        {
+          "id": 19,
+          "name": "Streams",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        }
+      ]
+    }
+  ],
+  "userRole": "user",
+  "country": "Spain",
+  "seniority": "Junior Developer"
+}

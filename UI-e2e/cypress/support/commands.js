@@ -27,16 +27,17 @@ Cypress.Commands.add('initHome', () => {
 });
 
 Cypress.Commands.add('initUser', () => {
-  cy.server();
-  cy.route({
+  cy.intercept({
     url: '/ui/user/me',
     method: 'get',
-    response: 'fixture:user.json',
+  }, {
+    fixture: 'user',
   }).as('getUser');
-  cy.route({
+  cy.intercept({
     url: '/ui/ecosystems',
     method: 'get',
-    response: 'fixture:ecosystems.json',
+  }, {
+    fixture: 'ecosystems',
   }).as('getEcosystems');
   cy.visit('/profile');
   cy.wait(['@getUser', '@getEcosystems']);
@@ -83,4 +84,28 @@ Cypress.Commands.add('init404', () => {
   }).as('getUser');
   cy.visit('/404');
   cy.wait(['@getUser']);
+});
+
+Cypress.Commands.add('getSkillsAndAnswersByEcosystem', id => {
+  cy.intercept(
+    {
+      url: `/ui/ecosystem/${id}`,
+      method: 'get',
+    }, {
+      fixture: `ecosystem/${id}`,
+    },
+  ).as('getEcosystem');
+
+  cy.intercept(
+    {
+      url: `/ui/user/ecosystem/${id}/answers`,
+      method: 'get',
+    }, {
+      fixture: `user/ecosystem/${id}/answers`,
+    },
+  ).as('getAnswerByEcoAndUser');
+
+  cy.visit(`/profile/ecosystem/${id}`);
+
+  cy.wait(['@getEcosystem', '@getAnswerByEcoAndUser']);
 });

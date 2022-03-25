@@ -1,0 +1,185 @@
+[
+  {
+    "id": 2,
+    "name": "NodeJS",
+    "skills": [
+      {
+        "id": 9,
+        "name": "Express",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 2,
+            "name": "Backend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I know http verbs (at least POST, GET), REST basics, URL routing and how to handle basics http error codes and responses"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I understand Request, Response objects, middleware pattern in Express and parametrized routes"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I am capable of write handlers for parametrized routes, also I can manipulate middleware, Request and Response objects"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can write generic middleware and integrate Express with another frameworks/libraries"
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Hardware",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 2,
+            "name": "Backend"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics (Libraries, Serial Port, comm, hardware components)"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I understand the basics and can read and modify existing code."
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can extend new features such as add a new sensor (HW/SW) or new actuator like and engine (HW/SW)"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I am able to build all from scratch (select HW components, comm protocols, libraries, project setup, testing...)"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Logging",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 2,
+            "name": "Backend"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I understand the basics and can read and modify existing code."
+          },
+          {
+            "level": 3,
+            "levelDescription": "I am not afraid to use advance tools (levels, filtering)"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I am able to explain to others most of the topics, even advance ones."
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "NPM",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 2,
+            "name": "Backend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I know which is the primary use of npm and package.json"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I understand semver and the details about package.json structure"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I know what is npm link for and how to publish a module in the public registry"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I am a npm application contributor or module maintainer\n"
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "name": "Process Management",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 2,
+            "name": "Backend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics (PM2, daemons, SIGINT, etc...)"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I understand the basics and can read and modify existing code."
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can develop new solutions that use it."
+          },
+          {
+            "level": 4,
+            "levelDescription": "I am able to explain to others most of the topics, even advance ones."
+          }
+        ]
+      }
+    ]
+  }
+]

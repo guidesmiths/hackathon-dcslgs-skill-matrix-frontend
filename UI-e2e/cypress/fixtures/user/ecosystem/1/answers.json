@@ -1,0 +1,81 @@
+{
+  "id": "3619141e-e20a-434f-8c88-ecf2929073ed",
+  "email": "johndoe@guidesmiths.com",
+  "name": "John Doe",
+  "ecosystems": [
+    {
+      "id": 1,
+      "name": "React",
+      "average": 0.875,
+      "skills": [
+        {
+          "id": 2,
+          "name": "Next.js",
+          "level": 1,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 3,
+          "name": "Redux",
+          "level": 2,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 4,
+          "name": "ReactCssTransition",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 5,
+          "name": "Redux-Sagas",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 6,
+          "name": "i18Next",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 7,
+          "name": "React Native Web",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 8,
+          "name": "Gatsby",
+          "level": 0,
+          "sublevel": "neutral",
+          "interested": true,
+          "comments": ""
+        },
+        {
+          "id": 1,
+          "name": "React",
+          "level": 4,
+          "sublevel": "neutral",
+          "interested": null,
+          "comments": null
+        }
+      ]
+    }
+  ],
+  "userRole": "user",
+  "country": "Spain",
+  "seniority": "Junior Developer"
+}

@@ -1,0 +1,304 @@
+[
+  {
+    "id": 1,
+    "name": "React",
+    "skills": [
+      {
+        "id": 8,
+        "name": "Gatsby",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a basic knowledge of the framework. I understand the framework principles and I can implement solutions defined at the documentation or tutorials"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I modify effectively already working solutions to include new features"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can analyse working solutions and I can propose refactors and generalisations"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can define complex architectures and I can provide optimised solutions"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "i18Next",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I can add new literals and I know how to use it at code"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can use variables at phrases"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can use plurals and I can make it working with all defined languages"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can use advance features at multilingual project"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Next.js",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I understand the framework principles and I can implement solutions defined at the documentation or tutorials"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I modify effectively already working solutions to include new features"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can analyse working solutions and I can propose refactors and generalisations"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can define complex architectures and I can provide optimised solutions"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "name": "React",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a basic knowledge of the framework. Understand the framework principles and can implement solutions defined at the documentation or tutorials"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can modify effectively already working solutions to include new features"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can analyse working solutions and propose refactors and generalization"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can define complex architectures and I can provide optimised solutions"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "React Native Web",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I can write components using react-native syntaxis"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can write conditional code depending on platforms"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can write mobile responsive components"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can manage different native components according OS specific guidelines, like ActionSheets, selectors"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "ReactCssTransition",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I can work effectively modifying existing solutions implemented with it"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can develop new solutions that use it. I can add the dependency to a new project and create reusable components with this library"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I have some CSS knowledge to create simple animations integrated with the library mixed with react components"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I know how to create transitions between pages. I have advanced CSS knowledge to create simple animations integrated with the library mixed with react components"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Redux",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I have a basic knowledge of the library. I understand when use redux state and when use the component state."
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can separate concepts and I have a proper usage of actions and reducers"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I am able to keep a normalised state, using complex reducers in order to guarantee immutability and flatten/efficient\n structures"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can use the library in combination of others to build complex solutions."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Redux-Sagas",
+        "type": {
+          "id": 2,
+          "name": "Hard skill"
+        },
+        "roles": [
+          {
+            "id": 1,
+            "name": "Frontend"
+          },
+          {
+            "id": 3,
+            "name": "Fullstack"
+          }
+        ],
+        "description": "",
+        "levels": [
+          {
+            "level": 1,
+            "levelDescription": "I can add new sagas into a working project"
+          },
+          {
+            "level": 2,
+            "levelDescription": "I can configure from the scratch a new project"
+          },
+          {
+            "level": 3,
+            "levelDescription": "I can write both sync and async sagas processes"
+          },
+          {
+            "level": 4,
+            "levelDescription": "I can use Sagas to manage the state of all the components such ui (modals/toast) navigation (navigate between screens) \n and app state"
+          }
+        ]
+      }
+    ]
+  }
+]

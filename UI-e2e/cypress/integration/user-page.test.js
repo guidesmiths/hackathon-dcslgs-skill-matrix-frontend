@@ -11,33 +11,37 @@ describe('User page', () => {
     cy.url().should('match', new RegExp('/'));
   });
 
-  it.skip('should find Express skill when selecting NodeJs Ecosystem', () => {
+  it('should find Express skill when selecting NodeJs Ecosystem', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').last().click();
+    cy.getSkillsAndAnswersByEcosystem(2);
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userRow"]').contains('React').should('not.exist');
   });
 
-  it('should find React skill when selecting React Ecosystem', () => {
+  it('should find Redux skill when selecting React Ecosystem', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').first().click();
-    cy.get('[data-cy^="userRow"]').contains('React');
+    cy.getSkillsAndAnswersByEcosystem(1);
+    cy.get('[data-cy^="userRow"]').contains('Redux');
     cy.get('[data-cy^="userRow"]').contains('Express').should('not.exist');
   });
 
-  it.skip('should find user level corresponding to React', () => {
+  it('should find user level corresponding to React', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').first().click();
+    cy.getSkillsAndAnswersByEcosystem(1);
     cy.get('[data-cy^="userRow"]').contains('React');
     cy.get('[data-cy^="userSkill-React"]').first().should('exist');
     cy.get('[data-cy^="userSkillButton-React"]').first().click();
     cy.contains('I can define complex architectures and I can provide optimised solutions').should('exist');
   });
 
-  it.skip('should update level property when selected', () => {
+  it('should update level property when selected', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').last().click();
+    cy.getSkillsAndAnswersByEcosystem(2);
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkillButton-Express"]').click();
     cy.get('[data-cy^="editUser"]').click();
-    cy.get('[data-cy^="select-level"]').eq(7).select('4');
+    cy.get('[data-cy^="select-level"]').eq(0).select('4');
     cy.get('[data-cy="saveUser"]').click();
     cy.get('[data-cy^="ecosystems"] > div > a').first().click({ force: true });
     cy.get('[data-cy^="ecosystems"] > div > a').last().click({ force: true });
