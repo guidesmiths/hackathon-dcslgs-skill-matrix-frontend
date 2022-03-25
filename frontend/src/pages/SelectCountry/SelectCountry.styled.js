@@ -6,6 +6,7 @@ const Header = styled(StyledBackground)`
   position: relative;
   height: 200px;
   width: 100%;
+  padding-top: 72px;
 `;
 
 const TextWrapper = styled.div`
@@ -40,8 +41,8 @@ const Heading = styled.h1`
 
 const ContanerWrapper = styled.div`
   position: absolute;
+  top: 152px;
   right: 80px;
-  top: 80px;
   width: 500px;
 
   @media (max-width: 1370px) {
