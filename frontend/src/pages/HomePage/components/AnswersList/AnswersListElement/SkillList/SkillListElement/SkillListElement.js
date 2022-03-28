@@ -12,7 +12,7 @@ const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched 
   const [isSelected, setSelected] = useState(false);
 
   return (
-    <SkillElementStyled isSearched={isSearched} onClick={() => setSelected(!isSelected)} >
+    <SkillElementStyled data-cy="skill-list-element" isSearched={isSearched} onClick={() => setSelected(!isSelected)} >
       <SkillNameStyled>{name}</SkillNameStyled>
       <SkillLevelStyled>Level {level}{sublevels[sublevel]}</SkillLevelStyled>
       <DescriptionStyled>{levelDescription}</DescriptionStyled>

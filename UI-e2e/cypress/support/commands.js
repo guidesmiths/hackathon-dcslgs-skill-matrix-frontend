@@ -15,15 +15,31 @@ Cypress.Commands.add('login', (user, path = '/') => {
   cy.visit(path);
 });
 
-Cypress.Commands.add('initHome', () => {
-  cy.server();
-  cy.route({
+Cypress.Commands.add('initDirectory', () => {
+  cy.intercept({
+    url: '/ui/user/me',
+    method: 'get',
+  }, {
+    fixture: 'user',
+  }).as('getUser');
+
+  cy.intercept({
     url: '/ui/skills',
     method: 'get',
-    response: 'fixture:skills',
+  }, {
+    fixture: 'skills',
   }).as('getAllSkills');
+
+  cy.intercept({
+    url: '/ui/usersFiltered?page=1',
+    method: 'post',
+  }, {
+    fixture: 'usersFiltered',
+  }).as('getUsersFiltered');
+
   cy.visit('/directory');
-  cy.wait(['@getAllSkills']);
+
+  cy.wait(['@getUser', '@getAllSkills', '@getUsersFiltered']);
 });
 
 Cypress.Commands.add('initUser', () => {
@@ -33,13 +49,16 @@ Cypress.Commands.add('initUser', () => {
   }, {
     fixture: 'user',
   }).as('getUser');
+
   cy.intercept({
     url: '/ui/ecosystems',
     method: 'get',
   }, {
     fixture: 'ecosystems',
   }).as('getEcosystems');
+
   cy.visit('/profile');
+
   cy.wait(['@getUser', '@getEcosystems']);
 });
 
@@ -87,23 +106,19 @@ Cypress.Commands.add('init404', () => {
 });
 
 Cypress.Commands.add('getSkillsAndAnswersByEcosystem', id => {
-  cy.intercept(
-    {
-      url: `/ui/ecosystem/${id}`,
-      method: 'get',
-    }, {
-      fixture: `ecosystem/${id}`,
-    },
-  ).as('getEcosystem');
+  cy.intercept({
+    url: `/ui/ecosystem/${id}`,
+    method: 'get',
+  }, {
+    fixture: `ecosystem/${id}`,
+  }).as('getEcosystem');
 
-  cy.intercept(
-    {
-      url: `/ui/user/ecosystem/${id}/answers`,
-      method: 'get',
-    }, {
-      fixture: `user/ecosystem/${id}/answers`,
-    },
-  ).as('getAnswerByEcoAndUser');
+  cy.intercept({
+    url: `/ui/user/ecosystem/${id}/answers`,
+    method: 'get',
+  }, {
+    fixture: `user/ecosystem/${id}/answers`,
+  }).as('getAnswerByEcoAndUser');
 
   cy.visit(`/profile/ecosystem/${id}`);
 

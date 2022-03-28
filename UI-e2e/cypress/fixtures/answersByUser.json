@@ -1,0 +1,134 @@
+[
+  {
+    "id": "asldka12367sdkasnd",
+    "email": "daniel.colas@dcsl.com",
+    "name": "Daniel Colas",
+    "ecosystems": [
+      {
+        "id": 1,
+        "name": "React",
+        "average": 2.75,
+        "skills": [
+          {
+            "id": 1,
+            "name": "React",
+            "level": 3,
+            "levelDescription": "I can analyse working solutions and propose refactors and generalization",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 3,
+            "name": "Redux",
+            "level": 3,
+            "levelDescription": "I am able to keep a normalised state, using complex reducers in order to guarantee immutability and flatten/efficient\n structures",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 5,
+            "name": "Redux-Sagas",
+            "level": 2,
+            "levelDescription": "I can configure from the scratch a new project",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 6,
+            "name": "i18Next",
+            "level": 3,
+            "levelDescription": "I can use plurals and I can make it working with all defined languages",
+            "sublevel": "neutral",
+            "interested": false,
+            "comments": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "NodeJS",
+        "average": 1.875,
+        "skills": [
+          {
+            "id": 9,
+            "name": "Express",
+            "level": 2,
+            "levelDescription": "I understand Request, Response objects, middleware pattern in Express and parametrized routes",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 10,
+            "name": "Systemic",
+            "level": 1,
+            "levelDescription": "I know about a module called systemic and the basics about injection dependency",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 11,
+            "name": "NPM",
+            "level": 3,
+            "levelDescription": "I know what is npm link for and how to publish a module in the public registry",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 12,
+            "name": "Webpack",
+            "level": 2,
+            "levelDescription": "I know  how to install and configure a simple webpack.config.js and run a server with webpack-dev-server",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 17,
+            "name": "Hardware",
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics (Libraries, Serial Port, comm, hardware components)",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 19,
+            "name": "Streams",
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics (Streams, fs, http...)",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          },
+          {
+            "id": 20,
+            "name": "Testing",
+            "level": 4,
+            "levelDescription": "I am able to perform TDD in e2e and unit testing environment",
+            "sublevel": "neutral",
+            "interested": false,
+            "comments": ""
+          },
+          {
+            "id": 21,
+            "name": "Security",
+            "level": 1,
+            "levelDescription": "I have a very basic idea of the most common topics (Injections, dependency hell, etc...)",
+            "sublevel": "neutral",
+            "interested": true,
+            "comments": ""
+          }
+        ]
+      }
+    ],
+    "userRole": "admin",
+    "country": "Spain",
+    "seniority": "Medior Developer"
+  }
+]

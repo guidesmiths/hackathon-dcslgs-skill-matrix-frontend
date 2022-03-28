@@ -5,7 +5,7 @@ import { user } from '../users';
 describe('Home page', () => {
   beforeEach(() => {
     cy.login(user, '/');
-    cy.initHome();
+    cy.initDirectory();
   });
 
   it('should redirect to home page if route doesn\'t exist', () => {
@@ -13,18 +13,24 @@ describe('Home page', () => {
     cy.url().should('match', new RegExp('/'));
   });
 
-  describe.skip('For the answer list', () => {
+  describe('For the answer list', () => {
     it('should render the correct number of list element when visiting the page', () => {
-      cy.visit('/directory');
-      cy.get('[data-cy^="answer-list"]').should('have.length', 11);
+      cy.get('[data-cy^="answer-list"]').should('have.length', 5);
     });
 
     it('should render the correct number of skill for a given list element', () => {
-      cy.visit('/directory');
-      cy.get('[data-cy="answer-list-element-2"]').within(() => {
-        cy.get('[data-cy^="arrow-button-2"]').click();
-        cy.get('[data-cy="skill-list"] > div').should('have.length', 2);
-      });
+      cy.intercept({
+        url: '/ui/answersByUser/asldka12367sdkasnd',
+        method: 'post',
+      }, {
+        fixture: 'answersByUser',
+      }).as('getAnswersByUser');
+
+      cy.get('[data-cy^="arrow-button-2"]').click();
+
+      cy.wait(['@getAnswersByUser']);
+
+      cy.get('[data-cy="skill-list-element"]').should('have.length', 12);
     });
 
     it('should not display the skill list of an element when first rendering the AnswerListElement\'s', () => {
@@ -35,7 +41,7 @@ describe('Home page', () => {
     });
   });
 
-  describe.skip('For the user input filter on the search bar', () => {
+  describe('For the user input filter on the search bar', () => {
     it('should update the input with every keystroke', () => {
       const userFilter = 'John';
       cy.get('[data-cy="user-input"]').type(userFilter, { force: true });
@@ -43,7 +49,7 @@ describe('Home page', () => {
     });
   });
 
-  describe.skip('For the skill filters on the search bar', () => {
+  describe('For the skill filters on the search bar', () => {
     it('should show only one skill filter with the default values when visiting the page', () => {
       cy.get('[data-cy^="search-bar-skill"]').should('have.length', 1);
       cy.get('[data-cy="search-bar-skill-0"]').within(() => {
@@ -102,7 +108,7 @@ describe('Home page', () => {
     });
   });
 
-  describe.skip('For the pagination', () => {
+  describe('For the pagination', () => {
     const pageSize = 10;
     it('should render the correct number of pages according to the size of the payload and the page size', () => {
       cy.get('[data-cy="pagination"]').within(() => {

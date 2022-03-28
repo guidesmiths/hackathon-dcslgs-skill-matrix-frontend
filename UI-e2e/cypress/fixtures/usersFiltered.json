@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "name": "Raquel Fernandez",
+      "id": "asldka12311sdkasnd",
+      "email": "rachelFern@guidesmiths.com",
+      "userRole": "user",
+      "country": "Spain",
+      "seniority": "Junior UX"
+    },
+    {
+      "name": "Jane Doe",
+      "id": "asldka12312sdkasnd",
+      "email": "janedoe@guidesmiths.com",
+      "userRole": "user",
+      "country": "UK",
+      "seniority": "Junior Developer"
+    },
+    {
+      "name": "Daniel Colas",
+      "id": "asldka12367sdkasnd",
+      "email": "danicolas@guidesmiths.com",
+      "userRole": "user",
+      "country": "Spain",
+      "seniority": "Medior Developer"
+    },
+    {
+      "name": "John Doe",
+      "id": "asldkan21ansdkasnd",
+      "email": "johndoe@guidesmiths.com",
+      "userRole": "user",
+      "country": "UK",
+      "seniority": "Junior Developer"
+    }
+  ],
+  "currentPages": 1,
+  "numberOfPages": 1,
+  "totalItems": "4"
+}
