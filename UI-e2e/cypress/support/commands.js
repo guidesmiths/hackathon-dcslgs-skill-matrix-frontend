@@ -115,9 +115,7 @@ Cypress.Commands.add('getEcosystemSkills', ({ id, url }) => {
   cy.wait(['@getEcosystem']);
 });
 
-Cypress.Commands.add('getSkillsAndAnswersByEcosystem', ({ id, url }) => {
-  cy.getEcosystemSkills({ id, url });
-
+Cypress.Commands.add('getAnswersByEcosystem', ({ id, url }) => {
   cy.intercept({
     url: `/ui/user/ecosystem/${id}/answers`,
     method: 'get',
@@ -125,7 +123,7 @@ Cypress.Commands.add('getSkillsAndAnswersByEcosystem', ({ id, url }) => {
     fixture: `user/ecosystem/${id}/answers`,
   }).as('getAnswerByEcoAndUser');
 
-  cy.visit(`/profile/ecosystem/${id}`);
+  cy.visit(url);
 
   cy.wait(['@getAnswerByEcoAndUser']);
 });
