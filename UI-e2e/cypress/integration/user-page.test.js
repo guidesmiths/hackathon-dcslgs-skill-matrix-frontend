@@ -13,21 +13,21 @@ describe('User page', () => {
 
   it('should find Express skill when selecting NodeJs Ecosystem', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').last().click();
-    cy.getSkillsAndAnswersByEcosystem(2);
+    cy.getSkillsAndAnswersByEcosystem({ id: 2, url: '/profile/ecosystem/2' });
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userRow"]').contains('React').should('not.exist');
   });
 
   it('should find Redux skill when selecting React Ecosystem', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').first().click();
-    cy.getSkillsAndAnswersByEcosystem(1);
+    cy.getSkillsAndAnswersByEcosystem({ id: 1, url: '/profile/ecosystem/1' });
     cy.get('[data-cy^="userRow"]').contains('Redux');
     cy.get('[data-cy^="userRow"]').contains('Express').should('not.exist');
   });
 
   it('should find user level corresponding to React', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').first().click();
-    cy.getSkillsAndAnswersByEcosystem(1);
+    cy.getSkillsAndAnswersByEcosystem({ id: 1, url: '/profile/ecosystem/1' });
     cy.get('[data-cy^="userRow"]').contains('React');
     cy.get('[data-cy^="userSkill-React"]').first().should('exist');
     cy.get('[data-cy^="userSkillButton-React"]').first().click();
@@ -36,7 +36,7 @@ describe('User page', () => {
 
   it('should update level property when selected', () => {
     cy.get('[data-cy^="ecosystems"] > div > a').last().click();
-    cy.getSkillsAndAnswersByEcosystem(2);
+    cy.getSkillsAndAnswersByEcosystem({ id: 2, url: '/profile/ecosystem/2' });
     cy.get('[data-cy^="userRow"]').contains('Express');
     cy.get('[data-cy^="userSkill-Express"]').should('exist');
     cy.get('[data-cy^="userSkillButton-Express"]').click();

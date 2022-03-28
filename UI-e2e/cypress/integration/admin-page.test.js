@@ -58,10 +58,11 @@ describe('Admin page', () => {
         });
       });
 
-      it.skip('should delete the suggestion card and close the modal when clicking on the modal\'s delete button', () => {
+      it('should delete the suggestion card and close the modal when clicking on the modal\'s delete button', () => {
         cy.get('[data-cy="suggestion-card-0"]').within(() => {
           cy.get('[data-cy="icon-visibility"]').click();
           cy.get('[data-cy="modal-button-delete"]').click();
+          cy.get('[data-cy="modal-button-close"]').click();
           cy.get('[data-cy="suggestion-card-0"]').should('not.exist');
         });
         cy.get('[data-cy="modal"]').should('not.exist');
@@ -82,7 +83,7 @@ describe('Admin page', () => {
       cy.get('[data-cy="fallback-text"]').contains('Add all the ecosystem needed and complete them with the skill that the employee can have in them');
     });
 
-    describe.skip('When clicking on add a new ecosystem', () => {
+    describe('When clicking on add a new ecosystem', () => {
       beforeEach(() => {
         cy.get('[data-cy="ecosystems-element-0"]').click();
         cy.get('[data-cy="edit-skill-button"]').click();
@@ -124,21 +125,22 @@ describe('Admin page', () => {
       });
     });
 
-    describe.skip('When clicking on an existent ecosystem', () => {
+    describe('When clicking on an existent ecosystem', () => {
       beforeEach(() => {
-        cy.get('[data-cy="ecosystems-element-0"]').click();
+        cy.get('[data-cy="ecosystems-element-0"]').click({ force: true });
+        cy.getEcosystemSkills({ id: 1, url: '/ecosystem/1' });
       });
 
       it('should display the ecosystem form with all its skills pre-populated', () => {
-        cy.get('[data-cy^="skill-container-tour"]').should('have.length', 8);
-        cy.get('[data-cy="skill-name-input-0"]').should('have.attr', 'value', 'Gatsby');
-        cy.get('[data-cy="skill-name-input-1"]').should('have.attr', 'value', 'i18Next');
-        cy.get('[data-cy="skill-name-input-2"]').should('have.attr', 'value', 'Next.js');
-        cy.get('[data-cy="skill-name-input-3"]').should('have.attr', 'value', 'React');
-        cy.get('[data-cy="skill-name-input-4"]').should('have.attr', 'value', 'React Native Web');
-        cy.get('[data-cy="skill-name-input-5"]').should('have.attr', 'value', 'ReactCssTransition');
-        cy.get('[data-cy="skill-name-input-6"]').should('have.attr', 'value', 'Redux');
-        cy.get('[data-cy="skill-name-input-7"]').should('have.attr', 'value', 'Redux-Sagas');
+        cy.get('[data-cy^="skills-container"] > div').should('have.length', 8);
+        cy.get('[data-cy="skill-container-0"]').contains('Gatsby');
+        cy.get('[data-cy="skill-container-1"]').contains('i18Next');
+        cy.get('[data-cy="skill-container-2"]').contains('Next.js');
+        cy.get('[data-cy="skill-container-3"]').contains('React');
+        cy.get('[data-cy="skill-container-4"]').contains('React Native Web');
+        cy.get('[data-cy="skill-container-5"]').contains('ReactCssTransition');
+        cy.get('[data-cy="skill-container-6"]').contains('Redux');
+        cy.get('[data-cy="skill-container-7"]').contains('Redux-Sagas');
       });
 
       it('should display the skill\'s levels not expanded by default', () => {

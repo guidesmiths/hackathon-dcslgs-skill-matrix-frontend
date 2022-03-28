@@ -107,7 +107,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
 
   useEffect(() => {
     if (!currentEcosystem?.name && show) {
-      ref.current.focus();
+      ref.current?.focus();
     }
   }, [currentEcosystem, show]);
 
