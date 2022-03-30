@@ -21,7 +21,7 @@ const UserPageDisplay = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
-  padding-bottom: 85px
+  padding-bottom: 85px;
 `;
 
 const UserData = styled.div`
@@ -40,7 +40,7 @@ const RowTitle = styled.div`
   height: 72px;
 `;
 
-const ColumTitles = styled.div`
+const ColumnTitles = styled.div`
   display: grid;
   grid-template-columns: 40% 40% 20%;
   align-items: center;
@@ -80,7 +80,7 @@ const DataTitle = styled.h5`
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey3};
 `;
 
-const ColumTitle = styled.h5`
+const ColumnTitle = styled.h5`
   margin: 8px 0;
   font-weight: 500;
   font-size: 12px;
@@ -148,8 +148,8 @@ export {
   DataTitle,
   RowWrapper,
   RowTitle,
-  ColumTitles,
-  ColumTitle,
+  ColumnTitles,
+  ColumnTitle,
   FormHeader,
   StyledIcon,
   EditButtonStyled,
