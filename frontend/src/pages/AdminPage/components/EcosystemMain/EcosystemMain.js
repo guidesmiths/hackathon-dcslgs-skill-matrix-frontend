@@ -112,56 +112,63 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
   }, [currentEcosystem, show]);
 
   return (
-    <EcosystemContainerStyled data-cy={'ecosystem-info'}>
-      {loading
-        ? <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
-          {emptyState
-            ? <StateComponent/>
-            : <SpinnerLoader/>
-          }
+    <EcosystemContainerStyled data-cy="ecosystem-info">
+      {emptyState && (
+        <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
+          <StateComponent />
         </EcosystemFallbackStyled>
-        : !emptyState
-          ? <>
-            {show ? <EcosystemHeaderStyled>
-              <Label left={40} top={2}>Ecosystem Name</Label>
-              <EcosystemNameStyledInput
-                ref={ref}
-                data-cy="ecosystem-name-input"
-                hasError={currentEcosystem?.name === '' && isThereAnyError}
-                id="name"
-                placeholder="Ecosystem name"
-                readOnly={!show}
-                value={currentEcosystem?.name || ''}
-                onChange={handleNewEcosystem}
-              />
-            </EcosystemHeaderStyled>
-              : <FormHeader>
-                <DataTitle>{currentEcosystem?.name}</DataTitle>
-              </FormHeader>
-            }
-            {currentEcosystem?.skills?.length > 0
-            && <ScrollWrapper height={!show ? 70 : noSuggestions ? 60 : 45}>
-              {currentEcosystem?.skills.map((skill, index) => (
-                <EcosystemSkill
-                  key={skill?.id}
-                  handleNewSkills={handleNewSkills}
-                  index={index}
-                  isThereAnyError={isThereAnyError}
-                  show={show}
-                  skill={skill}
-                  onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name, index)}
-                />
-              ))}
-            </ScrollWrapper>}
-          </>
-          : <EcosystemFallbackStyled>
-            <StateComponent/>
+      )}
+
+      {!emptyState && !loading && (show
+        ? (
+          <EcosystemHeaderStyled>
+            <Label left={40} top={2}>Ecosystem Name</Label>
+            <EcosystemNameStyledInput
+              ref={ref}
+              data-cy="ecosystem-name-input"
+              hasError={currentEcosystem?.name === '' && isThereAnyError}
+              id="name"
+              placeholder="Ecosystem name"
+              readOnly={!show}
+              value={currentEcosystem?.name || ''}
+              onChange={handleNewEcosystem}
+            />
+          </EcosystemHeaderStyled>
+        )
+        : (
+          <FormHeader>
+            <DataTitle>{currentEcosystem?.name}</DataTitle>
+          </FormHeader>
+        )
+      )}
+
+      {!emptyState && loading
+        ? (
+          <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
+            <SpinnerLoader/>
           </EcosystemFallbackStyled>
+        )
+        : (currentEcosystem?.skills?.length > 0
+          && <ScrollWrapper height={!show ? 70 : noSuggestions ? 60 : 45}>
+            {currentEcosystem?.skills.map((skill, index) => (
+              <EcosystemSkill
+                key={skill?.id}
+                handleNewSkills={handleNewSkills}
+                index={index}
+                isThereAnyError={isThereAnyError}
+                show={show}
+                skill={skill}
+                onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name, index)}
+              />
+            ))}
+          </ScrollWrapper>
+        )
       }
+
       {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
       {show && <ButtonsWrapper>
-        <StyledButton data-cy={'add-skill'} onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
-        {!isEmpty && show && <StyledDelete data-cy={'delete-ecosystem-button'} onClick={() => onDeleteClick('ecosystem', ecosystem.id, ecosystem.name)}>
+        <StyledButton data-cy="add-skill" onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
+        {!isEmpty && <StyledDelete data-cy="delete-ecosystem-button" onClick={() => onDeleteClick('ecosystem', ecosystem.id, ecosystem.name)}>
           <StyledDeleteIcon icon="delete" />
           Delete ecosystem
         </StyledDelete>}

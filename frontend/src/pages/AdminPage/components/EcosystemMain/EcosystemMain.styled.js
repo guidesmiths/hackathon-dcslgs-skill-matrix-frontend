@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Icon from '../../../../app/commons/icon/icon';
+import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
+import { SkillContainerStyled } from './EcosystemSkill/EcosystemSkill.styled';
 
 const EcosystemContainerStyled = styled.div`
   z-index: 1;
@@ -9,6 +11,30 @@ const EcosystemContainerStyled = styled.div`
   margin: 0 auto;
   background: ${({ theme }) => theme.colors.white};;
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
+
+  ${UserRowWrapper} {
+    margin: 0 auto;
+    width: 80%;
+    padding-right: 2px;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      display: block !important;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      max-height: 178px;
+      background-color: ${({ theme }) => theme.colors.primaryColor};
+      border-radius: 8px;
+    }
+
+    ${SkillContainerStyled} {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
 `;
 
 const EcosystemFallbackStyled = styled.div`
@@ -39,6 +65,7 @@ const EcosystemNameStyledInput = styled.input`
     border: ${({ readOnly, theme }) => !readOnly && `1px solid ${theme.colors.primaryColor}`};
   }
 `;
+
 const ButtonsWrapper = styled.div`
   padding: 20px 0;
   margin: 20px 0;

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Icon from '../../app/commons/icon/icon';
 import Modal from '../../app/commons/Modal/Modal';
+import { UserRowWrapper } from '../../app/commons/ScrollWrapper/ScrollWrapper.styled';
+import { SkillContainerStyled } from '../AdminPage/components/EcosystemMain/EcosystemSkill/EcosystemSkill.styled';
+import { RowCollapsed, RowSkillsTop, RowSkillsWrapper } from './components/UserRow.styled';
 
 const UserPageStyled = styled.div`
   position: relative;
@@ -31,6 +34,45 @@ const UserData = styled.div`
   margin: 0 auto;
   background: ${({ theme }) => theme.colors.white};;
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
+
+  ${UserRowWrapper} {
+    margin: 0 auto;
+    width: 80%;
+    padding-right: 2px;
+
+    &::-webkit-scrollbar {
+      display: block !important;
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      max-height: 178px;
+      background-color: ${({ theme }) => theme.colors.primaryColor};
+      border-radius: 8px;
+    }
+
+    ${SkillContainerStyled} {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    ${RowSkillsWrapper} {
+      &:last-child {
+        padding-bottom: unset !important;
+      }
+    }
+
+    ${RowSkillsTop} {
+      margin-bottom: ${({ isCollapsed }) => (isCollapsed && '8px')};
+      padding: unset;
+      width: 100%;
+    }
+
+    ${RowCollapsed} {
+      width: 100%;
+    }
+  }
 `;
 
 const RowTitle = styled.div`

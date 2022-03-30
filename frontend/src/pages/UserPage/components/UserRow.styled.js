@@ -6,15 +6,14 @@ const RowSkillsWrapper = styled.div`
   &:last-child {
     padding-bottom: 30px !important;
   }
-
-  .check-box{
+  .check-box {
     color: ${({ theme }) => theme.colors.primaryColor};
   }
 `;
 
 const RowSkillsTop = styled.div`
   margin: 0 auto;
-  margin-bottom: ${({ isRowDown }) => (isRowDown ? 'none' : '8px')};
+  margin-bottom: ${({ isCollapsed }) => (isCollapsed && '8px')};
   padding: 0 15px;
   width: 80%;
 `;

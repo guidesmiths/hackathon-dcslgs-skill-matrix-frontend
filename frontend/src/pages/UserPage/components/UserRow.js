@@ -111,7 +111,7 @@ const UserRow = ({ i, skill, idEcosystem, edit }) => {
       <RowSkillTour data-cy={`skill-${i}`}>
         <RowSkillsTop
           data-cy={`userSkill-${skill.name}`}
-          isRowDown={!isCollapsed}
+          isCollapsed={isCollapsed}
         >
           <RowSkills data-cy={`userSkill-${i}`}>
             <UserSkillName>{skill.name}</UserSkillName>
