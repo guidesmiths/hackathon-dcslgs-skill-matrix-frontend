@@ -3,7 +3,8 @@ import Icon from '../../app/commons/icon/icon';
 import Modal from '../../app/commons/Modal/Modal';
 import { UserRowWrapper } from '../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 import { SkillContainerStyled } from '../AdminPage/components/EcosystemMain/EcosystemSkill/EcosystemSkill.styled';
-import { RowCollapsed, RowSkillsTop, RowSkillsWrapper } from './components/UserRow.styled';
+import { RowCollapsed } from './components/DescriptionLevels/DescriptionLevels.styled';
+import { RowSkillsTop, RowSkillsWrapper } from './components/UserRow.styled';
 
 const UserPageStyled = styled.div`
   position: relative;
@@ -140,7 +141,7 @@ const EditButtonStyled = styled.div`
   background: ${({ theme }) => theme.colors.green};
   color: ${({ theme }) => theme.colors.white};
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 `;
