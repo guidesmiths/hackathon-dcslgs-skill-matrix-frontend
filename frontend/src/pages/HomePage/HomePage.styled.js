@@ -9,8 +9,8 @@ const HomePageStyled = styled.div`
 `;
 
 const StyledBackground = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundGradient};
   z-index: 1;
+  background: ${({ theme }) => theme.colors.backgroundGradient};
 `;
 
 export { HomePageStyled, StyledBackground };

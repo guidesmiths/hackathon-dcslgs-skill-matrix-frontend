@@ -21,17 +21,17 @@ const LoginTitle = styled.h1`
 `;
 
 const LoginButtonStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  padding: 10px;
   background-color: ${({ theme }) => theme.colors.primaryColor};
   color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  min-width: 300px;
 
   &:hover {
     cursor: pointer;
@@ -43,8 +43,8 @@ const StyledIcon = styled.img`
 `;
 
 const StyledText = styled.p`
-  margin-right: 10px;
   max-width: 300px;
+  margin-right: 10px;
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
