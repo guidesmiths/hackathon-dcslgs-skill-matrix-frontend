@@ -18,9 +18,6 @@ export const AnswersListElement = ({ index, answer }) => {
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const { id, name, email, role, ecosystems, country, seniority } = answer;
-  const skills = ecosystems?.flatMap(ecosystem => ecosystem.skills);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -30,6 +27,9 @@ export const AnswersListElement = ({ index, answer }) => {
       clearTimeout(timeout);
     };
   }, []);
+
+  const { id, name, email, role, ecosystems, country, seniority } = answer;
+  const skills = ecosystems?.flatMap(ecosystem => ecosystem.skills);
 
   const handleCollapsed = () => {
     if (isCollapsed) {
