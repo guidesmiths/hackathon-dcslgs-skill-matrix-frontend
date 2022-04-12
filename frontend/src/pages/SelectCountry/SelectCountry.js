@@ -12,6 +12,8 @@ export const SelectCountry = () => {
   const [select, setSelect] = useState('');
   const dispatch = useDispatch();
 
+  const { userId, userName } = userData;
+
   const handleSelectChange = event => {
     const { value } = event.target;
     setSelect(value);
@@ -19,10 +21,12 @@ export const SelectCountry = () => {
 
   const submitCountry = () => {
     if (select !== '') {
-      dispatch(changeUserCountryAsync({
-        userId: userData.id,
-        newCountry: select,
-      }));
+      dispatch(changeUserCountryAsync(
+        {
+          userId,
+          newCountry: select,
+        },
+      ));
 
       history.push('/profile');
     }
@@ -31,7 +35,7 @@ export const SelectCountry = () => {
   return (
     <Header>
       <TextWrapper>
-        <Heading weight={400}> Hello {userData.name}, </Heading>
+        <Heading weight={400}> Hello {userName}, </Heading>
         <Heading weight={700}> Please set up your team country</Heading>
       </TextWrapper>
       <ContainerWrapper>
