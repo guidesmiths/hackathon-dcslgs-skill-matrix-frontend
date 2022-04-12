@@ -170,6 +170,15 @@ export const UserPage = () => {
     }
   }, []);
 
+  const handleEdit = () => {
+    setEdit(true);
+    setDisabledActions(false);
+  };
+
+  const handleInbox = () => {
+    setShowSuggestionModal(!showSuggestionModal);
+  };
+
   return (
     <UserPageStyled data-cy="user">
       <HeaderStyled data-cy="header" />
@@ -179,15 +188,15 @@ export const UserPage = () => {
       </UserPageDisplay>
       {showSuggestionModal && (
         <StyledModal>
-          <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
+          <SuggestionForm setConfirmed={setConfirmed} onCloseClick={handleInbox} />
         </StyledModal>
       )}
       {confirmed && <PopUp isSuccess />}
       <Footer>
         {!edit
           ? <>
-            <StyledIcon data-cy="add" icon="email" onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
-            { !emptyState && <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); setDisabledActions(false); }}>Edit</EditButtonStyled>}
+            <StyledIcon data-cy="add" icon="email" onClick={handleInbox}/>
+            { !emptyState && <EditButtonStyled data-cy="editUser" onClick={handleEdit}>Edit</EditButtonStyled>}
           </>
           : <>
             <SaveButton action="cancel" onClick={() => isCanceling(true)}>Cancel</SaveButton>

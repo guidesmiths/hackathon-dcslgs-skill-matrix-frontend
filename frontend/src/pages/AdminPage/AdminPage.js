@@ -274,6 +274,16 @@ export const AdminPage = () => {
     setNewEcosystem(newCurrentEcosystem);
   };
 
+  const handleEdit = () => {
+    setIsOnEditableMode(true);
+    setDisabledActions(false);
+  };
+
+  const handleInbox = () => {
+    setNoSuggestions(!noSuggestions);
+    setDisabledActions(false);
+  };
+
   return (
     <AdminPageStyled data-cy="admin-page" noSuggestions={noSuggestions}>
       <SuggestionsInbox noSuggestions={noSuggestions} suggestions={suggestions}/>
@@ -301,8 +311,8 @@ export const AdminPage = () => {
       </EcosystemsContainer>
       { showPopUp && <PopUp isSuccess={!isThereAnyError} />}
       <Footer>
-        <StyledIcon data-cy="inbox-button" icon="email" show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
-        {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>}
+        <StyledIcon data-cy="inbox-button" icon="email" show={!isOnEditableMode} onClick={handleInbox} />
+        {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={handleEdit}>Edit</EditButton>}
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton save data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>
       </Footer>
