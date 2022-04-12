@@ -5,7 +5,7 @@ import { selectAllAnswers } from '../../../redux/answers/answersSlice';
 import { selectUserData } from '../../../redux/user/userSlice';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
 
-import { Pagination } from '../../../app/commons/Pagination';
+import Pagination from '../../../app/commons/Pagination';
 import { AnswersListUserElement } from './AnswersListUserElement';
 
 import { AnswersListStyled, ScrollWrapper, NoAnswers } from '../../HomePage/components/AnswersList/AnswersList.styled';
@@ -51,11 +51,13 @@ export const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }
           })
         }
         {answers.length > 0
-          ? <Pagination currentPage={actualPage} numberOfPages={numberOfPages} shape="rounded" size="16px" onChange={handlePagination} />
-          : isEmtpy && <NoAnswers>
-            <Image src={blankstate}/>
-            <p>There is no person with this skill</p>
-          </NoAnswers>
+          ? <Pagination currentPage={actualPage} numberOfPages={numberOfPages} shape="rounded" onChange={handlePagination} />
+          : isEmtpy && (
+            <NoAnswers>
+              <Image src={blankstate}/>
+              <p>There no person with this skill</p>
+            </NoAnswers>
+          )
         }
       </ScrollWrapper>
     </AnswersListStyled>

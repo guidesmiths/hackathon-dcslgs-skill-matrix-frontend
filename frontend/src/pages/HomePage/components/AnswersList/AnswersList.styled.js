@@ -45,8 +45,8 @@ const ScrollWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: 90% 0;
   border-radius: 10px 10px;
-
 `;
+
 const NoAnswers = styled.div`
   display: flex;
   flex-direction: column;

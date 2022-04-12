@@ -14,19 +14,21 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-export const Pagination = ({ currentPage, numberOfPages, onChange, shape }) => {
+const Pagination = ({ currentPage, numberOfPages, onChange, shape }) => {
   const classes = useStyles();
-  return (<PaginationStyled>
-    <PaginationMaterial
-      className={classes.root}
-      count={numberOfPages}
-      data-cy="pagination"
-      page={currentPage}
-      shape={shape}
-      size="medium"
-      onChange={onChange}
-    />
-  </PaginationStyled>
+
+  return (
+    <PaginationStyled>
+      <PaginationMaterial
+        className={classes.root}
+        count={numberOfPages}
+        data-cy="pagination"
+        page={currentPage}
+        shape={shape}
+        size="medium"
+        onChange={onChange}
+      />
+    </PaginationStyled>
   );
 };
 
