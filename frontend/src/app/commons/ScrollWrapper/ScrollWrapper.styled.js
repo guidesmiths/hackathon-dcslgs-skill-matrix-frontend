@@ -6,9 +6,10 @@ export const UserRowWrapper = styled.div`
   max-height: ${({ height }) => height}vh;
   scrollbar-width: none;
 
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
+
   @media (max-height: 1190px) {
     max-height: ${({ height }) => height - 1}vh;
   }

@@ -71,7 +71,7 @@ const QuotesStyled = styled.span`
   padding-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
 
-  &:last-child{
+  &:last-child {
     opacity: 0.3;
     margin-left: -3px;
   }

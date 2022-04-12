@@ -71,7 +71,7 @@ const LevelStyled = styled.textarea`
   outline: ${({ readOnly }) => readOnly && 'none'};
   resize: none;
 
-  &:hover{
+  &:hover {
     cursor: ${({ readOnly }) => !readOnly && 'pointer'};
     border: ${({ readOnly, theme }) => !readOnly && `1px solid ${theme.colors.primaryColor}`};
   }

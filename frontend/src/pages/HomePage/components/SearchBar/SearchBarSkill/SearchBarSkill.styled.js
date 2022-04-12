@@ -9,6 +9,7 @@ const SearchBarSkillStyled = styled.div`
   margin-right: 80px;
   box-sizing: border-box;
 `;
+
 const SearchHomeBarSkillStyled = styled.div``;
 
 const InputWrapper = styled.div`

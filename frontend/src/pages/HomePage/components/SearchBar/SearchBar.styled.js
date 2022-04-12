@@ -23,8 +23,9 @@ const SearchBarsWrapper = styled.div`
   position: relative;
   padding: 20px 0 60px;
   animation: ${animation2} 4s;
-  box-sizing:border-box;
+  box-sizing: border-box;
 `;
+
 const SearchBarsUserWrapper = styled(SearchBarsWrapper)`
   margin: 0 auto;
 `;
@@ -35,6 +36,7 @@ const SearchBarWrapper = styled.div`
   width: 95%;
   margin: 15px auto;
 `;
+
 const HomeSearchBarWrapper = styled.div`
   position: relative;
   height: 56px;
@@ -50,24 +52,24 @@ const SearchBarSkillWrapper = styled.div`
 `;
 
 const SearchBarUsers = styled.input`
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding-left: 45px;
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding-left: 45px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
 `;
 
 const IconStyled = styled(Icon)`
-    position: absolute;
-    transform: rotate(90deg);
-    width: 14px;
-    height: 14px;
-    top: 0;
-    bottom: 0;
-    left: 15px;
-    margin: auto;
+  position: absolute;
+  transform: rotate(90deg);
+  width: 14px;
+  height: 14px;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  margin: auto;
 `;
 
 export { SearchBarUsers, HomeSearchBarWrapper, SearchBarsWrapper, SearchBarsUserWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper };

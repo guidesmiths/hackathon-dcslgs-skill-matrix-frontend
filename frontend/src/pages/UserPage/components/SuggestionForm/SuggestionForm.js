@@ -11,6 +11,7 @@ export const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(false);
   const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
+
   const [suggestion, setSuggestion] = useState('');
   const [selectedSuggestion, setSelectedSuggestion] = useState('Ecosystems');
   const suggestionOptions = ['Ecosystems', 'Skills', 'Others'];
@@ -25,6 +26,7 @@ export const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
   const changeHandler = e => {
     setSuggestion(e.target.value);
   };
+
   const cancelForm = () => {
     setSuggestion('');
     setSelectedSuggestion('Ecosystems');

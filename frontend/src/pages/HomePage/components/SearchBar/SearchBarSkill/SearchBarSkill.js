@@ -56,6 +56,7 @@ export const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, ski
         },
       }),
     );
+
   const removeFilter = async arg => {
     dispatch(removeSkillFilter(arg));
     const newSkill = await skillFilters[index + 1];

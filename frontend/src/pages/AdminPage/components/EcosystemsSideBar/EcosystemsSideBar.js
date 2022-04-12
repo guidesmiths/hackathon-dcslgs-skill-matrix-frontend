@@ -38,8 +38,10 @@ export const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, n
           />
           <IconStyled icon="search" />
         </StyledInputWrapper>
+
         <EcosystemScroller height={noSuggestions ? 80 : 65}>
           {loading && <SkeletonWrapper/>}
+
           {!loading && !filteredEcosystems.length
             ? <NoEcosystems>
               <Image src={blankstate}/>
@@ -54,7 +56,8 @@ export const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, n
               >
                 {name}
               </EcosystemElementStyled>
-            ))}
+            ))
+          }
         </EcosystemScroller>
       </EcosystemBarStyled>
     </EcosystemsSideBarStyled>
