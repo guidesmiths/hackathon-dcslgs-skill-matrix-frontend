@@ -87,7 +87,7 @@ export const UserPage = () => {
       setCurrentStep(0);
     }
     if (isOpen && (currentStep <= 3 && step > currentStep)) {
-      setEdit(!(currentStep <= 3));
+      setEdit(currentStep > 3);
       setDisabledActions(currentStep === 3);
     } else if (isOpen && currentStep < 3) {
       setEdit(false);
@@ -193,11 +193,11 @@ export const UserPage = () => {
           </>
         }
       </Footer>
-      {canceling
-      && <StyledModal>
-        <ConfirmPopUp setConfirmed={handleCancel} onCloseClick={() => isCanceling(false)}/>
-      </StyledModal>
-      }
+      {canceling && (
+        <StyledModal>
+          <ConfirmPopUp setConfirmed={handleCancel} onCloseClick={() => isCanceling(false)}/>
+        </StyledModal>
+      )}
     </UserPageStyled>
   );
 };
