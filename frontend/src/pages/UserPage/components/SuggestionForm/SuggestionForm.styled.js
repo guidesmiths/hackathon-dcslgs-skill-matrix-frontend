@@ -123,5 +123,18 @@ const StyledCancelIcon = styled(Icon)`
   font-size: 12px;
 `;
 
-export { FormStyled, SelectWrapperStyled, SelectStyled, CustomOptions, StyledOption, StyledLabel, ArrowButtonStyled, StyledIcon, TextAreaStyled,
-  ButtonWrapperStyled, Buttons, StyledTitle, StyledCancelIcon };
+export {
+  FormStyled,
+  SelectWrapperStyled,
+  SelectStyled,
+  CustomOptions,
+  StyledOption,
+  StyledLabel,
+  ArrowButtonStyled,
+  StyledIcon,
+  TextAreaStyled,
+  ButtonWrapperStyled,
+  Buttons,
+  StyledTitle,
+  StyledCancelIcon,
+};
