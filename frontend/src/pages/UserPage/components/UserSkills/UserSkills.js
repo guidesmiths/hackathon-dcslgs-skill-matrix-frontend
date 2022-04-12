@@ -51,6 +51,7 @@ export const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmite
           <StateComponent location="user" />
         </Wrapper>
       )}
+
       {!emptyState && (
         selectedEcosystem
           ? (
@@ -67,17 +68,19 @@ export const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmite
                 <ColumnTitle>Rating</ColumnTitle>
                 <ColumnTitle>I&apos;d Like to learn</ColumnTitle>
               </ColumnTitles>
-              {skillswithLevel && <ScrollWrapper height={70}>
-                {skillswithLevel?.map((skill, index) => (
-                  <UserRow
-                    key={skill.id}
-                    edit={edit}
-                    i={index}
-                    idEcosystem={ecosystemIdSelected}
-                    skill={skill}
-                  />
-                ))}
-              </ScrollWrapper>}
+              {skillswithLevel && (
+                <ScrollWrapper height={70}>
+                  {skillswithLevel?.map((skill, index) => (
+                    <UserRow
+                      key={skill.id}
+                      edit={edit}
+                      i={index}
+                      idEcosystem={ecosystemIdSelected}
+                      skill={skill}
+                    />
+                  ))}
+                </ScrollWrapper>
+              )}
             </form>
           )
           : (

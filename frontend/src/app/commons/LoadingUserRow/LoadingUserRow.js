@@ -17,11 +17,11 @@ export const LoadingUserRow = ({ user }) => {
         <ImageHolder/>
         <InputHolder/>
       </Placeholder>
-      {!user
-      && <span className="material-icons">
-        {arrowButtonIcon}
-      </span>
-      }
+      {!user && (
+        <span className="material-icons">
+          {arrowButtonIcon}
+        </span>
+      )}
     </RowWrapper>
   );
 };

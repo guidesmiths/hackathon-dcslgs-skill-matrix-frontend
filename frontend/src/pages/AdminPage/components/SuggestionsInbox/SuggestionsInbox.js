@@ -23,8 +23,8 @@ export const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
 
   return (
     <SuggestionInboxStyled data-cy="suggestions-inbox" noSuggestions={noSuggestions}>
-      {!noSuggestions
-        && <SuggestionCardsStyled ref={ref} data-cy="suggestions-list">
+      {!noSuggestions && (
+        <SuggestionCardsStyled ref={ref} data-cy="suggestions-list">
           {suggestions.map(({ userName, description, subject, id }, index) => (
             <SuggestionCard
               key={id}
@@ -36,7 +36,7 @@ export const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
             />
           ))}
         </SuggestionCardsStyled>
-      }
+      )}
       {showScroll && <StyledSlider max="120" min="0" step="0.1" type="range" value={position} onChange={scroll}/>}
     </SuggestionInboxStyled>
   );

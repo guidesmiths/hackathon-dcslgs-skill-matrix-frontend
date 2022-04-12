@@ -177,9 +177,11 @@ export const UserPage = () => {
         <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} emptyState={emptyState} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
-      {showSuggestionModal && <StyledModal>
-        <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
-      </StyledModal>}
+      {showSuggestionModal && (
+        <StyledModal>
+          <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
+        </StyledModal>
+      )}
       {confirmed && <PopUp isSuccess />}
       <Footer>
         {!edit

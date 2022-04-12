@@ -149,8 +149,8 @@ export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show,
             <Spinner />
           </EcosystemFallbackStyled>
         )
-        : (currentEcosystem?.skills?.length > 0
-          && <ScrollWrapper height={getScrollHeight()}>
+        : (currentEcosystem?.skills?.length > 0 && (
+          <ScrollWrapper height={getScrollHeight()}>
             {currentEcosystem?.skills.map((skill, index) => (
               <EcosystemSkill
                 key={skill?.id}
@@ -162,7 +162,7 @@ export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show,
                 onDeleteClick={() => onDeleteClick('skill', skill.id, skill.name, index)}
               />
             ))}
-          </ScrollWrapper>
+          </ScrollWrapper>)
         )
       }
 

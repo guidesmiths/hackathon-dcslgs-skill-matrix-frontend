@@ -21,15 +21,17 @@ export const SuggestionCard = ({ userName, subject, index, description, id }) =>
         <IconStyled icon="delete" onClick={() => dispatch(deleteSuggestionAsync(id))}/>
         <IconStyled color="true" icon="visibility" onClick={() => setModalShow(true)}/>
       </IconsContainerStyled>
-      {modalShow && <SuggestionModal
-        key={index}
-        description={description}
-        index={index}
-        subject={subject}
-        userName={userName}
-        onCloseClick={() => setModalShow(false)}
-        onDeleteClick={() => dispatch(deleteSuggestionAsync(id))}
-      />}
+      {modalShow && (
+        <SuggestionModal
+          key={index}
+          description={description}
+          index={index}
+          subject={subject}
+          userName={userName}
+          onCloseClick={() => setModalShow(false)}
+          onDeleteClick={() => dispatch(deleteSuggestionAsync(id))}
+        />
+      )}
     </SuggestionCardStyled>
   );
 };
