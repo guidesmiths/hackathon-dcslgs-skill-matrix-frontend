@@ -1,18 +1,22 @@
 [
   {
-    "id": 4,
-    "name": "Redux-Sagas"
+    "skillId": 4,
+    "skillName": "Redux-Sagas",
+    "ecosystemName": "React"
   },
   {
-    "id": 3,
-    "name": "Redux"
+    "skillId": 3,
+    "skillName": "Redux",
+    "ecosystemName": "React"
   },
   {
-    "id": 2,
-    "name": "Next.js"
+    "skillId": 2,
+    "skillName": "Next.js",
+    "ecosystemName": "React"
   },
   {
-    "id": 1,
-    "name": "React"
+    "skillId": 1,
+    "skillName": "React",
+    "ecosystemName": "React"
   }
 ]
