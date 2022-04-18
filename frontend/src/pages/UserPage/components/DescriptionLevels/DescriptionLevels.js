@@ -76,7 +76,7 @@ const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
     </LevelDescription>
   ));
 
-  const getSelectedDescription = selectedSkill => <p>{selectedLevel(selectedSkill)?.levelDescription || 'Don\'t apply'}</p>;
+  const getSelectedDescription = selectedSkill => <p>{selectedLevel(selectedSkill)?.levelDescription || 'Doesn\'t apply'}</p>;
 
   return (
     <RowCollapsed>

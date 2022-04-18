@@ -26,7 +26,7 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   }, [skillFilters, name, currentPage]);
 
   const skillsIdSearched = skillFilters.map(filter => filter.skill);
-  const skillsNotSearched = skills.filter(skill => !skillsIdSearched.includes(skill.id));
+  const skillsNotSearched = skills.filter(skill => !skillsIdSearched.includes(skill.skillId));
 
   return (
     <SearchBarsWrapper>
