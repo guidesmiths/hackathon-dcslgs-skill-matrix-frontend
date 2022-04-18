@@ -28,11 +28,13 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
   const handleInput = event => {
     const inputValue = event.target.value;
     setSkillTyped(inputValue);
-    const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
+    const filteredSkillsList = skills.filter(skill => (
+      skill.skillName.toLowerCase().includes(inputValue.toLowerCase())
+      || (skill.ecosystemName || '').toLowerCase().includes(inputValue.toLowerCase())));
     setOptionsList(filteredSkillsList || skills);
 
     const foundSkill = filteredSkillsList.find(
-      skill => skill.name === inputValue,
+      skill => skill.skillName === inputValue,
     );
 
     setSelectedSkill(foundSkill);
@@ -41,7 +43,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
       dispatch(
         updateSkillFilter({
           index,
-          filter: { skill: foundSkill.id, level: filter.level || 1 },
+          filter: { skill: foundSkill.skillId, level: filter.level || 1 },
         }),
       );
     } else if (!inputValue) {
@@ -68,7 +70,7 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
     dispatch(removeSkillFilter(arg));
     const newSkill = await skillFilters[index + 1];
     const newSkillData = await skills.find(
-      skill => skill.id === newSkill?.skill,
+      skill => skill.skillId === newSkill?.skill,
     );
     setSkillTyped(newSkillData?.name);
   };

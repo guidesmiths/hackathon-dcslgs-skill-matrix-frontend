@@ -15,7 +15,7 @@ const Input = ({ input, width, optionsList, onChangeInput, placeholder }) => (
     <datalist id={input}>
       {optionsList.length > 0
         && optionsList.map(skill => (
-          <option key={skill.id}>{skill.name}</option>
+          <option key={skill.skillId}>{skill.ecosystemName || ''} - {skill.skillName}</option>
         ))}
     </datalist>
   </>
