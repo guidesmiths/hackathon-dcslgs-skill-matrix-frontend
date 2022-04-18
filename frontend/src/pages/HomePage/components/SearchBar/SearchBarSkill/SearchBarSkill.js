@@ -29,14 +29,13 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
     const inputValue = event.target.value;
     setSkillTyped(inputValue);
     const filteredSkillsList = skills.filter(skill => (
-      skill.skillName.toLowerCase().includes(inputValue.toLowerCase())
-      || (skill.ecosystemName || '').toLowerCase().includes(inputValue.toLowerCase())));
+      `${skill.ecosystemName} - ${skill.skillName}`.toLowerCase().includes(inputValue.toLowerCase())
+    ));
     setOptionsList(filteredSkillsList || skills);
 
     const foundSkill = filteredSkillsList.find(
-      skill => skill.skillName === inputValue,
+      skill => `${skill.ecosystemName} - ${skill.skillName}` === inputValue,
     );
-
     setSelectedSkill(foundSkill);
 
     if (foundSkill) {
@@ -90,7 +89,6 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
       </InputWrapper>
       <InputWrapper>
         <Select
-          disabled={!selectedSkill}
           options={options}
           selected={filter.level}
           onChange={handleSelectChange}
