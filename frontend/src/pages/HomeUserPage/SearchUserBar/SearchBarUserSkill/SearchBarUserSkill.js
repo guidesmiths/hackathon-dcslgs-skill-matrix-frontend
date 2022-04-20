@@ -23,21 +23,21 @@ const SearchBarUserSkill = ({ index }) => {
   const handleInput = event => {
     const inputValue = event.target.value;
     setSkillTyped(inputValue);
-    const filteredSkillsList = skills.filter(skill => skill.name.toLowerCase().includes(inputValue.toLowerCase()));
+    const filteredSkillsList = skills.filter(skill => `${skill.ecosystemName} - ${skill.skillName}`.toLowerCase().includes(inputValue.toLowerCase()));
     setOptionsList(filteredSkillsList || skills);
 
     const selectedSkill = filteredSkillsList.find(
-      skill => skill.name === inputValue,
+      skill => `${skill.ecosystemName} - ${skill.skillName}` === inputValue,
     );
 
     if (selectedSkill) {
-      dispatch(fetchLevelUserBySkillAsync(selectedSkill.id))
+      dispatch(fetchLevelUserBySkillAsync(selectedSkill.skillId))
         .then(response => {
           const level = response.payload;
           dispatch(
             updateSkillFilter({
               index,
-              filter: { skill: selectedSkill.id, level: level?.skill_value || 1 },
+              filter: { skill: selectedSkill.skillId, level: level?.skill_value || 1 },
             }),
           );
         })
