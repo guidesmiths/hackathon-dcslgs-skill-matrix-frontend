@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import spain from '../../../../../../Assets/Icons/Spain.svg';
-import uk from '../../../../../../Assets/Icons/UK.svg';
-import ro from '../../../../../../Assets/Icons/ro.svg';
 import { StyledImage } from './ListElementHeader.styled';
+
+import Spain from '../../../../../../Assets/Icons/Spain.svg';
+import UK from '../../../../../../Assets/Icons/UK.svg';
+import Romania from '../../../../../../Assets/Icons/Romania.svg';
+import Hungary from '../../../../../../Assets/Icons/Hungary.png';
 
 const FlagComponent = ({ country }) => {
   const map = {
-    Spain: spain,
-    UK: uk,
-    Romania: ro,
+    Spain,
+    UK,
+    Romania,
+    Hungary,
   };
   return (
     <StyledImage src={map[country]} />

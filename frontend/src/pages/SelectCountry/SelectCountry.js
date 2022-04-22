@@ -38,6 +38,7 @@ const SelectCountry = ({ userId, userName, setIsSubmited }) => {
           <CountryRadioButton country="Romania" handleSelectChange={handleSelectChange} select={select} />
           <CountryRadioButton country="Spain" handleSelectChange={handleSelectChange} select={select} />
           <CountryRadioButton country="UK" handleSelectChange={handleSelectChange} select={select} />
+          <CountryRadioButton country="Hungary" handleSelectChange={handleSelectChange} select={select} />
         </Container>
         <StyledButton onClick={submitCountry}>Set Location</StyledButton>
       </ContainerWrapper>
