@@ -19,7 +19,7 @@ const LoginButton = () => {
       result => {
         dispatch(insertUserAsync(result.accessToken))
           .then(response => {
-            const { payload: { data: { role, country } } } = response;
+            const { payload: { role, country } } = response;
             let route;
             route = '/profile';
             if (role === 'user') {
