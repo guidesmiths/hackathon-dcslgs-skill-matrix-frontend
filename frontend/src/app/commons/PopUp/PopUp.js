@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  OverlayStyled,
   PopUpStyled,
   PopUpStyledTitleWrapper,
   PopUpStyledTitle,
@@ -10,9 +9,9 @@ import {
   PopUpStyledCloseIcon,
 } from './PopUp.styled';
 
-const PopUp = ({ onCloseClick, isSuccess }) => (
+const PopUp = ({ isSuccess }) => (
   <>
-    <PopUpStyled isSuccess={isSuccess} onClick={onCloseClick}>
+    <PopUpStyled isSuccess={isSuccess}>
       <PopUpStyledTitleWrapper>
         {isSuccess
           ? <PopUpStyledIcon icon={'checkCircle'}/>
@@ -27,17 +26,15 @@ const PopUp = ({ onCloseClick, isSuccess }) => (
         {!isSuccess && <PopUpStyledCloseIcon icon={'close'}/>}
       </PopUpStyledTitleWrapper>
     </PopUpStyled>
-    <OverlayStyled onClick={onCloseClick} />
   </>
 );
 
 PopUp.propTypes = {
   isSuccess: PropTypes.bool.isRequired,
-  onCloseClick: PropTypes.func,
 };
 
 PopUp.defaultProps = {
   input: [],
-  onCloseClick: () => { /* empty function */ },
 };
+
 export default PopUp;

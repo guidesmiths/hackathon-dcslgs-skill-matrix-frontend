@@ -34,7 +34,6 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
   const [skills, setSkills] = useState();
   const [currentEcosystem, setCurrentEcosystem] = useState(ecosystem);
   const [confirmed, setConfirmed] = useState(false);
-  // Please, refactor this :)
   const [idToDelete, setIdToDelete] = useState('');
   const [nameToDelete, setNameToDelete] = useState('');
   const ref = useRef(null);
@@ -70,6 +69,9 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
       .then(() => {
         dispatch(fetchEcosystemsAsync());
         setConfirmed(true);
+        setTimeout(() => {
+          setConfirmed(false);
+        }, 2000);
         setShowModal(false);
         history.push(`/ecosystem/${ecosystems[0]?.id}`);
       })
@@ -165,7 +167,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
         )
       }
 
-      {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
+      {confirmed && <PopUp isSuccess />}
       {show && <ButtonsWrapper>
         <StyledButton data-cy="add-skill" onClick={handleAdd}>{isEmpty ? 'Add new ecosystem' : 'Add new skill'}</StyledButton>
         {!isEmpty && <StyledDelete data-cy="delete-ecosystem-button" onClick={() => onDeleteClick('ecosystem', ecosystem.id, ecosystem.name)}>

@@ -44,11 +44,11 @@ const HomePage = () => {
   const ecosystems = useSelector(selectAllEcosystems);
   const suggestions = useSelector(selectAllSuggestions);
   const userData = useSelector(selectUserData);
-  const [selectedEcosystem, setSelectedEcosystem] = useState(null);
+  const [selectedEcosystem, setSelectedEcosystem] = useState();
   const [noSuggestions, setNoSuggestions] = useState(true);
   const [isNewEcosystem, setIsNewEcosystem] = useState(false);
   const [isNewSkill, setIsNewSkill] = useState(false);
-  const [isOnEditableMode, setIsOnEditableMode] = useState(null);
+  const [isOnEditableMode, setIsOnEditableMode] = useState(false);
   const [newEcosystem, setNewEcosystem] = useState(newEcosystemEmpty);
   const [isThereAnyError, setIsThereAnyError] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -215,7 +215,7 @@ const HomePage = () => {
             dispatch(fetchEcosystemsAsync())
               .then(() => {
                 if (payload) {
-                  setSelectedEcosystem(payload);
+                  setSelectedEcosystem(payload[0]);
                   handleEcosystemClick(payload[0]?.id);
                 } else {
                   setSelectedEcosystem(newEcosystem?.id);
@@ -236,6 +236,9 @@ const HomePage = () => {
               }],
             });
             setShowPopUp(true);
+            setTimeout(() => {
+              setShowPopUp(false);
+            }, 2000);
             setIsOnEditableMode(false);
           })
           .catch(err => console.error(err));
@@ -292,7 +295,7 @@ const HomePage = () => {
           onNewSkill={addNewSkill}
         />
       </EcosystemsContainer>
-      { showPopUp && <PopUp isSuccess={!isThereAnyError} onCloseClick={() => setShowPopUp(false)}/>}
+      { showPopUp && <PopUp isSuccess={!isThereAnyError} />}
       <Footer>
         <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
         {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>}

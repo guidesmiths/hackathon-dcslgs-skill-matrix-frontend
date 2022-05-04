@@ -56,11 +56,17 @@ const UserPage = () => {
       }
     }
   }, [pathname, userData.id, canceling]);
+
   const handleSubmit = () => {
     setIsSubmited(true);
     setEdit(false);
     dispatch(insertAnswersAsync(userData))
-      .then(() => setConfirmed(true))
+      .then(() => {
+        setConfirmed(true);
+        setTimeout(() => {
+          setConfirmed(false);
+        }, 2000);
+      })
       .catch(err => console.log(err));
     if (currentStep === 7) {
       setIsOpen(false);
@@ -180,7 +186,7 @@ const UserPage = () => {
       {showSuggestionModal && <StyledModal>
         <SuggestionForm setConfirmed={setConfirmed} onCloseClick={() => setShowSuggestionModal(!showSuggestionModal)} />
       </StyledModal>}
-      {confirmed && <PopUp isSuccess onCloseClick={() => setConfirmed(false)} />}
+      {confirmed && <PopUp isSuccess />}
       <Footer>
         {!edit
           ? <>
