@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTour } from '@reactour/tour';
+import { useLocation } from 'react-router-dom';
 import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import info from '../../../Assets/Icons/info.svg';
@@ -10,6 +11,8 @@ import SwitchTest from '../SwitchTest/SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
 
 const NavBar = ({ userData, userView, handleChangeRoleView }) => {
+  const { pathname } = useLocation();
+
   const signOut = () => {
     localStorage.clear();
   };
@@ -23,7 +26,15 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
           <LazyImage actualSrc={logo}/>
           {userData && <NavBarLink exact activeClassName="selected" to="/directory">Directory</NavBarLink>}
         </LogoWrapper>
-        {userData && <NavBarLink activeClassName="selected" to={!userView ? '/ecosystem' : '/profile/ecosystem'}>Skill Matrix</NavBarLink>}
+        {userData && (
+          <NavBarLink
+            activeClassName="selected"
+            isActive={() => (!userView ? ['/ecosystem'].includes(pathname) : ['/profile', '/profile/ecosystem'].includes(pathname))}
+            to={!userView ? '/ecosystem' : '/profile/ecosystem'}
+          >
+            Skill Matrix
+          </NavBarLink>
+        )}
         {!userView && userData && <NavBarLink activeClassName="selected" to="/profile">Personal Skill Matrix</NavBarLink>}
       </NavStyled>
       <EnvironmentComponent excludedEnvironments={['production']}>

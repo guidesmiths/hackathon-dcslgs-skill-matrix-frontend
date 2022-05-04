@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import NavBar from './app/commons/NavBar/NavBar';
 import { fetchUserInfoAsync, selectUserData } from './redux/user/userSlice';
 import { HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE, PAGE404_ROUTE, DIRECTORY_ROUTE, COUNTRY_ROUTE } from './constants/routes';
@@ -15,15 +14,13 @@ import Page404 from './pages/Page404/Page404';
 import PrivateRoute from './pages/Privileges/PrivateRoute';
 import NotLoggedRoute from './pages/Privileges/NotLoggedRoute';
 import SelectCountry from './pages/SelectCountry/SelectCountry';
-import getEnvConfig from './configuration/environment';
 
-const AppRouter = ({ environment }) => {
+const AppRouter = () => {
   const location = useLocation().pathname;
   const show = location !== '/login'; // && location !== '/404';
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [userView, setUserView] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
 
@@ -36,18 +33,13 @@ const AppRouter = ({ environment }) => {
       dispatch(fetchUserInfoAsync(history));
     }
     if (isSubmited) {
-      const route = '/profile';
-      if (userData.role) {
-        route.concat('/ecosystem');
-      }
+      const route = userData.role ? '/profile/ecosystem' : '/profile';
       history.push(route);
     }
   }, [isSubmited]);
 
   useEffect(() => {
-    if (environment === 'production' && userData.role === 'user') {
-      setUserView(true);
-    }
+    setUserView(userData?.role === 'user');
   }, [userData]);
 
   return (
@@ -67,14 +59,6 @@ const AppRouter = ({ environment }) => {
       </Switch>
     </>
   );
-};
-
-AppRouter.defaultProps = {
-  environment: getEnvConfig().environment,
-};
-
-AppRouter.propTypes = {
-  environment: PropTypes.string,
 };
 
 export default AppRouter;

@@ -14,30 +14,23 @@ const LoginButton = () => {
   const { instance } = useMsal();
 
   // This function shows official Microsoft login Pop up
-  async function handleLoginPopup() {
-    await instance.loginPopup(loginRequest).then(
-      result => {
-        dispatch(insertUserAsync(result.accessToken))
-          .then(response => {
-            const { payload } = response;
-            let route;
-            route = '/profile';
-            if (payload?.role === 'user') {
-              route = route.concat('/ecosystem');
-            }
-            // eslint-disable-next-line no-extra-boolean-cast
-            if (!!payload?.country) {
-              history.push(route);
-            } else {
-              history.push('/country');
-            }
-          })
-          .catch(err => console.error(err));
-      },
-    ).catch(error => {
+  const handleLoginPopup = async () => {
+    try {
+      const result = await instance.loginPopup(loginRequest);
+      const response = await dispatch(insertUserAsync(result.accessToken));
+      const { payload } = response;
+      const route = payload?.role === 'user' ? '/profile/ecosystem' : '/profile';
+
+      // eslint-disable-next-line no-extra-boolean-cast
+      if (!!payload?.country) {
+        history.push(route);
+      } else {
+        history.push('/country');
+      }
+    } catch (error) {
       console.error(error);
-    });
-  }
+    }
+  };
 
   return (
     <LoginButtonStyled data-cy="login-page-button" onClick={handleLoginPopup}>
