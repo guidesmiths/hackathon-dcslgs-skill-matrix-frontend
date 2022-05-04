@@ -70,7 +70,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
           </StyledOption>)}
         </CustomOptions>
       </SelectStyled>
-      <TextAreaStyled id="content" placeholder="Placeholder..." value={suggestion} onChange={changeHandler}/>
+      <TextAreaStyled id="content" placeholder="Please write your suggestion..." value={suggestion} onChange={changeHandler}/>
       <ButtonWrapperStyled>
         <Buttons>Send</Buttons>
         <Buttons type="button" onClick={cancelForm}>Cancel</Buttons>
