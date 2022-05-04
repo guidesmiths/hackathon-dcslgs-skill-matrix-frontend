@@ -19,14 +19,14 @@ const LoginButton = () => {
       result => {
         dispatch(insertUserAsync(result.accessToken))
           .then(response => {
-            const { payload: { role, country } } = response;
+            const { payload } = response;
             let route;
             route = '/profile';
-            if (role === 'user') {
+            if (payload?.role === 'user') {
               route = route.concat('/ecosystem');
             }
             // eslint-disable-next-line no-extra-boolean-cast
-            if (!!country) {
+            if (!!payload?.country) {
               history.push(route);
             } else {
               history.push('/country');
