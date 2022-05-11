@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { selectUserData, changeUserCountryAsync } from '../../redux/user/userSlice';
 
 import { Header, TextWrapper, Heading, ContainerWrapper, Container, StyledButton } from './SelectCountry.styled';
-import { changeUserCountryAsync } from '../../redux/user/userSlice';
 import CountryRadioButton from './components/CountryRadioButton/CountryRadioButton';
 
-const SelectCountry = ({ userId, userName, setIsSubmited }) => {
+const SelectCountry = () => {
+  const history = useHistory();
+  const userData = useSelector(selectUserData);
   const [select, setSelect] = useState('');
   const dispatch = useDispatch();
 
@@ -19,18 +21,19 @@ const SelectCountry = ({ userId, userName, setIsSubmited }) => {
     if (select !== '') {
       dispatch(changeUserCountryAsync(
         {
-          userId,
+          userId: userData.id,
           newCountry: select,
         },
       ));
+
+      history.push('/profile');
     }
-    setIsSubmited(true);
   };
 
   return (
     <Header>
       <TextWrapper>
-        <Heading weight={400}> Hello {userName}, </Heading>
+        <Heading weight={400}> Hello {userData.name}, </Heading>
         <Heading weight={700}> Please set up your team country</Heading>
       </TextWrapper>
       <ContainerWrapper>
@@ -44,12 +47,6 @@ const SelectCountry = ({ userId, userName, setIsSubmited }) => {
       </ContainerWrapper>
     </Header>
   );
-};
-
-SelectCountry.propTypes = {
-  setIsSubmited: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
 };
 
 export default SelectCountry;

@@ -29,8 +29,8 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
         {userData && (
           <NavBarLink
             activeClassName="selected"
-            isActive={() => (!userView ? ['/ecosystem'].includes(pathname) : ['/profile', '/profile/ecosystem'].includes(pathname))}
-            to={!userView ? '/ecosystem' : '/profile/ecosystem'}
+            isActive={() => (!userView ? (pathname.includes('/ecosystem') && !pathname.includes('/profile')) : pathname.includes('/profile'))}
+            to={!userView ? '/ecosystem' : '/profile'}
           >
             Skill Matrix
           </NavBarLink>
@@ -45,7 +45,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
       <UserWrapperStyled>
         <Image src={info} onClick={() => setIsOpen(true)} />
         <StyledIcon icon={'face'} />
-        <NavBarLink to={!userView ? '/profile' : '/profile/ecosystem'}>{userData?.email}</NavBarLink>
+        <NavBarLink to={'/profile'}>{userData?.email}</NavBarLink>
         <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >
           <LazyImage actualSrc={logout} />
         </NavBarLink>

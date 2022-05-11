@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBar from './app/commons/NavBar/NavBar';
 import { fetchUserInfoAsync, selectUserData } from './redux/user/userSlice';
 import { HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE, PAGE404_ROUTE, DIRECTORY_ROUTE, COUNTRY_ROUTE } from './constants/routes';
@@ -14,15 +15,15 @@ import Page404 from './pages/Page404/Page404';
 import PrivateRoute from './pages/Privileges/PrivateRoute';
 import NotLoggedRoute from './pages/Privileges/NotLoggedRoute';
 import SelectCountry from './pages/SelectCountry/SelectCountry';
+import getEnvConfig from './configuration/environment';
 
-const AppRouter = () => {
+const AppRouter = ({ environment }) => {
   const location = useLocation().pathname;
   const show = location !== '/login'; // && location !== '/404';
   const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [userView, setUserView] = useState(false);
-  const [isSubmited, setIsSubmited] = useState(false);
+  const [userView, setUserView] = useState(true);
 
   const handleChangeRoleView = () => {
     setUserView(!userView);
@@ -32,14 +33,15 @@ const AppRouter = () => {
     if (!userData.id) {
       dispatch(fetchUserInfoAsync(history));
     }
-    if (isSubmited) {
-      const route = userData.role ? '/profile/ecosystem' : '/profile';
-      history.push(route);
+    if (userData.country) {
+      history.push('/profile');
     }
-  }, [isSubmited]);
+  }, [userData.country]);
 
   useEffect(() => {
-    setUserView(userData?.role === 'user');
+    if (environment === 'production' && !userData.role === 'admin') {
+      setUserView(true);
+    }
   }, [userData]);
 
   return (
@@ -47,11 +49,9 @@ const AppRouter = () => {
       {show && <NavBar handleChangeRoleView={handleChangeRoleView} userData={userData} userView={userView} /> }
       <Switch>
         <NotLoggedRoute exact component={LoginPage} path={LOGIN_ROUTE} />
-        <PrivateRoute component={() => <SelectCountry setIsSubmited={setIsSubmited} userId={userData.id} userName={userData.name} />} path={COUNTRY_ROUTE} />
-        {!userView && <PrivateRoute exact component={UserPage} path={[USER_ROUTE, '/profile/ecosystem/:id']} />}
-        <PrivateRoute exact component={userView ? UserPage : AdminPage}
-          path={ !userView ? [HOME_ROUTE, '/ecosystem/', '/ecosystem/:id'] : [HOME_ROUTE, '/profile/ecosystem/', '/profile/ecosystem/:id']}
-        />
+        <PrivateRoute exact component={SelectCountry} path={COUNTRY_ROUTE} />
+        <PrivateRoute exact component={UserPage} path={[USER_ROUTE, '/profile/ecosystem/', '/profile/ecosystem/:id']} />
+        {!userView && <PrivateRoute exact component={AdminPage} path={[HOME_ROUTE, '/ecosystem/', '/ecosystem/:id']} />}
         <PrivateRoute exact component={userView ? HomeUserPage : HomePage} path={DIRECTORY_ROUTE} />
         <Route exact component={Page404}/>
         {/* Default path for non existing pages */}
@@ -59,6 +59,14 @@ const AppRouter = () => {
       </Switch>
     </>
   );
+};
+
+AppRouter.defaultProps = {
+  environment: getEnvConfig().environment,
+};
+
+AppRouter.propTypes = {
+  environment: PropTypes.string,
 };
 
 export default AppRouter;

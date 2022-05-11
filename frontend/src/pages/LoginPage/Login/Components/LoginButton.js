@@ -19,11 +19,10 @@ const LoginButton = () => {
       const result = await instance.loginPopup(loginRequest);
       const response = await dispatch(insertUserAsync(result.accessToken));
       const { payload } = response;
-      const route = payload?.role === 'user' ? '/profile/ecosystem' : '/profile';
 
       // eslint-disable-next-line no-extra-boolean-cast
       if (!!payload?.country) {
-        history.push(route);
+        history.push('/profile');
       } else {
         history.push('/country');
       }
