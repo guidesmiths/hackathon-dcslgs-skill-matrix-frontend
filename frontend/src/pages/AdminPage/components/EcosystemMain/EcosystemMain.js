@@ -17,7 +17,7 @@ import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 import { EcosystemContainerStyled, EcosystemFallbackStyled, EcosystemNameStyledInput, EcosystemHeaderStyled,
   ButtonsWrapper, StyledButton, StyledDelete, StyledDeleteIcon } from './EcosystemMain.styled';
 
-const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
+export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
@@ -174,7 +174,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
   );
 };
 
-EcosystemsMain.propTypes = {
+EcosystemMain.propTypes = {
   deleteNewSkill: PropTypes.func.isRequired,
   emptyState: PropTypes.bool.isRequired,
   noSuggestions: PropTypes.bool.isRequired,
@@ -200,7 +200,7 @@ EcosystemsMain.propTypes = {
   skills: PropTypes.array,
 };
 
-EcosystemsMain.defaultProps = {
+EcosystemMain.defaultProps = {
   ecosystem: {
     id: 0,
     name: '',
@@ -222,5 +222,3 @@ EcosystemsMain.defaultProps = {
   show: false,
   skills: [],
 };
-
-export default EcosystemsMain;
