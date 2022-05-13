@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { StyledPage404, StyledTitleWrapper, StyledTitle, StyledH3, StyledP, StyledButton } from './Page404.styled';
 
-const Page404 = () => {
+export const Page404 = () => {
   const history = useHistory();
 
   return (
@@ -18,5 +18,3 @@ const Page404 = () => {
     </StyledPage404>
   );
 };
-
-export default Page404;
