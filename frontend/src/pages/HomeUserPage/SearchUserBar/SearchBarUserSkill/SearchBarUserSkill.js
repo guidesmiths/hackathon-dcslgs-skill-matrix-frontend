@@ -12,7 +12,7 @@ import {
   SearchHomeBarSkillStyled,
   InputWrapperUser,
 } from '../../../HomePage/components/SearchBar/SearchBarSkill/SearchBarSkill.styled';
-import Input from '../../../../app/commons/Input/Input';
+import { Input } from '../../../../app/commons/Input';
 
 const SearchBarUserSkill = ({ index }) => {
   const dispatch = useDispatch();

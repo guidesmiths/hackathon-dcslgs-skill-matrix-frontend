@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputStyled from './Input.styled';
 
-const Input = ({ input, width, optionsList, onChangeInput, placeholder }) => (
+export const Input = ({ input, width, optionsList, onChangeInput, placeholder }) => (
   <>
     <InputStyled
       list={input}
@@ -34,5 +34,3 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   width: PropTypes.number,
 };
-
-export default Input;

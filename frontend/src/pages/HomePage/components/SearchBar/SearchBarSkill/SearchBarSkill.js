@@ -13,7 +13,7 @@ import {
   InputWrapper,
   StyledIcon,
 } from './SearchBarSkill.styled';
-import Input from '../../../../../app/commons/Input/Input';
+import { Input } from '../../../../../app/commons/Input';
 import Select from '../../../../../app/commons/Select/Select';
 import Label from '../../../../../app/commons/Label/Label';
 
