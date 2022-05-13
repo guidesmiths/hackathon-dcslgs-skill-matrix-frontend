@@ -6,7 +6,7 @@ import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderW
 import Switch from '../../../../../../app/commons/Switch/Switch';
 import { selectCurrentAnswers, selectStatus } from '../../../../../../redux/answers/answersSlice';
 import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
-import SpinnerLoader from '../../../../../../app/commons/Spinner/Spinner';
+import { Spinner } from '../../../../../../app/commons/Spinner';
 import { selectSkillFilters } from '../../../../../../redux/filters/filtersSlice';
 
 const SkillList = ({ index, isCollapsed, userId, role }) => {
@@ -34,7 +34,7 @@ const SkillList = ({ index, isCollapsed, userId, role }) => {
         {!skills && <LoaderWrapper>
           {loaded
             ? <NoRecords />
-            : <SpinnerLoader/>
+            : <Spinner/>
           }
         </LoaderWrapper>}
         {skills && skills.map(({ id, level, levelDescription, name, sublevel }) => (

@@ -19,7 +19,7 @@ import {
 } from '../../../redux/user/userSlice';
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
-import SpinnerLoader from '../../../app/commons/Spinner/Spinner';
+import { Spinner } from '../../../app/commons/Spinner';
 import StateComponent from '../../../app/commons/StateComponent/StateComponent';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, emptyState }) => {
@@ -92,7 +92,7 @@ const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, empt
           )
           : (
             <Wrapper>
-              <SpinnerLoader />
+              <Spinner />
             </Wrapper>
           )
       )}

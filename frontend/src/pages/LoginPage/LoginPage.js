@@ -4,7 +4,7 @@ import Logo from '../../Assets/Images/logo.png';
 import AnimatedWaves from './AnimatedWaves/AnimatedWaves';
 import LoginButton from './Login/Components/LoginButton';
 import { LoginStyled, LoginTitle, StyledText } from './LoginPage.styled';
-import SpinnerLoader from '../../app/commons/Spinner/Spinner';
+import { Spinner } from '../../app/commons/Spinner';
 
 import { selectUserInsertLoading } from '../../redux/user/userSlice';
 
@@ -19,7 +19,7 @@ const LoginPage = () => {
       <LoginStyled data-cy="login-page">
         <img src={Logo} />
         <LoginTitle>Skill Matrix</LoginTitle>
-        {isLoading === 'idle' ? <LoginButton/> : <SpinnerLoader />}
+        {isLoading === 'idle' ? <LoginButton/> : <Spinner />}
         <StyledText>
          If you are having trouble logging in to your account, please contact infrastructure.
         </StyledText>
