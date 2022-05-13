@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import LoginPage from '../LoginPage/LoginPage';
+import { LoginPage } from '../LoginPage';
 import { LOGIN_ROUTE } from '../../constants/routes';
 import { selectUserData } from '../../redux/user/userSlice';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { HOME_ROUTE } from '../../constants/routes';
 import { HomePage } from '../HomePage';
-import LoginPage from '../LoginPage/LoginPage';
+import { LoginPage } from '../LoginPage';
 
 const redirectToLogin = () => <LoginPage />;
 

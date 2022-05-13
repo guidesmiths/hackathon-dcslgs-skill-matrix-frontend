@@ -3,12 +3,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMsal } from '@azure/msal-react';
 import { useDispatch } from 'react-redux';
-import Outlook from '../../../../Assets/Icons/Outlook.svg';
-import { loginRequest } from '../../../../configuration/authConfig';
-import { LoginButtonStyled, StyledIcon } from '../../LoginPage.styled';
-import { insertUserAsync } from '../../../../redux/user/userSlice';
+import Outlook from '../../../Assets/Icons/Outlook.svg';
+import { loginRequest } from '../../../configuration/authConfig';
+import { LoginButtonStyled, StyledIcon } from '../LoginPage.styled';
+import { insertUserAsync } from '../../../redux/user/userSlice';
 
-const LoginButton = () => {
+export const LoginButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { instance } = useMsal();
@@ -39,5 +39,3 @@ const LoginButton = () => {
 
   );
 };
-
-export default LoginButton;

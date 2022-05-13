@@ -1,7 +1,7 @@
 import React from 'react';
 import { WaveComponent, WaveWrapper, Wave } from './AnimatedWaves.styled';
 
-const AnimatedWaves = () => (
+export const AnimatedWaves = () => (
   <WaveComponent>
     <WaveWrapper>
       <Wave animation={1} bottom={-45} delay={0} opacity={1} speed={50} zIndex={1000}/>
@@ -13,5 +13,3 @@ const AnimatedWaves = () => (
     </WaveWrapper>
   </WaveComponent>
 );
-
-export default AnimatedWaves;

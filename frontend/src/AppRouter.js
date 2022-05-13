@@ -9,7 +9,7 @@ import { HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE, PAGE404_ROUTE, DIRECTORY_ROUTE, CO
 import { HomePage } from './pages/HomePage';
 import { HomeUserPage } from './pages/HomeUserPage';
 import { AdminPage } from './pages/AdminPage';
-import LoginPage from './pages/LoginPage/LoginPage';
+import { LoginPage } from './pages/LoginPage';
 import UserPage from './pages/UserPage/UserPage';
 import Page404 from './pages/Page404/Page404';
 import PrivateRoute from './pages/Privileges/PrivateRoute';
