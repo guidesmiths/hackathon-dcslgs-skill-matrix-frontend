@@ -1,6 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Icon from '../icon/icon';
+import { Icon } from '../Icon';
 
 const NavBarTop = styled.div`
   z-index: 100;

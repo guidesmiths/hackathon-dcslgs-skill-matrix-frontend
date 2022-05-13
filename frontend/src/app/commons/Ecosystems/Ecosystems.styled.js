@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { UserRowWrapper } from '../ScrollWrapper/ScrollWrapper.styled';
-import Icon from '../icon/icon';
+import { Icon } from '../Icon';
 
 const EcosystemColumn = styled.div`
   display: flex;

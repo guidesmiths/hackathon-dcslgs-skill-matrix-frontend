@@ -5,7 +5,7 @@ import { range } from 'ramda';
 import Box from '@material-ui/core/Box';
 import { SkeletonWrapper as Skeleton } from './SkeletonWrapper.styled';
 
-const SkeletonWrapper = ({ rows }) => (
+export const SkeletonWrapper = ({ rows }) => (
   <Box width="100%">
     {range(0, rows).map(row => (
       <Skeleton key={row} animation="wave" />
@@ -20,5 +20,3 @@ SkeletonWrapper.propTypes = {
 SkeletonWrapper.defaultProps = {
   rows: 15,
 };
-
-export default SkeletonWrapper;

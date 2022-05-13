@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Icon from '../../../../../app/commons/icon/icon';
-import Label from '../../../../../app/commons/Label/Label.styled';
+import { Icon } from '../../../../../app/commons/Icon';
+import { Label } from '../../../../../app/commons/Label/Label.styled';
 
 const getBorder = ({ hasError, theme, readOnly }) => {
   if (hasError) return `1px solid ${theme.colors.error}`;

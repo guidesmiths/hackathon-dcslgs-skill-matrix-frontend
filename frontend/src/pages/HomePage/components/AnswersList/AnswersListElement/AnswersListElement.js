@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useTour } from '@reactour/tour';
-import ListElementHeader from './ListElementHeader/ListElementHeader';
-import SkillList from './SkillList/SkillList';
-import AnswersListElementStyled from './AnswersListElement.styled';
-import LoadingUserRow from '../../../../../app/commons/LoadingUserRow/LoadingUserRow';
 import { fetchAnswersByUserAsync, filterAnswerByUser } from '../../../../../redux/answers/answersSlice';
 
-const AnswersListElement = ({ userId, email, name, role, skills, index, country, seniority }) => {
+import { LoadingUserRow } from '../../../../../app/commons/LoadingUserRow';
+import { ListElementHeader } from './ListElementHeader';
+import { SkillList } from './SkillList';
+
+import { AnswersListElementStyled } from './AnswersListElement.styled';
+
+export const AnswersListElement = ({ userId, email, name, role, skills, index, country, seniority }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -63,5 +65,3 @@ AnswersListElement.defaultProps = {
   country: '',
   skills: [],
 };
-
-export default AnswersListElement;

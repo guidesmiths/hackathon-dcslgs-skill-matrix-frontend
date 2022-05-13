@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  ModalStyled,
-  OverlayStyled,
-} from './Modal.styled';
+import { ModalStyled, OverlayStyled } from './Modal.styled';
 
-const Modal = ({ onCloseClick, children, className }) => (
+export const Modal = ({ onCloseClick, children, className }) => (
   <>
     <ModalStyled className={className} data-cy="modal">
       {children}
@@ -25,5 +22,3 @@ Modal.defaultProps = {
   className: '',
   onCloseClick: () => { /* empty function */ },
 };
-
-export default Modal;

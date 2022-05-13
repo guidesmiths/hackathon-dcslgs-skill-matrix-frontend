@@ -1,20 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  ModalContent,
-  UserNameStyled,
-  ButtonsGroups,
-  ButtonStyled,
-  SuggestionStyled,
-  DescriptionStyled,
-  SuggestionContentStyled,
-  StyledIcon,
-  TitleStyled,
-} from './SuggestionModal.styled';
-import Modal from '../../../../../../app/commons/Modal/Modal';
+import { ModalContent, UserNameStyled, ButtonsGroups, ButtonStyled, SuggestionStyled, DescriptionStyled, SuggestionContentStyled, StyledIcon, TitleStyled } from './SuggestionModal.styled';
+import { Modal } from '../../../../../../app/commons/Modal';
 
-const SuggestionModal = ({ userName, subject, description, onCloseClick, onDeleteClick }) => (
+export const SuggestionModal = ({ userName, subject, description, onCloseClick, onDeleteClick }) => (
   <Modal onCloseClick={onCloseClick}>
     <ModalContent>
       <TitleStyled>
@@ -40,5 +30,3 @@ SuggestionModal.propTypes = {
   onCloseClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };
-
-export default SuggestionModal;

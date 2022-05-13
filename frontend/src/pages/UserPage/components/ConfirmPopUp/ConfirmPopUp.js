@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyledPopUp, ButtonWrapper, StyledButtons, StyledText } from './ConfirmPopUp.styled.styled';
-import { StyledTitle, StyledCancelIcon } from '../SuggestionForm.styled';
+import { StyledPopUp, ButtonWrapper, StyledButtons, StyledText } from './ConfirmPopUp.styled';
+import { StyledTitle, StyledCancelIcon } from '../SuggestionForm/SuggestionForm.styled';
 
-const ConfirmPopUp = ({ onCloseClick, setConfirmed }) => {
+export const ConfirmPopUp = ({ onCloseClick, setConfirmed }) => {
   const cancelForm = confirm => {
     setConfirmed(confirm);
     onCloseClick();
@@ -31,5 +30,3 @@ ConfirmPopUp.propTypes = {
   setConfirmed: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };
-
-export default ConfirmPopUp;

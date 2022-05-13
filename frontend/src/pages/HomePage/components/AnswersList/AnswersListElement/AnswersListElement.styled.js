@@ -17,12 +17,11 @@ const animation2 = keyframes`
     opacity: 1;
   }
 `;
-const AnswersListElementStyled = styled.div`
+
+export const AnswersListElementStyled = styled.div`
   position: relative;
   top: -10px;
   margin: 0 auto;
   padding: 15px 2px;
   animation: ${animation2} 4s;
 `;
-
-export default AnswersListElementStyled;

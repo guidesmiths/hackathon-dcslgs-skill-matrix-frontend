@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModalStyledWrapper, HeaderStyled, StyledInfo, StyledInputWrapper, StyledInput, StyledButton } from './EcosystemModal.styled';
-import Label from '../../../../../app/commons/Label/Label';
-import Icon from '../../../../../app/commons/icon/icon';
+import { Label } from '../../../../../app/commons/Label';
+import { Icon } from '../../../../../app/commons/Icon';
 
-const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
+export const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
   const [nameTyped, setNameTyped] = useState();
+
   return (
     <ModalStyledWrapper>
       <HeaderStyled>
@@ -33,5 +34,3 @@ EcosystemModal.propTypes = {
   subject: PropTypes.string.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };
-
-export default EcosystemModal;

@@ -6,11 +6,11 @@ import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import info from '../../../Assets/Icons/info.svg';
 import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon, Image } from './NavBar.styled';
-import LazyImage from '../LazyImage/LazyImage';
-import SwitchTest from '../SwitchTest/SwitchTest';
+import { LazyImage } from '../LazyImage';
+import { SwitchTest } from '../SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
 
-const NavBar = ({ userData, userView, handleChangeRoleView }) => {
+export const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const { pathname } = useLocation();
 
   const signOut = () => {
@@ -59,5 +59,3 @@ NavBar.propTypes = {
   userData: PropTypes.object.isRequired,
   userView: PropTypes.bool.isRequired,
 };
-
-export default NavBar;

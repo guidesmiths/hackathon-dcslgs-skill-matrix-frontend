@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-
-import {
-  RowCollapsed,
-  RowSkillsBottom,
-  DescriptionStyled,
-  SelectWrapper,
-  LevelEditor,
-  AjustLevelButtons,
-  AdjustButton,
-  StyledInput,
-  Tooltip,
-  LevelDescription,
-} from './DescriptionLevels.styled';
-import Label from '../../../../app/commons/Label/Label';
-
 import { updateUserSkill } from '../../../../redux/user/userSlice';
 
-const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
+import { Label } from '../../../../app/commons/Label';
+
+import { RowCollapsed, RowSkillsBottom, DescriptionStyled, SelectWrapper, LevelEditor, AjustLevelButtons, AdjustButton, StyledInput,
+  Tooltip, LevelDescription } from './DescriptionLevels.styled';
+
+export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
   const dispatch = useDispatch();
   const [showMinus, setShowMinus] = useState(false);
   const [showPlus, setShowPlus] = useState(false);
@@ -153,5 +143,3 @@ DescriptionLevels.propTypes = {
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
 };
-
-export default DescriptionLevels;

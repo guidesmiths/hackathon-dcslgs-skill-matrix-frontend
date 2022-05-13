@@ -1,0 +1,1 @@
+export { NotLoggedRoute } from './NotLoggedRoute';

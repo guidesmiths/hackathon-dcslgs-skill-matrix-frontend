@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ArrowButton } from '../../../../../../app/commons/ArrowButton/arrowButton.styled';
-import Icon from '../../../../../../app/commons/icon/icon';
+import { Icon } from '../../../../../../app/commons/Icon';
 
 const UserWrapperStyled = styled.div`
   display: flex;

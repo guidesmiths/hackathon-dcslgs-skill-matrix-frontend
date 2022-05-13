@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PaginationMaterial from '@material-ui/lab/Pagination';
 import { makeStyles, createStyles } from '@material-ui/core';
-import PaginationStyled from './Pagination.styled';
+import { PaginationStyled } from './Pagination.styled';
 
 const useStyles = makeStyles(() => createStyles({
   root: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
+export const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
   const classes = useStyles();
   return (<PaginationStyled>
     <PaginationMaterial
@@ -42,5 +42,3 @@ Pagination.defaultProps = {
   shape: 'round',
   size: 'medium',
 };
-
-export default Pagination;

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserRowWrapper } from '../../../../app/commons/ScrollWrapper/ScrollWrapper.styled';
-import Icon from '../../../../app/commons/icon/icon';
+import { Icon } from '../../../../app/commons/Icon';
 
 const EcosystemBarStyled = styled.div`
   height: 100%;

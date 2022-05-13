@@ -4,7 +4,7 @@ import { StateWrapper, Image } from './StateComponent.styled';
 import completeProfile from '../../../Assets/Images/completeProfile.png';
 import admin from '../../../Assets/Images/Admin.png';
 
-const StateComponent = ({ location }) => {
+export const StateComponent = ({ location }) => {
   const isUser = location === 'user';
 
   return (
@@ -14,7 +14,6 @@ const StateComponent = ({ location }) => {
         ? <p>Complete your profile selecting ecosystems that match with you and complete your skill based on what you know about them</p>
         : <p>Add all the ecosystem needed and complete them with the skill that the employee can have in them</p>
       }
-
     </StateWrapper>
   );
 };
@@ -26,5 +25,3 @@ StateComponent.propTypes = {
 StateComponent.defaultProps = {
   location: 'admin',
 };
-
-export default StateComponent;

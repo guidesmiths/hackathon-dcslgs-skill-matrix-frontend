@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { StyledBackground } from '../HomePage/HomePage.styled';
-import Button from '../../app/commons/Button/Button';
+import { Button } from '../../app/commons/Button';
 
 const Header = styled(StyledBackground)`
   position: relative;

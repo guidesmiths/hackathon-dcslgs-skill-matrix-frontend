@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button from '../../../../../app/commons/Button/Button';
-import Modal from '../../../../../app/commons/Modal/Modal';
+import { Button } from '../../../../../app/commons/Button';
+import { Modal } from '../../../../../app/commons/Modal';
 
 const ModalStyledWrapper = styled(Modal)`
   padding: 20px;

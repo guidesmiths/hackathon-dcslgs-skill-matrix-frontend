@@ -2,22 +2,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  addSkillFilter,
-  updateSkillFilter,
-  removeSkillFilter,
-  selectSkillFilters,
-} from '../../../../../redux/filters/filtersSlice';
-import {
-  SearchBarSkillStyled,
-  InputWrapper,
-  StyledIcon,
-} from './SearchBarSkill.styled';
-import Input from '../../../../../app/commons/Input/Input';
-import Select from '../../../../../app/commons/Select/Select';
-import Label from '../../../../../app/commons/Label/Label';
+import { addSkillFilter, updateSkillFilter, removeSkillFilter, selectSkillFilters } from '../../../../../redux/filters/filtersSlice';
+import { SearchBarSkillStyled, InputWrapper, StyledIcon } from './SearchBarSkill.styled';
+import { Input } from '../../../../../app/commons/Input';
+import { Select } from '../../../../../app/commons/Select';
+import { Label } from '../../../../../app/commons/Label';
 
-const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) => {
+export const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) => {
   const dispatch = useDispatch();
   const options = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }];
   const [optionsList, setOptionsList] = useState([]);
@@ -122,5 +113,3 @@ SearchBarSkill.propTypes = {
 SearchBarSkill.defaultProps = {
   isFirstFilter: false,
 };
-
-export default SearchBarSkill;

@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import SuggestionCard from './SuggestionCard/SuggestionCard';
-import {
-  SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider,
-} from './SuggestionsInbox.styled';
+import { SuggestionCard } from './SuggestionCard';
+import { SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider } from './SuggestionsInbox.styled';
 
-const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
+export const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
   const [position, setPosition] = useState(0);
   const [showScroll, setShowScroll] = useState(false);
   const ref = useRef(null);
@@ -48,5 +46,3 @@ SuggestionsInbox.propTypes = {
   noSuggestions: PropTypes.bool.isRequired,
   suggestions: PropTypes.array.isRequired,
 };
-
-export default SuggestionsInbox;

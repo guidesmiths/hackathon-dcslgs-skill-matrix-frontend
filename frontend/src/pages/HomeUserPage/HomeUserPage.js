@@ -3,14 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTour } from '@reactour/tour';
 import { useHistory, useLocation } from 'react-router-dom';
-import SearchUserBar from './SearchUserBar/SearchUserBar';
-import AnswersUserList from './AnswersUserList/AnswersUserList';
-import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
-import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
-import { TextTour } from '../../app/commons/Tour/TextTour';
+import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 
-const HomeUserPage = () => {
+import { SearchUserBar } from './SearchUserBar';
+import { AnswersUserList } from './AnswersUserList';
+
+import { HomePageStyled, StyledBackground } from '../HomePage/HomePage.styled';
+import { TextTour } from '../../app/commons/Tour/TextTour.styled';
+
+export const HomeUserPage = () => {
   const dispatch = useDispatch();
   const { currentStep, setCurrentStep, isOpen, setSteps } = useTour();
   const [currentPage, setCurrentPage] = useState(1);
@@ -83,5 +85,3 @@ const HomeUserPage = () => {
     </HomePageStyled>
   );
 };
-
-export default HomeUserPage;

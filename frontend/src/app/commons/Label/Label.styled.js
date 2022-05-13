@@ -7,7 +7,7 @@ const getColor = ({ type, theme }) => {
   return black;
 };
 
-const StyledName = styled.div`
+export const Label = styled.div`
   position: absolute;
   top: ${({ top }) => top}px;
   left: ${({ left }) => left}px;
@@ -20,5 +20,3 @@ const StyledName = styled.div`
   color: ${getColor};
   white-space: nowrap;
 `;
-
-export default StyledName;

@@ -3,27 +3,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
-import EcosystemModal from './EcosystemModal/EcosystemModal';
-import {
-  EcosystemContainerStyled,
-  EcosystemFallbackStyled,
-  EcosystemNameStyledInput,
-  EcosystemHeaderStyled,
-  ButtonsWrapper,
-  StyledButton,
-  StyledDelete,
-  StyledDeleteIcon,
-} from './EcosystemMain.styled';
-import Label from '../../../../app/commons/Label/Label';
-import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
-import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
-import PopUp from '../../../../app/commons/PopUp/PopUp';
-import StateComponent from '../../../../app/commons/StateComponent/StateComponent';
-import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 
-const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
+import { Label } from '../../../../app/commons/Label';
+import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
+import { Spinner } from '../../../../app/commons/Spinner';
+import { PopUp } from '../../../../app/commons/PopUp';
+import { StateComponent } from '../../../../app/commons/StateComponent';
+import { EcosystemSkill } from './EcosystemSkill';
+import { EcosystemModal } from './EcosystemModal';
+
+import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
+import { EcosystemContainerStyled, EcosystemFallbackStyled, EcosystemNameStyledInput, EcosystemHeaderStyled,
+  ButtonsWrapper, StyledButton, StyledDelete, StyledDeleteIcon } from './EcosystemMain.styled';
+
+export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ecosystems = useSelector(selectAllEcosystems);
@@ -147,7 +141,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
       {!emptyState && loading
         ? (
           <EcosystemFallbackStyled data-cy="fallback-text" isNewEcosystem={isNewEcosystem}>
-            <SpinnerLoader/>
+            <Spinner />
           </EcosystemFallbackStyled>
         )
         : (currentEcosystem?.skills?.length > 0
@@ -180,7 +174,7 @@ const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handl
   );
 };
 
-EcosystemsMain.propTypes = {
+EcosystemMain.propTypes = {
   deleteNewSkill: PropTypes.func.isRequired,
   emptyState: PropTypes.bool.isRequired,
   noSuggestions: PropTypes.bool.isRequired,
@@ -206,7 +200,7 @@ EcosystemsMain.propTypes = {
   skills: PropTypes.array,
 };
 
-EcosystemsMain.defaultProps = {
+EcosystemMain.defaultProps = {
   ecosystem: {
     id: 0,
     name: '',
@@ -228,5 +222,3 @@ EcosystemsMain.defaultProps = {
   show: false,
   skills: [],
 };
-
-export default EcosystemsMain;

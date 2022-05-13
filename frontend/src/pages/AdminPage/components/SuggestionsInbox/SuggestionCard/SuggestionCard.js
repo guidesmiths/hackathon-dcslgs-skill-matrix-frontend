@@ -2,13 +2,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import SuggestionModal from './SuggestionModal/SuggestionModal';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
-import {
-  SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QuotesStyled,
-} from './SuggestionCard.styled';
+import { SuggestionModal } from './SuggestionModal';
+import { SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QuotesStyled } from './SuggestionCard.styled';
 
-const SuggestionCard = ({ userName, subject, index, description, id }) => {
+export const SuggestionCard = ({ userName, subject, index, description, id }) => {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
 
@@ -43,5 +41,3 @@ SuggestionCard.propTypes = {
   subject: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
 };
-
-export default SuggestionCard;

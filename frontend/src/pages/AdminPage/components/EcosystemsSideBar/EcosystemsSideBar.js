@@ -1,24 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  EcosystemBarStyled,
-  EcosystemsSideBarStyled,
-  EcosystemHeaderStyled,
-  EcosystemElementStyled,
-  EcosystemScroller,
-  IconStyled,
-  Image,
-  NoEcosystems,
-  NoEcosystemsMessage,
-  StyledInput,
-  StyledInputWrapper,
-} from './EcosystemsSideBar.styled';
-import Icon from '../../../../app/commons/icon/icon';
 import blankstate from '../../../../Assets/Icons/blankstate.svg';
-import SkeletonWrapper from '../../../../app/commons/Skeleton/SkeletonWrapper';
 
-const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, noSuggestions, selected }) => {
+import { Icon } from '../../../../app/commons/Icon';
+import { SkeletonWrapper } from '../../../../app/commons/Skeleton';
+
+import { EcosystemBarStyled, EcosystemsSideBarStyled, EcosystemHeaderStyled, EcosystemElementStyled, EcosystemScroller, IconStyled, Image,
+  NoEcosystems, NoEcosystemsMessage, StyledInput, StyledInputWrapper } from './EcosystemsSideBar.styled';
+
+export const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, noSuggestions, selected }) => {
   const [inputValue, setInputValue] = useState();
   const [filteredEcosystems, setFilteredEcosystems] = useState(ecosystems);
 
@@ -69,7 +60,6 @@ const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, noSugges
     </EcosystemsSideBarStyled>
   );
 };
-export default EcosystemsSideBar;
 
 EcosystemsSideBar.propTypes = {
   ecosystems: PropTypes.array.isRequired,

@@ -5,16 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchLevelUserBySkillAsync } from '../../../../redux/user/userSlice';
 import { selectAllSkills } from '../../../../redux/skills/skillsSlice';
-import {
-  updateSkillFilter,
-} from '../../../../redux/filters/filtersSlice';
-import {
-  SearchHomeBarSkillStyled,
-  InputWrapperUser,
-} from '../../../HomePage/components/SearchBar/SearchBarSkill/SearchBarSkill.styled';
-import Input from '../../../../app/commons/Input/Input';
+import { updateSkillFilter } from '../../../../redux/filters/filtersSlice';
+import { Input } from '../../../../app/commons/Input';
+import { SearchHomeBarSkillStyled, InputWrapperUser } from '../../../HomePage/components/SearchBar/SearchBarSkill/SearchBarSkill.styled';
 
-const SearchBarUserSkill = ({ index }) => {
+export const SearchBarUserSkill = ({ index }) => {
   const dispatch = useDispatch();
   const [optionsList, setOptionsList] = useState([]);
   const skills = useSelector(selectAllSkills);
@@ -70,5 +65,3 @@ const SearchBarUserSkill = ({ index }) => {
 SearchBarUserSkill.propTypes = {
   index: PropTypes.number.isRequired,
 };
-
-export default SearchBarUserSkill;
