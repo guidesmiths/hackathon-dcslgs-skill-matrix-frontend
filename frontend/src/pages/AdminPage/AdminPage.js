@@ -36,7 +36,7 @@ const newEcosystemEmpty = {
   }],
 };
 
-const HomePage = () => {
+export const AdminPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -309,5 +309,3 @@ const HomePage = () => {
     </AdminPageStyled>
   );
 };
-
-export default HomePage;

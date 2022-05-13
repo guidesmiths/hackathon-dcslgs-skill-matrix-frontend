@@ -8,7 +8,7 @@ import { fetchUserInfoAsync, selectUserData } from './redux/user/userSlice';
 import { HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE, PAGE404_ROUTE, DIRECTORY_ROUTE, COUNTRY_ROUTE } from './constants/routes';
 import HomePage from './pages/HomePage/HomePage';
 import HomeUserPage from './pages/HomeUserPage/HomeUserPage';
-import AdminPage from './pages/AdminPage/AdminPage';
+import { AdminPage } from './pages/AdminPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import UserPage from './pages/UserPage/UserPage';
 import Page404 from './pages/Page404/Page404';
