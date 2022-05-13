@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RowWrapper, Placeholder, ImageHolder, InputHolder } from './LoadingUserRow.styled';
 
-const LoadingUserRow = ({ user }) => {
+export const LoadingUserRow = ({ user }) => {
   const arrowButtonIcon = 'keyboard_arrow_down';
 
   return (
@@ -25,10 +25,11 @@ const LoadingUserRow = ({ user }) => {
     </RowWrapper>
   );
 };
+
 LoadingUserRow.propTypes = {
   user: PropTypes.bool,
 };
+
 LoadingUserRow.defaultProps = {
   user: false,
 };
-export default LoadingUserRow;

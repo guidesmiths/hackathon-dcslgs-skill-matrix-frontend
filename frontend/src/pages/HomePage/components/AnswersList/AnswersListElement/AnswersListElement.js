@@ -6,7 +6,7 @@ import { useTour } from '@reactour/tour';
 import ListElementHeader from './ListElementHeader/ListElementHeader';
 import SkillList from './SkillList/SkillList';
 import AnswersListElementStyled from './AnswersListElement.styled';
-import LoadingUserRow from '../../../../../app/commons/LoadingUserRow/LoadingUserRow';
+import { LoadingUserRow } from '../../../../../app/commons/LoadingUserRow';
 import { fetchAnswersByUserAsync, filterAnswerByUser } from '../../../../../redux/answers/answersSlice';
 
 const AnswersListElement = ({ userId, email, name, role, skills, index, country, seniority }) => {
