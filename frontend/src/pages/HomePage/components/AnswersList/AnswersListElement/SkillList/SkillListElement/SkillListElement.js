@@ -8,7 +8,7 @@ const sublevels = {
   plus: '+',
 };
 
-const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched }) => {
+export const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched }) => {
   const [isSelected, setSelected] = useState(false);
 
   return (
@@ -31,5 +31,3 @@ SkillListElement.propTypes = {
 SkillListElement.defaultProps = {
   isSearched: null,
 };
-
-export default SkillListElement;

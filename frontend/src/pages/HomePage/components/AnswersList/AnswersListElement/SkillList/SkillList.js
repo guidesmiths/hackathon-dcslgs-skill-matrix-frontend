@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import SkillListElement from './SkillListElement/SkillListElement';
+import { SkillListElement } from './SkillListElement';
 import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image, NoSkills } from './SkillList.styled';
 import { Switch } from '../../../../../../app/commons/Switch';
 import { selectCurrentAnswers, selectStatus } from '../../../../../../redux/answers/answersSlice';
