@@ -16,7 +16,7 @@ import {
 } from './EcosystemsSideBar.styled';
 import { Icon } from '../../../../app/commons/Icon';
 import blankstate from '../../../../Assets/Icons/blankstate.svg';
-import SkeletonWrapper from '../../../../app/commons/Skeleton/SkeletonWrapper';
+import { SkeletonWrapper } from '../../../../app/commons/Skeleton';
 
 const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, noSuggestions, selected }) => {
   const [inputValue, setInputValue] = useState();

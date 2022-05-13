@@ -16,7 +16,7 @@ import {
 } from './Ecosystems.styled';
 import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
-import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
+import { SkeletonWrapper } from '../Skeleton';
 
 export const Ecosystems = ({ ecosystemIdSelected, loading }) => {
   const ecosystems = useSelector(selectAllEcosystems);
