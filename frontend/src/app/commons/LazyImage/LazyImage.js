@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StyledImage } from './LazyImage.styled';
 
-const LazyImage = ({ loadingSrc, actualSrc }) => {
+export const LazyImage = ({ loadingSrc, actualSrc }) => {
   const [isImageLoaded, setImageLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -31,5 +31,3 @@ LazyImage.propTypes = {
   actualSrc: PropTypes.string.isRequired,
   loadingSrc: PropTypes.string,
 };
-
-export default LazyImage;

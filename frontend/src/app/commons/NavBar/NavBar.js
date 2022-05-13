@@ -6,7 +6,7 @@ import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import info from '../../../Assets/Icons/info.svg';
 import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, StyledIcon, Image } from './NavBar.styled';
-import LazyImage from '../LazyImage/LazyImage';
+import { LazyImage } from '../LazyImage';
 import SwitchTest from '../SwitchTest/SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
 
