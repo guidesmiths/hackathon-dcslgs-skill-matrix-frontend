@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, ArrowButtonStyled, MoreInfoWrapper, StyledIcon } from './ListElementHeader.styled';
-import FlagComponent from './FlagComponent';
+import { FlagComponent } from '../../../../../../app/commons/FlagComponent';
 
 export const ListElementHeader = ({ index, email, name, seniority, country, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;

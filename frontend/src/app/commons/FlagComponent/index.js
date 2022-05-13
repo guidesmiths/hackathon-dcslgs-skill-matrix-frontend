@@ -1,0 +1,1 @@
+export { FlagComponent } from './FlagComponent';
