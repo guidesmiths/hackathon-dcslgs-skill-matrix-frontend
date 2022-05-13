@@ -15,7 +15,7 @@ import {
   StyledDelete,
   StyledDeleteIcon,
 } from './EcosystemMain.styled';
-import Label from '../../../../app/commons/Label/Label';
+import { Label } from '../../../../app/commons/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';

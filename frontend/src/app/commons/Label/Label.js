@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyledName from './Label.styled';
 
-const Label = ({ children, top, left, weight, type }) => (
+export const Label = ({ children, top, left, weight, type }) => (
   <StyledName left={left} top={top} type={type} weight={weight}>
     {children}
   </StyledName>
@@ -20,5 +20,3 @@ Label.defaultProps = {
   type: '',
   weight: 500,
 };
-
-export default Label;

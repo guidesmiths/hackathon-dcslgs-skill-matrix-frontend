@@ -14,7 +14,7 @@ import {
   StyledTitle,
   StyledCancelIcon,
 } from './SuggestionForm.styled';
-import Label from '../../../app/commons/Label/Label';
+import { Label } from '../../../app/commons/Label';
 import { insertSuggestionAsync } from '../../../redux/suggestions/suggestionsSlice';
 import { selectUserData } from '../../../redux/user/userSlice';
 

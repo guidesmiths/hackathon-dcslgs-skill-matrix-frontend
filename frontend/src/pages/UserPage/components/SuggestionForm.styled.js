@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import { Button } from '../../../app/commons/Button';
-import Label from '../../../app/commons/Label/Label';
+import { Label } from '../../../app/commons/Label';
 import { Icon } from '../../../app/commons/Icon';
 
 const FormStyled = styled.form`

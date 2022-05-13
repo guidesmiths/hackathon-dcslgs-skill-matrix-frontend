@@ -14,7 +14,7 @@ import {
   Tooltip,
   LevelDescription,
 } from './DescriptionLevels.styled';
-import Label from '../../../../app/commons/Label/Label';
+import { Label } from '../../../../app/commons/Label';
 
 import { updateUserSkill } from '../../../../redux/user/userSlice';
 
