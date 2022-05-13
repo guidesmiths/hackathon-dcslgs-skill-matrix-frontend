@@ -9,7 +9,7 @@ import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
 import { Spinner } from '../../../../../../app/commons/Spinner';
 import { selectSkillFilters } from '../../../../../../redux/filters/filtersSlice';
 
-const SkillList = ({ index, isCollapsed, userId, role }) => {
+export const SkillList = ({ index, isCollapsed, userId, role }) => {
   const [skills, setSkills] = useState();
   const [loaded, hasLoaded] = useState(false);
   const answers = useSelector(selectCurrentAnswers(userId));
@@ -55,5 +55,3 @@ SkillList.propTypes = {
   role: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
-
-export default SkillList;

@@ -7,7 +7,7 @@ import { fetchAnswersByUserAsync, filterAnswerByUser } from '../../../../../redu
 
 import { LoadingUserRow } from '../../../../../app/commons/LoadingUserRow';
 import { ListElementHeader } from './ListElementHeader';
-import SkillList from './SkillList/SkillList';
+import { SkillList } from './SkillList';
 
 import { AnswersListElementStyled } from './AnswersListElement.styled';
 
