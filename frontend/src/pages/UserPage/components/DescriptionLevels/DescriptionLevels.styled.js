@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../app/commons/Icon';
-import StyledName from '../../../../app/commons/Label/Label.styled';
+import { Label } from '../../../../app/commons/Label/Label.styled';
 
 const RowCollapsed = styled.div`
   width: 80%;
@@ -27,7 +27,7 @@ const DescriptionStyled = styled.div`
     line-height: 24px;
   }
 
-  ${StyledName} {
+  ${Label} {
     color: ${({ theme }) => theme.colors.black};
   }
 `;

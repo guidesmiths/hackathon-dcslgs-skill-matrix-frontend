@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const IconStyled = styled.div`
+export const IconStyled = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
@@ -13,5 +13,3 @@ const IconStyled = styled.div`
     cursor: pointer;
   }
 `;
-
-export default IconStyled;

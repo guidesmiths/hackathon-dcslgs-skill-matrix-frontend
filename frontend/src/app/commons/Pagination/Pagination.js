@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PaginationMaterial from '@material-ui/lab/Pagination';
 import { makeStyles, createStyles } from '@material-ui/core';
-import PaginationStyled from './Pagination.styled';
+import { PaginationStyled } from './Pagination.styled';
 
 const useStyles = makeStyles(() => createStyles({
   root: {

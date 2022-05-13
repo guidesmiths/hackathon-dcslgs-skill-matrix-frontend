@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MaterialIcon from '@material-ui/core/Icon';
-import IconStyled from './Icon.styled';
+import { IconStyled } from './Icon.styled';
 
 export const Icon = ({ icon, className, border, height, width, show, onClick, onMouseEnter, onMouseLeave }) => (
   <IconStyled

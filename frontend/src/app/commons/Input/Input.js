@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputStyled from './Input.styled';
+import { InputStyled } from './Input.styled';
 
 export const Input = ({ input, width, optionsList, onChangeInput, placeholder }) => (
   <>
