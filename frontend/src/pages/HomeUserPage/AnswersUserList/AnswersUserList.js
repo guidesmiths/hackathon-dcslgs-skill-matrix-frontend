@@ -5,7 +5,7 @@ import AnswersListUserElement from './AnswersListUserElement/AnswersListUserElem
 import { selectAllAnswers } from '../../../redux/answers/answersSlice';
 import { AnswersListStyled, ScrollWrapper, NoAnswers } from '../../HomePage/components/AnswersList/AnswersList.styled';
 import { selectUserData } from '../../../redux/user/userSlice';
-import Pagination from '../../../app/commons/Pagination/Pagination';
+import { Pagination } from '../../../app/commons/Pagination';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
 import { Image } from '../../HomePage/components/AnswersList/AnswersListElement/SkillList/SkillList.styled';
 

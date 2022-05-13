@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
+export const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
   const classes = useStyles();
   return (<PaginationStyled>
     <PaginationMaterial
@@ -42,5 +42,3 @@ Pagination.defaultProps = {
   shape: 'round',
   size: 'medium',
 };
-
-export default Pagination;
