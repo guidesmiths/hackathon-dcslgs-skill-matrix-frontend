@@ -10,7 +10,7 @@ import SearchBarSkill from './SearchBarSkill/SearchBarSkill';
 import { SearchBarUsers, SearchBarsWrapper, IconStyled, SearchBarWrapper, SearchBarSkillWrapper } from './SearchBar.styled';
 import { fetchSkillsAsync, selectAllSkills } from '../../../../redux/skills/skillsSlice';
 
-const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
+export const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
   const dispatch = useDispatch();
   const skills = useSelector(selectAllSkills);
   const skillFilters = useSelector(selectSkillFilters);
@@ -67,5 +67,3 @@ SearchBar.defaultProps = {
   name: null,
   numberOfPages: 1,
 };
-
-export default SearchBar;
