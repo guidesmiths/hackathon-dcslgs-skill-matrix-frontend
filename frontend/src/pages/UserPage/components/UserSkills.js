@@ -11,7 +11,7 @@ import {
   FormHeader,
   Wrapper,
 } from '../UserPage.styled';
-import ScrollWrapper from '../../../app/commons/ScrollWrapper/ScrollWrapper';
+import { ScrollWrapper } from '../../../app/commons/ScrollWrapper';
 import { selectCurrentEcosystem } from '../../../redux/ecosystems/ecosystemsSlice';
 import {
   selectSkillsWithLevel,
