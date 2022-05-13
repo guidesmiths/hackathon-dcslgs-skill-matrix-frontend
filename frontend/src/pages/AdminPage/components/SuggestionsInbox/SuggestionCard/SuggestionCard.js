@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteSuggestionAsync } from '../../../../../redux/suggestions/suggestionsSlice';
-import SuggestionModal from './SuggestionModal/SuggestionModal';
+import { SuggestionModal } from './SuggestionModal';
 import { SuggestionCardStyled, UserNameStyled, SubjectStyled, IconsContainerStyled, IconStyled, QuotesStyled } from './SuggestionCard.styled';
 
 export const SuggestionCard = ({ userName, subject, index, description, id }) => {
