@@ -1,40 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  PopUpStyled,
-  PopUpStyledTitleWrapper,
-  PopUpStyledTitle,
-  PopUpStyledIcon,
-  PopUpStyledIconWarning,
-  PopUpStyledCloseIcon,
-} from './PopUp.styled';
+import { PopUpStyled, PopUpStyledTitleWrapper, PopUpStyledTitle, PopUpStyledIcon, PopUpStyledIconWarning, PopUpStyledCloseIcon } from './PopUp.styled';
 
-const PopUp = ({ isSuccess }) => (
-  <>
-    <PopUpStyled isSuccess={isSuccess}>
-      <PopUpStyledTitleWrapper>
-        {isSuccess
-          ? <PopUpStyledIcon icon="checkCircle" />
-          : <PopUpStyledIconWarning icon="warning" />
+export const PopUp = ({ isSuccess }) => (
+  <PopUpStyled isSuccess={isSuccess}>
+    <PopUpStyledTitleWrapper>
+      {isSuccess
+        ? <PopUpStyledIcon icon="checkCircle" />
+        : <PopUpStyledIconWarning icon="warning" />
+      }
+      <PopUpStyledTitle isSuccess={isSuccess}>
+        { isSuccess
+          ? 'Your changes have been saved'
+          : 'It seems like you forgot to complete some inputs'
         }
-        <PopUpStyledTitle isSuccess={isSuccess}>
-          { isSuccess
-            ? 'Your changes have been saved'
-            : 'It seems like you forgot to complete some inputs'
-          }
-        </PopUpStyledTitle>
-        {!isSuccess && <PopUpStyledCloseIcon icon="close" />}
-      </PopUpStyledTitleWrapper>
-    </PopUpStyled>
-  </>
+      </PopUpStyledTitle>
+      {!isSuccess && <PopUpStyledCloseIcon icon="close" />}
+    </PopUpStyledTitleWrapper>
+  </PopUpStyled>
 );
 
 PopUp.propTypes = {
   isSuccess: PropTypes.bool.isRequired,
 };
-
-PopUp.defaultProps = {
-  input: [],
-};
-
-export default PopUp;

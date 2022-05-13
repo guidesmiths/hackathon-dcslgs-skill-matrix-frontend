@@ -19,7 +19,7 @@ import { Label } from '../../../../app/commons/Label';
 import ScrollWrapper from '../../../../app/commons/ScrollWrapper/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import SpinnerLoader from '../../../../app/commons/Spinner/Spinner';
-import PopUp from '../../../../app/commons/PopUp/PopUp';
+import { PopUp } from '../../../../app/commons/PopUp';
 import StateComponent from '../../../../app/commons/StateComponent/StateComponent';
 import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 

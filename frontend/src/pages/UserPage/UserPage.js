@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
 import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import { Ecosystems } from '../../app/commons/Ecosystems';
-import PopUp from '../../app/commons/PopUp/PopUp';
+import { PopUp } from '../../app/commons/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
