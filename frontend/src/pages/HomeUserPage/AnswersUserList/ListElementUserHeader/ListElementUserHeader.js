@@ -5,7 +5,7 @@ import FlagComponent from '../../../HomePage/components/AnswersList/AnswersListE
 import { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, MoreInfoWrapper,
   StyledIcon } from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 
-const ListElementUserHeader = ({ email, name, seniority, country }) => (
+export const ListElementUserHeader = ({ email, name, seniority, country }) => (
   <ListElementStyled data-cy="list-element-header">
     <UserWrapperStyled>
       <StyledIcon icon="face" />
@@ -30,5 +30,3 @@ ListElementUserHeader.propTypes = {
 ListElementUserHeader.defaultProps = {
   country: '',
 };
-
-export default ListElementUserHeader;

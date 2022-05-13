@@ -6,15 +6,16 @@ import { selectUserData } from '../../../redux/user/userSlice';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
 
 import { Pagination } from '../../../app/commons/Pagination';
-import AnswersListUserElement from './AnswersListUserElement/AnswersListUserElement';
+import { AnswersListUserElement } from './AnswersListUserElement';
 
 import { AnswersListStyled, ScrollWrapper, NoAnswers } from '../../HomePage/components/AnswersList/AnswersList.styled';
 import { Image } from '../../HomePage/components/AnswersList/AnswersListElement/SkillList/SkillList.styled';
 
-const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
+export const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
   const answers = useSelector(selectAllAnswers);
   const userData = useSelector(selectUserData);
   const [isEmtpy, setIsEmpty] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       if (answers.length === 0) {
@@ -22,6 +23,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
       }
     }, [2000]);
   }, [answers]);
+
   return (
     <AnswersListStyled>
       <ScrollWrapper data-cy="answers-list">
@@ -53,6 +55,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
     </AnswersListStyled>
   );
 };
+
 AnswersUserList.propTypes = {
   currentPage: PropTypes.number.isRequired,
   handlePagination: PropTypes.func.isRequired,
@@ -62,5 +65,3 @@ AnswersUserList.propTypes = {
 AnswersUserList.defaultProps = {
   numberOfPages: 1,
 };
-
-export default AnswersUserList;
