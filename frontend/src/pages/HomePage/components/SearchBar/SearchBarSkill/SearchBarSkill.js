@@ -14,7 +14,7 @@ import {
   StyledIcon,
 } from './SearchBarSkill.styled';
 import { Input } from '../../../../../app/commons/Input';
-import Select from '../../../../../app/commons/Select/Select';
+import { Select } from '../../../../../app/commons/Select';
 import { Label } from '../../../../../app/commons/Label';
 
 const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) => {

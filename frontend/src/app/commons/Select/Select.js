@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SelectStyled, OptionStyled } from './Select.styled';
 
-const Select = ({ options, onChange, selected, disabled }) => (
+export const Select = ({ options, onChange, selected, disabled }) => (
   <SelectStyled disabled={disabled} id="skill" name="skill" value={selected} onChange={onChange}>
     {options.map((option, index) => (
       <OptionStyled key={index} value={option.value}>
@@ -24,5 +24,3 @@ Select.defaultProps = {
   options: [],
   selected: 1,
 };
-
-export default Select;
