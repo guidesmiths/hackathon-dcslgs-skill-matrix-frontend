@@ -5,7 +5,7 @@ import blankstate from '../../../../Assets/Icons/blankstate.svg';
 import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
 
 import { Pagination } from '../../../../app/commons/Pagination';
-import AnswersListElement from './AnswersListElement/AnswersListElement';
+import { AnswersListElement } from './AnswersListElement';
 
 import { AnswersListStyled, ScrollWrapper, NoAnswers } from './AnswersList.styled';
 import { Image } from './AnswersListElement/SkillList/SkillList.styled';

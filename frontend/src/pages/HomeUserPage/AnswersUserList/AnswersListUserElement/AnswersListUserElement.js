@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ListElementUserHeader from './ListElementUserHeader';
-import AnswersListElementStyled from '../../../HomePage/components/AnswersList/AnswersListElement/AnswersListElement.styled';
+import { AnswersListElementStyled } from '../../../HomePage/components/AnswersList/AnswersListElement/AnswersListElement.styled';
 import { LoadingUserRow } from '../../../../app/commons/LoadingUserRow';
 
 const AnswersListUserElement = ({ email, name, index, country, seniority }) => {
