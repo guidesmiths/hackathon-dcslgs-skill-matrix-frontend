@@ -3,8 +3,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
+
+import { Label } from '../../../../app/commons/Label';
+import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
+import { Spinner } from '../../../../app/commons/Spinner';
+import { PopUp } from '../../../../app/commons/PopUp';
+import { StateComponent } from '../../../../app/commons/StateComponent';
+import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
-import EcosystemModal from './EcosystemModal/EcosystemModal';
+import { EcosystemModal } from './EcosystemModal';
+
 import {
   EcosystemContainerStyled,
   EcosystemFallbackStyled,
@@ -15,13 +24,6 @@ import {
   StyledDelete,
   StyledDeleteIcon,
 } from './EcosystemMain.styled';
-import { Label } from '../../../../app/commons/Label';
-import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
-import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
-import { Spinner } from '../../../../app/commons/Spinner';
-import { PopUp } from '../../../../app/commons/PopUp';
-import { StateComponent } from '../../../../app/commons/StateComponent';
-import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 
 const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();

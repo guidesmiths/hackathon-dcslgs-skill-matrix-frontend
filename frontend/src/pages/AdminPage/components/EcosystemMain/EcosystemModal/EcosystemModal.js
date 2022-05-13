@@ -4,7 +4,7 @@ import { ModalStyledWrapper, HeaderStyled, StyledInfo, StyledInputWrapper, Style
 import { Label } from '../../../../../app/commons/Label';
 import { Icon } from '../../../../../app/commons/Icon';
 
-const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
+export const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
   const [nameTyped, setNameTyped] = useState();
 
   return (
@@ -34,5 +34,3 @@ EcosystemModal.propTypes = {
   subject: PropTypes.string.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };
-
-export default EcosystemModal;
