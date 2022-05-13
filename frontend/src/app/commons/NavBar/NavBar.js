@@ -10,7 +10,7 @@ import { LazyImage } from '../LazyImage';
 import SwitchTest from '../SwitchTest/SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
 
-const NavBar = ({ userData, userView, handleChangeRoleView }) => {
+export const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const { pathname } = useLocation();
 
   const signOut = () => {
@@ -59,5 +59,3 @@ NavBar.propTypes = {
   userData: PropTypes.object.isRequired,
   userView: PropTypes.bool.isRequired,
 };
-
-export default NavBar;
