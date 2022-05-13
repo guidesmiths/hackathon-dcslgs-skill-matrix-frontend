@@ -10,7 +10,7 @@ import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSl
 import { resetFilters } from '../../redux/filters/filtersSlice';
 import { TextTour } from '../../app/commons/Tour/TextTour.styled';
 
-const HomePage = () => {
+export const HomePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { search } = useLocation();
@@ -92,5 +92,3 @@ const HomePage = () => {
     </HomePageStyled>
   );
 };
-
-export default HomePage;
