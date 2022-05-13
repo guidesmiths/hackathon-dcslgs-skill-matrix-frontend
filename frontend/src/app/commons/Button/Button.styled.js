@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonStyled = styled.button`
+export const ButtonStyled = styled.button`
   border-radius: 8px;
   margin: 10px;
   padding: 15px 20px;
@@ -16,5 +16,3 @@ const ButtonStyled = styled.button`
     cursor: pointer;
   }
 `;
-
-export default ButtonStyled;

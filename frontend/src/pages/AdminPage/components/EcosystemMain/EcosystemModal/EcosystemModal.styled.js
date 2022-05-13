@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../../../../app/commons/Button/Button';
+import { Button } from '../../../../../app/commons/Button';
 import Modal from '../../../../../app/commons/Modal/Modal';
 
 const ModalStyledWrapper = styled(Modal)`

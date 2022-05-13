@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import Waves from '../../Assets/Images/wavesGroup.png';
-import Button from '../../app/commons/Button/Button';
+import { Button } from '../../app/commons/Button';
 
 const animation = keyframes`
   0% {
