@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { Country, Label, Image, RadioButton, RadioButtonLabel, Item } from './CountryRadioButton.styled';
 
-import Spain from '../../../../Assets/Icons/Spain.svg';
-import UK from '../../../../Assets/Icons/UK.svg';
-import Romania from '../../../../Assets/Icons/Romania.svg';
-import Hungary from '../../../../Assets/Icons/Hungary.png';
+import Spain from '../../../Assets/Icons/Spain.svg';
+import UK from '../../../Assets/Icons/UK.svg';
+import Romania from '../../../Assets/Icons/Romania.svg';
+import Hungary from '../../../Assets/Icons/Hungary.png';
 
 const flags = {
   Romania,
@@ -15,7 +15,7 @@ const flags = {
   Hungary,
 };
 
-const CountryRadioButton = ({ country, select, handleSelectChange }) => (
+export const CountryRadioButton = ({ country, select, handleSelectChange }) => (
   <Country>
     <Item>
       <RadioButton
@@ -37,5 +37,3 @@ CountryRadioButton.propTypes = {
   handleSelectChange: PropTypes.func.isRequired,
   select: PropTypes.string.isRequired,
 };
-
-export default CountryRadioButton;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
-import { Button } from '../../../app/commons/Button';
-import { Label } from '../../../app/commons/Label';
-import { Icon } from '../../../app/commons/Icon';
+import { ArrowButton } from '../../../../app/commons/ArrowButton/arrowButton.styled';
+import { Button } from '../../../../app/commons/Button';
+import { Label } from '../../../../app/commons/Label';
+import { Icon } from '../../../../app/commons/Icon';
 
 const FormStyled = styled.form`
   z-index: 99;
@@ -123,6 +123,5 @@ const StyledCancelIcon = styled(Icon)`
   font-size: 12px;
 `;
 
-export {
-  FormStyled, SelectWrapperStyled, SelectStyled, CustomOptions, StyledOption, StyledLabel, ArrowButtonStyled, StyledIcon, TextAreaStyled, ButtonWrapperStyled, Buttons, StyledTitle, StyledCancelIcon,
-};
+export { FormStyled, SelectWrapperStyled, SelectStyled, CustomOptions, StyledOption, StyledLabel, ArrowButtonStyled, StyledIcon, TextAreaStyled,
+  ButtonWrapperStyled, Buttons, StyledTitle, StyledCancelIcon };

@@ -10,11 +10,11 @@ import { HomePage } from './pages/HomePage';
 import { HomeUserPage } from './pages/HomeUserPage';
 import { AdminPage } from './pages/AdminPage';
 import { LoginPage } from './pages/LoginPage';
-import UserPage from './pages/UserPage/UserPage';
+import { UserPage } from './pages/UserPage';
 import { Page404 } from './pages/Page404';
-import PrivateRoute from './pages/Privileges/PrivateRoute';
-import NotLoggedRoute from './pages/Privileges/NotLoggedRoute';
-import SelectCountry from './pages/SelectCountry/SelectCountry';
+import { PrivateRoute } from './pages/PrivateRoute';
+import { NotLoggedRoute } from './pages/NotLoggedRoute';
+import { SelectCountry } from './pages/SelectCountry';
 import getEnvConfig from './configuration/environment';
 
 const AppRouter = ({ environment }) => {

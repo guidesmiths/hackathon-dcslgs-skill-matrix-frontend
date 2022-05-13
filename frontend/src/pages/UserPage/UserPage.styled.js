@@ -4,7 +4,7 @@ import { Modal } from '../../app/commons/Modal';
 import { UserRowWrapper } from '../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 import { SkillContainerStyled } from '../AdminPage/components/EcosystemMain/EcosystemSkill/EcosystemSkill.styled';
 import { RowCollapsed } from './components/DescriptionLevels/DescriptionLevels.styled';
-import { RowSkillsTop, RowSkillsWrapper } from './components/UserRow.styled';
+import { RowSkillsTop, RowSkillsWrapper } from './components/UserRow/UserRow.styled';
 
 const UserPageStyled = styled.div`
   position: relative;

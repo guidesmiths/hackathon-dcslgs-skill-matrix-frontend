@@ -1,24 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  FormStyled,
-  SelectStyled,
-  CustomOptions,
-  StyledOption,
-  ArrowButtonStyled,
-  StyledIcon,
-  TextAreaStyled,
-  ButtonWrapperStyled,
-  Buttons,
-  StyledTitle,
-  StyledCancelIcon,
-} from './SuggestionForm.styled';
-import { Label } from '../../../app/commons/Label';
-import { insertSuggestionAsync } from '../../../redux/suggestions/suggestionsSlice';
-import { selectUserData } from '../../../redux/user/userSlice';
+import { FormStyled, SelectStyled, CustomOptions, StyledOption, ArrowButtonStyled, StyledIcon, TextAreaStyled, ButtonWrapperStyled,
+  Buttons, StyledTitle, StyledCancelIcon } from './SuggestionForm.styled';
+import { Label } from '../../../../app/commons/Label';
+import { insertSuggestionAsync } from '../../../../redux/suggestions/suggestionsSlice';
+import { selectUserData } from '../../../../redux/user/userSlice';
 
-const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
+export const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
   const dispatch = useDispatch();
   const [isCollapsed, setCollapsed] = useState(false);
   const arrowButtonIcon = `keyboard_arrow_${!isCollapsed ? 'down' : 'up'}`;
@@ -32,6 +21,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
     setSelectedSuggestion(e.target.textContent);
     setCollapsed(false);
   };
+
   const changeHandler = e => {
     setSuggestion(e.target.value);
   };
@@ -40,6 +30,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
     setSelectedSuggestion('Ecosystems');
     onCloseClick();
   };
+
   const submitHandler = e => {
     e.preventDefault();
     if (suggestion && selectedSuggestion && userData) {
@@ -51,6 +42,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
       onCloseClick();
     }
   };
+
   return (
     <FormStyled data-cy="suggestion-form" onSubmit={submitHandler}>
       <StyledTitle>
@@ -83,5 +75,3 @@ SuggestionForm.propTypes = {
   setConfirmed: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
 };
-
-export default SuggestionForm;

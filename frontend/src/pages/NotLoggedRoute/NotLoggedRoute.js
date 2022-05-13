@@ -6,7 +6,7 @@ import { LoginPage } from '../LoginPage';
 
 const redirectToLogin = () => <LoginPage />;
 
-const NotLoggedRoute = () => {
+export const NotLoggedRoute = () => {
   const notLoggedIn = localStorage.getItem('token') === null;
 
   return (
@@ -16,5 +16,3 @@ const NotLoggedRoute = () => {
     />
   );
 };
-
-export default NotLoggedRoute;

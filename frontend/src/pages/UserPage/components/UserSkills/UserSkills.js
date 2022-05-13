@@ -1,28 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import {
-  UserData,
-  DataTitle,
-  RowTitle,
-  ColumnTitles,
-  ColumnTitle,
-  UserInput,
-  FormHeader,
-  Wrapper,
-} from '../UserPage.styled';
-import { ScrollWrapper } from '../../../app/commons/ScrollWrapper';
-import { selectCurrentEcosystem } from '../../../redux/ecosystems/ecosystemsSlice';
-import {
-  selectSkillsWithLevel,
-  selectEcosystemPerId,
-} from '../../../redux/user/userSlice';
-import UserRow from './UserRow';
-import LevelBar from './LevelBar';
-import { Spinner } from '../../../app/commons/Spinner';
-import { StateComponent } from '../../../app/commons/StateComponent';
+import { selectCurrentEcosystem } from '../../../../redux/ecosystems/ecosystemsSlice';
+import { selectSkillsWithLevel, selectEcosystemPerId } from '../../../../redux/user/userSlice';
 
-const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, emptyState }) => {
+import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
+import { Spinner } from '../../../../app/commons/Spinner';
+import { StateComponent } from '../../../../app/commons/StateComponent';
+import { UserRow } from '../UserRow';
+import { LevelBar } from '../LevelBar';
+
+import { UserData, DataTitle, RowTitle, ColumnTitles, ColumnTitle, UserInput, FormHeader, Wrapper } from '../../UserPage.styled';
+
+export const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, emptyState }) => {
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
   const selectedEcosystem = useSelector(selectEcosystemPerId(ecosystemIdSelected));
   const ref = useRef(null);
@@ -112,5 +102,3 @@ UserSkills.propTypes = {
   setIsSubmited: PropTypes.func.isRequired,
   ecosystemIdSelected: PropTypes.number,
 };
-
-export default UserSkills;

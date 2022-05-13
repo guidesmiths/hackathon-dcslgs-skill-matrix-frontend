@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 import { BarChartContainer } from './LevelBar.styled';
 
-const LevelBar = ({ index, level, skill, sublevel }) => {
+export const LevelBar = ({ index, level, skill, sublevel }) => {
   const [styles, setStyles] = useState({});
 
   const styleSkill = {
@@ -95,5 +95,3 @@ LevelBar.defaultProps = {
   skill: false,
   sublevel: 'neutral',
 };
-
-export default LevelBar;

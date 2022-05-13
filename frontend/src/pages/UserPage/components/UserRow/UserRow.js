@@ -4,25 +4,15 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useTour } from '@reactour/tour';
 
-import {
-  RowSkillsWrapper,
-  RowSkillsTop,
-  RowSkills,
-  UserSkillName,
-  StyledCheckbox,
-  CheckboxWrapper,
-  StyledLabel,
-  ArrowButtonStyled,
-  ButtonWrapper,
-  RowSkillTour,
-} from './UserRow.styled';
-import LevelBar from './LevelBar';
-import { updateUserSkill } from '../../../redux/user/userSlice';
+import { RowSkillsWrapper, RowSkillsTop, RowSkills, UserSkillName, StyledCheckbox, CheckboxWrapper, StyledLabel,
+  ArrowButtonStyled, ButtonWrapper, RowSkillTour } from './UserRow.styled';
+import { LevelBar } from '../LevelBar';
+import { updateUserSkill } from '../../../../redux/user/userSlice';
 
-import { Icon } from '../../../app/commons/Icon';
-import DescriptionLevels from './DescriptionLevels/DescriptionLevels';
+import { Icon } from '../../../../app/commons/Icon';
+import { DescriptionLevels } from '../DescriptionLevels';
 
-const UserRow = ({ i, skill, idEcosystem, edit }) => {
+export const UserRow = ({ i, skill, idEcosystem, edit }) => {
   const dispatch = useDispatch();
   const { isOpen } = useTour();
   const [isCollapsed, setCollapsed] = useState(true);
@@ -94,5 +84,3 @@ UserRow.propTypes = {
   idEcosystem: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
 };
-
-export default UserRow;

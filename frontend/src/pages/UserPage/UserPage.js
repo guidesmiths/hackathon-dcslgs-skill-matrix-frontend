@@ -4,18 +4,20 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
-import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
-import { Ecosystems } from '../../app/commons/Ecosystems';
-import { PopUp } from '../../app/commons/PopUp';
-import UserSkills from './components/UserSkills';
-import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
-import { Footer } from '../../app/commons/Footer';
 import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
-import ConfirmPopUp from './components/ConfirmPopUp/ConfirmPopUp';
+
+import { Ecosystems } from '../../app/commons/Ecosystems';
+import { Footer } from '../../app/commons/Footer';
+import { PopUp } from '../../app/commons/PopUp';
+import { UserSkills } from './components/UserSkills';
+import { SuggestionForm } from './components/SuggestionForm';
+import { ConfirmPopUp } from './components/ConfirmPopUp';
+
+import { UserPageStyled, UserPageDisplay, StyledIcon, EditButtonStyled, HeaderStyled, StyledModal, SaveButton } from './UserPage.styled';
 import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour.styled';
 
-const UserPage = () => {
+export const UserPage = () => {
   const dispatch = useDispatch();
   const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
   const { isOpen, currentStep, setCurrentStep, setDisabledActions, setIsOpen, setSteps } = useTour();
@@ -207,5 +209,3 @@ const UserPage = () => {
     </UserPageStyled>
   );
 };
-
-export default UserPage;

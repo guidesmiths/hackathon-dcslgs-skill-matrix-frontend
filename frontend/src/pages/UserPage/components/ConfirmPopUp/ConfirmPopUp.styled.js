@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Buttons, ButtonWrapperStyled } from '../SuggestionForm.styled';
+import { Buttons, ButtonWrapperStyled } from '../SuggestionForm/SuggestionForm.styled';
 
 const StyledPopUp = styled.div`
   z-index: 99;

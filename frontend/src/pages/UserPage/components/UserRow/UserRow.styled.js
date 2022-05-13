@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
+import { ArrowButton } from '../../../../app/commons/ArrowButton/arrowButton.styled';
 
 const RowSkillsWrapper = styled.div`
   &:last-child {

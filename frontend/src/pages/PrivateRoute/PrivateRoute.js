@@ -6,7 +6,7 @@ import { LoginPage } from '../LoginPage';
 import { LOGIN_ROUTE } from '../../constants/routes';
 import { selectUserData } from '../../redux/user/userSlice';
 
-const PrivateRoute = ({ component: Component, path }) => {
+export const PrivateRoute = ({ component: Component, path }) => {
   const userData = useSelector(selectUserData);
 
   if (!userData) {
@@ -22,5 +22,3 @@ PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   path: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
 };
-
-export default PrivateRoute;

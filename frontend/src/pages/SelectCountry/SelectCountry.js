@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { selectUserData, changeUserCountryAsync } from '../../redux/user/userSlice';
 
 import { Header, TextWrapper, Heading, ContainerWrapper, Container, StyledButton } from './SelectCountry.styled';
-import CountryRadioButton from './components/CountryRadioButton/CountryRadioButton';
+import { CountryRadioButton } from './CountryRadioButton';
 
-const SelectCountry = () => {
+export const SelectCountry = () => {
   const history = useHistory();
   const userData = useSelector(selectUserData);
   const [select, setSelect] = useState('');
@@ -19,12 +19,10 @@ const SelectCountry = () => {
 
   const submitCountry = () => {
     if (select !== '') {
-      dispatch(changeUserCountryAsync(
-        {
-          userId: userData.id,
-          newCountry: select,
-        },
-      ));
+      dispatch(changeUserCountryAsync({
+        userId: userData.id,
+        newCountry: select,
+      }));
 
       history.push('/profile');
     }
@@ -48,5 +46,3 @@ const SelectCountry = () => {
     </Header>
   );
 };
-
-export default SelectCountry;
