@@ -20,7 +20,7 @@ import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
 import { deleteEcosystemAsync, deleteSkillAsync, selectAllEcosystems, fetchEcosystemsAsync } from '../../../../redux/ecosystems/ecosystemsSlice';
 import { Spinner } from '../../../../app/commons/Spinner';
 import { PopUp } from '../../../../app/commons/PopUp';
-import StateComponent from '../../../../app/commons/StateComponent/StateComponent';
+import { StateComponent } from '../../../../app/commons/StateComponent';
 import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
 
 const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {

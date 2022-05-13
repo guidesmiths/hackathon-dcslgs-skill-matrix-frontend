@@ -20,7 +20,7 @@ import {
 import UserRow from './UserRow';
 import LevelBar from './LevelBar';
 import { Spinner } from '../../../app/commons/Spinner';
-import StateComponent from '../../../app/commons/StateComponent/StateComponent';
+import { StateComponent } from '../../../app/commons/StateComponent';
 
 const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmited, emptyState }) => {
   const userSkills = useSelector(selectSkillsWithLevel(ecosystemIdSelected));
