@@ -12,7 +12,7 @@ import {
   StyledIcon,
   TitleStyled,
 } from './SuggestionModal.styled';
-import Modal from '../../../../../../app/commons/Modal/Modal';
+import { Modal } from '../../../../../../app/commons/Modal';
 
 const SuggestionModal = ({ userName, subject, description, onCloseClick, onDeleteClick }) => (
   <Modal onCloseClick={onCloseClick}>

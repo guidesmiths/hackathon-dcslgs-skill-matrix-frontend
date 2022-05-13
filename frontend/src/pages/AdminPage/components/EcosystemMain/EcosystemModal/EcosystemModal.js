@@ -6,6 +6,7 @@ import { Icon } from '../../../../../app/commons/Icon';
 
 const EcosystemModal = ({ onCloseClick, subject, handleDelete, nameToDelete }) => {
   const [nameTyped, setNameTyped] = useState();
+
   return (
     <ModalStyledWrapper>
       <HeaderStyled>
