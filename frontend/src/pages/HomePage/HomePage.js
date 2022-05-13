@@ -8,7 +8,7 @@ import AnswersList from './components/AnswersList/AnswersList';
 import { HomePageStyled, StyledBackground } from './HomePage.styled';
 import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
-import { TextTour } from '../../app/commons/Tour/TextTour';
+import { TextTour } from '../../app/commons/Tour/TextTour.styled';
 
 const HomePage = () => {
   const dispatch = useDispatch();

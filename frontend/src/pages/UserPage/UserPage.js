@@ -13,7 +13,7 @@ import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems
 import { Footer } from '../../app/commons/Footer';
 import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
 import ConfirmPopUp from './components/ConfirmPopUp/ConfirmPopUp';
-import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
+import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour.styled';
 
 const UserPage = () => {
   const dispatch = useDispatch();

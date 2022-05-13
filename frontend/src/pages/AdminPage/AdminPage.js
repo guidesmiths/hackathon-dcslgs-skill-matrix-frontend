@@ -15,7 +15,7 @@ import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
 import { AdminPageStyled, EcosystemsContainer, EditButton, SaveCancelButton } from './AdminPage.styled';
 import { PopUp } from '../../app/commons/PopUp';
 import { Footer } from '../../app/commons/Footer';
-import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
+import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour.styled';
 import { StyledIcon } from '../UserPage/UserPage.styled';
 // Do we need this?
 const newEcosystemEmpty = {
