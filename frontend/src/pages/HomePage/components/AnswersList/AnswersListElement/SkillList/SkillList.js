@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SkillListElement from './SkillListElement/SkillListElement';
 import { SkillListWrapper, SkillListStyled, FooterStyled, AdminRoleText, LoaderWrapper, Image, NoSkills } from './SkillList.styled';
-import Switch from '../../../../../../app/commons/Switch/Switch';
+import { Switch } from '../../../../../../app/commons/Switch';
 import { selectCurrentAnswers, selectStatus } from '../../../../../../redux/answers/answersSlice';
 import blankstate from '../../../../../../Assets/Icons/blankstate.svg';
 import { Spinner } from '../../../../../../app/commons/Spinner';
