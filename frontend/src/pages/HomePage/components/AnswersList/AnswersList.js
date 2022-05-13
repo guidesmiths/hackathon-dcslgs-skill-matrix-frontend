@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import AnswersListElement from './AnswersListElement/AnswersListElement';
-import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
-import { AnswersListStyled, ScrollWrapper, NoAnswers } from './AnswersList.styled';
-import { Pagination } from '../../../../app/commons/Pagination';
 import blankstate from '../../../../Assets/Icons/blankstate.svg';
+import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
+
+import { Pagination } from '../../../../app/commons/Pagination';
+import AnswersListElement from './AnswersListElement/AnswersListElement';
+
+import { AnswersListStyled, ScrollWrapper, NoAnswers } from './AnswersList.styled';
 import { Image } from './AnswersListElement/SkillList/SkillList.styled';
 
-const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
+export const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
   const answers = useSelector(selectAllAnswers);
   const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
@@ -59,5 +61,3 @@ AnswersList.propTypes = {
 AnswersList.defaultProps = {
   numberOfPages: 1,
 };
-
-export default AnswersList;

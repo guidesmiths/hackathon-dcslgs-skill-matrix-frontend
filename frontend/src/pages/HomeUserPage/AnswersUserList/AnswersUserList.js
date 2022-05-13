@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import AnswersListUserElement from './AnswersListUserElement/AnswersListUserElement';
 import { selectAllAnswers } from '../../../redux/answers/answersSlice';
-import { AnswersListStyled, ScrollWrapper, NoAnswers } from '../../HomePage/components/AnswersList/AnswersList.styled';
 import { selectUserData } from '../../../redux/user/userSlice';
-import { Pagination } from '../../../app/commons/Pagination';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
+
+import { Pagination } from '../../../app/commons/Pagination';
+import AnswersListUserElement from './AnswersListUserElement/AnswersListUserElement';
+
+import { AnswersListStyled, ScrollWrapper, NoAnswers } from '../../HomePage/components/AnswersList/AnswersList.styled';
 import { Image } from '../../HomePage/components/AnswersList/AnswersListElement/SkillList/SkillList.styled';
 
 const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTour } from '@reactour/tour';
 import { useHistory, useLocation } from 'react-router-dom';
 import SearchBar from './components/SearchBar/SearchBar';
-import AnswersList from './components/AnswersList/AnswersList';
+import { AnswersList } from './components/AnswersList';
 import { HomePageStyled, StyledBackground } from './HomePage.styled';
 import { resetAnswers, selectNumberOfPages } from '../../redux/answers/answersSlice';
 import { resetFilters } from '../../redux/filters/filtersSlice';
