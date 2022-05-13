@@ -18,7 +18,7 @@ import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
 import SkeletonWrapper from '../Skeleton/SkeletonWrapper';
 
-const Ecosystem = ({ ecosystemIdSelected, loading }) => {
+export const Ecosystems = ({ ecosystemIdSelected, loading }) => {
   const ecosystems = useSelector(selectAllEcosystems);
 
   const [inputValue, setInputValue] = useState();
@@ -67,9 +67,7 @@ const Ecosystem = ({ ecosystemIdSelected, loading }) => {
   );
 };
 
-Ecosystem.propTypes = {
+Ecosystems.propTypes = {
   ecosystemIdSelected: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
 };
-
-export default Ecosystem;
