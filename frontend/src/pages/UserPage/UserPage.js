@@ -190,11 +190,11 @@ const UserPage = () => {
       <Footer>
         {!edit
           ? <>
-            <StyledIcon data-cy={'add'} icon={'email'} onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
+            <StyledIcon data-cy="add" icon="email" onClick={() => setShowSuggestionModal(!showSuggestionModal)}/>
             { !emptyState && <EditButtonStyled data-cy="editUser" onClick={() => { setEdit(true); setDisabledActions(false); }}>Edit</EditButtonStyled>}
           </>
           : <>
-            <SaveButton action={'cancel'} onClick={() => isCanceling(true)}>Cancel</SaveButton>
+            <SaveButton action="cancel" onClick={() => isCanceling(true)}>Cancel</SaveButton>
             <SaveButton data-cy="saveUser" onClick={handleSubmit}>Save</SaveButton>
           </>
         }

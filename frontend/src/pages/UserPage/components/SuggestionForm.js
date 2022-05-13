@@ -55,7 +55,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
     <FormStyled data-cy="suggestion-form" onSubmit={submitHandler}>
       <StyledTitle>
           Do you want to propose something to us?
-        <StyledCancelIcon icon={'close'} onClick={cancelForm}/>
+        <StyledCancelIcon icon="close" onClick={cancelForm}/>
       </StyledTitle>
       <SelectStyled isCollapsed={isCollapsed} onChange={changeHandler} >
         {selectedSuggestion}
@@ -66,7 +66,7 @@ const SuggestionForm = ({ onCloseClick, setConfirmed }) => {
         <CustomOptions isCollapsed={isCollapsed} onClick={clickHandler}>
           {suggestionOptions.map((x, index) => <StyledOption key={index} selected={selectedSuggestion === x}>
             {x}
-            {selectedSuggestion === x && <StyledIcon icon={'check'}/>}
+            {selectedSuggestion === x && <StyledIcon icon="check" />}
           </StyledOption>)}
         </CustomOptions>
       </SelectStyled>

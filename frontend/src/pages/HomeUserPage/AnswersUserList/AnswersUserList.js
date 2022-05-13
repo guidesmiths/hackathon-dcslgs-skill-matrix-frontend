@@ -22,7 +22,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
   }, [answers]);
   return (
     <AnswersListStyled>
-      <ScrollWrapper data-cy={'answers-list'}>
+      <ScrollWrapper data-cy="answers-list">
         {answers
           .filter(answer => answer.id !== userData.user_id)
           .map((answer, index) => {
@@ -41,7 +41,7 @@ const AnswersUserList = ({ currentPage, numberOfPages, handlePagination }) => {
           })
         }
         {answers.length > 0
-          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'16px'} onChange={handlePagination} />
+          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape="rounded" size="16px" onChange={handlePagination} />
           : isEmtpy && <NoAnswers>
             <Image src={blankstate}/>
             <p>There no person with this skill</p>

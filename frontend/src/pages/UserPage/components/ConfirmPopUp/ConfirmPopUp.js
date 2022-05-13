@@ -14,7 +14,7 @@ const ConfirmPopUp = ({ onCloseClick, setConfirmed }) => {
     <StyledPopUp>
       <StyledTitle>
         Do you want to save the changes?
-        <StyledCancelIcon icon={'close'} onClick={cancelForm}/>
+        <StyledCancelIcon icon="close" onClick={cancelForm}/>
       </StyledTitle>
       <StyledText>
         Changes made may not be saved

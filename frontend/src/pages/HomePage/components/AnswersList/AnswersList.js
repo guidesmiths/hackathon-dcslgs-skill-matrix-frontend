@@ -21,7 +21,7 @@ const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
 
   return (
     <AnswersListStyled>
-      <ScrollWrapper data-cy={'answer-list'}>
+      <ScrollWrapper data-cy="answer-list">
         {answers.map((answer, index) => {
           const { id, name, email, role, ecosystems, country, seniority } = answer;
 
@@ -40,7 +40,7 @@ const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
             />);
         })}
         {answers.length > 0
-          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape={'rounded'} size={'16px'} onChange={handlePagination} />
+          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape="rounded" size="16px" onChange={handlePagination} />
           : isEmpty && <NoAnswers>
             <Image src={blankstate}/>
             <p>There no person with this skill</p>

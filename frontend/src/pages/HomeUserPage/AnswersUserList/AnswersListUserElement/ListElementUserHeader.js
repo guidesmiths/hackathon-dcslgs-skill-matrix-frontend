@@ -9,7 +9,7 @@ import FlagComponent from '../../../HomePage/components/AnswersList/AnswersListE
 const ListElementUserHeader = ({ email, name, seniority, country }) => (
   <ListElementStyled data-cy="list-element-header">
     <UserWrapperStyled>
-      <StyledIcon icon={'face'}/>
+      <StyledIcon icon="face" />
       <UserNameStyled>{name}</UserNameStyled>
     </UserWrapperStyled>
     <UserEmailStyled>{email}</UserEmailStyled>

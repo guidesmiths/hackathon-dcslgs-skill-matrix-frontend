@@ -58,7 +58,7 @@ const SearchBarUserSkill = ({ index }) => {
         <Input
           input={skillTyped}
           optionsList={optionsList}
-          placeholder={'What is the skill you need help with?'}
+          placeholder="What is the skill you need help with?"
           width={300}
           onChangeInput={handleInput}
         />

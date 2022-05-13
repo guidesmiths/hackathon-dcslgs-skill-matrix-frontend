@@ -20,7 +20,7 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const { setIsOpen } = useTour();
 
   return (
-    <NavBarTop data-cy={'navbar'}>
+    <NavBarTop data-cy="navbar">
       <NavStyled>
         <LogoWrapper>
           <LazyImage actualSrc={logo}/>
@@ -44,8 +44,8 @@ const NavBar = ({ userData, userView, handleChangeRoleView }) => {
       </EnvironmentComponent>
       <UserWrapperStyled>
         <Image src={info} onClick={() => setIsOpen(true)} />
-        <StyledIcon icon={'face'} />
-        <NavBarLink to={'/profile'}>{userData?.email}</NavBarLink>
+        <StyledIcon icon="face" />
+        <NavBarLink to="/profile">{userData?.email}</NavBarLink>
         <NavBarLink activeClassName="selected" to="/login" onClick={signOut} >
           <LazyImage actualSrc={logout} />
         </NavBarLink>

@@ -37,14 +37,14 @@ const Ecosystem = ({ ecosystemIdSelected, loading }) => {
   };
 
   return (
-    <EcosystemColumn data-cy={'ecosystems'}>
+    <EcosystemColumn data-cy="ecosystems">
       <TitleColumn>Ecosystem</TitleColumn>
       <StyledInputWrapper>
         <StyledInput
           placeholder="Search an ecosystem"
           onChange={handleChange}
         />
-        <IconStyled icon={'search'} />
+        <IconStyled icon="search" />
       </StyledInputWrapper>
       <EcosystemScroller height={85}>
         {loading && <SkeletonWrapper/>}

@@ -26,7 +26,7 @@ const SearchUserBar = ({ currentPage, numberOfPages }) => {
 
   return (
     <SearchBarsUserWrapper>
-      <HomeSearchBarWrapper data-cy={'search-bar'}>
+      <HomeSearchBarWrapper data-cy="search-bar">
         {skillFilters.map((filter, index) => (
           <SearchBarUserSkill
             key={index}
@@ -34,7 +34,7 @@ const SearchUserBar = ({ currentPage, numberOfPages }) => {
             index={index}
           />
         ))}
-        <IconStyled icon={'search'} />
+        <IconStyled icon="search" />
       </HomeSearchBarWrapper>
     </SearchBarsUserWrapper>
   );

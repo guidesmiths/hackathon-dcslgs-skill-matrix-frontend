@@ -297,7 +297,7 @@ const HomePage = () => {
       </EcosystemsContainer>
       { showPopUp && <PopUp isSuccess={!isThereAnyError} />}
       <Footer>
-        <StyledIcon data-cy="inbox-button" icon={'email'} show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
+        <StyledIcon data-cy="inbox-button" icon="email" show={!isOnEditableMode} onClick={() => { setNoSuggestions(!noSuggestions); setDisabledActions(false); }}/>
         {!emptyState && <EditButton data-cy="edit-skill-button" show={!isOnEditableMode} onClick={() => { setIsOnEditableMode(true); setDisabledActions(false); }}>Edit</EditButton>}
         <SaveCancelButton data-cy="cancel-skill-button" show={isOnEditableMode} onClick={cancelNewEcosystem}>Cancel</SaveCancelButton>
         <SaveCancelButton save data-cy="save-skill-button" show={isOnEditableMode} onClick={handleSave}>Save</SaveCancelButton>

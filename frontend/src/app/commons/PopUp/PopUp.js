@@ -14,8 +14,8 @@ const PopUp = ({ isSuccess }) => (
     <PopUpStyled isSuccess={isSuccess}>
       <PopUpStyledTitleWrapper>
         {isSuccess
-          ? <PopUpStyledIcon icon={'checkCircle'}/>
-          : <PopUpStyledIconWarning icon={'warning'}/>
+          ? <PopUpStyledIcon icon="checkCircle" />
+          : <PopUpStyledIconWarning icon="warning" />
         }
         <PopUpStyledTitle isSuccess={isSuccess}>
           { isSuccess
@@ -23,7 +23,7 @@ const PopUp = ({ isSuccess }) => (
             : 'It seems like you forgot to complete some inputs'
           }
         </PopUpStyledTitle>
-        {!isSuccess && <PopUpStyledCloseIcon icon={'close'}/>}
+        {!isSuccess && <PopUpStyledCloseIcon icon="close" />}
       </PopUpStyledTitleWrapper>
     </PopUpStyled>
   </>

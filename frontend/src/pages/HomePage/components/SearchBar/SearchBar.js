@@ -38,7 +38,7 @@ const SearchBar = ({ currentPage, numberOfPages, name, handleName }) => {
           value={name}
           onChange={event => handleName(event.target.value)}
         />
-        <IconStyled icon={'search'} />
+        <IconStyled icon="search" />
       </SearchBarWrapper>
       <SearchBarSkillWrapper>
         {skillFilters.map((filter, index) => (

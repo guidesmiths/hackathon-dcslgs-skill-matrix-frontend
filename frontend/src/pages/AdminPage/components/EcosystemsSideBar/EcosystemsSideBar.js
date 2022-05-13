@@ -45,7 +45,7 @@ const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, noSugges
             placeholder="Search an ecosystem"
             onChange={handleChange}
           />
-          <IconStyled icon={'search'} />
+          <IconStyled icon="search" />
         </StyledInputWrapper>
         <EcosystemScroller height={noSuggestions ? 80 : 65}>
           {loading && <SkeletonWrapper/>}

@@ -98,12 +98,12 @@ const SearchBarSkill = ({ isFirstFilter, isLastFilter, filter, index, skills }) 
         </Label>
       </InputWrapper>
       <StyledIcon
-        icon={'delete'}
+        icon="delete"
         show={isFirstFilter}
         onClick={() => removeFilter(index)}
       />
       <StyledIcon
-        icon={'add'}
+        icon="add"
         show={isLastFilter}
         onClick={() => dispatch(addSkillFilter())}
       />
