@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import SuggestionCard from './SuggestionCard/SuggestionCard';
+import { SuggestionCard } from './SuggestionCard';
 import { SuggestionInboxStyled, SuggestionCardsStyled, StyledSlider } from './SuggestionsInbox.styled';
 
 export const SuggestionsInbox = ({ suggestions, noSuggestions }) => {
