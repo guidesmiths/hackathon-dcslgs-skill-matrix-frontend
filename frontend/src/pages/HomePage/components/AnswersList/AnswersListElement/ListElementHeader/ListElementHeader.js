@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, ArrowButtonStyled, MoreInfoWrapper, StyledIcon } from './ListElementHeader.styled';
 import FlagComponent from './FlagComponent';
 
-const ListElementHeader = ({ index, email, name, seniority, country, setCollapsed, isCollapsed }) => {
+export const ListElementHeader = ({ index, email, name, seniority, country, setCollapsed, isCollapsed }) => {
   const arrowButtonIcon = `keyboard_arrow_${isCollapsed ? 'down' : 'up'}`;
 
   return (
@@ -40,5 +40,3 @@ ListElementHeader.propTypes = {
 ListElementHeader.defaultProps = {
   country: '',
 };
-
-export default ListElementHeader;

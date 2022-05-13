@@ -1,10 +1,9 @@
 /* eslint-disable import/no-dynamic-require */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, MoreInfoWrapper, StyledIcon,
-} from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 import FlagComponent from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/FlagComponent';
+import { ListElementStyled, UserNameStyled, UserEmailStyled, UserRolStyled, UserWrapperStyled, MoreInfoWrapper,
+  StyledIcon } from '../../../HomePage/components/AnswersList/AnswersListElement/ListElementHeader/ListElementHeader.styled';
 
 const ListElementUserHeader = ({ email, name, seniority, country }) => (
   <ListElementStyled data-cy="list-element-header">
@@ -15,7 +14,7 @@ const ListElementUserHeader = ({ email, name, seniority, country }) => (
     <UserEmailStyled>{email}</UserEmailStyled>
     <MoreInfoWrapper>
       <FlagComponent country={country}/>
-      <UserRolStyled>{seniority || 'Medior Developer in Development Team'}</UserRolStyled>
+      <UserRolStyled>{seniority}</UserRolStyled>
       <div></div>
     </MoreInfoWrapper>
   </ListElementStyled>
