@@ -3,23 +3,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTour } from '@reactour/tour';
 import { Label } from '../../../../../app/commons/Label';
-import {
-  SkillContainerStyled,
-  SkillNameStyledInput,
-  SkillHeaderStyled,
-  IconsGroupStyled,
-  IconStyled,
-  LevelContainerStyled,
-  LevelStyled,
-  RowSkills,
-  RowSkillsTop,
-  RowSkillsWrapper,
-  StyledLabel,
-  SkillName,
-  SkillTour,
-} from './EcosystemSkill.styled';
+import { SkillContainerStyled, SkillNameStyledInput, SkillHeaderStyled, IconsGroupStyled, IconStyled,
+  LevelContainerStyled, LevelStyled, RowSkills, RowSkillsTop, RowSkillsWrapper, StyledLabel, SkillName, SkillTour } from './EcosystemSkill.styled';
 
-const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
+export const EcosystemSkill = ({ skill, index: skillIndex, show, isNewEcosystem, onDeleteClick, handleNewSkills, isThereAnyError }) => {
   const [isCollapsed, setIsCollapsed] = useState(null);
   const [currentSkill, setCurrentSkill] = useState(skill);
 
@@ -146,5 +133,3 @@ EcosystemSkill.defaultProps = {
   isNewEcosystem: false,
   isThereAnyError: false,
 };
-
-export default EcosystemSkill;

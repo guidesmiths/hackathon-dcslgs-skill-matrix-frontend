@@ -10,20 +10,12 @@ import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
 import { Spinner } from '../../../../app/commons/Spinner';
 import { PopUp } from '../../../../app/commons/PopUp';
 import { StateComponent } from '../../../../app/commons/StateComponent';
-import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
-import EcosystemSkill from './EcosystemSkill/EcosystemSkill';
+import { EcosystemSkill } from './EcosystemSkill';
 import { EcosystemModal } from './EcosystemModal';
 
-import {
-  EcosystemContainerStyled,
-  EcosystemFallbackStyled,
-  EcosystemNameStyledInput,
-  EcosystemHeaderStyled,
-  ButtonsWrapper,
-  StyledButton,
-  StyledDelete,
-  StyledDeleteIcon,
-} from './EcosystemMain.styled';
+import { DataTitle, FormHeader } from '../../../UserPage/UserPage.styled';
+import { EcosystemContainerStyled, EcosystemFallbackStyled, EcosystemNameStyledInput, EcosystemHeaderStyled,
+  ButtonsWrapper, StyledButton, StyledDelete, StyledDeleteIcon } from './EcosystemMain.styled';
 
 const EcosystemsMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show, handleNewEcosystemAdmin, onNewEcosystem, noSuggestions, onNewSkill, isThereAnyError, emptyState }) => {
   const dispatch = useDispatch();
