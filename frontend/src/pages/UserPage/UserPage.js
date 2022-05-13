@@ -10,7 +10,7 @@ import PopUp from '../../app/commons/PopUp/PopUp';
 import UserSkills from './components/UserSkills';
 import SuggestionForm from './components/SuggestionForm';
 import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
-import Footer from '../../app/commons/Footer/Footer';
+import { Footer } from '../../app/commons/Footer';
 import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
 import ConfirmPopUp from './components/ConfirmPopUp/ConfirmPopUp';
 import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour';
