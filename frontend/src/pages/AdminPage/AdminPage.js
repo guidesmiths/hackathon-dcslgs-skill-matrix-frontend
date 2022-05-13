@@ -5,18 +5,22 @@ import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
-import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
-import { EcosystemsSideBar } from './components/EcosystemsSideBar';
-import { EcosystemMain } from './components/EcosystemMain';
+
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
 import { selectUserData } from '../../redux/user/userSlice';
 import { upsertSkillAsync } from '../../redux/skills/skillsSlice';
-import { AdminPageStyled, EcosystemsContainer, EditButton, SaveCancelButton } from './AdminPage.styled';
+
 import { PopUp } from '../../app/commons/PopUp';
 import { Footer } from '../../app/commons/Footer';
+import { SuggestionsInbox } from './components/SuggestionsInbox';
+import { EcosystemsSideBar } from './components/EcosystemsSideBar';
+import { EcosystemMain } from './components/EcosystemMain';
+
+import { AdminPageStyled, EcosystemsContainer, EditButton, SaveCancelButton } from './AdminPage.styled';
 import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour.styled';
 import { StyledIcon } from '../UserPage/UserPage.styled';
+
 // Do we need this?
 const newEcosystemEmpty = {
   name: '',
