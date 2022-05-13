@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
 import SuggestionsInbox from './components/SuggestionsInbox/SuggestionsInbox';
-import EcosystemsSideBar from './components/EcosystemsSideBar/EcosystemsSideBar';
+import { EcosystemsSideBar } from './components/EcosystemsSideBar';
 import { EcosystemMain } from './components/EcosystemMain';
 import { fetchSuggestionsAsync, selectAllSuggestions } from '../../redux/suggestions/suggestionsSlice';
 import { fetchEcosystemsAsync, upsertEcosystemAsync, selectAllEcosystems, fetchSkillByEcosystemIdAsync, selectCurrentEcosystem } from '../../redux/ecosystems/ecosystemsSlice';
