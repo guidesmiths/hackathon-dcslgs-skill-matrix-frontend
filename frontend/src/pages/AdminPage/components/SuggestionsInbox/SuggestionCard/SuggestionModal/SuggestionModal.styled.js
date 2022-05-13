@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../../../../../../app/commons/Button';
-import Icon from '../../../../../../app/commons/icon/icon';
+import { Icon } from '../../../../../../app/commons/Icon';
 
 const ModalContent = styled.div`
   display: flex;

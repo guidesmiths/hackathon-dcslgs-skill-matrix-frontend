@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from '../../../../../app/commons/icon/icon';
+import { Icon } from '../../../../../app/commons/Icon';
 import Label from '../../../../../app/commons/Label/Label.styled';
 
 const getBorder = ({ hasError, theme, readOnly }) => {

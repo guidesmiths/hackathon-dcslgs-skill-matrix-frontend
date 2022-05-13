@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ArrowButton } from '../../../app/commons/ArrowButton/arrowButton.styled';
 import { Button } from '../../../app/commons/Button';
 import Label from '../../../app/commons/Label/Label';
-import Icon from '../../../app/commons/icon/icon';
+import { Icon } from '../../../app/commons/Icon';
 
 const FormStyled = styled.form`
   z-index: 99;

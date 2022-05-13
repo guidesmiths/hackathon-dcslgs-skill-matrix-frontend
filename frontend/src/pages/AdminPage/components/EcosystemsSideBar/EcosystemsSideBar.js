@@ -14,7 +14,7 @@ import {
   StyledInput,
   StyledInputWrapper,
 } from './EcosystemsSideBar.styled';
-import Icon from '../../../../app/commons/icon/icon';
+import { Icon } from '../../../../app/commons/Icon';
 import blankstate from '../../../../Assets/Icons/blankstate.svg';
 import SkeletonWrapper from '../../../../app/commons/Skeleton/SkeletonWrapper';
 

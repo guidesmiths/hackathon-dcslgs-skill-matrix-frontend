@@ -19,7 +19,7 @@ import {
 import LevelBar from './LevelBar';
 import { updateUserSkill } from '../../../redux/user/userSlice';
 
-import Icon from '../../../app/commons/icon/icon';
+import { Icon } from '../../../app/commons/Icon';
 import DescriptionLevels from './DescriptionLevels/DescriptionLevels';
 
 const UserRow = ({ i, skill, idEcosystem, edit }) => {

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import Icon from '../../../../app/commons/icon/icon';
+import { Icon } from '../../../../app/commons/Icon';
 
 const animation2 = keyframes`
   0% {

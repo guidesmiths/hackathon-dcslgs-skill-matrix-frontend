@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from '../../app/commons/icon/icon';
+import { Icon } from '../../app/commons/Icon';
 import Modal from '../../app/commons/Modal/Modal';
 import { UserRowWrapper } from '../../app/commons/ScrollWrapper/ScrollWrapper.styled';
 import { SkillContainerStyled } from '../AdminPage/components/EcosystemMain/EcosystemSkill/EcosystemSkill.styled';

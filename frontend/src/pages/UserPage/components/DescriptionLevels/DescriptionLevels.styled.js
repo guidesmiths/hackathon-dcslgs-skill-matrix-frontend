@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from '../../../../app/commons/icon/icon';
+import { Icon } from '../../../../app/commons/Icon';
 import StyledName from '../../../../app/commons/Label/Label.styled';
 
 const RowCollapsed = styled.div`

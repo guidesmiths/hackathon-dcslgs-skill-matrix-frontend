@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from '../icon/icon';
+import { Icon } from '../Icon';
 
 const OverlayStyled = styled.div`
   z-index: 1;
