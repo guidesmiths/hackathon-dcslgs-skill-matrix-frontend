@@ -37,8 +37,8 @@ export const SkillList = ({ index, isCollapsed, userId, role }) => {
             : <Spinner/>
           }
         </LoaderWrapper>}
-        {skills && skills.map(({ id, level, levelDescription, name, sublevel }) => (
-          <SkillListElement key={id} isSearched={skillFilters.find(x => x.skill === id)} level={level} levelDescription={levelDescription} name={name} sublevel={sublevel}/>
+        {skills && skills.map(({ id, level, comments, name, sublevel }) => (
+          <SkillListElement key={id} comments={comments} isSearched={skillFilters.find(x => x.skill === id)} level={level} name={name} sublevel={sublevel}/>
         ))}
       </SkillListWrapper>
       <FooterStyled data-cy={`switch-admin-${index}`}>

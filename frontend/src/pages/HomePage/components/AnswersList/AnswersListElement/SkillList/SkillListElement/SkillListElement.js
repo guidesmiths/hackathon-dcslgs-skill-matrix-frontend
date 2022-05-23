@@ -8,21 +8,21 @@ const sublevels = {
   plus: '+',
 };
 
-export const SkillListElement = ({ name, level, sublevel, levelDescription, isSearched }) => {
+export const SkillListElement = ({ name, level, sublevel, comments, isSearched }) => {
   const [isSelected, setSelected] = useState(false);
 
   return (
     <SkillElementStyled isSearched={isSearched} onClick={() => setSelected(!isSelected)} >
       <SkillNameStyled>{name}</SkillNameStyled>
       <SkillLevelStyled>Level {level}{sublevels[sublevel]}</SkillLevelStyled>
-      <DescriptionStyled>{levelDescription}</DescriptionStyled>
+      <DescriptionStyled>{comments}</DescriptionStyled>
     </SkillElementStyled>
   );
 };
 
 SkillListElement.propTypes = {
+  comments: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
-  levelDescription: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   sublevel: PropTypes.string.isRequired,
   isSearched: PropTypes.bool,
