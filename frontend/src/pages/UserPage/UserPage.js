@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
-import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems, selectEcosystemsStatus } from '../../redux/ecosystems/ecosystemsSlice';
+import { fetchSkillsAsync, selectAllSkills, selectSkillsStatus } from '../../redux/skills/skillsSlice';
 import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
 
 import { Ecosystems } from '../../app/commons/Ecosystems';
@@ -19,28 +20,30 @@ import { TextTour, Success, Warning } from '../../app/commons/Tour/TextTour.styl
 
 export const UserPage = () => {
   const dispatch = useDispatch();
-  const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
+  const { pathname } = useLocation();
   const { isOpen, currentStep, setCurrentStep, setDisabledActions, setIsOpen, setSteps } = useTour();
+
+  const [ecosystemIdSelected, setEcosystemIdSelected] = useState(0);
   const [step, setStep] = useState(0);
   const [showSuggestionModal, setShowSuggestionModal] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [canceling, isCanceling] = useState(false);
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
-  const { pathname } = useLocation();
   const [emptyState, setEmptyState] = useState(true);
-  const userData = useSelector(selectUserData);
-  const ecosystems = useSelector(selectAllEcosystems);
   const [loading, setLoading] = useState(true);
 
+  const userData = useSelector(selectUserData);
+  const ecosystems = useSelector(selectAllEcosystems);
+  const skills = useSelector(selectAllSkills);
+  const ecosystemsStatus = useSelector(selectEcosystemsStatus);
+  const skillsStatus = useSelector(selectSkillsStatus);
+
   useEffect(() => {
-    if (ecosystems.length === 0) {
-      dispatch(fetchEcosystemsAsync())
-        .then(() => setLoading(false))
-        .catch(err => console.error(err));
-    }
-    setLoading(false);
-  }, [ecosystems]);
+    if (ecosystemsStatus === 'idle') dispatch(fetchEcosystemsAsync());
+    if (skillsStatus === 'idle') dispatch(fetchSkillsAsync());
+    if (ecosystemsStatus === 'success' && skillsStatus === 'success') setLoading(false);
+  }, [ecosystems, skills]);
 
   useEffect(() => {
     if (edit) {

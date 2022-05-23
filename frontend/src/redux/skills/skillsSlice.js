@@ -41,7 +41,7 @@ export const skillsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchSkillsAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'success';
         state.value = action.payload;
       });
   },
@@ -51,6 +51,8 @@ export const { skillAdded } = skillsSlice.actions;
 
 // Selectors
 export const selectAllSkills = state => state.skills.value;
+
+export const selectSkillsStatus = state => state.skills.status;
 
 export const selectSkillById = (state, skillId) => state.skills.find(skill => skill.id === skillId);
 

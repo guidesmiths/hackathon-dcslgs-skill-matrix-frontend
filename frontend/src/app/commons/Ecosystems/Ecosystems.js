@@ -15,23 +15,32 @@ import {
   StyledInputWrapper,
 } from './Ecosystems.styled';
 import { selectAllEcosystems } from '../../../redux/ecosystems/ecosystemsSlice';
+import { selectAllSkills } from '../../../redux/skills/skillsSlice';
 import blankstate from '../../../Assets/Icons/blankstate.svg';
 import { SkeletonWrapper } from '../Skeleton';
 
 export const Ecosystems = ({ ecosystemIdSelected, loading }) => {
   const ecosystems = useSelector(selectAllEcosystems);
+  const skills = useSelector(selectAllSkills);
 
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState('');
   const [filteredEcosystems, setFilteredEcosystems] = useState(ecosystems);
 
-  const filterEcosystem = value => (value ? ecosystems?.filter(ecosystem => ecosystem.name.toLowerCase().includes(value)) : ecosystems);
+  const filterEcosystem = userInput => {
+    if (userInput) {
+      const matchingSkills = skills.filter(skill => `${skill.ecosystemName} - ${skill.skillName}`.toLowerCase().includes(userInput));
+      const matchingEcosystemsNames = [...new Set(matchingSkills.map(skill => skill.ecosystemName))];
+      return ecosystems.filter(ecosystem => matchingEcosystemsNames.some(el => el === ecosystem.name));
+    }
+    return ecosystems;
+  };
 
   useEffect(() => {
-    setFilteredEcosystems(filterEcosystem(inputValue));
+    setFilteredEcosystems(ecosystems);
   }, [ecosystems]);
 
   const handleChange = event => {
-    setInputValue(event.target.value.toLowerCase());
+    setInputValue(event.target.value);
     const currentEcosystems = filterEcosystem(event.target.value.toLowerCase());
     setFilteredEcosystems(currentEcosystems);
   };
@@ -41,7 +50,8 @@ export const Ecosystems = ({ ecosystemIdSelected, loading }) => {
       <TitleColumn>Ecosystem</TitleColumn>
       <StyledInputWrapper>
         <StyledInput
-          placeholder="Search an ecosystem"
+          placeholder="Search an ecosystem or skill"
+          value={inputValue}
           onChange={handleChange}
         />
         <IconStyled icon="search" />

@@ -71,21 +71,21 @@ export const ecosystemsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchEcosystemsAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'success';
         state.value = [...action.payload];
       })
       .addCase(fetchSkillByEcosystemIdAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchSkillByEcosystemIdAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'success';
         state.currentEcosystem = [...action.payload];
       })
       .addCase(deleteEcosystemAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(deleteEcosystemAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'success';
         const updatedEcosystems = state.value.filter(({ id }) => id !== action.payload);
         state.value = [...updatedEcosystems];
       })
@@ -93,7 +93,7 @@ export const ecosystemsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(deleteSkillAsync.fulfilled, (state, action) => {
-        state.status = 'succeded';
+        state.status = 'success';
         const updatedSkills = state.value.filter(({ id }) => id !== action.payload);
         state.value = [...updatedSkills];
       });
@@ -104,6 +104,7 @@ export const { ecosystemAdded, removeEcosystem, removeSkill } = ecosystemsSlice.
 
 // Selectors
 export const selectAllEcosystems = state => state.ecosystems.value;
+export const selectEcosystemsStatus = state => state.ecosystems.status;
 export const selectSkillsPerSystem = id => state => state.ecosystems?.value?.find(ecosystem => ecosystem.id === id)?.skills || [];
 export const selectCurrentEcosystem = state => state.ecosystems?.currentEcosystem?.[0];
 
