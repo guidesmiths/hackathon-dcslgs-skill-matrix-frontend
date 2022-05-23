@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Country, Label, Image, RadioButton, RadioButtonLabel, Item } from './CountryRadioButton.styled';
+import { Country, Image } from './CountryRadioButton.styled';
+import { Item, Label, RadioButtonMarker, RadioButton } from '../../../app/commons/RadioButton/RadioButton.styled';
 
 import Spain from '../../../Assets/Icons/Spain.svg';
 import UK from '../../../Assets/Icons/UK.svg';
@@ -20,12 +21,12 @@ export const CountryRadioButton = ({ country, select, handleSelectChange }) => (
     <Item>
       <RadioButton
         checked={select === country}
-        name="radio"
+        name="country"
         type="radio"
         value={country}
         onChange={handleSelectChange}
       />
-      <RadioButtonLabel />
+      <RadioButtonMarker />
       <Label>{country}</Label>
       <Image src={flags[country]}/>
     </Item>

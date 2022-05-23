@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { updateUserSkill } from '../../../../redux/user/userSlice';
 
-import { Label } from '../../../../app/commons/Label';
+import { Label } from '../../../../app/commons/Label/Label';
 
-import { RowCollapsed, RowSkillsBottom, DescriptionStyled, SelectWrapper, LevelEditor, AjustLevelButtons, AdjustButton, StyledInput,
-  Tooltip, LevelDescription } from './DescriptionLevels.styled';
+import { RowCollapsed, RowSkillsBottom, DescriptionStyled, LevelEditor, AjustLevelButtons, AdjustButton, StyledInput,
+  Tooltip, LevelDescription, LevelSelectionContainer } from './DescriptionLevels.styled';
+import { RadioButtonMarker, RadioButton } from '../../../../app/commons/RadioButton/RadioButton.styled';
 
 export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
   const dispatch = useDispatch();
@@ -60,34 +61,35 @@ export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
 
   const selectedLevel = selectedSkill => selectedSkill.levels.find(({ level }) => level === selectedSkill.level);
 
-  const getDescriptions = selectedSkill => skill.levels.map(level => (
-    <LevelDescription key={`skill-${skill.id}-level${level.level}`} isSelected={selectedLevel(selectedSkill)?.level === level.level}>
-        Level {level.level} - {level.levelDescription}
-    </LevelDescription>
-  ));
+  const getDescriptions = selectedSkill => skill.levels.map(level => {
+    const isSelected = selectedLevel(selectedSkill)?.level === level.level;
+    return (
+      <LevelSelectionContainer key={`${skill.id}-${level.level}`} level={level.level}>
+        <RadioButton
+          checked={isSelected}
+          id={level.level}
+          name="skill level"
+          type="radio"
+          value={level.level}
+          onChange={handleLevel}
+        />
+        <RadioButtonMarker />
+        <LevelDescription htmlFor={level.level} isSelected={isSelected}>{level.levelDescription}</LevelDescription>
+      </LevelSelectionContainer>
+    );
+  });
 
-  const getSelectedDescription = selectedSkill => <p>{selectedLevel(selectedSkill)?.levelDescription || 'Doesn\'t apply'}</p>;
+  const getSelectedDescription = selectedSkill => <p style={{ marginTop: '25px' }}>{selectedLevel(selectedSkill)?.levelDescription || 'Doesn\'t apply'}</p>;
 
   return (
     <RowCollapsed>
       <RowSkillsBottom data-cy={`skill-${i}-description-level`}>
         <DescriptionStyled>
-          <Label left={25} top={-10} type="description">Description Level</Label>
+          <Label left={25}>Level description</Label>
           {edit ? getDescriptions(skill) : getSelectedDescription(skill)}
         </DescriptionStyled>
         {edit && (
           <LevelEditor>
-            <SelectWrapper data-cy="level-selector">
-              <select data-cy="select-level" value={skill.level || ''} onChange={handleLevel}>
-                <option value={0}>0</option>
-                {skill.levels.map((e, index) => (
-                  <option key={index} value={e.level}>
-                    {e.level}
-                  </option>
-                ))}
-              </select>
-              <Label left={7} top={-3} weight={700}>Level</Label>
-            </SelectWrapper>
             <AjustLevelButtons data-cy="sublevel-buttons">
               <AdjustButton
                 minus

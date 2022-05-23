@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../app/commons/Icon';
-import { Label } from '../../../../app/commons/Label/Label.styled';
 
 const RowCollapsed = styled.div`
   width: 80%;
@@ -26,17 +25,24 @@ const DescriptionStyled = styled.div`
     font-size: 14px;
     line-height: 24px;
   }
-
-  ${Label} {
-    color: ${({ theme }) => theme.colors.black};
-  }
 `;
 
-const LevelDescription = styled.p`
+const LevelSelectionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: ${({ level }) => (level === 1 ? '25px' : '10px')};
+  margin-bottom: 10px;
+`;
+
+const LevelDescription = styled.label`
   color: ${({ isSelected, theme }) => (isSelected ? theme.colors.primaryColor : theme.colors.grey1)};
   font-weight: ${({ isSelected }) => (isSelected ? '700' : 'normal')};
   font-size: 14px;
   line-height: 24px;
+  
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SelectWrapper = styled.div`
@@ -173,5 +179,6 @@ export {
   AdjustButton,
   StyledInput,
   Tooltip,
+  LevelSelectionContainer,
   LevelDescription,
 };
