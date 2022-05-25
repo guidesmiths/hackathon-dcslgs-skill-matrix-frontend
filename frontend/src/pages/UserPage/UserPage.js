@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTour } from '@reactour/tour';
-import { fetchEcosystemsAsync, fetchSkillByEcosystemIdAsync, selectAllEcosystems, selectEcosystemsStatus } from '../../redux/ecosystems/ecosystemsSlice';
-import { fetchSkillsAsync, selectAllSkills, selectSkillsStatus } from '../../redux/skills/skillsSlice';
-import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync } from '../../redux/user/userSlice';
+import { fetchSkillByEcosystemIdAsync } from '../../redux/ecosystems/ecosystemsSlice';
+import { insertAnswersAsync, selectUserData, fetchAnswersByUserAndEcosystemAsync, fetchFilledSkillsCountAsync } from '../../redux/user/userSlice';
 
 import { Ecosystems } from '../../app/commons/Ecosystems';
 import { Footer } from '../../app/commons/Footer';
@@ -31,19 +30,8 @@ export const UserPage = () => {
   const [edit, setEdit] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
   const [emptyState, setEmptyState] = useState(true);
-  const [loading, setLoading] = useState(true);
 
   const userData = useSelector(selectUserData);
-  const ecosystems = useSelector(selectAllEcosystems);
-  const skills = useSelector(selectAllSkills);
-  const ecosystemsStatus = useSelector(selectEcosystemsStatus);
-  const skillsStatus = useSelector(selectSkillsStatus);
-
-  useEffect(() => {
-    if (ecosystemsStatus === 'idle') dispatch(fetchEcosystemsAsync());
-    if (skillsStatus === 'idle') dispatch(fetchSkillsAsync());
-    if (ecosystemsStatus === 'success' && skillsStatus === 'success') setLoading(false);
-  }, [ecosystems, skills]);
 
   useEffect(() => {
     if (edit) {
@@ -67,6 +55,7 @@ export const UserPage = () => {
     setEdit(false);
     dispatch(insertAnswersAsync(userData))
       .then(() => {
+        dispatch(fetchFilledSkillsCountAsync());
         setConfirmed(true);
         setTimeout(() => {
           setConfirmed(false);
@@ -185,7 +174,7 @@ export const UserPage = () => {
     <UserPageStyled data-cy="user">
       <HeaderStyled data-cy="header" />
       <UserPageDisplay>
-        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} loading={loading} />
+        <Ecosystems ecosystemIdSelected={ecosystemIdSelected} />
         <UserSkills ecosystemIdSelected={ecosystemIdSelected} edit={edit} emptyState={emptyState} isSubmited={isSubmited} setIsSubmited={setIsSubmited}/>
       </UserPageDisplay>
       {showSuggestionModal && <StyledModal>

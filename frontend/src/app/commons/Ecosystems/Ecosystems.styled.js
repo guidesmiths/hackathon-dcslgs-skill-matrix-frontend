@@ -15,6 +15,8 @@ const EcosystemColumn = styled.div`
 `;
 
 const ButtonStyled = styled(Link)`
+  display: flex;
+  align-items: center;
   padding: 8px 25px;
   font-size: 14px;
   font-weight: ${({ selected }) => (selected ? 'bold' : '400')};
@@ -29,6 +31,23 @@ const ButtonStyled = styled(Link)`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const NumberCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 15px;
+  width: 15px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primaryColor};
+`;
+
+const NumberText = styled.span`
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 const TitleColumn = styled.h4`
@@ -110,6 +129,8 @@ const NoEcosystems = styled.div`
 export {
   EcosystemColumn,
   ButtonStyled,
+  NumberCircle,
+  NumberText,
   TitleColumn,
   EcosystemScroller,
   IconStyled,

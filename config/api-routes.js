@@ -27,6 +27,10 @@ module.exports = {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/ecosystem/:ecoId/answers`,
         method: 'get',
       },
+      fetchFilledSkillsCount: {
+        url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/ecosystem/filledSkillsCount`,
+        method: 'get',
+      },
       insertAnswers: {
         url: `${process.env.SKILL_MATRIX_BACKEND}/api/v1/user/:id/answers`,
         method: 'post',

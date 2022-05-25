@@ -12,10 +12,17 @@ const initialState = {
   skillsSelected: [],
   status: 'idle',
   insertStatus: 'idle',
+  count: null,
+  countStatus: 'idle',
 };
 
 export const fetchAnswersByUserAndEcosystemAsync = createAsyncThunk('users/fetchAnswersByUserAndEcosystem', async ({ ecoId }) => {
   const response = await axios.get(`/ui/user/ecosystem/${ecoId}/answers`, config());
+  return response.data;
+});
+
+export const fetchFilledSkillsCountAsync = createAsyncThunk('users/fetchFilledSkillsCount', async () => {
+  const response = await axios.get('/ui/user/ecosystem/filledSkillsCount', config());
   return response.data;
 });
 
@@ -124,56 +131,63 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAnswersByUserAndEcosystemAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'success';
         state.value = action.payload;
+      })
+      .addCase(fetchFilledSkillsCountAsync.pending, state => {
+        state.countStatus = 'loading';
+      })
+      .addCase(fetchFilledSkillsCountAsync.fulfilled, (state, action) => {
+        state.countStatus = 'success';
+        state.count = action.payload;
       })
       .addCase(fetchUpdatedUserAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchUpdatedUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'success';
         state.value = action.payload;
       })
       .addCase(fetchUserInfoAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchUserInfoAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'success';
         state.value = action.payload;
       })
       .addCase(insertUserAsync.pending, state => {
         state.insertStatus = 'loading';
       })
       .addCase(insertUserAsync.fulfilled, (state, action) => {
-        state.insertStatus = 'idle';
+        state.insertStatus = 'success';
         state.value = action.payload;
       })
       .addCase(insertUserAsync.rejected, state => {
-        state.insertStatus = 'idle';
+        state.insertStatus = 'success';
       })
       .addCase(changeUserRoleAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(changeUserRoleAsync.fulfilled, state => {
-        state.status = 'idle';
+        state.status = 'success';
       })
       .addCase(changeUserCountryAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(changeUserCountryAsync.fulfilled, state => {
-        state.status = 'idle';
+        state.status = 'success';
       })
       .addCase(fetchLevelUserBySkillAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(fetchLevelUserBySkillAsync.fulfilled, state => {
-        state.status = 'idle';
+        state.status = 'success';
       })
       .addCase(insertAnswersAsync.pending, state => {
         state.status = 'loading';
       })
       .addCase(insertAnswersAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'success';
         state.value = action.payload;
       });
   },
@@ -186,5 +200,7 @@ export const selectUserInsertLoading = state => state.users.insertStatus;
 export const selectUserData = state => state.users?.value;
 export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id)?.skills || [];
 export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id);
+export const selectFilledSkillsStatus = state => state.users?.countStatus;
+export const selectFilledSkillsCount = state => state.users?.count;
 
 export default userSlice.reducer;
