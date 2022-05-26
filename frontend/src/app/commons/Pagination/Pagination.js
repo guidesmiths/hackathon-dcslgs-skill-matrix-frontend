@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const Pagination = ({ currentPage, numberOfPages, onChange, shape }) => {
+export const Pagination = ({ currentPage, numberOfPages, onChange, shape }) => {
   const classes = useStyles();
 
   return (

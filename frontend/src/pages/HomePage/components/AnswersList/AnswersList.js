@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import blankstate from '../../../../Assets/Icons/blankstate.svg';
 import { selectAllAnswers } from '../../../../redux/answers/answersSlice';
 
-import Pagination from '../../../../app/commons/Pagination';
+import { Pagination } from '../../../../app/commons/Pagination';
 import { AnswersListElement } from './AnswersListElement';
 
 import { AnswersListStyled, ScrollWrapper, NoAnswers } from './AnswersList.styled';
