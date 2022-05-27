@@ -21,7 +21,7 @@ export const LoginPage = () => {
       <LoginStyled data-cy="login-page">
         <img src={Logo} />
         <LoginTitle>Skill Matrix</LoginTitle>
-        {isLoading === 'idle' ? <LoginButton/> : <Spinner />}
+        {['idle', 'error'].includes(isLoading) ? <LoginButton /> : <Spinner />}
         <StyledText>
          If you are having trouble logging in to your account, please contact infrastructure.
         </StyledText>

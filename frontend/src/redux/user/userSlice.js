@@ -66,6 +66,13 @@ export const fetchUserInfoAsync = createAsyncThunk(
   },
 );
 
+export const signOutAsync = createAsyncThunk(
+  'user/signOut',
+  async () => {
+    localStorage.clear();
+  },
+);
+
 export const insertUserAsync = createAsyncThunk(
   'users/insertUser',
   async token => {
@@ -127,6 +134,12 @@ export const userSlice = createSlice({
 
   extraReducers: builder => {
     builder
+      .addCase(signOutAsync.fulfilled, state => {
+        state.insertStatus = 'idle';
+        state.value = initialState.value;
+        state.skillsSelected = initialState.skillsSelected;
+        state.count = initialState.count;
+      })
       .addCase(fetchAnswersByUserAndEcosystemAsync.pending, state => {
         state.status = 'loading';
       })
@@ -155,6 +168,9 @@ export const userSlice = createSlice({
         state.status = 'success';
         state.value = action.payload;
       })
+      .addCase(fetchUserInfoAsync.rejected, state => {
+        state.status = 'error';
+      })
       .addCase(insertUserAsync.pending, state => {
         state.insertStatus = 'loading';
       })
@@ -163,7 +179,7 @@ export const userSlice = createSlice({
         state.value = action.payload;
       })
       .addCase(insertUserAsync.rejected, state => {
-        state.insertStatus = 'success';
+        state.insertStatus = 'error';
       })
       .addCase(changeUserRoleAsync.pending, state => {
         state.status = 'loading';
@@ -196,7 +212,7 @@ export const userSlice = createSlice({
 export const { userAdded, updateSkill, updateUserSkill } = userSlice.actions;
 
 // Selectors
-export const selectUserInsertLoading = state => state.users.insertStatus;
+export const selectUserInsertLoading = state => state.users?.insertStatus;
 export const selectUserData = state => state.users?.value;
 export const selectSkillsWithLevel = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id)?.skills || [];
 export const selectEcosystemPerId = id => state => state.users?.value?.ecosystems?.find(ecosystem => ecosystem.id === id);

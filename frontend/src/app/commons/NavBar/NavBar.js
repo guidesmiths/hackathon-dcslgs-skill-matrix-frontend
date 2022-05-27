@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTour } from '@reactour/tour';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import logo from '../../../Assets/Images/Logo_DCSLGuideSmiths.webp';
 import logout from '../../../Assets/Icons/logout.svg';
 import info from '../../../Assets/Icons/info.svg';
@@ -9,15 +10,16 @@ import { NavBarTop, NavStyled, NavBarLink, LogoWrapper, UserWrapperStyled, Style
 import { LazyImage } from '../LazyImage';
 import { SwitchTest } from '../SwitchTest';
 import EnvironmentComponent from '../EnvComponent/EnvComponent';
+import { signOutAsync } from '../../../redux/user/userSlice';
 
 export const NavBar = ({ userData, userView, handleChangeRoleView }) => {
   const { pathname } = useLocation();
+  const { setIsOpen } = useTour();
+  const dispatch = useDispatch();
 
   const signOut = () => {
-    localStorage.clear();
+    dispatch(signOutAsync());
   };
-
-  const { setIsOpen } = useTour();
 
   return (
     <NavBarTop data-cy="navbar">

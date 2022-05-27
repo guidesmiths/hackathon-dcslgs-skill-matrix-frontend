@@ -20,11 +20,13 @@ export const LoginButton = () => {
       const response = await dispatch(insertUserAsync(result.accessToken));
       const { payload } = response;
 
-      // eslint-disable-next-line no-extra-boolean-cast
-      if (!!payload?.country) {
-        history.push('/profile');
-      } else {
-        history.push('/country');
+      if (payload) {
+        // eslint-disable-next-line no-extra-boolean-cast
+        if (!!payload?.country) {
+          history.push('/profile');
+        } else {
+          history.push('/country');
+        }
       }
     } catch (error) {
       console.error(error);
