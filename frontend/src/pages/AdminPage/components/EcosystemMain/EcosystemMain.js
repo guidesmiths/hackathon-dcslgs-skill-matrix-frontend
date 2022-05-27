@@ -107,6 +107,11 @@ export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show,
     }
   }, [currentEcosystem, show]);
 
+  const getScrollHeight = () => {
+    if (!show) return 70;
+    return noSuggestions ? 60 : 45;
+  };
+
   return (
     <EcosystemContainerStyled data-cy="ecosystem-info">
       {emptyState && (
@@ -145,7 +150,7 @@ export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show,
           </EcosystemFallbackStyled>
         )
         : (currentEcosystem?.skills?.length > 0
-          && <ScrollWrapper height={!show ? 70 : noSuggestions ? 60 : 45}>
+          && <ScrollWrapper height={getScrollHeight()}>
             {currentEcosystem?.skills.map((skill, index) => (
               <EcosystemSkill
                 key={skill?.id}

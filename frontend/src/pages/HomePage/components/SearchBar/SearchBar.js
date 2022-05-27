@@ -64,6 +64,6 @@ SearchBar.propTypes = {
 };
 
 SearchBar.defaultProps = {
-  name: null,
+  name: '',
   numberOfPages: 1,
 };

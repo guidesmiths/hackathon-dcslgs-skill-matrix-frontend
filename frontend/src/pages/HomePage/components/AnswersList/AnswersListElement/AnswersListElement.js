@@ -11,24 +11,31 @@ import { SkillList } from './SkillList';
 
 import { AnswersListElementStyled } from './AnswersListElement.styled';
 
-export const AnswersListElement = ({ userId, email, name, role, skills, index, country, seniority }) => {
+export const AnswersListElement = ({ index, answer }) => {
   const dispatch = useDispatch();
+  const { isOpen } = useTour();
+
   const [isCollapsed, setCollapsed] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const { isOpen } = useTour();
+  const { id, name, email, role, ecosystems, country, seniority } = answer;
+  const skills = ecosystems?.flatMap(ecosystem => ecosystem.skills);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   const handleCollapsed = () => {
     if (isCollapsed) {
-      dispatch(fetchAnswersByUserAsync(userId));
+      dispatch(fetchAnswersByUserAsync(id));
     } else {
-      dispatch(filterAnswerByUser(userId));
+      dispatch(filterAnswerByUser(id));
     }
     setCollapsed(!isCollapsed);
   };
@@ -42,26 +49,15 @@ export const AnswersListElement = ({ userId, email, name, role, skills, index, c
   return (
     <AnswersListElementStyled data-cy={`answer-list-element-${index}`}>
       {!loading
-        ? <ListElementHeader country={country} email={email} index={index} isCollapsed={isCollapsed} name={name} seniority={seniority} setCollapsed={handleCollapsed}/>
+        ? <ListElementHeader country={country} email={email} index={index} isCollapsed={isCollapsed} name={name} seniority={seniority} setCollapsed={handleCollapsed} />
         : <LoadingUserRow />
       }
-      <SkillList index={index} isCollapsed={isCollapsed} role={role} skills={skills} userId={userId}/>
+      <SkillList index={index} isCollapsed={isCollapsed} role={role} skills={skills} userId={id} />
     </AnswersListElementStyled>
   );
 };
 
 AnswersListElement.propTypes = {
-  email: PropTypes.string.isRequired,
+  answer: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  seniority: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
-  country: PropTypes.string,
-  skills: PropTypes.array,
-};
-
-AnswersListElement.defaultProps = {
-  country: '',
-  skills: [],
 };

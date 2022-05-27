@@ -13,36 +13,33 @@ import { Image } from './AnswersListElement/SkillList/SkillList.styled';
 export const AnswersList = ({ currentPage, numberOfPages, handlePagination }) => {
   const answers = useSelector(selectAllAnswers);
   const [isEmpty, setIsEmpty] = useState(false);
+
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       if (answers.length === 0) {
         setIsEmpty(true);
       }
-    }, [2000]);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [answers]);
+
+  const actualPage = currentPage > numberOfPages ? numberOfPages : currentPage;
 
   return (
     <AnswersListStyled>
       <ScrollWrapper data-cy="answer-list">
-        {answers.map((answer, index) => {
-          const { id, name, email, role, ecosystems, country, seniority } = answer;
-
-          return (
-            <AnswersListElement
-              key={`answers-${id}`}
-              country={country}
-              data-cy={`answer-list-element-${index}`}
-              email={email}
-              index={index}
-              name={name}
-              role={role}
-              seniority={seniority}
-              skills={ecosystems?.flatMap(ecosystem => ecosystem.skills)}
-              userId={id}
-            />);
-        })}
+        {answers.map((answer, index) => (
+          <AnswersListElement
+            key={`answers-${answer.id}`}
+            answer={answer}
+            index={index}
+          />
+        ))}
         {answers.length > 0
-          ? <Pagination currentPage={currentPage > numberOfPages ? numberOfPages : currentPage} numberOfPages={numberOfPages} shape="rounded" size="16px" onChange={handlePagination} />
+          ? <Pagination currentPage={actualPage} numberOfPages={numberOfPages} shape="rounded" size="16px" onChange={handlePagination} />
           : isEmpty && <NoAnswers>
             <Image src={blankstate}/>
             <p>There no person with this skill</p>

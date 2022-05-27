@@ -8,9 +8,13 @@ export const AnswersListUserElement = ({ email, name, index, country, seniority 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoading(false);
     }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (

@@ -25,9 +25,9 @@ SkillListElement.propTypes = {
   level: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   sublevel: PropTypes.string.isRequired,
-  isSearched: PropTypes.bool,
+  isSearched: PropTypes.object,
 };
 
 SkillListElement.defaultProps = {
-  isSearched: null,
+  isSearched: {},
 };

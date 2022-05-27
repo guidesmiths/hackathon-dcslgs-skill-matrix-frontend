@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-export const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }) => {
+export const Pagination = ({ currentPage, numberOfPages, onChange, shape }) => {
   const classes = useStyles();
   return (<PaginationStyled>
     <PaginationMaterial
@@ -23,7 +23,7 @@ export const Pagination = ({ currentPage, numberOfPages, onChange, shape, size }
       data-cy="pagination"
       page={currentPage}
       shape={shape}
-      size={size}
+      size="medium"
       onChange={onChange}
     />
   </PaginationStyled>
@@ -35,10 +35,8 @@ Pagination.propTypes = {
   numberOfPages: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   shape: PropTypes.string,
-  size: PropTypes.string,
 };
 
 Pagination.defaultProps = {
   shape: 'round',
-  size: 'medium',
 };

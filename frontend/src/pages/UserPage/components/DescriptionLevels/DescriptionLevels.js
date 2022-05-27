@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { updateUserSkill } from '../../../../redux/user/userSlice';
 
-import { Label } from '../../../../app/commons/Label/Label';
+import { Label } from '../../../../app/commons/Label';
 
 import { RowCollapsed, RowSkillsBottom, DescriptionStyled, LevelEditor, AjustLevelButtons, AdjustButton, StyledInput,
   Tooltip, LevelDescription, LevelSelectionContainer } from './DescriptionLevels.styled';
@@ -85,7 +85,7 @@ export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
     <RowCollapsed>
       <RowSkillsBottom data-cy={`skill-${i}-description-level`}>
         <DescriptionStyled>
-          <Label left={25}>Level description</Label>
+          <Label left={25} top={0}>Level description</Label>
           {edit ? getDescriptions(skill) : getSelectedDescription(skill)}
         </DescriptionStyled>
         {edit && (

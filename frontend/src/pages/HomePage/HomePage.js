@@ -18,7 +18,7 @@ export const HomePage = () => {
   const { search } = useLocation();
   const { currentStep, isOpen, setCurrentStep, setSteps } = useTour();
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentName, setCurrentName] = useState();
+  const [currentName, setCurrentName] = useState('');
   const numberOfPages = useSelector(selectNumberOfPages);
 
   const handlePagination = (_, page) => {
@@ -38,7 +38,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(search);
-    const name = params.get('name');
+    const name = params.get('name') || '';
     setCurrentName(name);
     const query = name ? `&name=${name}` : '';
     history.push({ search: `page=${currentPage}${query}` });
