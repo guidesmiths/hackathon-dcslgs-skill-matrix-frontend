@@ -9,6 +9,29 @@ import { RowCollapsed, RowSkillsBottom, DescriptionStyled, LevelEditor, AjustLev
   Tooltip, LevelDescription, LevelSelectionContainer } from './DescriptionLevels.styled';
 import { RadioButtonMarker, RadioButton } from '../../../../app/commons/RadioButton/RadioButton.styled';
 
+const Descriptions = ({ skill, selectedLevel, handleLevel }) => skill.levels.map(level => {
+  const isSelected = selectedLevel(skill)?.level === level.level;
+
+  return (
+    <LevelSelectionContainer key={`${skill.id}-${level.level}`} level={level.level} onClick={handleLevel}>
+      <RadioButton
+        checked={isSelected}
+        id={`${skill.id}-${level.level}`}
+        name={skill.id}
+        type="radio"
+        value={level.level}
+        onChange={handleLevel}
+      />
+      <RadioButtonMarker isSelected={isSelected}/>
+      <LevelDescription htmlFor={level.level} id={`${skill.id}-${level.level}`} isSelected={isSelected}>{level.levelDescription}</LevelDescription>
+    </LevelSelectionContainer>
+  );
+});
+
+const SelectedDescription = ({ skill, selectedLevel }) => (
+  <p style={{ marginTop: '25px' }}>{selectedLevel(skill)?.levelDescription || 'Doesn\'t apply'}</p>
+);
+
 export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
   const dispatch = useDispatch();
   const [showMinus, setShowMinus] = useState(false);
@@ -22,7 +45,7 @@ export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
   }, [skill.sublevel]);
 
   const handleLevel = event => {
-    const selectValue = Number(event.target.value);
+    const selectValue = Number(event.target.id.split('-')[1]);
     dispatch(
       updateUserSkill({
         idEcosystem,
@@ -61,32 +84,15 @@ export const DescriptionLevels = ({ edit, i, idEcosystem, skill }) => {
 
   const selectedLevel = selectedSkill => selectedSkill.levels.find(({ level }) => level === selectedSkill.level);
 
-  const getDescriptions = selectedSkill => skill.levels.map(level => {
-    const isSelected = selectedLevel(selectedSkill)?.level === level.level;
-    return (
-      <LevelSelectionContainer key={`${skill.id}-${level.level}`} level={level.level}>
-        <RadioButton
-          checked={isSelected}
-          id={level.level}
-          name="skill level"
-          type="radio"
-          value={level.level}
-          onChange={handleLevel}
-        />
-        <RadioButtonMarker />
-        <LevelDescription htmlFor={level.level} isSelected={isSelected}>{level.levelDescription}</LevelDescription>
-      </LevelSelectionContainer>
-    );
-  });
-
-  const getSelectedDescription = selectedSkill => <p style={{ marginTop: '25px' }}>{selectedLevel(selectedSkill)?.levelDescription || 'Doesn\'t apply'}</p>;
-
   return (
     <RowCollapsed>
       <RowSkillsBottom data-cy={`skill-${i}-description-level`}>
         <DescriptionStyled>
           <Label left={25} top={0}>Level description</Label>
-          {edit ? getDescriptions(skill) : getSelectedDescription(skill)}
+          {edit
+            ? <Descriptions handleLevel={handleLevel} selectedLevel={selectedLevel} skill={skill} />
+            : <SelectedDescription selectedLevel={selectedLevel} skill={skill} />
+          }
         </DescriptionStyled>
         {edit && (
           <LevelEditor>
@@ -143,5 +149,10 @@ DescriptionLevels.propTypes = {
   edit: PropTypes.bool.isRequired,
   i: PropTypes.number.isRequired,
   idEcosystem: PropTypes.number.isRequired,
+  skill: PropTypes.object.isRequired,
+};
+
+SelectedDescription.propTypes = {
+  selectedLevel: PropTypes.number.isRequired,
   skill: PropTypes.object.isRequired,
 };

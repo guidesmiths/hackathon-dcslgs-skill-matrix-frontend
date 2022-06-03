@@ -15,8 +15,18 @@ const RadioButtonMarker = styled.span`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: white;
-  border: 1px solid ${({ theme }) => theme.colors.grey2};
+  border: 1px solid ${({ isSelected, theme }) => (isSelected ? theme.colors.primaryColor : theme.colors.grey2)};
+
+
+  &::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background: ${({ isSelected, theme }) => (isSelected ? theme.colors.primaryColor : theme.colors.white)};
+    border-radius: 50%;
+  }
 `;
 
 const RadioButton = styled.input`
@@ -39,26 +49,6 @@ const RadioButton = styled.input`
   }
 
   &:hover ~ ${RadioButtonMarker} {
-    border: 1px solid ${({ theme }) => theme.colors.primaryColor};
-
-    &::after {
-      content: "";
-      display: block;
-      width: 10px;
-      height: 10px;
-      margin: 5px;
-      background-color: ${({ theme }) => theme.colors.primaryColor};
-      border-radius: 50%;
-    }
-  }
-
-  &:checked + ${Item} {
-    background: yellowgreen;
-    border: 2px solid yellowgreen;
-  }
-
-  &:checked + ${RadioButtonMarker} {
-    background: white;
     border: 1px solid ${({ theme }) => theme.colors.primaryColor};
 
     &::after {
