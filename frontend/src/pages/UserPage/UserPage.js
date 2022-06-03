@@ -46,6 +46,7 @@ export const UserPage = () => {
       }
       if (!currentLocation) {
         setEmptyState(true);
+        setEcosystemIdSelected(0);
       }
     }
   }, [pathname, userData.id, canceling]);
@@ -156,19 +157,6 @@ export const UserPage = () => {
     ]);
     setStep(currentStep);
   }, [isOpen, edit, currentStep, pathname.split('/')[3]]);
-
-  useEffect(() => {
-    const currentLocation = +pathname.split('/')[3];
-    if (currentLocation && userData.id) {
-      dispatch(fetchSkillByEcosystemIdAsync(currentLocation));
-      dispatch(fetchAnswersByUserAndEcosystemAsync({ ecoId: currentLocation }));
-      setEcosystemIdSelected(currentLocation);
-      setEmptyState(false);
-    }
-    if (!currentLocation) {
-      setEmptyState(true);
-    }
-  }, []);
 
   return (
     <UserPageStyled data-cy="user">

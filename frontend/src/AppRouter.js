@@ -33,9 +33,6 @@ const AppRouter = ({ environment }) => {
     if (!userData.id) {
       dispatch(fetchUserInfoAsync(history));
     }
-    if (userData.country) {
-      history.push('/profile');
-    }
   }, [userData.country]);
 
   useEffect(() => {

@@ -151,7 +151,7 @@ export const EcosystemMain = ({ deleteNewSkill, ecosystem, isNewEcosystem, show,
         )
         : (currentEcosystem?.skills?.length > 0
           && <ScrollWrapper height={getScrollHeight()}>
-            {currentEcosystem?.skills.map((skill, index) => (
+            {currentEcosystem?.skills.filter(eco => eco.id !== 0).map((skill, index) => (
               <EcosystemSkill
                 key={skill?.id}
                 handleNewSkills={handleNewSkills}
