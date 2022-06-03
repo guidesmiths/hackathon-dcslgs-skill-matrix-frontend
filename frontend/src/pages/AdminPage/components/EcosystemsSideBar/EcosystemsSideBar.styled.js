@@ -9,9 +9,11 @@ const EcosystemBarStyled = styled.div`
 
 const EcosystemsSideBarStyled = styled.div`
   z-index: 1;
+  position: sticky;
+  top: 25px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  max-height: 79vh;
   width: 80%;
   box-sizing: border-box;
   margin: 0 auto;

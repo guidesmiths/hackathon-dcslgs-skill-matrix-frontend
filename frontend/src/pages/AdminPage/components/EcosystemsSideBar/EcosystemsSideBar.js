@@ -28,7 +28,8 @@ export const EcosystemsSideBar = ({ ecosystems, onNewEcosystem, loading, show, n
   return (
     <EcosystemsSideBarStyled>
       <EcosystemBarStyled data-cy="ecosystems-sidebar">
-        <EcosystemHeaderStyled>Ecosystem
+        <EcosystemHeaderStyled>
+          Ecosystem
           {show && <Icon icon="add" onClick={onNewEcosystem}/>}
         </EcosystemHeaderStyled>
         <StyledInputWrapper>

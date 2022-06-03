@@ -22,6 +22,7 @@ const HeaderStyled = styled.div`
 `;
 
 const UserPageDisplay = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: -40px;
@@ -87,9 +88,9 @@ const ColumnTitles = styled.div`
   display: grid;
   grid-template-columns: 40% 40% 20%;
   align-items: center;
-  width: 80%;
+  width: 100%;
   box-sizing: border-box;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
   padding: 0 15px 0 50px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey3};
   border-top: 1px solid ${({ theme }) => theme.colors.grey3};

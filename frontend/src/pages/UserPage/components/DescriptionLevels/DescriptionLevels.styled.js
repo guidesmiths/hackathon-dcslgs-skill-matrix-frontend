@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Icon } from '../../../../app/commons/Icon';
 
 const RowCollapsed = styled.div`
-  width: 80%;
-  margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.white};
   border-left: 2px solid ${({ theme }) => theme.colors.primaryColor};
 `;
@@ -39,7 +37,7 @@ const LevelDescription = styled.label`
   font-weight: ${({ isSelected }) => (isSelected ? '700' : 'normal')};
   font-size: 14px;
   line-height: 24px;
-  
+
   &:hover {
     cursor: pointer;
   }

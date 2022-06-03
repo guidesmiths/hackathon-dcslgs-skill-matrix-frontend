@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useTour } from '@reactour/tour';
 
-import { RowSkillsWrapper, RowSkillsTop, RowSkills, UserSkillName, StyledCheckbox, CheckboxWrapper, StyledLabel,
+import { RowSkillsTop, RowSkills, UserSkillName, StyledCheckbox, CheckboxWrapper, StyledLabel,
   ArrowButtonStyled, ButtonWrapper, RowSkillTour } from './UserRow.styled';
 import { LevelBar } from '../LevelBar';
 import { updateUserSkill } from '../../../../redux/user/userSlice';
@@ -40,41 +40,40 @@ export const UserRow = ({ i, skill, idEcosystem, edit }) => {
   }, [isOpen]);
 
   return (
-    <RowSkillsWrapper>
-      <RowSkillTour data-cy={`skill-${i}`}>
-        <RowSkillsTop
-          data-cy={`userSkill-${skill.name}`}
-          isCollapsed={isCollapsed}
-        >
-          <RowSkills data-cy={`userSkill-${i}`}>
-            <UserSkillName>{skill.name}</UserSkillName>
-            <LevelBar skill index={i} level={skill.level} sublevel={skill.sublevel}/>
-            <ButtonWrapper>
-              <CheckboxWrapper data-cy="checkbox">
-                {edit
-                  ? <>
-                    <StyledCheckbox
-                      checked={isChecked}
-                      disabled={!edit}
-                      id={`checkInterested ${skill.name}`}
-                      name={`checkInterested ${skill.name}`}
-                      type="checkbox"
-                      onChange={handleCheckBox}
-                    />
-                    <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
-                  </>
-                  : <Icon className="check-box" icon="check" show={isChecked}/>
-                }
-              </CheckboxWrapper>
-              <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
-                <span className="material-icons">{arrowButtonIcon}</span>
-              </ArrowButtonStyled>
-            </ButtonWrapper>
-          </RowSkills>
-        </RowSkillsTop>
-        {!isCollapsed && <DescriptionLevels edit={edit} i={i} idEcosystem={idEcosystem} skill={skill} />}
-      </RowSkillTour>
-    </RowSkillsWrapper>
+    <RowSkillTour data-cy={`skill-${i}`}>
+      <RowSkillsTop
+        data-cy={`userSkill-${skill.name}`}
+        isCollapsed={isCollapsed}
+        onClick={() => setCollapsed(!isCollapsed)}
+      >
+        <RowSkills data-cy={`userSkill-${i}`}>
+          <UserSkillName>{skill.name}</UserSkillName>
+          <LevelBar skill index={i} level={skill.level} sublevel={skill.sublevel}/>
+          <ButtonWrapper>
+            <CheckboxWrapper data-cy="checkbox">
+              {edit
+                ? <>
+                  <StyledCheckbox
+                    checked={isChecked}
+                    disabled={!edit}
+                    id={`checkInterested ${skill.name}`}
+                    name={`checkInterested ${skill.name}`}
+                    type="checkbox"
+                    onChange={handleCheckBox}
+                  />
+                  <StyledLabel edit={edit} htmlFor={`checkInterested ${skill.name}`} isChecked={isChecked}/>
+                </>
+                : <Icon className="check-box" icon="check" show={isChecked}/>
+              }
+            </CheckboxWrapper>
+            <ArrowButtonStyled data-cy={`userSkillButton-${skill.name}`} type="button" onClick={() => setCollapsed(!isCollapsed)}>
+              <span className="material-icons">{arrowButtonIcon}</span>
+            </ArrowButtonStyled>
+          </ButtonWrapper>
+        </RowSkills>
+      </RowSkillsTop>
+      {!isCollapsed && <DescriptionLevels edit={edit} i={i} idEcosystem={idEcosystem} skill={skill} />}
+    </RowSkillTour>
   );
 };
 

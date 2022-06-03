@@ -81,6 +81,7 @@ export const Ecosystems = ({ ecosystemIdSelected }) => {
           </NoEcosystems>
           : filteredEcosystems.map(({ id, name }) => {
             const filledSkills = filledSkillsCount?.find(ecosystem => ecosystem.ecosystemId === id);
+
             return (
               <ButtonStyled
                 key={id}

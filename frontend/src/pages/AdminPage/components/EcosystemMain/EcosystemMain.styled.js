@@ -13,22 +13,7 @@ const EcosystemContainerStyled = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
 
   ${UserRowWrapper} {
-    margin: 0 auto;
-    width: 80%;
-    padding-right: 2px;
-    overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      display: block !important;
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      width: 4px;
-      max-height: 178px;
-      background-color: ${({ theme }) => theme.colors.primaryColor};
-      border-radius: 8px;
-    }
+    width: 100%;
 
     ${SkillContainerStyled} {
       width: 100%;

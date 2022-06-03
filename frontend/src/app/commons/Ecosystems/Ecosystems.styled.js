@@ -4,9 +4,12 @@ import { UserRowWrapper } from '../ScrollWrapper/ScrollWrapper.styled';
 import { Icon } from '../Icon';
 
 const EcosystemColumn = styled.div`
+  position: sticky;
+  top: 25px;
   display: flex;
   flex-direction: column;
   width: 80%;
+  max-height: 79vh;
   box-sizing: border-box;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.white};
@@ -77,20 +80,20 @@ const EcosystemScroller = styled(UserRowWrapper)`
 `;
 
 const StyledInputWrapper = styled.div`
-  height: 40px;
   position: relative;
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  width: 95%;
+  width: 100%;
   margin: 10px auto;
+  padding: 0 10px;
   border: none;
 `;
 
 const StyledInput = styled.input`
   box-sizing: border-box;
-  padding-left: 50px;
   width: 100%;
-  height: 100%;
+  height: 40px;
+  padding-left: 40px;
   color: ${({ theme }) => theme.colors.grey1};
   font-family: ${({ theme }) => theme.fonts.poppins};
   border: 1px solid ${({ theme }) => theme.colors.grey3};
@@ -101,7 +104,7 @@ const IconStyled = styled(Icon)`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 15px;
+  left: 24px;
   transform: rotate(90deg);
   width: 14px;
   height: 14px;

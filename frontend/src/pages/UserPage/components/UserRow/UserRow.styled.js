@@ -12,10 +12,8 @@ const RowSkillsWrapper = styled.div`
 `;
 
 const RowSkillsTop = styled.div`
-  margin: 0 auto;
   margin-bottom: ${({ isCollapsed }) => (isCollapsed && '8px')};
-  padding: 0 15px;
-  width: 80%;
+  cursor: pointer;
 `;
 
 const RowSkills = styled.div`

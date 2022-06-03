@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { selectCurrentEcosystem } from '../../../../redux/ecosystems/ecosystemsSlice';
 import { selectSkillsWithLevel, selectEcosystemPerId } from '../../../../redux/user/userSlice';
 
-import { ScrollWrapper } from '../../../../app/commons/ScrollWrapper';
 import { Spinner } from '../../../../app/commons/Spinner';
 import { StateComponent } from '../../../../app/commons/StateComponent';
 import { UserRow } from '../UserRow';
@@ -67,7 +66,7 @@ export const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmite
                 <ColumnTitle>Rating</ColumnTitle>
                 <ColumnTitle>I&apos;d Like to learn</ColumnTitle>
               </ColumnTitles>
-              {skillswithLevel && <ScrollWrapper height={70}>
+              {skillswithLevel && <>
                 {skillswithLevel?.map((skill, index) => (
                   <UserRow
                     key={skill.id}
@@ -77,7 +76,8 @@ export const UserSkills = ({ ecosystemIdSelected, edit, isSubmited, setIsSubmite
                     skill={skill}
                   />
                 ))}
-              </ScrollWrapper>}
+              </>
+              }
             </form>
           )
           : (
