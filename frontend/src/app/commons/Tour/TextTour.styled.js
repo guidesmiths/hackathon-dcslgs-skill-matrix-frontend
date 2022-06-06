@@ -15,7 +15,7 @@ const Warning = styled.p`
 `;
 
 const Success = styled.p`
-  color: ${({ theme }) => theme.colors.darkGreen};
+  color: ${({ theme }) => theme.colors.green};
 `;
 
 export {

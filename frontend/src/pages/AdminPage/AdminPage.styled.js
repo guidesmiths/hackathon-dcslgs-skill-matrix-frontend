@@ -30,7 +30,7 @@ const EditButton = styled.button`
   width: 112px;
   height: 100%;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.darkGreen};
   font-family: ${({ theme }) => theme.fonts.poppins};
   font-size: 16px;
   border: 0;

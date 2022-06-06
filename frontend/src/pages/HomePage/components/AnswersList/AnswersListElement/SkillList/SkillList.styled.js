@@ -35,7 +35,7 @@ const FooterStyled = styled.div`
   justify-content: flex-end;
   width: 100%;
   height: 40px;
-  background: ${({ theme }) => theme.colors.darkGreen};
+  background: ${({ theme }) => theme.colors.green};
   border-radius: 0 0 8px 8px;
 `;
 

@@ -139,7 +139,7 @@ const EditButtonStyled = styled.div`
   justify-content: center;
   width: 112px;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.green};
+  background: ${({ theme }) => theme.colors.darkGreen};
   color: ${({ theme }) => theme.colors.white};
 
   &:hover {
@@ -168,7 +168,7 @@ const StyledIcon = styled(Icon)`
   height: auto;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.lightGreen};
-  color: ${({ theme }) => theme.colors.green};
+  color: ${({ theme }) => theme.colors.darkGreen};
   border-radius: 0;
 `;
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../../app/commons/Icon';
+import { RadioButton, RadioButtonMarker } from '../../../../app/commons/RadioButton/RadioButton.styled';
 
 const RowCollapsed = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -9,8 +9,7 @@ const RowCollapsed = styled.div`
 const RowSkillsBottom = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
-  padding: 15px 65px 15px 15px;
+  padding: 24px 20px 10px 35px;
   margin-bottom: 15px;
   box-shadow: ${({ theme }) => theme.boxShadow.normal};
 `;
@@ -25,13 +24,6 @@ const DescriptionStyled = styled.div`
   }
 `;
 
-const LevelSelectionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: ${({ level }) => (level === 1 ? '25px' : '10px')};
-  margin-bottom: 10px;
-`;
-
 const LevelDescription = styled.label`
   color: ${({ isSelected, theme }) => (isSelected ? theme.colors.primaryColor : theme.colors.grey1)};
   font-weight: ${({ isSelected }) => (isSelected ? '700' : 'normal')};
@@ -41,6 +33,77 @@ const LevelDescription = styled.label`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const LevelSelectionContainer = styled.div`
+  margin-top: ${({ level }) => (level === 1 ? '25px' : '5px')};
+  margin-bottom: 5px;
+`;
+
+const Level = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SubLevelSelectionContainer = styled.div`
+  margin: 8px 0;
+
+  p {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    padding-left: 35px;
+    margin: 0;
+  }
+
+  ${LevelDescription} {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+
+    .subLevel-plus-title {
+      color: ${({ theme }) => theme.colors.darkGreen};
+    }
+
+    .subLevel-neutral-title {
+      color: ${({ theme }) => theme.colors.green};
+    }
+
+    .subLevel-minus-title {
+      color: ${({ theme }) => theme.colors.lightGreen};
+    }
+  }
+
+  ${RadioButton}, ${RadioButtonMarker} {
+    width: 16px;
+    height: 16px;
+  }
+
+  ${RadioButton} {
+    &:hover ~ ${RadioButtonMarker} {
+      &::after {
+        width: 8px;
+        height: 8px;
+        margin: 4px;
+      }
+    }
+  }
+
+  ${RadioButtonMarker} {
+    &::after {
+      width: 8px;
+      height: 8px;
+      margin: 4px;
+    }
+  }
+`;
+
+const SubLevel = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 const SelectWrapper = styled.div`
@@ -63,58 +126,6 @@ const SelectWrapper = styled.div`
   }
 `;
 
-const LevelEditor = styled.div`
-  display: flex;
-  padding: 0 0 10px;
-`;
-
-const AjustLevelButtons = styled.div`
-  position: relative;
-  display: flex;
-  height: 48px;
-  padding: 5px 0;
-`;
-
-const getBackgroundColor = ({ minus, level, clicked, theme }) => {
-  if (minus) {
-    if (level === 0) return theme.colors.grey3;
-    if (clicked === 'minus') return theme.colors.darkGreen;
-    return theme.colors.lightGreen;
-  }
-  if (level === 4) return theme.colors.grey3;
-  if (clicked === 'plus') return theme.colors.darkGreen;
-  return theme.colors.lightGreen;
-};
-
-const getColor = ({ minus, level, clicked, theme }) => {
-  if (minus) {
-    if (level === 0) return theme.colors.grey2;
-    if (clicked === 'minus') return theme.colors.white;
-    return theme.colors.green;
-  }
-  if (level === 4) return theme.colors.grey2;
-  if (clicked === 'plus') return theme.colors.white;
-  return theme.colors.green;
-};
-
-const getBackgroundColorHover = ({ minus, level, clicked, theme }) => {
-  if (minus && level !== 0 && clicked !== 'minus' && clicked !== '') return theme.colors.secondaryColor;
-  if (!minus && level !== 4 && clicked !== 'plus' && clicked !== '') return theme.colors.secondaryColor;
-  return '';
-};
-
-const AdjustButton = styled(Icon)`
-  max-height: 48px;
-  background-color: ${getBackgroundColor};
-  color: ${getColor};
-  border-radius: ${({ minus }) => (minus ? '8px 0 0 8px' : '0 8px 8px 0')};
-
-  &:hover {
-    background-color: ${getBackgroundColorHover};
-    color: ${getColor};
-  };
-`;
-
 const StyledInput = styled.input`
   width: 100%;
   min-height: 60px;
@@ -126,57 +137,15 @@ const StyledInput = styled.input`
   border-radius: 4px;
 `;
 
-const Tooltip = styled.span`
-  z-index: 999;
-  position: absolute;
-  top: 70px;
-  right: -60px;
-  display: flex;
-  align-items: center;
-  width: 280px;
-  height: 50px;
-  padding: 10px;
-  font-family: ${({ theme }) => theme.fonts.poppins};
-  font-size: 9px;
-  font-weight: 500;
-  text-align: center;
-  background: ${({ theme }) => theme.colors.green};
-  color: ${({ theme }) => theme.colors.white};
-  opacity: 0;
-  border-radius: 4px;
-  animation: appear 1 normal forwards;
-  animation-delay: 0.3s;
-
-  &::after {
-    content: '';
-    z-index: 999;
-    position: absolute;
-    top: -10px;
-    right: ${({ plus }) => (plus ? 65 : 115)}px;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 20px solid ${({ theme }) => theme.colors.green};
-  }
-
-  @keyframes appear {
-    to {
-      opacity: 0.75;
-    }
-  }
-`;
-
 export {
   RowCollapsed,
   RowSkillsBottom,
   DescriptionStyled,
   SelectWrapper,
-  LevelEditor,
-  AjustLevelButtons,
-  AdjustButton,
   StyledInput,
-  Tooltip,
   LevelSelectionContainer,
   LevelDescription,
+  Level,
+  SubLevelSelectionContainer,
+  SubLevel,
 };

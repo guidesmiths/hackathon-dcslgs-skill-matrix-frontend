@@ -30,7 +30,7 @@ const SuggestionContentStyled = styled.div`
 
 const SuggestionStyled = styled.div`
   padding: 10px 10px 0;
-  color: ${({ theme }) => theme.colors.darkGreen};;
+  color: ${({ theme }) => theme.colors.green};
 `;
 
 const DescriptionStyled = styled.p`

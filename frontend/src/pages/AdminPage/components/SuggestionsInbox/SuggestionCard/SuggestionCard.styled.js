@@ -20,7 +20,7 @@ const SubjectStyled = styled.p`
   height: 24px;
   margin: 0;
   padding: 0 10px;
-  color: ${({ theme }) => theme.colors.darkGreen};;
+  color: ${({ theme }) => theme.colors.green};
   font-size: 0.8rem;
   font-weight: 500;
   background: rgba(0, 107, 121, 0.1);
@@ -67,7 +67,7 @@ const QuotesStyled = styled.span`
   box-sizing: border-box;
   height: 100%;
   font-size: 42px;
-  color: ${({ theme }) => theme.colors.darkGreen};;
+  color: ${({ theme }) => theme.colors.green};
   padding-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
 
